@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="description" content="Veldora Realms — a crônica dos cinco reinos e dos amigos que os guardam.">
 <title>Veldora Realms — Crônica dos Reinos</title>
 <!-- Favicon: o símbolo do grupo (simbolo.png na mesma pasta) -->
@@ -23,7 +23,7 @@
   --ink-soft:#b3a17c;
   --gold:#c9a24a;
   --gold-2:#b98a2e;
-  --seal:#a259c9;       /* o vermelho virou roxo — usado em todo o códice */
+  --seal:#a259c9;       /* roxo do códice */
   --c-ignarok:#c4553b;
   --c-sylvara:#5f9468;
   --c-thalassia:#4d92b4;
@@ -45,8 +45,14 @@ body{
   font-size:17px;
   line-height:1.65;
   overflow-x:hidden;
+  /* Nada de texto selecionável na página */
+  -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
+  -webkit-touch-callout:none;               /* sem menu de "copiar" no toque longo (iOS) */
+  -webkit-tap-highlight-color:transparent;  /* sem flash cinza ao tocar */
 }
-::selection{background:var(--seal);color:#f2e6c8}
+img{-webkit-user-drag:none;user-drag:none}
+/* Sem zoom-por-duplo-toque nos elementos tocáveis */
+a,.card,.realm,.scroll-hint,.to-card{touch-action:manipulation}
 ::-webkit-scrollbar{width:10px}
 ::-webkit-scrollbar-track{background:var(--paper-3)}
 ::-webkit-scrollbar-thumb{background:#6e5a38;border:2px solid var(--paper-3);border-radius:6px}
@@ -192,11 +198,14 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 
 /* ============ MAPA ============ */
 .map-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(310px,.9fr);gap:clamp(24px,3vw,44px);align-items:start}
+/* O pergaminho do mapa pode ser arrastado para os lados quando apertado */
 .map-wrap{
   border:1px solid var(--line);outline:1px solid var(--line-soft);outline-offset:4px;
   background:var(--paper-2);padding:10px;
   box-shadow:0 18px 40px -14px rgba(0,0,0,.75);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
 }
+.map-wrap::-webkit-scrollbar{height:8px}
 .map-wrap svg{display:block;width:100%;height:auto}
 .map-hint{
   text-align:center;font-style:italic;color:var(--ink-soft);font-size:.95rem;
@@ -206,14 +215,18 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 /* Reinos: levantam ao passar o mouse, brilham quando ativos */
 .realm{cursor:pointer;outline:none;transform-box:fill-box;transform-origin:center;
   transition:transform .4s ease,filter .4s ease}
-.realm:hover{transform:translateY(-4px);filter:drop-shadow(0 8px 16px rgba(0,0,0,.55))}
+@media (hover:hover){
+  .realm:hover{transform:translateY(-4px);filter:drop-shadow(0 8px 16px rgba(0,0,0,.55))}
+}
 .realm.active{filter:drop-shadow(0 0 18px rgba(234,217,181,.22))}
 .realm .land{
   stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;
   fill-opacity:.5;
   transition:fill-opacity .35s ease,stroke-width .35s ease;
 }
-.realm:hover .land{fill-opacity:.65}
+@media (hover:hover){
+  .realm:hover .land{fill-opacity:.65}
+}
 .realm.active .land{fill-opacity:.8;stroke-width:2.6}
 .realm:focus-visible .land{stroke-width:3.2}
 .realm text{pointer-events:none}
@@ -286,7 +299,9 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 .fan .card:nth-child(4){--r:5.5deg;--y:10px}
 .fan .card:nth-child(5){--r:11deg;--y:34px}
 .fan .card:nth-child(odd){z-index:2}
-.fan .card:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 20px));z-index:10}
+@media (hover:hover){
+  .fan .card:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 20px));z-index:10}
+}
 .fan .card{transform:rotate(var(--r)) translateY(var(--y))}
 .card{
   width:clamp(196px,20vw,232px);aspect-ratio:5/8;perspective:1400px;cursor:pointer;
@@ -398,16 +413,57 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .map-layout{grid-template-columns:1fr}
   .panel{position:static}
 }
+
+/* ============ CELULAR ============ */
 @media (max-width:760px){
-  .fan{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;
-    padding:16px 6px 26px;margin:0 calc(-1 * clamp(20px,4vw,48px));padding-left:clamp(20px,4vw,48px);padding-right:clamp(20px,4vw,48px)}
-  .fan .card{--r:0deg;--y:0px;scroll-snap-align:center;margin:0 6px}
-  .chronicle::before{left:12px}
-  .chronicle li,.chronicle li:nth-child(even){width:100%;margin-left:0;padding:6px 0 30px 44px;text-align:left}
-  .chronicle li::before,.chronicle li:nth-child(even)::before{left:5px;right:auto}
-  .nav-links a{letter-spacing:.1em}
-  .covenant li{grid-template-columns:60px 1fr;gap:12px}
-  .cov-num{font-size:1.4rem}
+  /* Navegação em duas fileiras, sem estourar a tela */
+  nav{flex-direction:column;gap:7px;padding:10px 14px 9px}
+  .brand{gap:9px}
+  .brand-seal{width:28px;height:28px}
+  .brand-name{font-size:.7rem;letter-spacing:.2em}
+  .nav-links{gap:16px}
+  .nav-links a{font-size:.56rem;letter-spacing:.08em}
+  section{scroll-margin-top:104px;padding:64px 0 72px}
+
+  /* Textos corridos alinhados à esquerda (justificado racha em telas estreitas) */
+  .lead{text-align:left;text-align-last:auto}
+  .lead::first-letter{font-size:2.6em;padding:4px 9px 0 0}
+
+  /* Mapa: largura mínima legível, arrasta para os lados */
+  .map-wrap{padding:6px}
+  .map-wrap svg{min-width:720px}
+
+  /* Painel mais compacto */
+  .panel{padding:20px 16px}
+  .panel h3{font-size:1.8rem}
+
+  /* Cartas: pilha vertical centralizada — sem carrossel, sem corte */
+  .fan{display:grid;gap:22px;justify-items:center;padding:6px 0 0}
+  .fan .card,
+  .fan .card:nth-child(1),.fan .card:nth-child(2),.fan .card:nth-child(3),
+  .fan .card:nth-child(4),.fan .card:nth-child(5){--r:0deg;--y:0px;margin:0;transform:none}
+  .fan .card:hover{transform:none}
+  .card{width:min(340px,92vw)}
+
+  /* Crônica: coluna única à esquerda (corrigindo também os ímpares) */
+  .chronicle{padding-top:0}
+  .chronicle::before{left:10px}
+  .chronicle li,
+  .chronicle li:nth-child(odd),
+  .chronicle li:nth-child(even){
+    width:100%;margin-left:0;padding:4px 0 28px 38px;text-align:left;
+  }
+  .chronicle li::before,
+  .chronicle li:nth-child(even)::before{left:3px;right:auto;top:18px}
+  .chronicle h3{font-size:1.2rem}
+
+  /* Pacto: numeração enxuta, texto do tamanho do parágrafo */
+  .covenant li{grid-template-columns:44px 1fr;gap:12px;padding:16px 2px}
+  .cov-num{font-size:1.2rem}
+  .covenant p{font-size:1.02rem}
+
+  .covenant li{padding:16px 2px}
+  .cov-num{font-size:1.2rem}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -810,7 +866,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <rect x="8" y="8" width="984" height="704" fill="none" stroke="var(--ink)" stroke-width="1.4" pointer-events="none"/>
           </svg>
         </div>
-        <p class="map-hint">Tocai num reino para o inspecionar — a Estrada do Pacto e as rotas do mar ligam os cinco.</p>
+        <p class="map-hint">No celular, arrastai o pergaminho para os lados — e tocai num reino para inspecioná-lo.</p>
       </div>
 
       <!-- Painel do reino (estado inicial: Ignarok; o JS re-renderiza) -->
