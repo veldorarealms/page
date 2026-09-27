@@ -567,7 +567,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .cov-num{font-size:1.2rem}
   .covenant p{font-size:1.02rem}
 
-  /* Portal da primeira visita, compacto */
   .gate{padding:14px}
   .gate-choice{grid-template-columns:42px 1fr;gap:11px;padding:9px 11px}
   .gate-realm{display:none}
@@ -1304,7 +1303,7 @@ let currentRealm = 'ignarok';
    · Apenas UM guardião pode ser favorito.
    · Na primeira visita, o portal pergunta de quem é a coroa.
    · A escolha fica gravada (localStorage): toda visita seguinte
-     abre já no reino do coroado, com o painel mostrando-o.
+     abre já no reino do coroado — mapa, painel E carta visível.
    · A coroa pode ser trocada a qualquer momento nas cartas.
 ================================================================ */
 const FAV_KEY = 'veldora_fav';
@@ -1322,6 +1321,24 @@ function applyFav(id){
       btn.setAttribute('aria-label', on ? 'Retirar a coroa deste guardião' : 'Coroar este guardião como favorito');
     }
   });
+}
+
+/* Centraliza o carrossel de cartas na carta coroada (celular).
+   No desktop (leque) todas as cartas já estão visíveis, então
+   não há nada a rolar — a coroada apenas levanta, como já faz. */
+function revealFavCard(behavior){
+  const fav = getFav();
+  if(!fav) return;
+  const fan = document.querySelector('.fan');
+  const card = document.querySelector(`.card[data-realm="${fav}"]`);
+  if(!fan || !card) return;
+  if(!matchMedia('(max-width:760px)').matches) return; /* só o carrossel rola */
+  const target = Math.max(0, card.offsetLeft - (fan.clientWidth - card.offsetWidth)/2);
+  if(typeof fan.scrollTo === 'function'){
+    fan.scrollTo({left:target, behavior:behavior||'auto'});
+  } else {
+    fan.scrollLeft = target;
+  }
 }
 
 function renderPanel(id){
@@ -1405,6 +1422,7 @@ document.querySelectorAll('.card .fav-btn').forEach(btn=>{
     const next = (prev === id) ? null : id;   // só um favorito por vez
     setFav(next);
     applyFav(next);
+    if(next) revealFavCard('smooth');         // a coroada centra no carrossel
     if(currentRealm === id || currentRealm === prev) renderPanel(currentRealm);
   });
 });
@@ -1428,7 +1446,8 @@ document.querySelectorAll('.gate-choice').forEach(btn=>{
     const id = btn.dataset.realm;
     setFav(id);
     applyFav(id);
-    selectRealm(id);          // o mapa e o painel vão direto para o coroado
+    selectRealm(id);
+    revealFavCard('auto');        // quando descer às cartas, a coroada já estará centralizada
     closeGate();
   });
 });
@@ -1505,12 +1524,14 @@ document.addEventListener('selectstart', e=>e.preventDefault());
 
 /* ============ INICIALIZAÇÃO ============
    · Com favorito gravado: abre direto no reino do coroado —
-     mapa ativo, painel com os dados dele, coroa aplicada.
+     mapa ativo, painel com os dados dele e carrossel de cartas
+     posicionado na carta coroada (não mais na primeira).
    · Sem favorito (primeira visita): o portal pergunta. */
 const savedFav = getFav();
 if(savedFav && REALMS[savedFav]){
   applyFav(savedFav);
   selectRealm(savedFav);
+  revealFavCard('auto');
 } else {
   applyFav(null);
   renderPanel('ignarok');
