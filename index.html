@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Veldora Realms — a crônica dos cinco reinos e dos amigos que os guardam.">
+<title>Veldora Realms — Crônica dos Reinos</title>
+<!-- Favicon: o símbolo do grupo (simbolo.png na mesma pasta) -->
+<link rel="icon" type="image/png" href="simbolo.png">
+<link rel="apple-touch-icon" href="simbolo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Tipografia medieval: UnifrakturMaguntia (gótica), MedievalSharp (manuscrito),
+     Cinzel (rótulos em small-caps) e EB Garamond (corpo) -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+/* ============ FUNDAÇÃO — TEMA NOTURNO ============ */
+:root{
+  --paper:#17110b;      /* fundo base / halos */
+  --paper-2:#221a11;    /* painéis, cartas e mapa */
+  --paper-3:#0d0906;    /* trilhas profundas (scrollbar) */
+  --ink:#ead9b5;        /* "tinta" clara */
+  --ink-soft:#b3a17c;
+  --gold:#c9a24a;
+  --gold-2:#b98a2e;
+  --seal:#a259c9;       /* o vermelho virou roxo — usado em todo o códice */
+  --c-ignarok:#c4553b;
+  --c-sylvara:#5f9468;
+  --c-thalassia:#4d92b4;
+  --c-aurum:#d1a33c;
+  --c-nocturnia:#8a76a0;
+  --line:rgba(234,217,181,.32);
+  --line-soft:rgba(234,217,181,.16);
+  --serif:'EB Garamond',Georgia,serif;
+  --disp:'Cinzel',serif;
+  --font-black:'UnifrakturMaguntia','EB Garamond',serif;
+  --font-med:'MedievalSharp','EB Garamond',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+::selection{background:var(--seal);color:#f2e6c8}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--paper-3)}
+::-webkit-scrollbar-thumb{background:#6e5a38;border:2px solid var(--paper-3);border-radius:6px}
+
+/* ============ FUNDO COM IMAGENS + VÉU ESCURO ============
+   Deixe cllr.png (celular), pc.png (PC/notebook) e simbolo.png
+   na mesma pasta deste HTML. */
+.bg{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:url('cllr.png');
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  background-color:var(--paper);
+}
+@media (min-width:761px){
+  .bg{background-image:url('pc.png')}
+}
+/* Véu noturno sobre a foto — ajuste a opacidade dos rgba() para
+   deixar a imagem mais ou menos visível. */
+.bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(12,9,6,.72) 0%,
+    rgba(16,12,8,.78) 50%,
+    rgba(8,6,4,.9) 100%);
+}
+
+/* Grão sobre tudo */
+body::before{
+  content:"";position:fixed;inset:0;z-index:2000;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity:.14;mix-blend-mode:overlay;
+}
+/* Vinheta de profundidade */
+body::after{
+  content:"";position:fixed;inset:0;z-index:1999;pointer-events:none;
+  box-shadow:inset 0 0 180px rgba(0,0,0,.6);
+}
+/* Moldura de códice */
+.page-frame{position:fixed;inset:8px;z-index:1500;pointer-events:none;border:1px solid var(--line)}
+.page-frame::before{content:"";position:absolute;inset:3px;border:1px solid var(--line-soft)}
+
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+
+/* ============ NAVEGAÇÃO ============ */
+nav{
+  position:fixed;top:8px;left:8px;right:8px;z-index:1400;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 26px;
+  background:rgba(23,17,11,.85);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line-soft);
+  box-shadow:0 8px 24px -12px rgba(0,0,0,.7);
+}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-seal{
+  width:34px;height:34px;flex:0 0 auto;object-fit:contain;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,.7));
+  transition:transform .35s ease;
+}
+.brand:hover .brand-seal{transform:rotate(-8deg) scale(1.08)}
+.brand-name{font-family:var(--disp);font-size:.82rem;letter-spacing:.24em;font-weight:600;text-transform:uppercase}
+.nav-links{display:flex;gap:clamp(14px,2.4vw,30px);list-style:none}
+.nav-links a{
+  font-family:var(--disp);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .3s;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+  background:var(--seal);transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--seal)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh;position:relative;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:130px 24px 90px;overflow:hidden;
+}
+#dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.dragonfly{position:absolute;top:15%;left:-160px;color:var(--ink);opacity:.35;pointer-events:none;animation:flyby 48s linear infinite}
+.dragonfly svg{width:118px;height:auto;display:block}
+.dragonfly-bob{animation:bob 5.5s ease-in-out infinite alternate}
+.wing{transform-box:fill-box;transform-origin:12% 92%;animation:flap .8s ease-in-out infinite alternate}
+@keyframes flyby{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 320px))}}
+@keyframes bob{from{transform:translateY(-14px) rotate(-2deg)}to{transform:translateY(16px) rotate(2deg)}}
+@keyframes flap{from{transform:rotate(12deg)}to{transform:rotate(-16deg)}}
+
+.hero-kicker{
+  font-family:var(--disp);font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:26px;
+}
+.hero-title{position:relative;z-index:2}
+.hero-title h1{
+  font-family:var(--font-black);font-weight:400;line-height:1;
+  font-size:clamp(3.6rem,11vw,7.8rem);color:var(--ink);
+  text-shadow:0 4px 40px rgba(0,0,0,.6);
+}
+.hero-title .realm-word{
+  display:block;font-family:var(--disp);font-weight:600;
+  font-size:clamp(1rem,3.4vw,1.9rem);letter-spacing:.62em;text-indent:.62em;
+  margin-top:14px;color:var(--seal);
+}
+/* Símbolo do grupo como marca d'água atrás do título */
+.emblem{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-56%);
+  width:min(430px,82vw);height:auto;object-fit:contain;
+  opacity:0;pointer-events:none;z-index:1;
+  animation:emblemIn 2.2s ease forwards .25s,
+            emblemGlow 6s ease-in-out 2.6s infinite alternate;
+}
+@keyframes emblemIn{to{opacity:.2}}
+@keyframes emblemGlow{
+  from{filter:drop-shadow(0 0 40px rgba(201,162,74,.12))}
+  to{filter:drop-shadow(0 0 80px rgba(201,162,74,.32))}
+}
+.orn{color:var(--gold);width:200px;height:20px;margin:26px auto 0;display:block}
+.hero-sub{font-style:italic;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--ink-soft);margin-top:4px}
+.hero-intro{max-width:620px;margin:26px auto 0;font-size:1.05rem;color:var(--ink)}
+.scroll-hint{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;
+  font-family:var(--disp);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);
+}
+.scroll-hint svg{width:16px;height:16px;animation:hint 1.8s ease-in-out infinite}
+@keyframes hint{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(7px);opacity:1}}
+
+/* ============ CAPÍTULOS ============ */
+section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
+.chapter-head{text-align:center;max-width:760px;margin:0 auto clamp(44px,6vw,72px)}
+.chapter-kicker{
+  font-family:var(--disp);font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;
+}
+.chapter-head h2{font-family:var(--font-black);font-weight:400;font-size:clamp(2rem,5vw,3.1rem);line-height:1.1;letter-spacing:.01em}
+.chapter-head .orn{margin-top:20px}
+.lead{text-align:justify;text-align-last:center;color:var(--ink)}
+.lead::first-letter{
+  font-family:var(--font-black);font-size:3.3em;line-height:.78;
+  float:left;padding:5px 12px 0 0;color:var(--seal);
+}
+
+/* ============ MAPA ============ */
+.map-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(310px,.9fr);gap:clamp(24px,3vw,44px);align-items:start}
+.map-wrap{
+  border:1px solid var(--line);outline:1px solid var(--line-soft);outline-offset:4px;
+  background:var(--paper-2);padding:10px;
+  box-shadow:0 18px 40px -14px rgba(0,0,0,.75);
+}
+.map-wrap svg{display:block;width:100%;height:auto}
+.map-hint{
+  text-align:center;font-style:italic;color:var(--ink-soft);font-size:.95rem;
+  margin-top:14px;letter-spacing:.02em;
+}
+
+/* Reinos: levantam ao passar o mouse, brilham quando ativos */
+.realm{cursor:pointer;outline:none;transform-box:fill-box;transform-origin:center;
+  transition:transform .4s ease,filter .4s ease}
+.realm:hover{transform:translateY(-4px);filter:drop-shadow(0 8px 16px rgba(0,0,0,.55))}
+.realm.active{filter:drop-shadow(0 0 18px rgba(234,217,181,.22))}
+.realm .land{
+  stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;
+  fill-opacity:.5;
+  transition:fill-opacity .35s ease,stroke-width .35s ease;
+}
+.realm:hover .land{fill-opacity:.65}
+.realm.active .land{fill-opacity:.8;stroke-width:2.6}
+.realm:focus-visible .land{stroke-width:3.2}
+.realm text{pointer-events:none}
+.realm-name{
+  font-family:var(--font-med);font-weight:400;font-size:27px;fill:var(--ink);
+  text-anchor:middle;paint-order:stroke;stroke:var(--paper-2);stroke-width:5;
+}
+.realm-sub{
+  font-family:var(--disp);font-size:9.5px;letter-spacing:.22em;fill:var(--ink-soft);
+  text-anchor:middle;paint-order:stroke;stroke:var(--paper-2);stroke-width:4;
+}
+.map-decor{pointer-events:none}
+.node-ring{opacity:0;transition:opacity .3s}
+.node-ring.on{opacity:1;transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+.road{animation:roadmove 26s linear infinite}
+@keyframes roadmove{to{stroke-dashoffset:-260}}
+
+/* Painel do reino */
+.panel{
+  position:sticky;top:92px;
+  border:1px solid var(--line);outline:1px solid var(--line-soft);outline-offset:4px;
+  background:var(--paper-2);padding:clamp(22px,3vw,34px);
+  box-shadow:0 18px 40px -14px rgba(0,0,0,.75);
+}
+.panel.fading .panel-body{opacity:0;transform:translateY(10px)}
+.panel-body{transition:opacity .3s ease,transform .3s ease}
+.panel-kicker{font-family:var(--disp);font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--accent,var(--gold));margin-bottom:8px}
+.panel h3{font-family:var(--font-med);font-weight:400;font-size:2.1rem;line-height:1.1}
+.panel .epithet{font-style:italic;color:var(--ink-soft);margin-top:2px}
+.panel .motto{margin-top:14px;font-style:italic;font-size:1.06rem}
+.panel .motto::before{content:"« "}.panel .motto::after{content:" »"}
+.panel .today{margin-top:8px;font-size:.95rem;color:var(--ink-soft)}
+.panel .today b{font-weight:600;color:var(--ink)}
+.panel .desc{margin-top:14px;font-size:1rem}
+.panel .orn{margin:20px auto}
+.guardian{display:flex;gap:16px;align-items:center}
+.guardian-medal{
+  width:66px;height:66px;flex:0 0 auto;border:1.5px solid var(--accent,var(--gold));
+  border-radius:50%;display:grid;place-items:center;color:var(--accent,var(--gold));
+}
+.guardian-medal svg{width:34px;height:34px}
+.guardian .g-kicker{font-family:var(--disp);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
+.guardian .g-name{font-family:var(--font-med);font-size:1.3rem;line-height:1.2}
+.guardian .g-title{font-style:italic;color:var(--accent,var(--seal))}
+.guardian-bio{margin-top:14px;font-size:.98rem}
+.panel .feats-title{font-family:var(--disp);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:20px 0 10px}
+.feats{list-style:none}
+.feats li{position:relative;padding-left:20px;margin-bottom:9px;font-size:.97rem}
+.feats li::before{
+  content:"";position:absolute;left:2px;top:.5em;width:7px;height:7px;
+  background:var(--accent,var(--gold));transform:rotate(45deg);
+}
+.panel .to-card{
+  display:inline-block;margin-top:18px;font-family:var(--disp);font-size:.68rem;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--accent,var(--seal));
+  text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px;transition:letter-spacing .3s;
+}
+.panel .to-card:hover{letter-spacing:.3em}
+
+/* ============ CARTAS ============ */
+.fan{
+  display:flex;justify-content:center;align-items:flex-end;
+  padding-top:30px;perspective:1600px;
+}
+.fan .card{flex:0 0 auto;margin:0 -8px;transition:transform .4s ease;z-index:1}
+.fan .card:nth-child(1){--r:-11deg;--y:34px}
+.fan .card:nth-child(2){--r:-5.5deg;--y:10px}
+.fan .card:nth-child(3){--r:0deg;--y:0px}
+.fan .card:nth-child(4){--r:5.5deg;--y:10px}
+.fan .card:nth-child(5){--r:11deg;--y:34px}
+.fan .card:nth-child(odd){z-index:2}
+.fan .card:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 20px));z-index:10}
+.fan .card{transform:rotate(var(--r)) translateY(var(--y))}
+.card{
+  width:clamp(196px,20vw,232px);aspect-ratio:5/8;perspective:1400px;cursor:pointer;
+}
+.card-tilt{width:100%;height:100%;transition:transform .3s ease}
+.card-inner{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;transition:transform .8s cubic-bezier(.4,.1,.2,1);
+}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border:1px solid var(--gold);background:var(--paper-2);
+  box-shadow:0 14px 30px -10px rgba(0,0,0,.8);
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:18px 14px;overflow:hidden;
+}
+.card-face::before{content:"";position:absolute;inset:6px;border:1px solid rgba(201,162,74,.5);pointer-events:none}
+.card-sigil{
+  width:86px;height:86px;border:1.5px solid var(--accent);border-radius:50%;
+  display:grid;place-items:center;color:var(--accent);margin:auto 0;
+}
+.card-sigil svg{width:44px;height:44px}
+.card-face h3{font-family:var(--font-med);font-weight:400;font-size:1.32rem;line-height:1.15;letter-spacing:.02em}
+.card-title{font-style:italic;color:var(--accent);font-size:.98rem;margin-top:3px}
+.card-realm{
+  font-family:var(--disp);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--ink-soft);margin:8px 0 12px;
+}
+.card-tap{font-size:.72rem;font-style:italic;color:var(--ink-soft);opacity:.8}
+
+.card-back{
+  transform:rotateY(180deg);background:#120d07;color:#d8c9a4;
+  text-align:left;align-items:stretch;padding:20px 16px;
+}
+.card-back::before{border-color:rgba(185,138,46,.6)}
+.card-lema{font-style:italic;color:#e9dcb8;font-size:.95rem;text-align:center;line-height:1.4}
+.card-back .orn{width:120px;margin:10px auto;color:#b98a2e}
+.card-bio{font-size:.82rem;line-height:1.5}
+.stats{margin:12px 0;display:grid;gap:5px}
+.stat{display:flex;justify-content:space-between;align-items:center;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-family:var(--disp);color:#bfae83}
+.pips{display:inline-flex;gap:5px}
+.pip{width:7px;height:7px;transform:rotate(45deg);border:1px solid #b98a2e;display:inline-block}
+.pip.on{background:#b98a2e}
+.card-back .feats{margin-top:4px}
+.card-back .feats li{font-size:.8rem;margin-bottom:7px;padding-left:17px}
+.card-back .feats li::before{background:#b98a2e;top:.42em;width:6px;height:6px}
+
+.card.flash{animation:cardflash 1.8s ease}
+@keyframes cardflash{
+  0%,55%{outline:2.5px solid var(--gold-2);outline-offset:8px}
+  100%{outline:2.5px solid transparent;outline-offset:8px}
+}
+
+/* ============ CRÔNICA ============ */
+.chronicle{list-style:none;position:relative;max-width:880px;margin:0 auto;padding:10px 0}
+.chronicle::before{
+  content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;
+  background:var(--line);
+}
+.chronicle li{position:relative;width:50%;padding:10px 44px 34px 0}
+.chronicle li:nth-child(even){margin-left:50%;padding:10px 0 34px 44px}
+.chronicle li::before{
+  content:"";position:absolute;top:22px;right:-7px;width:12px;height:12px;
+  background:var(--paper);border:1.5px solid var(--gold);transform:rotate(45deg);
+}
+.chronicle li:nth-child(even)::before{right:auto;left:-7px}
+.era-year{
+  font-family:var(--disp);font-weight:700;font-size:.8rem;letter-spacing:.3em;color:var(--seal);
+  display:block;margin-bottom:6px;
+}
+.chronicle li:nth-child(odd){text-align:right}
+.chronicle h3{font-family:var(--font-med);font-weight:400;font-size:1.35rem;letter-spacing:.02em}
+.chronicle p{font-size:1rem;margin-top:6px;color:var(--ink)}
+
+/* ============ O PACTO ============ */
+.covenant{list-style:none;max-width:700px;margin:0 auto}
+.covenant li{
+  display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:baseline;
+  padding:20px 6px;border-bottom:1px dashed rgba(234,217,181,.25);
+}
+.covenant li:last-child{border-bottom:none}
+.cov-num{font-family:var(--disp);font-weight:700;font-size:1.9rem;color:var(--gold);text-align:right}
+.covenant p{font-style:italic;font-size:1.15rem}
+
+/* ============ RODAPÉ ============ */
+footer{
+  text-align:center;padding:80px 24px 60px;
+  border-top:1px solid var(--line-soft);position:relative;
+}
+.wax-seal{
+  width:120px;height:auto;margin:0 auto 22px;display:block;
+  filter:drop-shadow(0 8px 28px rgba(0,0,0,.75));
+  animation:sealglow 4.5s ease-in-out infinite alternate;
+}
+@keyframes sealglow{
+  from{filter:drop-shadow(0 8px 28px rgba(0,0,0,.75)) drop-shadow(0 0 10px rgba(201,162,74,.12))}
+  to{filter:drop-shadow(0 8px 28px rgba(0,0,0,.75)) drop-shadow(0 0 26px rgba(201,162,74,.4))}
+}
+footer .final{font-style:italic;font-size:1.15rem;max-width:520px;margin:0 auto}
+footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease;transition-delay:var(--d,0s)}
+.reveal.visible{opacity:1;transform:none}
+
+/* ============ RESPONSIVO ============ */
+@media (max-width:940px){
+  .map-layout{grid-template-columns:1fr}
+  .panel{position:static}
+}
+@media (max-width:760px){
+  .fan{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:16px 6px 26px;margin:0 calc(-1 * clamp(20px,4vw,48px));padding-left:clamp(20px,4vw,48px);padding-right:clamp(20px,4vw,48px)}
+  .fan .card{--r:0deg;--y:0px;scroll-snap-align:center;margin:0 6px}
+  .chronicle::before{left:12px}
+  .chronicle li,.chronicle li:nth-child(even){width:100%;margin-left:0;padding:6px 0 30px 44px;text-align:left}
+  .chronicle li::before,.chronicle li:nth-child(even)::before{left:5px;right:auto}
+  .nav-links a{letter-spacing:.1em}
+  .covenant li{grid-template-columns:60px 1fr;gap:12px}
+  .cov-num{font-size:1.4rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .emblem{opacity:.2}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Fundo: cllr.png no celular, pc.png no PC (mesma pasta deste arquivo) -->
+<div class="bg" aria-hidden="true"></div>
+
+<!-- ============ BIBLIOTECA DE SÍMBOLOS SVG ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sym-orn" viewBox="0 0 220 20">
+      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+        <path d="M4 10 H92"/><path d="M128 10 H216"/>
+        <path d="M110 2 L118 10 L110 18 L102 10 Z"/>
+        <path d="M96 10 l3 -3.4 3 3.4 -3 3.4 Z"/>
+        <path d="M118 10 l3 -3.4 3 3.4 -3 3.4 Z"/>
+      </g>
+    </symbol>
+    <symbol id="sym-sword" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 4 L38 38 L32 46 L26 38 Z"/><path d="M18 46 H46"/>
+        <path d="M32 46 V56"/><circle cx="32" cy="59" r="2.6"/>
+      </g>
+    </symbol>
+    <symbol id="sym-bow" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 8 C44 16 44 48 20 56"/><path d="M20 8 V56"/>
+        <path d="M22 32 H52"/><path d="M52 32 L43 26"/><path d="M52 32 L43 38"/>
+      </g>
+    </symbol>
+    <symbol id="sym-anchor" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="32" cy="10" r="4.5"/><path d="M32 15 V48"/><path d="M20 22 H44"/>
+        <path d="M12 34 C14 50 24 56 32 56 C40 56 50 50 52 34"/>
+        <path d="M12 34 L20 37 M12 34 L13.5 43"/><path d="M52 34 L44 37 M52 34 L50.5 43"/>
+      </g>
+    </symbol>
+    <symbol id="sym-flask" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M26 6 H38"/><path d="M28 6 V18 C19.5 22.5 13.5 30.5 13.5 39.5 C13.5 51 21.5 58 32 58 C42.5 58 50.5 51 50.5 39.5 C50.5 30.5 44.5 22.5 36 18 V6"/>
+        <path d="M20 42 C24 39 28 45 32 42 C36 39 40 45 44 42"/>
+      </g>
+    </symbol>
+    <symbol id="sym-mask" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 18 C22 10 42 10 50 18 C52 32 42 46 32 50 C22 46 12 32 14 18 Z"/>
+        <path d="M22 27 L27 31 L22 35 L18 31 Z"/><path d="M42 27 L37 31 L42 35 L46 31 Z"/>
+        <path d="M32 38 V44"/>
+      </g>
+    </symbol>
+    <symbol id="sym-mtn" viewBox="0 0 40 24">
+      <path d="M2 22 L14 4 L20 12 L26 2 L38 22 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="sym-tree" viewBox="0 0 20 26">
+      <circle cx="10" cy="9" r="7" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+      <path d="M10 16 V24 M10 19 L6.5 15.5 M10 19 L13.5 15.5" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="sym-wave" viewBox="0 0 30 10">
+      <path d="M0 6 Q5 0 10 6 T20 6 T30 6" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="sym-dune" viewBox="0 0 20 12">
+      <path d="M1 10 Q10 -2 19 10" fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="sym-dragonfly" viewBox="0 0 140 70">
+      <g fill="currentColor" stroke="none">
+        <path d="M18 42 C34 36 52 40 68 36 C84 32 96 24 104 14 C106 11 111 9 114 11 C117 13 116 17 113 19 C104 26 96 36 84 43 C64 54 40 54 22 49 C17 47.5 15 44 18 42 Z"/>
+        <path d="M106 12 L110 2 L114 11 Z"/>
+      </g>
+      <g class="wing"><path d="M52 38 C50 20 60 6 78 2 C68 12 62 22 60 34 C58 40 54 42 52 38 Z" fill="currentColor"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page-frame" aria-hidden="true"></div>
+
+<!-- ============ NAVEGAÇÃO ============ -->
+<nav aria-label="Capítulos da crônica">
+  <a class="brand" href="#inicio">
+    <img class="brand-seal" src="simbolo.png" alt="Símbolo de Veldora Realms">
+    <span class="brand-name">Veldora Realms</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#mapa">O Mapa</a></li>
+    <li><a href="#guardioes">Guardiões</a></li>
+    <li><a href="#cronica">Crônica</a></li>
+    <li><a href="#pacto">O Pacto</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="inicio">
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="dragonfly" aria-hidden="true">
+    <div class="dragonfly-bob">
+      <svg viewBox="0 0 140 70"><use href="#sym-dragonfly"/></svg>
+    </div>
+  </div>
+
+  <!-- Símbolo do grupo em marca d'água atrás do título -->
+  <img class="emblem" src="simbolo.png" alt="" aria-hidden="true">
+
+  <p class="hero-kicker">Um pacto entre amigos · desde o Ano Primeiro</p>
+  <div class="hero-title">
+    <h1>Veldora<span class="realm-word">Realms</span></h1>
+  </div>
+  <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+  <p class="hero-sub">A crônica dos cinco reinos e dos amigos que os guardam.</p>
+  <p class="hero-intro">Nem todo mundo encontra a sua gente — nós encontramos, numa partida qualquer,
+  entre uma kill e um respawn. O grupo cresceu, virou mundo: cinco reinos, um pacto,
+  dezenas de jogos — e histórias que ninguém de fora acredita.</p>
+
+  <a class="scroll-hint" href="#mapa">
+    <span>Descer à carta</span>
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6 L8 11 L13 6"/></svg>
+  </a>
+</header>
+
+<main>
+<!-- ============ CAPÍTULO I — O MAPA ============ -->
+<section id="mapa">
+  <div class="wrap">
+    <div class="chapter-head reveal">
+      <p class="chapter-kicker">Capítulo I</p>
+      <h2>A Carta dos Reinos</h2>
+      <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+      <p class="lead">Todo grupo de amigos é, no fundo, um continente: territórios de temperamentos
+      diferentes, unidos por estradas que ninguém lembra de ter aberto — e que ninguém consegue mais
+      abandonar. Esta é a carta de Veldora: cinco reinos, cinco guardiões, um só juramento —
+      e uma mesa que troca de jogo, mas nunca de gente.</p>
+    </div>
+
+    <div class="map-layout">
+      <div class="reveal">
+        <div class="map-wrap">
+          <svg id="worldMap" viewBox="0 0 1000 720" role="img" aria-label="Mapa dos cinco reinos de Veldora">
+            <defs>
+              <pattern id="seawaves" width="74" height="28" patternUnits="userSpaceOnUse">
+                <use href="#sym-wave" x="8" y="7" opacity=".45"/>
+                <use href="#sym-wave" x="45" y="21" opacity=".3"/>
+              </pattern>
+              <path id="seaCurve" d="M100 316 C320 338 640 334 950 296" fill="none"/>
+            </defs>
+
+            <!-- Oceano + grid cartográfico sutil -->
+            <rect width="1000" height="720" fill="var(--paper-2)"/>
+            <rect width="1000" height="720" fill="url(#seawaves)" opacity=".5"/>
+            <g stroke="var(--line-soft)" stroke-width="1" stroke-dasharray="1.5 18" opacity=".5">
+              <path d="M24 130 H976"/><path d="M24 265 H976"/>
+              <path d="M24 400 H976"/><path d="M24 535 H976"/><path d="M24 668 H976"/>
+            </g>
+
+            <!-- Nome do mar, em curva -->
+            <text font-family="Cinzel,serif" font-size="16" letter-spacing="9" fill="var(--ink-soft)" opacity=".55"
+              paint-order="stroke" stroke="var(--paper-2)" stroke-width="4">
+              <textPath href="#seaCurve" startOffset="50%" text-anchor="middle">· MAR DE VELDORA ·</textPath>
+            </text>
+            <text x="428" y="360" font-family="EB Garamond,serif" font-style="italic" font-size="11"
+              fill="var(--ink-soft)" opacity=".75" text-anchor="middle"
+              paint-order="stroke" stroke="var(--paper-2)" stroke-width="3">Baía do Encontro</text>
+
+            <!-- Rotas marítimas -->
+            <g fill="none" stroke="var(--c-thalassia)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" opacity=".55">
+              <path d="M462 372 C405 402 350 435 305 462"/>
+              <path d="M332 548 C430 576 520 568 574 550"/>
+              <path d="M876 312 C898 380 894 480 882 556"/>
+            </g>
+
+            <!-- Navio que navega de verdade -->
+            <g class="map-decor" transform="translate(400,430)">
+              <path d="M-12 0 C-8 8 10 8 14 0 C4 3 -6 3 -12 0 Z" fill="var(--ink)"/>
+              <path d="M0 0 V-16" stroke="var(--ink)" stroke-width="1.4"/>
+              <path d="M0 -16 C8 -12 8 -5 0 -1 C2 -6 2 -11 0 -16 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1"/>
+              <path d="M0 -16 L6 -14 L0 -12 Z" fill="var(--seal)"/>
+              <animateMotion dur="40s" repeatCount="indefinite"
+                path="M462 372 C405 402 350 435 305 462 C298 505 320 540 348 552 C430 578 520 568 574 550"/>
+            </g>
+            <g class="map-decor" transform="translate(146,428) rotate(-6)">
+              <path d="M-12 0 C-8 8 10 8 14 0 C4 3 -6 3 -12 0 Z" fill="var(--ink)"/>
+              <path d="M0 0 V-16" stroke="var(--ink)" stroke-width="1.4"/>
+              <path d="M0 -16 C8 -12 8 -5 0 -1 C2 -6 2 -11 0 -16 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1"/>
+            </g>
+
+            <!-- Estrada do Pacto -->
+            <path class="map-decor road" d="M225 236 C320 200 430 186 508 200 C586 214 700 192 802 224 C838 292 762 432 655 495"
+              fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 12" opacity=".5"/>
+
+            <!-- Marco do Pacto -->
+            <g class="map-decor">
+              <title>Marco do Pacto</title>
+              <rect x="359" y="188" width="6" height="12" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1"/>
+              <path d="M362 180 L366 184 L362 188 L358 184 Z" fill="var(--gold)"/>
+            </g>
+
+            <!-- ===== REINO DE IGNAROK ===== -->
+            <g class="realm" data-realm="ignarok" tabindex="0" role="button" aria-label="Reino de Ignarok, das Chamas">
+              <path class="land" fill="var(--c-ignarok)" d="M108 252 C92 214 100 162 132 130 C156 106 192 94 230 90 C272 86 312 98 338 126 C362 152 368 190 354 222 C341 251 313 273 279 285 C242 298 196 297 160 284 C134 274 116 265 108 252 Z"/>
+              <path class="land" fill="var(--c-ignarok)" d="M370 240 C368 230 376 222 388 221 C400 220 409 227 410 236 C411 245 403 252 391 253 C381 254 372 249 370 240 Z"/>
+              <path class="land" fill="var(--c-ignarok)" d="M148 312 C146 303 154 296 165 296 C176 296 184 302 184 311 C184 320 175 326 164 326 C155 326 150 320 148 312 Z"/>
+              <text class="realm-name" x="222" y="192">Ignarok</text>
+              <text class="realm-sub" x="222" y="214">O REINO DAS CHAMAS</text>
+              <g class="map-decor">
+                <path d="M282 260 L304 212 L326 260 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/>
+                <path d="M298 218 C302 214 308 214 310 218" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M304 208 C298 200 310 194 304 186 C299 179 309 174 305 166" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
+                <path d="M296 246 l9 -7 M314 249 l8 -6" stroke="var(--seal)" stroke-width="1.6" stroke-linecap="round"/>
+              </g>
+              <use class="map-decor" href="#sym-mtn" x="142" y="240" width="36" height="22"/>
+              <use class="map-decor" href="#sym-mtn" x="178" y="254" width="36" height="22"/>
+              <use class="map-decor" href="#sym-mtn" x="214" y="246" width="36" height="22"/>
+            </g>
+
+            <!-- ===== REINO DE SYLVARA ===== -->
+            <g class="realm" data-realm="sylvara" tabindex="0" role="button" aria-label="Reino de Sylvara, a Silva Eterna">
+              <path class="land" fill="var(--c-sylvara)" d="M372 186 C364 146 398 112 448 97 C494 84 548 80 598 90 C648 100 684 126 693 160 C700 188 689 215 661 233 C627 255 575 264 522 262 C470 260 420 251 396 229 C380 215 375 200 372 186 Z"/>
+              <text class="realm-name" x="523" y="165">Sylvara</text>
+              <text class="realm-sub" x="523" y="187">A SILVA ETERNA</text>
+              <path class="map-decor" d="M600 100 C615 150 640 190 650 230 C656 258 668 285 690 305"
+                fill="none" stroke="var(--c-thalassia)" stroke-width="1.8" stroke-linecap="round" opacity=".45"/>
+              <g class="map-decor">
+                <rect x="582" y="210" width="8" height="22" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
+                <path d="M579 210 L586 198 L593 210 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2" stroke-linejoin="round"/>
+                <rect x="585" y="217" width="2" height="3" fill="var(--ink)" opacity=".6"/>
+              </g>
+              <use class="map-decor" href="#sym-tree" x="412" y="122"/><use class="map-decor" href="#sym-tree" x="448" y="112"/>
+              <use class="map-decor" href="#sym-tree" x="486" y="104"/><use class="map-decor" href="#sym-tree" x="560" y="110"/>
+              <use class="map-decor" href="#sym-tree" x="598" y="126"/><use class="map-decor" href="#sym-tree" x="626" y="148"/>
+              <use class="map-decor" href="#sym-tree" x="414" y="162"/><use class="map-decor" href="#sym-tree" x="448" y="176"/>
+              <use class="map-decor" href="#sym-tree" x="608" y="184"/><use class="map-decor" href="#sym-tree" x="636" y="198"/>
+              <use class="map-decor" href="#sym-tree" x="498" y="232"/><use class="map-decor" href="#sym-tree" x="556" y="238"/>
+            </g>
+
+            <!-- ===== REINO DE AURUM ===== -->
+            <g class="realm" data-realm="aurum" tabindex="0" role="button" aria-label="Reino de Aurum, o Deserto Dourado">
+              <path class="land" fill="var(--c-aurum)" d="M680 170 C692 126 744 98 804 94 C862 90 918 108 948 144 C970 172 972 212 956 244 C938 276 900 298 854 304 C808 310 762 302 728 280 C700 261 668 216 680 170 Z"/>
+              <text class="realm-name" x="818" y="188">Aurum</text>
+              <text class="realm-sub" x="818" y="210">O DESERTO DOURADO</text>
+              <g class="map-decor">
+                <path d="M864 258 L884 214 L904 258 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/>
+                <path d="M884 214 V258" stroke="var(--ink)" stroke-width="1" opacity=".5"/>
+                <path d="M884 206 L889 211 L884 216 L879 211 Z" fill="var(--c-aurum)"/>
+              </g>
+              <g class="map-decor">
+                <ellipse cx="760" cy="276" rx="14" ry="5" fill="var(--c-thalassia)" opacity=".45"/>
+                <path d="M760 273 C758 264 762 258 759 251" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M759 251 C752 247 746 249 741 253 M759 251 C766 246 773 248 778 253 M759 251 C756 244 750 242 745 243 M759 251 C763 243 770 242 774 244"
+                  fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
+              </g>
+              <use class="map-decor" href="#sym-dune" x="742" y="246" width="26" height="14"/>
+              <use class="map-decor" href="#sym-dune" x="782" y="260" width="26" height="14"/>
+              <use class="map-decor" href="#sym-dune" x="822" y="250" width="26" height="14"/>
+              <use class="map-decor" href="#sym-dune" x="862" y="262" width="26" height="14"/>
+              <use class="map-decor" href="#sym-dune" x="900" y="246" width="26" height="14"/>
+            </g>
+
+            <!-- ===== REINO DE THALASSIA ===== -->
+            <g class="realm" data-realm="thalassia" tabindex="0" role="button" aria-label="Reino de Thalassia, as Marés sem Fim">
+              <path class="land" fill="var(--c-thalassia)" d="M198 522 C190 492 210 464 246 452 C278 441 318 443 344 459 C366 473 372 499 359 521 C346 543 312 557 276 559 C241 561 206 550 198 522 Z"/>
+              <path class="land" fill="var(--c-thalassia)" d="M326 432 C322 414 338 400 361 397 C383 394 401 404 404 420 C407 434 393 445 371 448 C351 450 330 446 326 432 Z"/>
+              <path class="land" fill="var(--c-thalassia)" d="M196 614 C193 594 212 580 240 577 C267 574 290 584 294 600 C297 614 281 626 253 629 C229 631 199 630 196 614 Z"/>
+              <path class="land" fill="var(--c-thalassia)" d="M396 528 C394 513 406 503 423 501 C439 499 453 507 455 519 C457 531 446 541 429 543 C414 544 398 539 396 528 Z"/>
+              <g fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1">
+                <circle cx="330" cy="481" r="3"/><circle cx="366" cy="566" r="3"/><circle cx="170" cy="561" r="3"/>
+              </g>
+              <text class="realm-name" x="278" y="508">Thalassia</text>
+              <text class="realm-sub" x="278" y="529">AS MARÉS SEM FIM</text>
+              <g class="map-decor" transform="translate(322,0)">
+                <rect x="0" y="524" width="7" height="20" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
+                <path d="M0 530 H7 M0 537 H7" stroke="var(--ink)" stroke-width="1"/>
+                <path d="M-1.5 524 L3.5 517 L8.5 524 Z" fill="var(--ink)"/>
+                <path d="M3.5 510 L6 513.5 L3.5 517 L1 513.5 Z" fill="var(--c-thalassia)"/>
+                <g stroke="var(--c-thalassia)" stroke-width="1.1" stroke-linecap="round" opacity=".7">
+                  <path d="M9 512 L21 507 M9 514 L22 514 M9 516 L21 521"/>
+                  <animate attributeName="opacity" values=".7;.08;.7" dur="3.2s" repeatCount="indefinite"/>
+                </g>
+              </g>
+              <text class="map-decor" x="255" y="551" font-family="EB Garamond,serif" font-style="italic" font-size="10" fill="var(--ink-soft)" text-anchor="middle">Porto Livre</text>
+              <g class="map-decor">
+                <path d="M365 424 C363 416 367 412 364 406" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M364 406 C358 402 352 404 348 408 M364 406 C370 401 377 403 381 408 M364 406 C361 399 356 397 352 398 M364 406 C367 399 372 397 376 398"
+                  fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
+              </g>
+            </g>
+
+            <!-- ===== REINO DE NOCTURNIA ===== -->
+            <g class="realm" data-realm="nocturnia" tabindex="0" role="button" aria-label="Reino de Nocturnia, as Terras Sombrias">
+              <path class="land" fill="var(--c-nocturnia)" d="M472 432 C464 386 508 350 568 342 C632 334 696 352 726 392 C748 422 750 464 728 497 C705 530 655 550 600 552 C545 554 496 542 474 507 C460 484 465 456 472 432 Z"/>
+              <text class="realm-name" x="600" y="428">Nocturnia</text>
+              <text class="realm-sub" x="600" y="450">AS TERRAS SOMBRIAS</text>
+              <g class="map-decor" transform="translate(548,0)">
+                <rect x="0" y="458" width="9" height="30" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
+                <path d="M-2 458 L4.5 444 L11 458 Z" fill="var(--ink)"/>
+                <rect x="3" y="467" width="3" height="5" fill="var(--gold)">
+                  <animate attributeName="opacity" values="1;.25;1" dur="4s" repeatCount="indefinite"/>
+                </rect>
+              </g>
+              <g class="map-decor" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round">
+                <g transform="translate(505,505)"><path d="M0 0 V-20 M0 -12 L-6 -17 M0 -9 L6 -14"/></g>
+                <g transform="translate(678,472)"><path d="M0 0 V-18 M0 -10 L-5 -15 M0 -8 L5 -12"/></g>
+                <g transform="translate(638,522)"><path d="M0 0 V-19 M0 -11 L6 -16"/></g>
+                <g transform="translate(514,538)"><path d="M0 0 V-16 M0 -9 L-5 -13"/></g>
+              </g>
+              <g class="map-decor" fill="none" stroke="var(--ink)" stroke-width="1.3" stroke-linecap="round">
+                <g transform="translate(578,382)"><path d="M0 0 Q3 -4 6 0 M8 0 Q11 -4 14 0"/></g>
+                <g transform="translate(636,398)"><path d="M0 0 Q3 -4 6 0 M8 0 Q11 -4 14 0"/></g>
+              </g>
+              <path class="map-decor" d="M500 372 l1.6 6 -1.6 6 -1.6 -6 Z M528 390 l1.6 6 -1.6 6 -1.6 -6 Z M692 378 l1.6 6 -1.6 6 -1.6 -6 Z" fill="var(--ink)" opacity=".55"/>
+              <path class="map-decor" d="M706 520 C710 515 716 518 715 523 C713 529 705 528 703 522 C701 514 710 509 717 513 C724 517 725 527 718 532" fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
+            </g>
+
+            <!-- Névoa de Nocturnia -->
+            <g class="map-decor">
+              <ellipse cx="600" cy="515" rx="118" ry="38" fill="#8a8098" opacity=".18"/>
+              <text x="600" y="522" font-family="Cinzel,serif" font-size="10.5" letter-spacing="3.2" fill="var(--ink)" opacity=".7" text-anchor="middle"
+                paint-order="stroke" stroke="var(--paper-2)" stroke-width="3">HIC SVNT DRACONES</text>
+            </g>
+
+            <!-- Ilha Perdida -->
+            <g class="map-decor">
+              <path d="M852 572 C856 552 878 542 900 546 C918 549 928 563 922 578 C916 592 893 598 872 594 C858 591 850 584 852 572 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4"/>
+              <path d="M872 560 l14 14 M886 560 l-14 14" stroke="var(--seal)" stroke-width="2.2" stroke-linecap="round"/>
+              <text x="884" y="612" font-family="EB Garamond,serif" font-style="italic" font-size="11" fill="var(--ink-soft)" text-anchor="middle">Ilha Perdida</text>
+            </g>
+
+            <!-- Serpente marinha -->
+            <g class="map-decor" transform="translate(575,662)">
+              <path d="M0 0 C5 -12 15 -12 20 0 C25 -12 35 -12 40 0 C45 -12 55 -12 60 0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M60 0 C64 -8 66 -14 63 -20" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="63" cy="-23" r="3.4" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4"/>
+              <path d="M60 -25 L57 -31 M66 -25 L69 -31" stroke="var(--ink)" stroke-width="1.3" stroke-linecap="round"/>
+            </g>
+
+            <!-- Capitais / nós -->
+            <g class="map-decor" id="mapNodes">
+              <circle class="node-ring" data-realm="ignarok" cx="225" cy="236" r="9" fill="none" stroke="var(--c-ignarok)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="sylvara" cx="508" cy="200" r="9" fill="none" stroke="var(--c-sylvara)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="aurum" cx="802" cy="224" r="9" fill="none" stroke="var(--c-aurum)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="thalassia" cx="295" cy="538" r="9" fill="none" stroke="var(--c-thalassia)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="nocturnia" cx="655" cy="495" r="9" fill="none" stroke="var(--c-nocturnia)" stroke-width="2"/>
+              <g fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5">
+                <circle cx="225" cy="236" r="4.5"/><circle cx="508" cy="200" r="4.5"/><circle cx="802" cy="224" r="4.5"/>
+                <circle cx="295" cy="538" r="4.5"/><circle cx="655" cy="495" r="4.5"/>
+              </g>
+              <g fill="var(--ink)">
+                <circle cx="225" cy="236" r="1.5"/><circle cx="508" cy="200" r="1.5"/><circle cx="802" cy="224" r="1.5"/>
+                <circle cx="295" cy="538" r="1.5"/><circle cx="655" cy="495" r="1.5"/>
+              </g>
+            </g>
+
+            <!-- Cartucho do título -->
+            <g class="map-decor">
+              <rect x="285" y="14" width="430" height="56" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.5"/>
+              <rect x="291" y="20" width="418" height="44" fill="none" stroke="var(--ink)" stroke-width=".7"/>
+              <text x="500" y="42" font-family="Cinzel,serif" font-weight="600" font-size="15.5" letter-spacing="5" fill="var(--ink)" text-anchor="middle">CARTA DOS REINOS DE VELDORA</text>
+              <text x="500" y="58" font-family="EB Garamond,serif" font-style="italic" font-size="11" fill="var(--ink-soft)" text-anchor="middle">anno primo pacti</text>
+            </g>
+
+            <!-- Rosa dos ventos -->
+            <g class="map-decor" transform="translate(95,638)" fill="var(--ink)">
+              <circle r="32" fill="none" stroke="var(--ink)" stroke-width="1"/>
+              <circle r="24" fill="none" stroke="var(--ink)" stroke-width=".6"/>
+              <path d="M0 -32 L6 0 L0 32 L-6 0 Z"/>
+              <path d="M-32 0 L0 -6 L32 0 L0 6 Z"/>
+              <path d="M0 -21 L4.5 0 L0 21 L-4.5 0 Z" transform="rotate(45)" opacity=".55"/>
+              <path d="M0 -21 L4.5 0 L0 21 L-4.5 0 Z" transform="rotate(135)" opacity=".55"/>
+              <path d="M0 -21 L4.5 0 L0 21 L-4.5 0 Z" transform="rotate(225)" opacity=".55"/>
+              <path d="M0 -21 L4.5 0 L0 21 L-4.5 0 Z" transform="rotate(315)" opacity=".55"/>
+              <circle r="3" fill="var(--seal)"/>
+              <text y="-40" font-family="Cinzel,serif" font-weight="700" font-size="12" text-anchor="middle">N</text>
+            </g>
+
+            <!-- Legenda -->
+            <g class="map-decor" transform="translate(726,614)">
+              <rect width="240" height="64" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
+              <rect x="4" y="4" width="232" height="56" fill="none" stroke="var(--ink)" stroke-width=".5"/>
+              <circle cx="18" cy="20" r="4" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.4"/>
+              <text x="30" y="24" font-family="Cinzel,serif" font-size="8.5" letter-spacing="1.5" fill="var(--ink-soft)">CAPITAL</text>
+              <path d="M13 38 L23 48 M23 38 L13 48" stroke="var(--seal)" stroke-width="1.8" stroke-linecap="round"/>
+              <text x="30" y="48" font-family="Cinzel,serif" font-size="8.5" letter-spacing="1.5" fill="var(--ink-soft)">TESOURO</text>
+              <path d="M130 20 H150" stroke="var(--c-thalassia)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 5"/>
+              <text x="160" y="24" font-family="Cinzel,serif" font-size="8.5" letter-spacing="1.5" fill="var(--ink-soft)">ROTA MARÍTIMA</text>
+              <path d="M139 38 L145 44 L139 50 L133 44 Z" fill="var(--gold)"/>
+              <text x="160" y="48" font-family="Cinzel,serif" font-size="8.5" letter-spacing="1.5" fill="var(--ink-soft)">MARCO</text>
+            </g>
+
+            <!-- Escala -->
+            <g class="map-decor" transform="translate(726,694)" font-family="EB Garamond,serif" font-size="9.5" fill="var(--ink-soft)">
+              <path d="M14 0 V-5 M94 0 V-5 M174 0 V-5 M14 -2 H174" stroke="var(--ink-soft)" stroke-width="1"/>
+              <text x="14" y="12" text-anchor="middle">0</text>
+              <text x="94" y="12" text-anchor="middle">1 sessão</text>
+              <text x="174" y="12" text-anchor="end">3 madrugadas</text>
+            </g>
+
+            <!-- Borda interna -->
+            <rect x="8" y="8" width="984" height="704" fill="none" stroke="var(--ink)" stroke-width="1.4" pointer-events="none"/>
+          </svg>
+        </div>
+        <p class="map-hint">Tocai num reino para o inspecionar — a Estrada do Pacto e as rotas do mar ligam os cinco.</p>
+      </div>
+
+      <!-- Painel do reino (estado inicial: Ignarok; o JS re-renderiza) -->
+      <aside class="panel reveal" id="realmPanel" style="--accent:var(--c-ignarok)" aria-live="polite">
+        <div class="panel-body">
+          <p class="panel-kicker">O Reino das Chamas</p>
+          <h3>Ignarok</h3>
+          <p class="epithet">As terras vulcânicas do norte</p>
+          <p class="motto">Do fogo, a ordem</p>
+          <p class="today">Hoje: <b>cinzas leves e vento de brasa</b></p>
+          <p class="desc">Terras onde as estratégias do grupo são forjadas — do competitivo tenso aos planos que seguram os piores wipes. Da forja de Ignarok saem as táticas de todo jogo.</p>
+          <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+          <div class="guardian">
+            <div class="guardian-medal"><svg><use href="#sym-sword"/></svg></div>
+            <div>
+              <p class="g-kicker">Guardião</p>
+              <p class="g-name">Luan Dhony</p>
+              <p class="g-title">O Comandante</p>
+            </div>
+          </div>
+          <p class="guardian-bio">Fala pouco, mira bem. É dele a calma de ferro nas horas em que a partida pende.</p>
+          <p class="feats-title">Feitos registrados</p>
+          <ul class="feats">
+            <li>Doze vitórias seguidas no competitivo — todas “no instinto”.</li>
+            <li>Chamou o rush com 0,8 segundos de antecedência. Deu certo.</li>
+            <li>Nunca perdeu um 1v1 — segundo ele.</li>
+          </ul>
+          <a class="to-card" href="#guardioes" data-card="ignarok">Contemplar a carta do guardião</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPÍTULO II — OS GUARDIÕES ============ -->
+<section id="guardioes">
+  <div class="wrap">
+    <div class="chapter-head reveal">
+      <p class="chapter-kicker">Capítulo II</p>
+      <h2>Os Guardiões do Pacto</h2>
+      <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+      <p class="lead">Cinco almas, cinco reinos, um juramento. Virai cada carta para ler o que a
+      crônica registrou — e o que ela fingiu não ver.</p>
+    </div>
+
+    <div class="fan reveal">
+      <!-- Carta I — Luan Dhony -->
+      <div class="card" data-realm="ignarok" style="--accent:var(--c-ignarok)" tabindex="0" role="button" aria-label="Carta de Luan Dhony, o Comandante. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-sigil"><svg><use href="#sym-sword"/></svg></div>
+            <h3>Luan Dhony</h3>
+            <p class="card-title">O Comandante</p>
+            <p class="card-realm">Guarda Ignarok</p>
+            <p class="card-tap">— virai a carta —</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“O plano existe até o primeiro grito.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">Fala pouco, mira bem. É dele a calma de ferro nas horas em que a partida pende — e a voz que diz “calma, que eu tenho plano” segundos antes de o plano dar certo.</p>
+            <div class="stats">
+              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+            </div>
+            <ul class="feats">
+              <li>Doze vitórias seguidas no competitivo, todas “no instinto”.</li>
+              <li>Chamou o rush com 0,8s de antecedência. Deu certo.</li>
+              <li>Nunca perdeu um 1v1 — segundo ele.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Carta II — Debora Vezetiv -->
+      <div class="card" data-realm="sylvara" style="--accent:var(--c-sylvara)" tabindex="0" role="button" aria-label="Carta de Debora Vezetiv, a Caçadora. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-sigil"><svg><use href="#sym-bow"/></svg></div>
+            <h3>Debora Vezetiv</h3>
+            <p class="card-title">A Caçadora</p>
+            <p class="card-realm">Guarda Sylvara</p>
+            <p class="card-tap">— virai a carta —</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“O mapa é 100% ou não é nada.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">Exploradora incansável, colecionadora de troféus e de segredos que os desenvolvedores esconderam — e se arrependeram de não enterrar mais fundo.</p>
+            <div class="stats">
+              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+            </div>
+            <ul class="feats">
+              <li>Catorze troféus de platina — três deles “impossíveis”.</li>
+              <li>Encontra baú secreto por cheiro.</li>
+              <li>Coletou 999 de cada recurso, “só por garantia”.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Carta III — Rayssa Vitória -->
+      <div class="card" data-realm="thalassia" style="--accent:var(--c-thalassia)" tabindex="0" role="button" aria-label="Carta de Rayssa Vitória, a Navegadora. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-sigil"><svg><use href="#sym-anchor"/></svg></div>
+            <h3>Rayssa Vitória</h3>
+            <p class="card-title">A Navegadora</p>
+            <p class="card-realm">Guarda Thalassia</p>
+            <p class="card-tap">— virai a carta —</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“Toda maré volta — e eu também.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">Construtora nata e Rainha da Sobrevivência. Onde ela pisa, nasce uma vila; onde ela ri, a base ganha mais um buraco.</p>
+            <div class="stats">
+              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+            </div>
+            <ul class="feats">
+              <li>Cem dias no modo hardcore; caiu no 101, rindo.</li>
+              <li>A cidade que o servidor inteiro visita.</li>
+              <li>A base mais bonita — e a mais explodida.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Carta IV — Cristiano Ronaldo -->
+      <div class="card" data-realm="aurum" style="--accent:var(--c-aurum)" tabindex="0" role="button" aria-label="Carta de Cristiano Ronaldo, o Alquimista. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-sigil"><svg><use href="#sym-flask"/></svg></div>
+            <h3>Cristiano Ronaldo</h3>
+            <p class="card-title">O Alquimista</p>
+            <p class="card-realm">Guarda Aurum</p>
+            <p class="card-tap">— virai a carta —</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“Sem planilha, não há vitória.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">A mente analítica do grupo. Calcula drop, dano e rota antes de você terminar de ler o tutorial — em qualquer jogo. O chute é forte; o cálculo, mais ainda.</p>
+            <div class="stats">
+              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+            </div>
+            <ul class="feats">
+              <li>A planilha sagrada de builds, desde o Ano Primeiro.</li>
+              <li>Prevê o drop exato. Farma seis horas. Acerta.</li>
+              <li>Celebra cada vitória com um “SIUU” na call. Sem exceção.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Carta V — João Pedro -->
+      <div class="card" data-realm="nocturnia" style="--accent:var(--c-nocturnia)" tabindex="0" role="button" aria-label="Carta de João Pedro, o Silencioso. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-sigil"><svg><use href="#sym-mask"/></svg></div>
+            <h3>João Pedro</h3>
+            <p class="card-title">O Silencioso</p>
+            <p class="card-realm">Guarda Nocturnia</p>
+            <p class="card-tap">— virai a carta —</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“Você só me vê quando já é tarde.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">Entra na call sem que ninguém o veja entrar. Joga melhor às três da manhã do que qualquer um de nós à tarde.</p>
+            <div class="stats">
+              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+            </div>
+            <ul class="feats">
+              <li>Catorze vitórias como traidor numa noite só. Recorde eterno.</li>
+              <li>Zerou a alma do jogo às 3h47, sem fazer barulho.</li>
+              <li>Aparece do nada. Ninguém pergunta como.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPÍTULO III — A CRÔNICA ============ -->
+<section id="cronica">
+  <div class="wrap">
+    <div class="chapter-head reveal">
+      <p class="chapter-kicker">Capítulo III</p>
+      <h2>A Crônica</h2>
+      <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+      <p class="lead">Registramos aqui os feitos que a memória do grupo se recusa a esquecer. Os anos
+      são contados pelo Pacto — que, como toda boa lenda, ninguém sabe datar com precisão.</p>
+    </div>
+
+    <ol class="chronicle">
+      <li class="reveal"><span class="era-year">ANO PRIMEIRO</span><h3>O Encontro</h3>
+        <p>Cinco desconhecidos caem na mesma partida. A química é imediata; a voz, irreconhecível no microfone quebrado. Alguém diz “vamos de novo” — e ninguém sai mais.</p></li>
+      <li class="reveal"><span class="era-year">ANO PRIMEIRO</span><h3>O Primeiro Reino</h3>
+        <p>Nasce o Veldora Realms: um refúgio só nosso, erguido sobre as cinzas de servidores abandonados — sem dono, sem pauta, aberto a todo jogo. O nome vem do dragão, porque toda boa guilda precisa de uma besta para chamar de sua.</p></li>
+      <li class="reveal"><span class="era-year">ANO SEGUNDO</span><h3>A Noite do Boss Caído</h3>
+        <p>Quarenta e sete tentativas no mesmo chefe. Três quedas do grupo no último segundo. Um grito coletivo às quatro da manhã. O boss caiu — e a crônica ganhou sua página mais sangrada.</p></li>
+      <li class="reveal"><span class="era-year">ANO TERCEIRO</span><h3>A Grande Traição</h3>
+        <p>O amigo mais confiável revela-se o traidor definitivo. Catorze rodadas de dedução social, catorze apunhaladas pelas costas. A confiança nunca mais foi a mesma — no lobby, ao menos.</p></li>
+      <li class="reveal"><span class="era-year">ANO QUARTO</span><h3>A Era de Mil Jogos</h3>
+        <p>Battle royale na quarta, sobrevivência no fim de semana, cooperativo até tarde e a campanha de mesa que durou nove meses. Descobrimos que o jogo mudava toda semana; a turma, nunca.</p></li>
+      <li class="reveal"><span class="era-year">ANO QUINTO</span><h3>O Pacto Eterno</h3>
+        <p>A vida puxou cada um para um lado: faculdade, trabalho, mudanças, fusos diferentes. O portal, porém, permanece aberto. Sempre esteve. Sempre estará.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ CAPÍTULO IV — O PACTO ============ -->
+<section id="pacto">
+  <div class="wrap">
+    <div class="chapter-head reveal">
+      <p class="chapter-kicker">Capítulo IV</p>
+      <h2>O Pacto</h2>
+      <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+      <p class="lead">Oito artigos, gravados na primeira noite e observados desde então — a lei
+      velha do servidor, escrita à moda da crônica.</p>
+    </div>
+
+    <ol class="covenant">
+      <li class="reveal"><span class="cov-num">I.</span><p>Respeito é a primeira lei: insulto, preconceito e perseguição não têm lugar entre os nossos.</p></li>
+      <li class="reveal"><span class="cov-num">II.</span><p>Desavenças se resolvem com palavra e calma — de igual para igual, sem fogueira.</p></li>
+      <li class="reveal"><span class="cov-num">III.</span><p>A espada só se ergue em terras liberadas — ou quando os dois lados aceitarem o duelo.</p></li>
+      <li class="reveal"><span class="cov-num">IV.</span><p>Caçar quem recém-chegou é covardia de spawn; que todo combate seja justo.</p></li>
+      <li class="reveal"><span class="cov-num">V.</span><p>Nenhuma obra alheia cai, nenhum cofre alheio se abre. O que é do companheiro, é do companheiro.</p></li>
+      <li class="reveal"><span class="cov-num">VI.</span><p>Não ergas a tua casa espremida contra a do vizinho — e o que ofender a vila será derrubado.</p></li>
+      <li class="reveal"><span class="cov-num">VII.</span><p>Nada de spam, nada de arautos de outros reinos, e política fica do lado de fora da taverna.</p></li>
+      <li class="reveal"><span class="cov-num">VIII.</span><p>O portal permanece aberto: para os de dentro, sempre; para os de fora, quando a mesa crescer.</p></li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer>
+  <img class="wax-seal" src="simbolo.png" alt="Símbolo de Veldora Realms">
+  <p class="final">Veldora Realms — uma guilda de amigos, escrita à mão desde o Ano Primeiro.
+  Nos encontramos além do portal, onde a mesa nunca esvazia.</p>
+  <p class="fine">Crônica mantida pelos Guardiões · anno primo pacti</p>
+</footer>
+
+<script>
+/* ================================================================
+   VELDORA REALMS — dados dos reinos e guardiões
+   (feitos e lemas são fictícios: edite à vontade aqui)
+================================================================ */
+const REALMS = {
+  ignarok: {
+    kicker:"O Reino das Chamas", name:"Ignarok", epithet:"As terras vulcânicas do norte",
+    motto:"Do fogo, a ordem", accent:"#c4553b", symbol:"sym-sword",
+    today:["cinzas leves e vento de brasa","calmaria vulcânica, chão morno","chuva de faíscas ao entardecer"],
+    desc:"Terras onde as estratégias do grupo são forjadas — do competitivo tenso aos planos que seguram os piores wipes. Da forja de Ignarok saem as táticas de todo jogo.",
+    hero:{nick:"Luan Dhony", title:"O Comandante", bio:"Fala pouco, mira bem. É dele a calma de ferro nas horas em que a partida pende.",
+      feats:["Doze vitórias seguidas no competitivo — todas “no instinto”.","Chamou o rush com 0,8 segundos de antecedência. Deu certo.","Nunca perdeu um 1v1 — segundo ele."]}
+  },
+  sylvara: {
+    kicker:"A Silva Eterna", name:"Sylvara", epithet:"A floresta-mãe do centro",
+    motto:"Nada se perde sob as copas", accent:"#5f9468", symbol:"sym-bow",
+    today:["orvalho nas copas altas","névoa baixa entre os troncos","sol atravessando as folhas"],
+    desc:"Floresta que guarda todos os segredos de todos os mundos: cada mapa 100% completo, cada baú desenterrado. Nada aqui fica por encontrar — em nenhum jogo.",
+    hero:{nick:"Debora Vezetiv", title:"A Caçadora", bio:"Exploradora incansável, colecionadora de troféus e de segredos bem enterrados.",
+      feats:["Catorze troféus de platina — três deles “impossíveis”.","Encontra baú secreto por cheiro.","Coletou 999 de cada recurso, “só por garantia”."]}
+  },
+  thalassia: {
+    kicker:"As Marés Sem Fim", name:"Thalassia", epithet:"O arquipélago do sul",
+    motto:"O mar lembra de tudo", accent:"#4d92b4", symbol:"sym-anchor",
+    today:["maré alta e sol raro","brisa salgada, velas cheias","mareia leve; a rainha diz que é normal"],
+    desc:"Arquipélago das construções e das novas temporadas: daqui o grupo parte para cada sobrevivência — e é aqui que as bases ficam prontas, bonitas e, depois, explodem.",
+    hero:{nick:"Rayssa Vitória", title:"A Navegadora", bio:"Construtora nata e Rainha da Sobrevivência. Onde ela pisa, nasce uma vila.",
+      feats:["Cem dias no modo hardcore; caiu no dia 101, rindo.","Construiu a cidade que o servidor inteiro visita.","A base mais bonita do grupo — e a mais explodida."]}
+  },
+  aurum: {
+    kicker:"O Deserto Dourado", name:"Aurum", epithet:"As dunas do conhecimento",
+    motto:"O ouro é o conhecimento", accent:"#d1a33c", symbol:"sym-flask",
+    today:["céu de cobre, dunas quentes","vento seco carregando areia dourada","calor de planilha em pleno meio-dia"],
+    desc:"Cada duna guarda um número calculado: builds, drops, rotas, tier lists. Onde outros veem areia, Aurum vê dados — de qualquer jogo que a mesa escolher.",
+    hero:{nick:"Cristiano Ronaldo", title:"O Alquimista", bio:"A mente analítica do grupo. Calcula drop, dano e rota antes do tutorial acabar — em qualquer jogo.",
+      feats:["Mantém a planilha sagrada de builds desde o Ano Primeiro.","Prevê o drop exato. Farma seis horas. Acerta.","Celebra cada vitória com um “SIUU” na call. Sem exceção."]}
+  },
+  nocturnia: {
+    kicker:"As Terras Sombrias", name:"Nocturnia", epithet:"As terras que não dormem",
+    motto:"A sombra vigia", accent:"#8a76a0", symbol:"sym-mask",
+    today:["escuridão pontilhada de vigias","lua escondida; bom para aparições","madrugada eterna, café recém-feito"],
+    desc:"De Nocturnia vêm as madrugadas lendárias: terror no fone, traidores desmascarados, recordes impossíveis. O café aqui é sacramento.",
+    hero:{nick:"João Pedro", title:"O Silencioso", bio:"Entra na call sem que ninguém o veja entrar. Melhor às três da manhã.",
+      feats:["Catorze vitórias como traidor numa noite só. Recorde eterno.","Zerou a alma do jogo às 3h47, sem fazer barulho.","Aparece do nada. Ninguém pergunta como."]}
+  }
+};
+
+const panel = document.getElementById('realmPanel');
+
+function renderPanel(id){
+  const r = REALMS[id];
+  const today = r.today[Math.floor(Math.random()*r.today.length)];
+  panel.style.setProperty('--accent', r.accent);
+  panel.querySelector('.panel-body').innerHTML = `
+    <p class="panel-kicker">${r.kicker}</p>
+    <h3>${r.name}</h3>
+    <p class="epithet">${r.epithet}</p>
+    <p class="motto">${r.motto}</p>
+    <p class="today">Hoje: <b>${today}</b></p>
+    <p class="desc">${r.desc}</p>
+    <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+    <div class="guardian">
+      <div class="guardian-medal"><svg><use href="#${r.symbol}"/></svg></div>
+      <div>
+        <p class="g-kicker">Guardião</p>
+        <p class="g-name">${r.hero.nick}</p>
+        <p class="g-title">${r.hero.title}</p>
+      </div>
+    </div>
+    <p class="guardian-bio">${r.hero.bio}</p>
+    <p class="feats-title">Feitos registrados</p>
+    <ul class="feats">${r.hero.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
+    <a class="to-card" href="#guardioes" data-card="${id}">Contemplar a carta do guardião</a>`;
+}
+
+function selectRealm(id){
+  document.querySelectorAll('#worldMap .realm').forEach(g=>g.classList.toggle('active', g.dataset.realm===id));
+  document.querySelectorAll('#mapNodes .node-ring').forEach(n=>n.classList.toggle('on', n.dataset.realm===id));
+  panel.classList.add('fading');
+  setTimeout(()=>{ renderPanel(id); panel.classList.remove('fading'); }, 280);
+}
+
+document.querySelectorAll('#worldMap .realm').forEach(g=>{
+  const id = g.dataset.realm;
+  g.addEventListener('click', ()=>selectRealm(id));
+  g.addEventListener('keydown', e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectRealm(id); }
+  });
+});
+
+/* Destacar a carta a partir do painel (delegação, pois o painel é re-renderizado) */
+document.addEventListener('click', e=>{
+  const link = e.target.closest('.to-card');
+  if(!link) return;
+  e.preventDefault();
+  const card = document.querySelector(`.card[data-realm="${link.dataset.card}"]`);
+  if(!card) return;
+  card.scrollIntoView({behavior:'smooth', block:'center'});
+  card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+});
+
+/* ============ CARTAS: virar + inclinar ============ */
+document.querySelectorAll('.card').forEach(card=>{
+  const tilt = card.querySelector('.card-tilt');
+  const flip = ()=>card.classList.toggle('flipped');
+  card.addEventListener('click', flip);
+  card.addEventListener('keydown', e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); flip(); }
+  });
+  card.addEventListener('mousemove', e=>{
+    if(matchMedia('(hover:none)').matches) return;
+    const b = card.getBoundingClientRect();
+    const x = (e.clientX - b.left)/b.width - .5;
+    const y = (e.clientY - b.top)/b.height - .5;
+    tilt.style.transform = `rotateY(${x*10}deg) rotateX(${-y*10}deg)`;
+  });
+  card.addEventListener('mouseleave', ()=>{ tilt.style.transform = ''; });
+});
+
+/* ============ REVEAL AO ROLAR ============ */
+const revealObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('visible'); revealObs.unobserve(en.target); } });
+},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+/* ============ NAV ATIVA ============ */
+const navLinks = document.querySelectorAll('.nav-links a');
+const sectionObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+en.target.id));
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>sectionObs.observe(s));
+
+/* ============ POEIRA DOURADA DO HERO ============ */
+(function(){
+  const canvas = document.getElementById('dust');
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
+  let w,h,parts=[],running=false;
+  function resize(){
+    const r = canvas.parentElement.getBoundingClientRect();
+    w = canvas.width = r.width; h = canvas.height = r.height;
+  }
+  function make(){
+    const n = Math.min(46, Math.floor(w/26));
+    parts = Array.from({length:n},()=>({
+      x:Math.random()*w, y:Math.random()*h,
+      r:.8+Math.random()*1.9, a:.12+Math.random()*.3,
+      vx:(Math.random()-.5)*.16, vy:-(.06+Math.random()*.2),
+      ph:Math.random()*Math.PI*2
+    }));
+  }
+  function tick(t){
+    if(!running) return;
+    ctx.clearRect(0,0,w,h);
+    for(const p of parts){
+      p.x += p.vx + Math.sin(t/1400 + p.ph)*.12;
+      p.y += p.vy;
+      if(p.y < -8){ p.y = h+8; p.x = Math.random()*w; }
+      if(p.x < -8) p.x = w+8; if(p.x > w+8) p.x = -8;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(201,162,74,${p.a * (0.7 + 0.3*Math.sin(t/900 + p.ph))})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  resize(); make();
+  addEventListener('resize', ()=>{ resize(); make(); });
+  new IntersectionObserver(([en])=>{
+    if(en.isIntersecting && !running){ running = true; requestAnimationFrame(tick); }
+    else if(!en.isIntersecting){ running = false; }
+  }).observe(canvas.parentElement);
+})();
+
+/* Respeitar "reduzir animações": desligar também as animações nativas do SVG */
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){
+  document.querySelectorAll('animate, animateMotion').forEach(a=>a.remove());
+}
+
+/* ============ A CRÔNICA SENTE SUA AUSÊNCIA ============ */
+const baseTitle = document.title;
+document.addEventListener('visibilitychange', ()=>{
+  document.title = document.hidden ? 'O portal aguarda seu retorno…' : baseTitle;
+});
+</script>
+</body>
+</html>
