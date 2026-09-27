@@ -16,10 +16,10 @@
 <style>
 /* ============ FUNDAÇÃO — TEMA NOTURNO ============ */
 :root{
-  --paper:#17110b;      /* fundo base / halos */
-  --paper-2:#221a11;    /* painéis, cartas e mapa */
-  --paper-3:#0d0906;    /* trilhas profundas (scrollbar) */
-  --ink:#ead9b5;        /* "tinta" clara */
+  --paper:#17110b;
+  --paper-2:#221a11;
+  --paper-3:#0d0906;
+  --ink:#ead9b5;
   --ink-soft:#b3a17c;
   --gold:#c9a24a;
   --gold-2:#b98a2e;
@@ -47,11 +47,10 @@ body{
   overflow-x:hidden;
   /* Nada de texto selecionável na página */
   -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
-  -webkit-touch-callout:none;               /* sem menu de "copiar" no toque longo (iOS) */
-  -webkit-tap-highlight-color:transparent;  /* sem flash cinza ao tocar */
+  -webkit-touch-callout:none;
+  -webkit-tap-highlight-color:transparent;
 }
 img{-webkit-user-drag:none;user-drag:none}
-/* Sem zoom-por-duplo-toque nos elementos tocáveis */
 a,.card,.realm,.scroll-hint,.to-card{touch-action:manipulation}
 ::-webkit-scrollbar{width:10px}
 ::-webkit-scrollbar-track{background:var(--paper-3)}
@@ -69,8 +68,7 @@ a,.card,.realm,.scroll-hint,.to-card{touch-action:manipulation}
 @media (min-width:761px){
   .bg{background-image:url('pc.png')}
 }
-/* Véu noturno sobre a foto — ajuste a opacidade dos rgba() para
-   deixar a imagem mais ou menos visível. */
+/* Véu noturno sobre a foto — ajuste os rgba() para mais/menos imagem */
 .bg::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,
@@ -79,18 +77,15 @@ a,.card,.realm,.scroll-hint,.to-card{touch-action:manipulation}
     rgba(8,6,4,.9) 100%);
 }
 
-/* Grão sobre tudo */
 body::before{
   content:"";position:fixed;inset:0;z-index:2000;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   opacity:.14;mix-blend-mode:overlay;
 }
-/* Vinheta de profundidade */
 body::after{
   content:"";position:fixed;inset:0;z-index:1999;pointer-events:none;
   box-shadow:inset 0 0 180px rgba(0,0,0,.6);
 }
-/* Moldura de códice */
 .page-frame{position:fixed;inset:8px;z-index:1500;pointer-events:none;border:1px solid var(--line)}
 .page-frame::before{content:"";position:absolute;inset:3px;border:1px solid var(--line-soft)}
 
@@ -157,7 +152,6 @@ nav{
   font-size:clamp(1rem,3.4vw,1.9rem);letter-spacing:.62em;text-indent:.62em;
   margin-top:14px;color:var(--seal);
 }
-/* Símbolo do grupo como marca d'água atrás do título */
 .emblem{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-56%);
   width:min(430px,82vw);height:auto;object-fit:contain;
@@ -198,21 +192,17 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 
 /* ============ MAPA ============ */
 .map-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(310px,.9fr);gap:clamp(24px,3vw,44px);align-items:start}
-/* O pergaminho do mapa pode ser arrastado para os lados quando apertado */
 .map-wrap{
   border:1px solid var(--line);outline:1px solid var(--line-soft);outline-offset:4px;
   background:var(--paper-2);padding:10px;
   box-shadow:0 18px 40px -14px rgba(0,0,0,.75);
-  overflow-x:auto;-webkit-overflow-scrolling:touch;
 }
-.map-wrap::-webkit-scrollbar{height:8px}
 .map-wrap svg{display:block;width:100%;height:auto}
 .map-hint{
   text-align:center;font-style:italic;color:var(--ink-soft);font-size:.95rem;
   margin-top:14px;letter-spacing:.02em;
 }
 
-/* Reinos: levantam ao passar o mouse, brilham quando ativos */
 .realm{cursor:pointer;outline:none;transform-box:fill-box;transform-origin:center;
   transition:transform .4s ease,filter .4s ease}
 @media (hover:hover){
@@ -270,7 +260,7 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 }
 .guardian-medal svg{width:34px;height:34px}
 .guardian .g-kicker{font-family:var(--disp);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
-.guardian .g-name{font-family:var(--font-med);font-size:1.3rem;line-height:1.2}
+.guardian .g-name{font-family:var(--font-med);font-size:1.3rem;line-height:1.2;overflow-wrap:break-word}
 .guardian .g-title{font-style:italic;color:var(--accent,var(--seal))}
 .guardian-bio{margin-top:14px;font-size:.98rem}
 .panel .feats-title{font-family:var(--disp);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:20px 0 10px}
@@ -325,29 +315,32 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
   display:grid;place-items:center;color:var(--accent);margin:auto 0;
 }
 .card-sigil svg{width:44px;height:44px}
-.card-face h3{font-family:var(--font-med);font-weight:400;font-size:1.32rem;line-height:1.15;letter-spacing:.02em}
-.card-title{font-style:italic;color:var(--accent);font-size:.98rem;margin-top:3px}
+.card-face h3{
+  font-family:var(--font-med);font-weight:400;font-size:1.28rem;line-height:1.15;
+  letter-spacing:.02em;overflow-wrap:break-word;
+}
+.card-title{font-style:italic;color:var(--accent);font-size:.96rem;margin-top:3px}
 .card-realm{
-  font-family:var(--disp);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  font-family:var(--disp);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;
   color:var(--ink-soft);margin:8px 0 12px;
 }
 .card-tap{font-size:.72rem;font-style:italic;color:var(--ink-soft);opacity:.8}
 
 .card-back{
   transform:rotateY(180deg);background:#120d07;color:#d8c9a4;
-  text-align:left;align-items:stretch;padding:20px 16px;
+  text-align:left;align-items:stretch;padding:16px 14px;
 }
 .card-back::before{border-color:rgba(185,138,46,.6)}
-.card-lema{font-style:italic;color:#e9dcb8;font-size:.95rem;text-align:center;line-height:1.4}
-.card-back .orn{width:120px;margin:10px auto;color:#b98a2e}
-.card-bio{font-size:.82rem;line-height:1.5}
-.stats{margin:12px 0;display:grid;gap:5px}
-.stat{display:flex;justify-content:space-between;align-items:center;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-family:var(--disp);color:#bfae83}
-.pips{display:inline-flex;gap:5px}
+.card-lema{font-style:italic;color:#e9dcb8;font-size:.9rem;text-align:center;line-height:1.4}
+.card-back .orn{width:110px;margin:8px auto;color:#b98a2e}
+.card-bio{font-size:.78rem;line-height:1.45}
+.stats{margin:10px 0;display:grid;gap:4px}
+.stat{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-family:var(--disp);color:#bfae83}
+.pips{display:inline-flex;gap:4px}
 .pip{width:7px;height:7px;transform:rotate(45deg);border:1px solid #b98a2e;display:inline-block}
 .pip.on{background:#b98a2e}
-.card-back .feats{margin-top:4px}
-.card-back .feats li{font-size:.8rem;margin-bottom:7px;padding-left:17px}
+.card-back .feats{margin-top:2px}
+.card-back .feats li{font-size:.76rem;margin-bottom:7px;padding-left:16px}
 .card-back .feats li::before{background:#b98a2e;top:.42em;width:6px;height:6px}
 
 .card.flash{animation:cardflash 1.8s ease}
@@ -355,6 +348,8 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
   0%,55%{outline:2.5px solid var(--gold-2);outline-offset:8px}
   100%{outline:2.5px solid transparent;outline-offset:8px}
 }
+/* Dica do carrossel — só aparece no celular */
+.fan-hint{display:none;text-align:center;font-style:italic;color:var(--ink-soft);font-size:.85rem;margin-top:18px}
 
 /* ============ CRÔNICA ============ */
 .chronicle{list-style:none;position:relative;max-width:880px;margin:0 auto;padding:10px 0}
@@ -416,7 +411,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 
 /* ============ CELULAR ============ */
 @media (max-width:760px){
-  /* Navegação em duas fileiras, sem estourar a tela */
   nav{flex-direction:column;gap:7px;padding:10px 14px 9px}
   .brand{gap:9px}
   .brand-seal{width:28px;height:28px}
@@ -425,45 +419,56 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .nav-links a{font-size:.56rem;letter-spacing:.08em}
   section{scroll-margin-top:104px;padding:64px 0 72px}
 
-  /* Textos corridos alinhados à esquerda (justificado racha em telas estreitas) */
   .lead{text-align:left;text-align-last:auto}
   .lead::first-letter{font-size:2.6em;padding:4px 9px 0 0}
 
-  /* Mapa: largura mínima legível, arrasta para os lados */
-  .map-wrap{padding:6px}
-  .map-wrap svg{min-width:720px}
+  /* Mapa: cabe inteiro na tela, com letras ampliadas para continuar legível */
+  .map-wrap{padding:5px}
+  .map-wrap svg{min-width:0;width:100%}
+  .realm-name{font-size:42px;stroke-width:7}
+  .realm-sub{font-size:19px;letter-spacing:.05em;stroke-width:6}
+  .map-sea{font-size:22px;letter-spacing:6px}
+  .map-label{font-size:16px}
+  .map-mist{font-size:17px;letter-spacing:2px}
+  .map-title-a{font-size:21px;letter-spacing:3px}
+  .map-title-b{font-size:15px}
+  .map-tiny{display:none}
 
-  /* Painel mais compacto */
   .panel{padding:20px 16px}
-  .panel h3{font-size:1.8rem}
+  .panel h3{font-size:1.8rem;overflow-wrap:break-word}
 
-  /* Cartas: pilha vertical centralizada — sem carrossel, sem corte */
-  .fan{display:grid;gap:22px;justify-items:center;padding:6px 0 0}
+  /* Cartas: carrossel compacto, uma por vez, sem cortes */
+  .fan{
+    justify-content:flex-start;align-items:center;overflow-x:auto;
+    scroll-snap-type:x mandatory;gap:20px;
+    padding:8px max(12px, calc(50vw - 125px)) 20px;
+    margin:0 calc(-1 * clamp(20px,4vw,48px));
+    scrollbar-width:none;
+  }
+  .fan::-webkit-scrollbar{display:none}
   .fan .card,
   .fan .card:nth-child(1),.fan .card:nth-child(2),.fan .card:nth-child(3),
-  .fan .card:nth-child(4),.fan .card:nth-child(5){--r:0deg;--y:0px;margin:0;transform:none}
+  .fan .card:nth-child(4),.fan .card:nth-child(5){
+    --r:0deg;--y:0px;margin:0;transform:none;flex:0 0 auto;scroll-snap-align:center;
+  }
   .fan .card:hover{transform:none}
-  .card{width:min(340px,92vw)}
+  .card{width:min(250px,80vw)}
+  .card-face h3{font-size:1.12rem}
+  .card-realm{letter-spacing:.18em}
+  .fan-hint{display:block}
 
-  /* Crônica: coluna única à esquerda (corrigindo também os ímpares) */
   .chronicle{padding-top:0}
   .chronicle::before{left:10px}
   .chronicle li,
   .chronicle li:nth-child(odd),
-  .chronicle li:nth-child(even){
-    width:100%;margin-left:0;padding:4px 0 28px 38px;text-align:left;
-  }
+  .chronicle li:nth-child(even){width:100%;margin-left:0;padding:4px 0 28px 38px;text-align:left}
   .chronicle li::before,
   .chronicle li:nth-child(even)::before{left:3px;right:auto;top:18px}
   .chronicle h3{font-size:1.2rem}
 
-  /* Pacto: numeração enxuta, texto do tamanho do parágrafo */
   .covenant li{grid-template-columns:44px 1fr;gap:12px;padding:16px 2px}
   .cov-num{font-size:1.2rem}
   .covenant p{font-size:1.02rem}
-
-  .covenant li{padding:16px 2px}
-  .cov-num{font-size:1.2rem}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -568,7 +573,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     </div>
   </div>
 
-  <!-- Símbolo do grupo em marca d'água atrás do título -->
   <img class="emblem" src="simbolo.png" alt="" aria-hidden="true">
 
   <p class="hero-kicker">Um pacto entre amigos · desde o Ano Primeiro</p>
@@ -613,7 +617,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path id="seaCurve" d="M100 316 C320 338 640 334 950 296" fill="none"/>
             </defs>
 
-            <!-- Oceano + grid cartográfico sutil -->
             <rect width="1000" height="720" fill="var(--paper-2)"/>
             <rect width="1000" height="720" fill="url(#seawaves)" opacity=".5"/>
             <g stroke="var(--line-soft)" stroke-width="1" stroke-dasharray="1.5 18" opacity=".5">
@@ -621,23 +624,20 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path d="M24 400 H976"/><path d="M24 535 H976"/><path d="M24 668 H976"/>
             </g>
 
-            <!-- Nome do mar, em curva -->
-            <text font-family="Cinzel,serif" font-size="16" letter-spacing="9" fill="var(--ink-soft)" opacity=".55"
+            <text class="map-sea" font-family="Cinzel,serif" font-size="16" letter-spacing="9" fill="var(--ink-soft)" opacity=".55"
               paint-order="stroke" stroke="var(--paper-2)" stroke-width="4">
               <textPath href="#seaCurve" startOffset="50%" text-anchor="middle">· MAR DE VELDORA ·</textPath>
             </text>
-            <text x="428" y="360" font-family="EB Garamond,serif" font-style="italic" font-size="11"
+            <text class="map-label" x="428" y="360" font-family="EB Garamond,serif" font-style="italic" font-size="11"
               fill="var(--ink-soft)" opacity=".75" text-anchor="middle"
               paint-order="stroke" stroke="var(--paper-2)" stroke-width="3">Baía do Encontro</text>
 
-            <!-- Rotas marítimas -->
             <g fill="none" stroke="var(--c-thalassia)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" opacity=".55">
               <path d="M462 372 C405 402 350 435 305 462"/>
               <path d="M332 548 C430 576 520 568 574 550"/>
               <path d="M876 312 C898 380 894 480 882 556"/>
             </g>
 
-            <!-- Navio que navega de verdade -->
             <g class="map-decor" transform="translate(400,430)">
               <path d="M-12 0 C-8 8 10 8 14 0 C4 3 -6 3 -12 0 Z" fill="var(--ink)"/>
               <path d="M0 0 V-16" stroke="var(--ink)" stroke-width="1.4"/>
@@ -652,11 +652,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path d="M0 -16 C8 -12 8 -5 0 -1 C2 -6 2 -11 0 -16 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1"/>
             </g>
 
-            <!-- Estrada do Pacto -->
             <path class="map-decor road" d="M225 236 C320 200 430 186 508 200 C586 214 700 192 802 224 C838 292 762 432 655 495"
               fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 12" opacity=".5"/>
 
-            <!-- Marco do Pacto -->
             <g class="map-decor">
               <title>Marco do Pacto</title>
               <rect x="359" y="188" width="6" height="12" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1"/>
@@ -745,7 +743,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                   <animate attributeName="opacity" values=".7;.08;.7" dur="3.2s" repeatCount="indefinite"/>
                 </g>
               </g>
-              <text class="map-decor" x="255" y="551" font-family="EB Garamond,serif" font-style="italic" font-size="10" fill="var(--ink-soft)" text-anchor="middle">Porto Livre</text>
+              <text class="map-label" x="255" y="551" font-family="EB Garamond,serif" font-style="italic" font-size="10" fill="var(--ink-soft)" text-anchor="middle">Porto Livre</text>
               <g class="map-decor">
                 <path d="M365 424 C363 416 367 412 364 406" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round"/>
                 <path d="M364 406 C358 402 352 404 348 408 M364 406 C370 401 377 403 381 408 M364 406 C361 399 356 397 352 398 M364 406 C367 399 372 397 376 398"
@@ -779,21 +777,18 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path class="map-decor" d="M706 520 C710 515 716 518 715 523 C713 529 705 528 703 522 C701 514 710 509 717 513 C724 517 725 527 718 532" fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
             </g>
 
-            <!-- Névoa de Nocturnia -->
             <g class="map-decor">
               <ellipse cx="600" cy="515" rx="118" ry="38" fill="#8a8098" opacity=".18"/>
-              <text x="600" y="522" font-family="Cinzel,serif" font-size="10.5" letter-spacing="3.2" fill="var(--ink)" opacity=".7" text-anchor="middle"
+              <text class="map-mist" x="600" y="522" font-family="Cinzel,serif" font-size="10.5" letter-spacing="3.2" fill="var(--ink)" opacity=".7" text-anchor="middle"
                 paint-order="stroke" stroke="var(--paper-2)" stroke-width="3">HIC SVNT DRACONES</text>
             </g>
 
-            <!-- Ilha Perdida -->
             <g class="map-decor">
               <path d="M852 572 C856 552 878 542 900 546 C918 549 928 563 922 578 C916 592 893 598 872 594 C858 591 850 584 852 572 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4"/>
               <path d="M872 560 l14 14 M886 560 l-14 14" stroke="var(--seal)" stroke-width="2.2" stroke-linecap="round"/>
-              <text x="884" y="612" font-family="EB Garamond,serif" font-style="italic" font-size="11" fill="var(--ink-soft)" text-anchor="middle">Ilha Perdida</text>
+              <text class="map-label" x="884" y="612" font-family="EB Garamond,serif" font-style="italic" font-size="11" fill="var(--ink-soft)" text-anchor="middle">Ilha Perdida</text>
             </g>
 
-            <!-- Serpente marinha -->
             <g class="map-decor" transform="translate(575,662)">
               <path d="M0 0 C5 -12 15 -12 20 0 C25 -12 35 -12 40 0 C45 -12 55 -12 60 0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
               <path d="M60 0 C64 -8 66 -14 63 -20" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
@@ -801,7 +796,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path d="M60 -25 L57 -31 M66 -25 L69 -31" stroke="var(--ink)" stroke-width="1.3" stroke-linecap="round"/>
             </g>
 
-            <!-- Capitais / nós -->
             <g class="map-decor" id="mapNodes">
               <circle class="node-ring" data-realm="ignarok" cx="225" cy="236" r="9" fill="none" stroke="var(--c-ignarok)" stroke-width="2"/>
               <circle class="node-ring" data-realm="sylvara" cx="508" cy="200" r="9" fill="none" stroke="var(--c-sylvara)" stroke-width="2"/>
@@ -818,15 +812,13 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               </g>
             </g>
 
-            <!-- Cartucho do título -->
             <g class="map-decor">
               <rect x="285" y="14" width="430" height="56" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.5"/>
               <rect x="291" y="20" width="418" height="44" fill="none" stroke="var(--ink)" stroke-width=".7"/>
-              <text x="500" y="42" font-family="Cinzel,serif" font-weight="600" font-size="15.5" letter-spacing="5" fill="var(--ink)" text-anchor="middle">CARTA DOS REINOS DE VELDORA</text>
-              <text x="500" y="58" font-family="EB Garamond,serif" font-style="italic" font-size="11" fill="var(--ink-soft)" text-anchor="middle">anno primo pacti</text>
+              <text class="map-title-a" x="500" y="42" font-family="Cinzel,serif" font-weight="600" font-size="15.5" letter-spacing="5" fill="var(--ink)" text-anchor="middle">CARTA DOS REINOS DE VELDORA</text>
+              <text class="map-title-b" x="500" y="58" font-family="EB Garamond,serif" font-style="italic" font-size="11" fill="var(--ink-soft)" text-anchor="middle">anno primo pacti</text>
             </g>
 
-            <!-- Rosa dos ventos -->
             <g class="map-decor" transform="translate(95,638)" fill="var(--ink)">
               <circle r="32" fill="none" stroke="var(--ink)" stroke-width="1"/>
               <circle r="24" fill="none" stroke="var(--ink)" stroke-width=".6"/>
@@ -840,8 +832,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <text y="-40" font-family="Cinzel,serif" font-weight="700" font-size="12" text-anchor="middle">N</text>
             </g>
 
-            <!-- Legenda -->
-            <g class="map-decor" transform="translate(726,614)">
+            <!-- Legenda e escala: escondidas no celular (map-tiny) -->
+            <g class="map-decor map-tiny" transform="translate(726,614)">
               <rect width="240" height="64" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
               <rect x="4" y="4" width="232" height="56" fill="none" stroke="var(--ink)" stroke-width=".5"/>
               <circle cx="18" cy="20" r="4" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.4"/>
@@ -854,22 +846,19 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <text x="160" y="48" font-family="Cinzel,serif" font-size="8.5" letter-spacing="1.5" fill="var(--ink-soft)">MARCO</text>
             </g>
 
-            <!-- Escala -->
-            <g class="map-decor" transform="translate(726,694)" font-family="EB Garamond,serif" font-size="9.5" fill="var(--ink-soft)">
+            <g class="map-decor map-tiny" transform="translate(726,694)" font-family="EB Garamond,serif" font-size="9.5" fill="var(--ink-soft)">
               <path d="M14 0 V-5 M94 0 V-5 M174 0 V-5 M14 -2 H174" stroke="var(--ink-soft)" stroke-width="1"/>
               <text x="14" y="12" text-anchor="middle">0</text>
               <text x="94" y="12" text-anchor="middle">1 sessão</text>
               <text x="174" y="12" text-anchor="end">3 madrugadas</text>
             </g>
 
-            <!-- Borda interna -->
             <rect x="8" y="8" width="984" height="704" fill="none" stroke="var(--ink)" stroke-width="1.4" pointer-events="none"/>
           </svg>
         </div>
-        <p class="map-hint">No celular, arrastai o pergaminho para os lados — e tocai num reino para inspecioná-lo.</p>
+        <p class="map-hint">Tocai num reino para o inspecionar — a Estrada do Pacto e as rotas do mar ligam os cinco.</p>
       </div>
 
-      <!-- Painel do reino (estado inicial: Ignarok; o JS re-renderiza) -->
       <aside class="panel reveal" id="realmPanel" style="--accent:var(--c-ignarok)" aria-live="polite">
         <div class="panel-body">
           <p class="panel-kicker">O Reino das Chamas</p>
@@ -887,11 +876,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <p class="g-title">O Comandante</p>
             </div>
           </div>
-          <p class="guardian-bio">Fala pouco, mira bem. É dele a calma de ferro nas horas em que a partida pende.</p>
+          <p class="guardian-bio">Fala pouco, mira bem. É dele a calma de ferro quando a partida pende.</p>
           <p class="feats-title">Feitos registrados</p>
           <ul class="feats">
-            <li>Doze vitórias seguidas no competitivo — todas “no instinto”.</li>
-            <li>Chamou o rush com 0,8 segundos de antecedência. Deu certo.</li>
+            <li>Doze vitórias seguidas no competitivo.</li>
+            <li>Chamou o rush com 0,8s de antecedência.</li>
             <li>Nunca perdeu um 1v1 — segundo ele.</li>
           </ul>
           <a class="to-card" href="#guardioes" data-card="ignarok">Contemplar a carta do guardião</a>
@@ -926,7 +915,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
           <div class="card-face card-back">
             <p class="card-lema">“O plano existe até o primeiro grito.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Fala pouco, mira bem. É dele a calma de ferro nas horas em que a partida pende — e a voz que diz “calma, que eu tenho plano” segundos antes de o plano dar certo.</p>
+            <p class="card-bio">Fala pouco, mira bem. É dele a calma de ferro quando a partida pende.</p>
             <div class="stats">
               <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
@@ -934,8 +923,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
             <ul class="feats">
-              <li>Doze vitórias seguidas no competitivo, todas “no instinto”.</li>
-              <li>Chamou o rush com 0,8s de antecedência. Deu certo.</li>
+              <li>Doze vitórias seguidas no competitivo.</li>
+              <li>Chamou o rush com 0,8s de antecedência.</li>
               <li>Nunca perdeu um 1v1 — segundo ele.</li>
             </ul>
           </div>
@@ -955,7 +944,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
           <div class="card-face card-back">
             <p class="card-lema">“O mapa é 100% ou não é nada.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Exploradora incansável, colecionadora de troféus e de segredos que os desenvolvedores esconderam — e se arrependeram de não enterrar mais fundo.</p>
+            <p class="card-bio">Exploradora incansável, caçadora de troféus e de segredos bem enterrados.</p>
             <div class="stats">
               <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
@@ -963,9 +952,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
-              <li>Catorze troféus de platina — três deles “impossíveis”.</li>
+              <li>Catorze troféus de platina.</li>
               <li>Encontra baú secreto por cheiro.</li>
-              <li>Coletou 999 de cada recurso, “só por garantia”.</li>
+              <li>999 de cada recurso, “por garantia”.</li>
             </ul>
           </div>
         </div></div>
@@ -984,7 +973,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
           <div class="card-face card-back">
             <p class="card-lema">“Toda maré volta — e eu também.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Construtora nata e Rainha da Sobrevivência. Onde ela pisa, nasce uma vila; onde ela ri, a base ganha mais um buraco.</p>
+            <p class="card-bio">Construtora nata e Rainha da Sobrevivência. Onde ela pisa, nasce uma vila.</p>
             <div class="stats">
               <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
@@ -992,7 +981,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
-              <li>Cem dias no modo hardcore; caiu no 101, rindo.</li>
+              <li>Cem dias no hardcore; caiu no 101, rindo.</li>
               <li>A cidade que o servidor inteiro visita.</li>
               <li>A base mais bonita — e a mais explodida.</li>
             </ul>
@@ -1013,7 +1002,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
           <div class="card-face card-back">
             <p class="card-lema">“Sem planilha, não há vitória.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">A mente analítica do grupo. Calcula drop, dano e rota antes de você terminar de ler o tutorial — em qualquer jogo. O chute é forte; o cálculo, mais ainda.</p>
+            <p class="card-bio">A mente analítica do grupo: drop, dano e rota calculados antes do tutorial acabar.</p>
             <div class="stats">
               <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
@@ -1021,9 +1010,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
             <ul class="feats">
-              <li>A planilha sagrada de builds, desde o Ano Primeiro.</li>
-              <li>Prevê o drop exato. Farma seis horas. Acerta.</li>
-              <li>Celebra cada vitória com um “SIUU” na call. Sem exceção.</li>
+              <li>A planilha sagrada de builds.</li>
+              <li>Prevê o drop exato. Acerta.</li>
+              <li>Um “SIUU” por vitória, na call.</li>
             </ul>
           </div>
         </div></div>
@@ -1042,7 +1031,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
           <div class="card-face card-back">
             <p class="card-lema">“Você só me vê quando já é tarde.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Entra na call sem que ninguém o veja entrar. Joga melhor às três da manhã do que qualquer um de nós à tarde.</p>
+            <p class="card-bio">Entra na call sem que ninguém o veja entrar. Melhor às três da manhã.</p>
             <div class="stats">
               <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
@@ -1050,14 +1039,15 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
             <ul class="feats">
-              <li>Catorze vitórias como traidor numa noite só. Recorde eterno.</li>
-              <li>Zerou a alma do jogo às 3h47, sem fazer barulho.</li>
+              <li>Catorze vitórias como traidor numa noite.</li>
+              <li>Zerou o jogo às 3h47, sem barulho.</li>
               <li>Aparece do nada. Ninguém pergunta como.</li>
             </ul>
           </div>
         </div></div>
       </div>
     </div>
+    <p class="fan-hint">Arrastai para os lados para ver os guardiões · tocai numa carta para virá-la.</p>
   </div>
 </section>
 
@@ -1133,16 +1123,16 @@ const REALMS = {
     motto:"Do fogo, a ordem", accent:"#c4553b", symbol:"sym-sword",
     today:["cinzas leves e vento de brasa","calmaria vulcânica, chão morno","chuva de faíscas ao entardecer"],
     desc:"Terras onde as estratégias do grupo são forjadas — do competitivo tenso aos planos que seguram os piores wipes. Da forja de Ignarok saem as táticas de todo jogo.",
-    hero:{nick:"Luan Dhony", title:"O Comandante", bio:"Fala pouco, mira bem. É dele a calma de ferro nas horas em que a partida pende.",
-      feats:["Doze vitórias seguidas no competitivo — todas “no instinto”.","Chamou o rush com 0,8 segundos de antecedência. Deu certo.","Nunca perdeu um 1v1 — segundo ele."]}
+    hero:{nick:"Luan Dhony", title:"O Comandante", bio:"Fala pouco, mira bem. É dele a calma de ferro quando a partida pende.",
+      feats:["Doze vitórias seguidas no competitivo.","Chamou o rush com 0,8s de antecedência.","Nunca perdeu um 1v1 — segundo ele."]}
   },
   sylvara: {
     kicker:"A Silva Eterna", name:"Sylvara", epithet:"A floresta-mãe do centro",
     motto:"Nada se perde sob as copas", accent:"#5f9468", symbol:"sym-bow",
     today:["orvalho nas copas altas","névoa baixa entre os troncos","sol atravessando as folhas"],
     desc:"Floresta que guarda todos os segredos de todos os mundos: cada mapa 100% completo, cada baú desenterrado. Nada aqui fica por encontrar — em nenhum jogo.",
-    hero:{nick:"Debora Vezetiv", title:"A Caçadora", bio:"Exploradora incansável, colecionadora de troféus e de segredos bem enterrados.",
-      feats:["Catorze troféus de platina — três deles “impossíveis”.","Encontra baú secreto por cheiro.","Coletou 999 de cada recurso, “só por garantia”."]}
+    hero:{nick:"Debora Vezetiv", title:"A Caçadora", bio:"Exploradora incansável, caçadora de troféus e de segredos bem enterrados.",
+      feats:["Catorze troféus de platina.","Encontra baú secreto por cheiro.","999 de cada recurso, “por garantia”."]}
   },
   thalassia: {
     kicker:"As Marés Sem Fim", name:"Thalassia", epithet:"O arquipélago do sul",
@@ -1150,15 +1140,15 @@ const REALMS = {
     today:["maré alta e sol raro","brisa salgada, velas cheias","mareia leve; a rainha diz que é normal"],
     desc:"Arquipélago das construções e das novas temporadas: daqui o grupo parte para cada sobrevivência — e é aqui que as bases ficam prontas, bonitas e, depois, explodem.",
     hero:{nick:"Rayssa Vitória", title:"A Navegadora", bio:"Construtora nata e Rainha da Sobrevivência. Onde ela pisa, nasce uma vila.",
-      feats:["Cem dias no modo hardcore; caiu no dia 101, rindo.","Construiu a cidade que o servidor inteiro visita.","A base mais bonita do grupo — e a mais explodida."]}
+      feats:["Cem dias no hardcore; caiu no 101, rindo.","A cidade que o servidor inteiro visita.","A base mais bonita — e a mais explodida."]}
   },
   aurum: {
     kicker:"O Deserto Dourado", name:"Aurum", epithet:"As dunas do conhecimento",
     motto:"O ouro é o conhecimento", accent:"#d1a33c", symbol:"sym-flask",
     today:["céu de cobre, dunas quentes","vento seco carregando areia dourada","calor de planilha em pleno meio-dia"],
     desc:"Cada duna guarda um número calculado: builds, drops, rotas, tier lists. Onde outros veem areia, Aurum vê dados — de qualquer jogo que a mesa escolher.",
-    hero:{nick:"Cristiano Ronaldo", title:"O Alquimista", bio:"A mente analítica do grupo. Calcula drop, dano e rota antes do tutorial acabar — em qualquer jogo.",
-      feats:["Mantém a planilha sagrada de builds desde o Ano Primeiro.","Prevê o drop exato. Farma seis horas. Acerta.","Celebra cada vitória com um “SIUU” na call. Sem exceção."]}
+    hero:{nick:"Cristiano Ronaldo", title:"O Alquimista", bio:"A mente analítica do grupo: drop, dano e rota calculados antes do tutorial acabar.",
+      feats:["A planilha sagrada de builds.","Prevê o drop exato. Acerta.","Um “SIUU” por vitória, na call."]}
   },
   nocturnia: {
     kicker:"As Terras Sombrias", name:"Nocturnia", epithet:"As terras que não dormem",
@@ -1166,7 +1156,7 @@ const REALMS = {
     today:["escuridão pontilhada de vigias","lua escondida; bom para aparições","madrugada eterna, café recém-feito"],
     desc:"De Nocturnia vêm as madrugadas lendárias: terror no fone, traidores desmascarados, recordes impossíveis. O café aqui é sacramento.",
     hero:{nick:"João Pedro", title:"O Silencioso", bio:"Entra na call sem que ninguém o veja entrar. Melhor às três da manhã.",
-      feats:["Catorze vitórias como traidor numa noite só. Recorde eterno.","Zerou a alma do jogo às 3h47, sem fazer barulho.","Aparece do nada. Ninguém pergunta como."]}
+      feats:["Catorze vitórias como traidor numa noite.","Zerou o jogo às 3h47, sem barulho.","Aparece do nada. Ninguém pergunta como."]}
   }
 };
 
@@ -1213,7 +1203,6 @@ document.querySelectorAll('#worldMap .realm').forEach(g=>{
   });
 });
 
-/* Destacar a carta a partir do painel (delegação, pois o painel é re-renderizado) */
 document.addEventListener('click', e=>{
   const link = e.target.closest('.to-card');
   if(!link) return;
@@ -1305,6 +1294,9 @@ document.querySelectorAll('section[id]').forEach(s=>sectionObs.observe(s));
 if(matchMedia('(prefers-reduced-motion:reduce)').matches){
   document.querySelectorAll('animate, animateMotion').forEach(a=>a.remove());
 }
+
+/* ============ ANTI-SELEÇÃO (reforço p/ Safari) ============ */
+document.addEventListener('selectstart', e=>e.preventDefault());
 
 /* ============ A CRÔNICA SENTE SUA AUSÊNCIA ============ */
 const baseTitle = document.title;
