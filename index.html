@@ -97,7 +97,7 @@ body::after{
 a{color:inherit}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
 
-/* ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE (fixo no topo) ============ */
+/* ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE (só desktop) ============ */
 nav{
   position:fixed;top:14px;left:50%;transform:translateX(-50%);
   z-index:1400;
@@ -112,6 +112,9 @@ nav{
     inset 0 1px 0 rgba(234,217,181,.1);
   backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
 }
+/* No celular, o estandarte inteiro some: navegação só rolando */
+nav[hidden], @media (max-width:760px){ nav{display:none} }
+
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-seal{
   width:34px;height:34px;flex:0 0 auto;object-fit:contain;
@@ -572,14 +575,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 
 /* ============ CELULAR ============ */
 @media (max-width:760px){
-  /* No celular, o estandarte exibe SÓ os links — sem selo nem nome */
-  nav{padding:7px 10px;border-radius:999px}
-  .brand{display:none}
-  .nav-links{gap:6px;flex-wrap:wrap;justify-content:center}
-  .nav-links li{gap:6px}
-  .nav-links li:not(:last-child)::after{display:none}
-  .nav-links a{padding:6px 11px;font-size:.55rem;letter-spacing:.1em}
-  section{scroll-margin-top:72px;padding:64px 0 72px}
+  /* Sem menu fixo no celular: navegação puramente pela rolagem */
+  nav{display:none}
+  section{scroll-margin-top:0;padding:64px 0 72px}
 
   .lead{text-align:left;text-align-last:auto}
   .lead::first-letter{font-size:2.6em;padding:4px 9px 0 0}
@@ -735,7 +733,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   </defs>
 </svg>
 
-<!-- ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE (fixo no topo) ============ -->
+<!-- ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE (desktop apenas) ============ -->
 <nav aria-label="Capítulos da crônica">
   <a class="brand" href="#inicio">
     <img class="brand-seal" src="simbolo.png" alt="Símbolo de Veldora Realms">
