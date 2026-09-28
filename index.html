@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="description" content="Veldora Realms — a crônica dos cinco reinos e dos amigos que os guardam.">
+<meta name="description" content="Veldora Realms — a crônica dos reinos e dos amigos que os guardam.">
 <title>Veldora Realms — Crônica dos Reinos</title>
 <link rel="icon" type="image/png" href="simbolo.png">
 <link rel="apple-touch-icon" href="simbolo.png">
@@ -21,11 +21,16 @@
   --gold:#c9a24a;
   --gold-2:#b98a2e;
   --seal:#a259c9;
-  --c-ignarok:#c4553b;
-  --c-sylvara:#5f9468;
-  --c-thalassia:#4d92b4;
-  --c-aurum:#d1a33c;
-  --c-nocturnia:#8a76a0;
+  /* === OS REINOS === */
+  --c-supremo:#f7f4ec;
+  --c-mirigumi:#e07aa0;
+  --c-yaryan:#2A0845;
+  --c-yaryan-line:#b98fd6;
+  --c-nyara:#b98fd6;
+  --c-ascar:#f0c75e;
+  --c-snezhnaya:#8ec5e8;
+  --c-escarlate:#d94f3d;
+  --sea:#5f8fa6;
   --line:rgba(234,217,181,.32);
   --line-soft:rgba(234,217,181,.16);
   --serif:'EB Garamond',Georgia,serif;
@@ -81,41 +86,59 @@ body::after{
   content:"";position:fixed;inset:0;z-index:1999;pointer-events:none;
   box-shadow:inset 0 0 180px rgba(0,0,0,.6);
 }
-.page-frame{position:fixed;inset:8px;z-index:1500;pointer-events:none;border:1px solid var(--line)}
-.page-frame::before{content:"";position:absolute;inset:3px;border:1px solid var(--line-soft)}
 
 a{color:inherit}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
 
-/* ============ NAVEGAÇÃO ============ */
+/* ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE ============ */
 nav{
-  position:fixed;top:8px;left:8px;right:8px;z-index:1400;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 26px;
-  background:rgba(23,17,11,.85);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  border-bottom:1px solid var(--line-soft);
-  box-shadow:0 8px 24px -12px rgba(0,0,0,.7);
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  z-index:1400;
+  width:max-content;max-width:calc(100vw - 28px);
+  display:flex;align-items:center;gap:18px;
+  padding:9px 20px 9px 14px;
+  background:linear-gradient(180deg, rgba(41,30,17,.94), rgba(23,17,11,.94));
+  border:1px solid rgba(201,162,74,.5);
+  border-radius:999px;
+  box-shadow:
+    0 12px 34px -12px rgba(0,0,0,.85),
+    inset 0 1px 0 rgba(234,217,181,.1);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
 }
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding-right:16px;border-right:1px solid rgba(201,162,74,.28)}
 .brand-seal{
   width:34px;height:34px;flex:0 0 auto;object-fit:contain;
   filter:drop-shadow(0 2px 8px rgba(0,0,0,.7));
   transition:transform .35s ease;
 }
 .brand:hover .brand-seal{transform:rotate(-8deg) scale(1.08)}
-.brand-name{font-family:var(--disp);font-size:.82rem;letter-spacing:.24em;font-weight:600;text-transform:uppercase}
-.nav-links{display:flex;gap:clamp(14px,2.4vw,30px);list-style:none}
+.brand-name{font-family:var(--disp);font-size:.78rem;letter-spacing:.2em;font-weight:600;text-transform:uppercase;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-links li{display:flex;align-items:center;gap:8px}
+/* Losango separador entre os medalhões */
+.nav-links li:not(:last-child)::after{
+  content:"";width:5px;height:5px;flex:0 0 auto;
+  background:var(--gold);opacity:.55;transform:rotate(45deg);
+}
 .nav-links a{
-  font-family:var(--disp);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
-  text-decoration:none;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .3s;
+  font-family:var(--disp);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink-soft);white-space:nowrap;
+  padding:8px 15px;border-radius:999px;
+  border:1px solid rgba(201,162,74,.22);
+  background:rgba(14,10,6,.45);
+  transition:color .3s,border-color .3s,background .3s,box-shadow .3s,transform .25s;
 }
-.nav-links a::after{
-  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
-  background:var(--seal);transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
+.nav-links a:hover{
+  color:var(--gold);border-color:rgba(201,162,74,.7);background:rgba(201,162,74,.1);
+  transform:translateY(-2px);
+  box-shadow:0 6px 14px -6px rgba(0,0,0,.7);
 }
-.nav-links a:hover,.nav-links a.active{color:var(--seal)}
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a.active{
+  color:#1a1208;font-weight:700;letter-spacing:.12em;
+  background:linear-gradient(180deg,#e3bd6a,#b98a2e);
+  border-color:#e3bd6a;
+  box-shadow:0 0 16px rgba(201,162,74,.45),inset 0 1px 0 rgba(255,244,214,.5);
+}
 
 /* ============ HERO ============ */
 .hero{
@@ -124,13 +147,6 @@ nav{
   padding:130px 24px 90px;overflow:hidden;
 }
 #dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.dragonfly{position:absolute;top:15%;left:-160px;color:var(--ink);opacity:.35;pointer-events:none;animation:flyby 48s linear infinite}
-.dragonfly svg{width:118px;height:auto;display:block}
-.dragonfly-bob{animation:bob 5.5s ease-in-out infinite alternate}
-.wing{transform-box:fill-box;transform-origin:12% 92%;animation:flap .8s ease-in-out infinite alternate}
-@keyframes flyby{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 320px))}}
-@keyframes bob{from{transform:translateY(-14px) rotate(-2deg)}to{transform:translateY(16px) rotate(2deg)}}
-@keyframes flap{from{transform:rotate(12deg)}to{transform:rotate(-16deg)}}
 
 .hero-kicker{
   font-family:var(--disp);font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;
@@ -171,7 +187,7 @@ nav{
 @keyframes hint{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(7px);opacity:1}}
 
 /* ============ CAPÍTULOS ============ */
-section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
+section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .chapter-head{text-align:center;max-width:760px;margin:0 auto clamp(44px,6vw,72px)}
 .chapter-kicker{
   font-family:var(--disp);font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;
@@ -216,11 +232,11 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 .realm:focus-visible .land{stroke-width:3.2}
 .realm text{pointer-events:none}
 .realm-name{
-  font-family:var(--font-med);font-weight:400;font-size:27px;fill:var(--ink);
+  font-family:var(--font-med);font-weight:400;font-size:22px;fill:var(--ink);
   text-anchor:middle;paint-order:stroke;stroke:var(--paper-2);stroke-width:5;
 }
 .realm-sub{
-  font-family:var(--disp);font-size:9.5px;letter-spacing:.22em;fill:var(--ink-soft);
+  font-family:var(--disp);font-size:9px;letter-spacing:.2em;fill:var(--ink-soft);
   text-anchor:middle;paint-order:stroke;stroke:var(--paper-2);stroke-width:4;
 }
 .map-decor{pointer-events:none}
@@ -232,7 +248,7 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 
 /* Painel do reino */
 .panel{
-  position:sticky;top:92px;
+  position:sticky;top:100px;
   border:1px solid var(--line);outline:1px solid var(--line-soft);outline-offset:4px;
   background:var(--paper-2);padding:clamp(22px,3vw,34px);
   box-shadow:0 18px 40px -14px rgba(0,0,0,.75);
@@ -240,7 +256,7 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 .panel.fading .panel-body{opacity:0;transform:translateY(10px)}
 .panel-body{transition:opacity .3s ease,transform .3s ease}
 .panel-kicker{font-family:var(--disp);font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--accent,var(--gold));margin-bottom:8px}
-.panel h3{font-family:var(--font-med);font-weight:400;font-size:2.1rem;line-height:1.1}
+.panel h3{font-family:var(--font-med);font-weight:400;font-size:2rem;line-height:1.1}
 .panel .epithet{font-style:italic;color:var(--ink-soft);margin-top:2px}
 .panel .motto{margin-top:14px;font-style:italic;font-size:1.06rem}
 .panel .motto::before{content:"« "}.panel .motto::after{content:" »"}
@@ -249,52 +265,56 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 .panel .desc{margin-top:14px;font-size:1rem}
 .panel .orn{margin:20px auto}
 .guardian{display:flex;gap:16px;align-items:center}
+.guardian.g-second{margin-top:20px}
+.co-gap{height:16px}
 .guardian-medal{
-  width:66px;height:66px;flex:0 0 auto;border:1.5px solid var(--accent,var(--gold));
+  width:64px;height:64px;flex:0 0 auto;border:1.5px solid var(--accent,var(--gold));
   border-radius:50%;display:grid;place-items:center;color:var(--accent,var(--gold));
 }
-.guardian-medal svg{width:34px;height:34px}
+.guardian-medal svg{width:32px;height:32px}
 .guardian .g-kicker{font-family:var(--disp);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
-.guardian .g-name{font-family:var(--font-med);font-size:1.3rem;line-height:1.2;overflow-wrap:break-word}
+.guardian .g-name{font-family:var(--font-med);font-size:1.26rem;line-height:1.2;overflow-wrap:break-word}
 .guardian .g-title{font-style:italic;color:var(--accent,var(--seal))}
 .g-fav{
   display:inline-flex;align-items:center;gap:5px;margin-top:4px;
   font-family:var(--disp);font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);
 }
 .g-fav svg{width:12px;height:12px;fill:var(--gold)}
-.guardian-bio{margin-top:14px;font-size:.98rem}
-.panel .feats-title{font-family:var(--disp);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:20px 0 10px}
+.guardian-bio{margin-top:12px;font-size:.97rem}
+.panel .feats-title{font-family:var(--disp);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:16px 0 8px}
 .feats{list-style:none}
-.feats li{position:relative;padding-left:20px;margin-bottom:9px;font-size:.97rem}
+.feats li{position:relative;padding-left:20px;margin-bottom:8px;font-size:.95rem}
 .feats li::before{
   content:"";position:absolute;left:2px;top:.5em;width:7px;height:7px;
   background:var(--accent,var(--gold));transform:rotate(45deg);
 }
 .panel .to-card{
-  display:inline-block;margin-top:18px;font-family:var(--disp);font-size:.68rem;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--accent,var(--seal));
+  display:inline-block;margin-top:18px;font-family:var(--disp);font-size:.66rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--accent,var(--seal));
   text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px;transition:letter-spacing .3s;
 }
-.panel .to-card:hover{letter-spacing:.3em}
+.panel .to-card:hover{letter-spacing:.28em}
 
 /* ============ CARTAS ============ */
 .fan{
   display:flex;justify-content:center;align-items:flex-end;
   padding-top:30px;perspective:1600px;
 }
-.fan .card{flex:0 0 auto;margin:0 -8px;transition:transform .4s ease;z-index:1}
-.fan .card:nth-child(1){--r:-11deg;--y:34px}
-.fan .card:nth-child(2){--r:-5.5deg;--y:10px}
-.fan .card:nth-child(3){--r:0deg;--y:0px}
-.fan .card:nth-child(4){--r:5.5deg;--y:10px}
-.fan .card:nth-child(5){--r:11deg;--y:34px}
+.fan .card{flex:0 0 auto;margin:0 -6px;transition:transform .4s ease;z-index:1}
+.fan .card:nth-child(1){--r:-15deg;--y:40px}
+.fan .card:nth-child(2){--r:-10deg;--y:18px}
+.fan .card:nth-child(3){--r:-5deg;--y:5px}
+.fan .card:nth-child(4){--r:0deg;--y:0px}
+.fan .card:nth-child(5){--r:5deg;--y:5px}
+.fan .card:nth-child(6){--r:10deg;--y:18px}
+.fan .card:nth-child(7){--r:15deg;--y:40px}
 .fan .card:nth-child(odd){z-index:2}
 @media (hover:hover){
   .fan .card:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 20px));z-index:10}
 }
 .fan .card{transform:rotate(var(--r)) translateY(var(--y))}
 .card{
-  width:clamp(196px,20vw,232px);aspect-ratio:5/8;perspective:1400px;cursor:pointer;
+  width:clamp(140px,14vw,160px);aspect-ratio:5/8;perspective:1400px;cursor:pointer;
 }
 .card-tilt{width:100%;height:100%;transition:transform .3s ease}
 .card-inner{
@@ -307,35 +327,35 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
   border:1px solid var(--gold);background:var(--paper-2);
   box-shadow:0 14px 30px -10px rgba(0,0,0,.8);
   display:flex;flex-direction:column;align-items:center;text-align:center;
-  padding:18px 14px;overflow:hidden;
+  padding:16px 11px;overflow:hidden;
 }
 .card-face::before{content:"";position:absolute;inset:6px;border:1px solid rgba(201,162,74,.5);pointer-events:none}
 .card-sigil{
-  width:86px;height:86px;border:1.5px solid var(--accent);border-radius:50%;
+  width:72px;height:72px;border:1.5px solid var(--accent);border-radius:50%;
   display:grid;place-items:center;color:var(--accent);margin:auto 0;
 }
-.card-sigil svg{width:44px;height:44px}
+.card-sigil svg{width:38px;height:38px}
 .card-face h3{
-  font-family:var(--font-med);font-weight:400;font-size:1.28rem;line-height:1.15;
+  font-family:var(--font-med);font-weight:400;font-size:1.05rem;line-height:1.15;
   letter-spacing:.02em;overflow-wrap:break-word;
 }
-.card-title{font-style:italic;color:var(--accent);font-size:.96rem;margin-top:3px}
+.card-title{font-style:italic;color:var(--accent);font-size:.84rem;margin-top:3px}
 .card-realm{
-  font-family:var(--disp);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--ink-soft);margin:8px 0 12px;
+  font-family:var(--disp);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin:7px 0 10px;
 }
-.card-tap{font-size:.72rem;font-style:italic;color:var(--ink-soft);opacity:.8}
+.card-tap{font-size:.66rem;font-style:italic;color:var(--ink-soft);opacity:.8}
 
 /* ============ FAVORITO ============ */
 .fav-btn{
-  position:absolute;top:12px;right:12px;z-index:3;
-  width:36px;height:36px;border-radius:50%;
+  position:absolute;top:9px;right:9px;z-index:3;
+  width:32px;height:32px;border-radius:50%;
   border:1px solid rgba(201,162,74,.55);
   background:rgba(18,13,7,.75);color:#8a7a52;
   display:grid;place-items:center;cursor:pointer;
   transition:color .3s,border-color .3s,transform .3s,box-shadow .3s;
 }
-.fav-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.fav-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
 .fav-btn:hover{transform:scale(1.12);color:var(--gold)}
 .fav-btn.on{
   color:var(--gold);border-color:var(--gold);background:rgba(201,162,74,.16);
@@ -347,8 +367,8 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
   box-shadow:0 0 0 2px rgba(201,162,74,.4),0 0 26px rgba(201,162,74,.25),0 14px 30px -10px rgba(0,0,0,.8);
 }
 .fav-tag{
-  display:none;font-family:var(--disp);font-size:.58rem;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--gold);margin:8px 0 12px;
+  display:none;font-family:var(--disp);font-size:.52rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);margin:7px 0 10px;
 }
 .card.fav .fav-tag{display:block}
 .card.fav .card-tap{display:none}
@@ -359,20 +379,20 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
 
 .card-back{
   transform:rotateY(180deg);background:#120d07;color:#d8c9a4;
-  text-align:left;align-items:stretch;padding:16px 14px;
+  text-align:left;align-items:stretch;padding:13px 11px;
 }
 .card-back::before{border-color:rgba(185,138,46,.6)}
-.card-lema{font-style:italic;color:#e9dcb8;font-size:.9rem;text-align:center;line-height:1.4}
-.card-back .orn{width:110px;margin:8px auto;color:#b98a2e}
-.card-bio{font-size:.78rem;line-height:1.45}
-.stats{margin:10px 0;display:grid;gap:4px}
-.stat{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-family:var(--disp);color:#bfae83}
-.pips{display:inline-flex;gap:4px}
-.pip{width:7px;height:7px;transform:rotate(45deg);border:1px solid #b98a2e;display:inline-block}
+.card-lema{font-style:italic;color:#e9dcb8;font-size:.8rem;text-align:center;line-height:1.35}
+.card-back .orn{width:96px;margin:6px auto;color:#b98a2e}
+.card-bio{font-size:.72rem;line-height:1.4}
+.stats{margin:8px 0;display:grid;gap:3px}
+.stat{display:flex;justify-content:space-between;align-items:center;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;font-family:var(--disp);color:#bfae83}
+.pips{display:inline-flex;gap:3px}
+.pip{width:6px;height:6px;transform:rotate(45deg);border:1px solid #b98a2e;display:inline-block}
 .pip.on{background:#b98a2e}
 .card-back .feats{margin-top:2px}
-.card-back .feats li{font-size:.76rem;margin-bottom:7px;padding-left:16px}
-.card-back .feats li::before{background:#b98a2e;top:.42em;width:6px;height:6px}
+.card-back .feats li{font-size:.68rem;margin-bottom:6px;padding-left:14px}
+.card-back .feats li::before{background:#b98a2e;top:.42em;width:5px;height:5px}
 
 .card.flash{animation:cardflash 1.8s ease}
 @keyframes cardflash{
@@ -439,10 +459,10 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:70px}
   display:grid;place-items:center;color:var(--accent,var(--gold));
 }
 .gate-sigil svg{width:24px;height:24px}
-.gate-name{font-family:var(--font-med);font-size:1.06rem;line-height:1.2}
-.gate-role{font-style:italic;color:var(--ink-soft);font-size:.84rem;margin-top:1px}
+.gate-name{font-family:var(--font-med);font-size:1.02rem;line-height:1.2}
+.gate-role{font-style:italic;color:var(--accent,var(--gold));font-size:.82rem;margin-top:1px}
 .gate-realm{
-  font-family:var(--disp);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;
+  font-family:var(--disp);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--ink-soft);
 }
 .gate-fine{
@@ -508,51 +528,75 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .panel{position:static}
 }
 
-/* ============ CELULAR ============ */
-@media (max-width:760px){
-  nav{flex-direction:column;gap:7px;padding:10px 14px 9px}
-  .brand{gap:9px}
-  .brand-seal{width:28px;height:28px}
-  .brand-name{font-size:.7rem;letter-spacing:.2em}
-  .nav-links{gap:16px}
-  .nav-links a{font-size:.56rem;letter-spacing:.08em}
-  section{scroll-margin-top:104px;padding:64px 0 72px}
-
-  .lead{text-align:left;text-align-last:auto}
-  .lead::first-letter{font-size:2.6em;padding:4px 9px 0 0}
-
-  .map-wrap{padding:5px}
-  .map-wrap svg{min-width:0;width:100%}
-  .realm-name{font-size:42px;stroke-width:7}
-  .realm-sub{font-size:19px;letter-spacing:.05em;stroke-width:6}
-  .map-sea{font-size:22px;letter-spacing:6px}
-  .map-label{font-size:16px}
-  .map-mist{font-size:17px;letter-spacing:2px}
-  .map-title-a{font-size:21px;letter-spacing:3px}
-  .map-title-b{font-size:15px}
-  .map-tiny{display:none}
-
-  .panel{padding:20px 16px}
-  .panel h3{font-size:1.8rem;overflow-wrap:break-word}
-
+/* ============ TABLET E CELULAR: cartas em carrossel ============ */
+@media (max-width:1024px){
   .fan{
     justify-content:flex-start;align-items:center;overflow-x:auto;
     scroll-snap-type:x mandatory;gap:20px;
-    padding:8px max(12px, calc(50vw - 125px)) 20px;
+    padding:8px max(12px, calc(50vw - 130px)) 20px;
     margin:0 calc(-1 * clamp(20px,4vw,48px));
     scrollbar-width:none;
   }
   .fan::-webkit-scrollbar{display:none}
   .fan .card,
   .fan .card:nth-child(1),.fan .card:nth-child(2),.fan .card:nth-child(3),
-  .fan .card:nth-child(4),.fan .card:nth-child(5){
+  .fan .card:nth-child(4),.fan .card:nth-child(5),.fan .card:nth-child(6),
+  .fan .card:nth-child(7){
     --r:0deg;--y:0px;margin:0;transform:none;flex:0 0 auto;scroll-snap-align:center;
   }
   .fan .card:hover,.fan .card.fav{transform:none}
   .card{width:min(250px,80vw)}
+  .card-sigil{width:86px;height:86px}
+  .card-sigil svg{width:44px;height:44px}
   .card-face h3{font-size:1.12rem}
-  .card-realm{letter-spacing:.18em}
+  .card-title{font-size:.94rem}
+  .card-realm{font-size:.56rem;letter-spacing:.18em}
+  .card-back{padding:16px 14px}
+  .card-lema{font-size:.9rem}
+  .card-bio{font-size:.78rem;line-height:1.45}
+  .stat{font-size:.72rem;letter-spacing:.08em}
+  .pip{width:7px;height:7px}
+  .card-back .feats li{font-size:.76rem}
+  .fav-btn{width:36px;height:36px;top:12px;right:12px}
+  .fav-btn svg{width:18px;height:18px}
+  .fav-tag{font-size:.58rem;letter-spacing:.22em}
+  .card-tap{font-size:.72rem}
   .fan-hint{display:block}
+}
+
+/* ============ CELULAR ============ */
+@media (max-width:760px){
+  /* Estandarte vira cartão arredondado de duas fileiras */
+  nav{
+    flex-direction:column;gap:9px;
+    padding:10px 14px;
+    border-radius:20px;
+    max-width:calc(100vw - 20px);
+  }
+  .brand{padding-right:0;border-right:none;gap:9px}
+  .brand-seal{width:28px;height:28px}
+  .brand-name{font-size:.68rem;letter-spacing:.18em}
+  .nav-links{gap:6px;flex-wrap:wrap;justify-content:center}
+  .nav-links li{gap:6px}
+  .nav-links li:not(:last-child)::after{display:none}
+  .nav-links a{padding:6px 11px;font-size:.55rem;letter-spacing:.1em}
+  section{scroll-margin-top:132px;padding:64px 0 72px}
+
+  .lead{text-align:left;text-align-last:auto}
+  .lead::first-letter{font-size:2.6em;padding:4px 9px 0 0}
+
+  .map-wrap{padding:5px}
+  .map-wrap svg{min-width:0;width:100%}
+  .realm-name{font-size:34px;stroke-width:7}
+  .realm-sub{font-size:19px;letter-spacing:.05em;stroke-width:6}
+  .map-sea{font-size:22px;letter-spacing:6px}
+  .map-label{font-size:16px}
+  .map-title-a{font-size:21px;letter-spacing:3px}
+  .map-title-b{font-size:15px}
+  .map-tiny{display:none}
+
+  .panel{padding:20px 16px}
+  .panel h3{font-size:1.7rem;overflow-wrap:break-word}
 
   .chronicle{padding-top:0}
   .chronicle::before{left:10px}
@@ -596,44 +640,63 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <symbol id="sym-crown" viewBox="0 0 24 24">
       <path d="M3.5 8.5 L7.5 12 L12 5.5 L16.5 12 L20.5 8.5 L18.8 18.5 H5.2 Z"/>
     </symbol>
-    <symbol id="sym-sword" viewBox="0 0 64 64">
-      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M32 4 L38 38 L32 46 L26 38 Z"/><path d="M18 46 H46"/>
-        <path d="M32 46 V56"/><circle cx="32" cy="59" r="2.6"/>
+    <!-- Símbolos dos guardiões -->
+    <symbol id="sym-sovereign" viewBox="0 0 64 64"><!-- Luan — Guerreiro Soberano: espada coroada -->
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11 L26 15 L32 7 L38 15 L42 11 L40.5 18.5 H23.5 Z"/>
+        <path d="M32 18.5 V23"/>
+        <path d="M22.5 23 H41.5"/>
+        <path d="M28.5 23 H35.5 L36 50 L32 58 L28 50 Z"/>
       </g>
     </symbol>
-    <symbol id="sym-bow" viewBox="0 0 64 64">
-      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20 8 C44 16 44 48 20 56"/><path d="M20 8 V56"/>
-        <path d="M22 32 H52"/><path d="M52 32 L43 26"/><path d="M52 32 L43 38"/>
+    <symbol id="sym-scepter" viewBox="0 0 64 64"><!-- Debora — A Imperatriz -->
+      <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M29 58 L33 24"/>
+        <circle cx="34" cy="16" r="6.5"/>
+        <path d="M20 28 C22 19 26 13 32 9 M48 28 C46 19 42 13 36 9"/>
       </g>
     </symbol>
-    <symbol id="sym-anchor" viewBox="0 0 64 64">
-      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="32" cy="10" r="4.5"/><path d="M32 15 V48"/><path d="M20 22 H44"/>
-        <path d="M12 34 C14 50 24 56 32 56 C40 56 50 50 52 34"/>
-        <path d="M12 34 L20 37 M12 34 L13.5 43"/><path d="M52 34 L44 37 M52 34 L50.5 43"/>
+    <symbol id="sym-world" viewBox="0 0 64 64"><!-- Rayssa — A Criadora de Mundos -->
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="32" cy="36" r="16"/>
+        <ellipse cx="32" cy="36" rx="7" ry="16"/>
+        <path d="M16.5 31 H47.5 M16.5 41 H47.5"/>
+        <path d="M12 44 C4 40 4 30 14 27 M52 28 C60 32 60 42 50 45" opacity=".8"/>
+        <path d="M50 10 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6 Z"/>
       </g>
     </symbol>
-    <symbol id="sym-flask" viewBox="0 0 64 64">
-      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M26 6 H38"/><path d="M28 6 V18 C19.5 22.5 13.5 30.5 13.5 39.5 C13.5 51 21.5 58 32 58 C42.5 58 50.5 51 50.5 39.5 C50.5 30.5 44.5 22.5 36 18 V6"/>
-        <path d="M20 42 C24 39 28 45 32 42 C36 39 40 45 44 42"/>
+    <symbol id="sym-loom" viewBox="0 0 64 64"><!-- Nayara — A Tecelã do Destino -->
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 8 C27.5 18 27.5 30 32 40 C36.5 30 36.5 18 32 8 Z"/>
+        <circle cx="32" cy="45" r="3.4"/>
+        <path d="M32 49 V57"/>
+        <path d="M11 17 C21 23 25 34 21 53"/>
+        <path d="M53 17 C43 23 39 34 43 53"/>
+        <path d="M13 37 C23 30 41 30 51 37" opacity=".7"/>
       </g>
     </symbol>
-    <symbol id="sym-mask" viewBox="0 0 64 64">
-      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 18 C22 10 42 10 50 18 C52 32 42 46 32 50 C22 46 12 32 14 18 Z"/>
-        <path d="M22 27 L27 31 L22 35 L18 31 Z"/><path d="M42 27 L37 31 L42 35 L46 31 Z"/>
-        <path d="M32 38 V44"/>
+    <symbol id="sym-royalcrown" viewBox="0 0 64 64"><!-- Luís — Rei Dourado -->
+      <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 24 L21 34 L32 12 L43 34 L54 24 L49 46 H15 Z"/>
+        <path d="M15 53 H49"/>
+        <circle cx="32" cy="39" r="2.4"/>
       </g>
     </symbol>
+    <symbol id="sym-storm" viewBox="0 0 64 64"><!-- Bruno — Inverno Perpétuo -->
+      <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 40 C15 40 12 33 17 29 C14 22 21 15 28 18 C31 11 42 10 46 17 C52 17 55 24 51 29 C54 33 51 40 44 40 Z"/>
+        <path d="M33 44 L27 56 L34 54 L29 63"/>
+      </g>
+    </symbol>
+    <symbol id="sym-shield" viewBox="0 0 64 64"><!-- Guilherme — O Protetor -->
+      <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 5 C41 9 50 10.5 55 10.5 C55 29 50 46 32 58 C14 46 9 29 9 10.5 C14 10.5 23 9 32 5 Z"/>
+        <path d="M22 28 L32 36 L42 28"/>
+      </g>
+    </symbol>
+    <!-- Elementos de mapa -->
     <symbol id="sym-mtn" viewBox="0 0 40 24">
       <path d="M2 22 L14 4 L20 12 L26 2 L38 22 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="sym-tree" viewBox="0 0 20 26">
-      <circle cx="10" cy="9" r="7" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
-      <path d="M10 16 V24 M10 19 L6.5 15.5 M10 19 L13.5 15.5" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round"/>
     </symbol>
     <symbol id="sym-wave" viewBox="0 0 30 10">
       <path d="M0 6 Q5 0 10 6 T20 6 T30 6" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round"/>
@@ -641,19 +704,39 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <symbol id="sym-dune" viewBox="0 0 20 12">
       <path d="M1 10 Q10 -2 19 10" fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
     </symbol>
-    <symbol id="sym-dragonfly" viewBox="0 0 140 70">
-      <g fill="currentColor" stroke="none">
-        <path d="M18 42 C34 36 52 40 68 36 C84 32 96 24 104 14 C106 11 111 9 114 11 C117 13 116 17 113 19 C104 26 96 36 84 43 C64 54 40 54 22 49 C17 47.5 15 44 18 42 Z"/>
-        <path d="M106 12 L110 2 L114 11 Z"/>
+    <symbol id="sym-flower" viewBox="0 0 20 26">
+      <g fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round">
+        <circle cx="10" cy="4.6" r="3"/><circle cx="10" cy="11.4" r="3"/>
+        <circle cx="6.6" cy="8" r="3"/><circle cx="13.4" cy="8" r="3"/>
+        <path d="M10 14.5 V24 M10 19.5 L6.8 17 M10 19.5 L13.2 17"/>
       </g>
-      <g class="wing"><path d="M52 38 C50 20 60 6 78 2 C68 12 62 22 60 34 C58 40 54 42 52 38 Z" fill="currentColor"/></g>
+      <circle cx="10" cy="8" r="1.7" fill="var(--ink)"/>
+    </symbol>
+    <symbol id="sym-pine" viewBox="0 0 20 26">
+      <g fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 2 L14.5 9 H5.5 Z"/>
+        <path d="M10 8 L16 17 H4 Z"/>
+        <path d="M10 17 V24"/>
+        <path d="M7 8.6 L10 5.8 L13 8.6" stroke="var(--c-snezhnaya)" stroke-width="1.3"/>
+        <path d="M6 16 L10 12.4 L14 16" stroke="var(--c-snezhnaya)" stroke-width="1.3"/>
+      </g>
+    </symbol>
+    <symbol id="sym-snow" viewBox="0 0 14 14">
+      <g stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round">
+        <path d="M7 1.5 V12.5 M2 4.2 L12 9.8 M12 4.2 L2 9.8"/>
+      </g>
+    </symbol>
+    <symbol id="sym-wyvern" viewBox="0 0 40 22"><!-- Dragão planando -->
+      <g fill="var(--ink)" stroke="none">
+        <path d="M2 15 C8 11 15 10 21 12 C24 5 31 2 37 4 C34 8 29 10 25 13 C18 18 9 19 3 17 C2.3 16.6 2 15.8 2 15 Z"/>
+        <path d="M37 4 L39.5 -1 L40 4.5 Z"/>
+      </g>
+      <path d="M14 11 C15 7 19 4 23 4" fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
     </symbol>
   </defs>
 </svg>
 
-<div class="page-frame" aria-hidden="true"></div>
-
-<!-- ============ NAVEGAÇÃO ============ -->
+<!-- ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE ============ -->
 <nav aria-label="Capítulos da crônica">
   <a class="brand" href="#inicio">
     <img class="brand-seal" src="simbolo.png" alt="Símbolo de Veldora Realms">
@@ -670,11 +753,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 <!-- ============ HERO ============ -->
 <header class="hero" id="inicio">
   <canvas id="dust" aria-hidden="true"></canvas>
-  <div class="dragonfly" aria-hidden="true">
-    <div class="dragonfly-bob">
-      <svg viewBox="0 0 140 70"><use href="#sym-dragonfly"/></svg>
-    </div>
-  </div>
 
   <img class="emblem" src="simbolo.png" alt="" aria-hidden="true">
 
@@ -683,9 +761,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <h1>Veldora<span class="realm-word">Realms</span></h1>
   </div>
   <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-  <p class="hero-sub">A crônica dos cinco reinos e dos amigos que os guardam.</p>
+  <p class="hero-sub">A crônica dos reinos e dos amigos que os guardam.</p>
   <p class="hero-intro">Nem todo mundo encontra a sua gente — nós encontramos, numa partida qualquer,
-  entre uma kill e um respawn. O grupo cresceu, virou mundo: cinco reinos, um pacto,
+  entre uma kill e um respawn. O grupo cresceu, virou mundo: seis reinos, um pacto,
   dezenas de jogos — e histórias que ninguém de fora acredita.</p>
 
   <a class="scroll-hint" href="#mapa">
@@ -704,14 +782,14 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
       <p class="lead">Todo grupo de amigos é, no fundo, um continente: territórios de temperamentos
       diferentes, unidos por estradas que ninguém lembra de ter aberto — e que ninguém consegue mais
-      abandonar. Esta é a carta de Veldora: cinco reinos, cinco guardiões, um só juramento —
+      abandonar. Esta é a carta de Veldora: seis reinos, sete guardiões, um só juramento —
       e uma mesa que troca de jogo, mas nunca de gente.</p>
     </div>
 
     <div class="map-layout">
       <div class="reveal">
         <div class="map-wrap">
-          <svg id="worldMap" viewBox="0 0 1000 720" role="img" aria-label="Mapa dos cinco reinos de Veldora">
+          <svg id="worldMap" viewBox="0 0 1000 720" role="img" aria-label="Mapa dos reinos de Veldora">
             <defs>
               <pattern id="seawaves" width="74" height="28" patternUnits="userSpaceOnUse">
                 <use href="#sym-wave" x="8" y="7" opacity=".45"/>
@@ -731,16 +809,18 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               paint-order="stroke" stroke="var(--paper-2)" stroke-width="4">
               <textPath href="#seaCurve" startOffset="50%" text-anchor="middle">· MAR DE VELDORA ·</textPath>
             </text>
-            <text class="map-label" x="428" y="360" font-family="EB Garamond,serif" font-style="italic" font-size="11"
+            <text class="map-label" x="560" y="372" font-family="EB Garamond,serif" font-style="italic" font-size="11"
               fill="var(--ink-soft)" opacity=".75" text-anchor="middle"
               paint-order="stroke" stroke="var(--paper-2)" stroke-width="3">Baía do Encontro</text>
 
-            <g fill="none" stroke="var(--c-thalassia)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" opacity=".55">
+            <!-- Rotas marítimas -->
+            <g fill="none" stroke="var(--sea)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" opacity=".55">
               <path d="M462 372 C405 402 350 435 305 462"/>
               <path d="M332 548 C430 576 520 568 574 550"/>
               <path d="M876 312 C898 380 894 480 882 556"/>
             </g>
 
+            <!-- Navio que navega -->
             <g class="map-decor" transform="translate(400,430)">
               <path d="M-12 0 C-8 8 10 8 14 0 C4 3 -6 3 -12 0 Z" fill="var(--ink)"/>
               <path d="M0 0 V-16" stroke="var(--ink)" stroke-width="1.4"/>
@@ -749,13 +829,16 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <animateMotion dur="40s" repeatCount="indefinite"
                 path="M462 372 C405 402 350 435 305 462 C298 505 320 540 348 552 C430 578 520 568 574 550"/>
             </g>
-            <g class="map-decor" transform="translate(146,428) rotate(-6)">
+            <g class="map-decor" transform="translate(122,478) rotate(-6)">
               <path d="M-12 0 C-8 8 10 8 14 0 C4 3 -6 3 -12 0 Z" fill="var(--ink)"/>
               <path d="M0 0 V-16" stroke="var(--ink)" stroke-width="1.4"/>
               <path d="M0 -16 C8 -12 8 -5 0 -1 C2 -6 2 -11 0 -16 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1"/>
             </g>
 
+            <!-- Estrada do Pacto -->
             <path class="map-decor road" d="M225 236 C320 200 430 186 508 200 C586 214 700 192 802 224 C838 292 762 432 655 495"
+              fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 12" opacity=".5"/>
+            <path class="map-decor road" d="M225 236 C195 275 165 340 149 420"
               fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 12" opacity=".5"/>
 
             <g class="map-decor">
@@ -764,53 +847,56 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path d="M362 180 L366 184 L362 188 L358 184 Z" fill="var(--gold)"/>
             </g>
 
-            <g class="realm" data-realm="ignarok" tabindex="0" role="button" aria-label="Reino de Ignarok, das Chamas">
-              <path class="land" fill="var(--c-ignarok)" d="M108 252 C92 214 100 162 132 130 C156 106 192 94 230 90 C272 86 312 98 338 126 C362 152 368 190 354 222 C341 251 313 273 279 285 C242 298 196 297 160 284 C134 274 116 265 108 252 Z"/>
-              <path class="land" fill="var(--c-ignarok)" d="M370 240 C368 230 376 222 388 221 C400 220 409 227 410 236 C411 245 403 252 391 253 C381 254 372 249 370 240 Z"/>
-              <path class="land" fill="var(--c-ignarok)" d="M148 312 C146 303 154 296 165 296 C176 296 184 302 184 311 C184 320 175 326 164 326 C155 326 150 320 148 312 Z"/>
-              <text class="realm-name" x="222" y="192">Ignarok</text>
-              <text class="realm-sub" x="222" y="214">O REINO DAS CHAMAS</text>
+            <!-- ===== REINO DRAG ZAKHARYS — Luan Dhony ===== -->
+            <g class="realm" data-realm="supremo" tabindex="0" role="button" aria-label="Reino Drag Zakharys, de Luan Dhony">
+              <path class="land" fill="var(--c-supremo)" d="M108 252 C92 214 100 162 132 130 C156 106 192 94 230 90 C272 86 312 98 338 126 C362 152 368 190 354 222 C341 251 313 273 279 285 C242 298 196 297 160 284 C134 274 116 265 108 252 Z"/>
+              <path class="land" fill="var(--c-supremo)" d="M370 240 C368 230 376 222 388 221 C400 220 409 227 410 236 C411 245 403 252 391 253 C381 254 372 249 370 240 Z"/>
+              <path class="land" fill="var(--c-supremo)" d="M148 312 C146 303 154 296 165 296 C176 296 184 302 184 311 C184 320 175 326 164 326 C155 326 150 320 148 312 Z"/>
+              <text class="realm-name" x="222" y="192">Reino Drag Zakharys</text>
+              <text class="realm-sub" x="222" y="212">O TRONO DO DRAGÃO</text>
+              <use class="map-decor" href="#sym-wyvern" x="246" y="146" width="38" height="21"/>
               <g class="map-decor">
-                <path d="M282 260 L304 212 L326 260 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/>
-                <path d="M298 218 C302 214 308 214 310 218" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round"/>
-                <path d="M304 208 C298 200 310 194 304 186 C299 179 309 174 305 166" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
-                <path d="M296 246 l9 -7 M314 249 l8 -6" stroke="var(--seal)" stroke-width="1.6" stroke-linecap="round"/>
+                <rect x="292" y="234" width="12" height="28" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.3"/>
+                <path d="M290 234 L298 222 L306 234 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.3" stroke-linejoin="round"/>
+                <path d="M298 222 V208" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
+                <path d="M298 208 L311 212 L298 216 Z" fill="#ffffff" stroke="var(--ink)" stroke-width=".8"/>
               </g>
               <use class="map-decor" href="#sym-mtn" x="142" y="240" width="36" height="22"/>
               <use class="map-decor" href="#sym-mtn" x="178" y="254" width="36" height="22"/>
-              <use class="map-decor" href="#sym-mtn" x="214" y="246" width="36" height="22"/>
             </g>
 
-            <g class="realm" data-realm="sylvara" tabindex="0" role="button" aria-label="Reino de Sylvara, a Silva Eterna">
-              <path class="land" fill="var(--c-sylvara)" d="M372 186 C364 146 398 112 448 97 C494 84 548 80 598 90 C648 100 684 126 693 160 C700 188 689 215 661 233 C627 255 575 264 522 262 C470 260 420 251 396 229 C380 215 375 200 372 186 Z"/>
-              <text class="realm-name" x="523" y="165">Sylvara</text>
-              <text class="realm-sub" x="523" y="187">A SILVA ETERNA</text>
+            <!-- ===== IMPÉRIO MIRIGUMI — Debora Vezetiv ===== -->
+            <g class="realm" data-realm="mirigumi" tabindex="0" role="button" aria-label="Império Mirigumi, de Debora Vezetiv">
+              <path class="land" fill="var(--c-mirigumi)" d="M372 186 C364 146 398 112 448 97 C494 84 548 80 598 90 C648 100 684 126 693 160 C700 188 689 215 661 233 C627 255 575 264 522 262 C470 260 420 251 396 229 C380 215 375 200 372 186 Z"/>
+              <text class="realm-name" x="523" y="165">Império Mirigumi</text>
+              <text class="realm-sub" x="523" y="185">O IMPÉRIO DAS PÉTALAS</text>
               <path class="map-decor" d="M600 100 C615 150 640 190 650 230 C656 258 668 285 690 305"
-                fill="none" stroke="var(--c-thalassia)" stroke-width="1.8" stroke-linecap="round" opacity=".45"/>
+                fill="none" stroke="var(--sea)" stroke-width="1.8" stroke-linecap="round" opacity=".45"/>
               <g class="map-decor">
                 <rect x="582" y="210" width="8" height="22" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
                 <path d="M579 210 L586 198 L593 210 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2" stroke-linejoin="round"/>
                 <rect x="585" y="217" width="2" height="3" fill="var(--ink)" opacity=".6"/>
               </g>
-              <use class="map-decor" href="#sym-tree" x="412" y="122"/><use class="map-decor" href="#sym-tree" x="448" y="112"/>
-              <use class="map-decor" href="#sym-tree" x="486" y="104"/><use class="map-decor" href="#sym-tree" x="560" y="110"/>
-              <use class="map-decor" href="#sym-tree" x="598" y="126"/><use class="map-decor" href="#sym-tree" x="626" y="148"/>
-              <use class="map-decor" href="#sym-tree" x="414" y="162"/><use class="map-decor" href="#sym-tree" x="448" y="176"/>
-              <use class="map-decor" href="#sym-tree" x="608" y="184"/><use class="map-decor" href="#sym-tree" x="636" y="198"/>
-              <use class="map-decor" href="#sym-tree" x="498" y="232"/><use class="map-decor" href="#sym-tree" x="556" y="238"/>
+              <use class="map-decor" href="#sym-flower" x="412" y="122"/><use class="map-decor" href="#sym-flower" x="448" y="112"/>
+              <use class="map-decor" href="#sym-flower" x="486" y="104"/><use class="map-decor" href="#sym-flower" x="560" y="110"/>
+              <use class="map-decor" href="#sym-flower" x="598" y="126"/><use class="map-decor" href="#sym-flower" x="626" y="148"/>
+              <use class="map-decor" href="#sym-flower" x="414" y="162"/><use class="map-decor" href="#sym-flower" x="448" y="176"/>
+              <use class="map-decor" href="#sym-flower" x="608" y="184"/><use class="map-decor" href="#sym-flower" x="636" y="198"/>
+              <use class="map-decor" href="#sym-flower" x="498" y="232"/><use class="map-decor" href="#sym-flower" x="556" y="238"/>
             </g>
 
-            <g class="realm" data-realm="aurum" tabindex="0" role="button" aria-label="Reino de Aurum, o Deserto Dourado">
-              <path class="land" fill="var(--c-aurum)" d="M680 170 C692 126 744 98 804 94 C862 90 918 108 948 144 C970 172 972 212 956 244 C938 276 900 298 854 304 C808 310 762 302 728 280 C700 261 668 216 680 170 Z"/>
-              <text class="realm-name" x="818" y="188">Aurum</text>
-              <text class="realm-sub" x="818" y="210">O DESERTO DOURADO</text>
+            <!-- ===== IMPÉRIO ASCAR — Luís Augusto ===== -->
+            <g class="realm" data-realm="ascar" tabindex="0" role="button" aria-label="Império Ascar, de Luís Augusto">
+              <path class="land" fill="var(--c-ascar)" d="M680 170 C692 126 744 98 804 94 C862 90 918 108 948 144 C970 172 972 212 956 244 C938 276 900 298 854 304 C808 310 762 302 728 280 C700 261 668 216 680 170 Z"/>
+              <text class="realm-name" x="818" y="188">Império Ascar</text>
+              <text class="realm-sub" x="818" y="208">O TRONO DOURADO</text>
               <g class="map-decor">
                 <path d="M864 258 L884 214 L904 258 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/>
                 <path d="M884 214 V258" stroke="var(--ink)" stroke-width="1" opacity=".5"/>
-                <path d="M884 206 L889 211 L884 216 L879 211 Z" fill="var(--c-aurum)"/>
+                <path d="M884 206 L889 211 L884 216 L879 211 Z" fill="var(--c-ascar)"/>
               </g>
               <g class="map-decor">
-                <ellipse cx="760" cy="276" rx="14" ry="5" fill="var(--c-thalassia)" opacity=".45"/>
+                <ellipse cx="760" cy="276" rx="14" ry="5" fill="var(--sea)" opacity=".45"/>
                 <path d="M760 273 C758 264 762 258 759 251" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round"/>
                 <path d="M759 251 C752 247 746 249 741 253 M759 251 C766 246 773 248 778 253 M759 251 C756 244 750 242 745 243 M759 251 C763 243 770 242 774 244"
                   fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
@@ -822,27 +908,58 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <use class="map-decor" href="#sym-dune" x="900" y="246" width="26" height="14"/>
             </g>
 
-            <g class="realm" data-realm="thalassia" tabindex="0" role="button" aria-label="Reino de Thalassia, as Marés sem Fim">
-              <path class="land" fill="var(--c-thalassia)" d="M198 522 C190 492 210 464 246 452 C278 441 318 443 344 459 C366 473 372 499 359 521 C346 543 312 557 276 559 C241 561 206 550 198 522 Z"/>
-              <path class="land" fill="var(--c-thalassia)" d="M326 432 C322 414 338 400 361 397 C383 394 401 404 404 420 C407 434 393 445 371 448 C351 450 330 446 326 432 Z"/>
-              <path class="land" fill="var(--c-thalassia)" d="M196 614 C193 594 212 580 240 577 C267 574 290 584 294 600 C297 614 281 626 253 629 C229 631 199 630 196 614 Z"/>
-              <path class="land" fill="var(--c-thalassia)" d="M396 528 C394 513 406 503 423 501 C439 499 453 507 455 519 C457 531 446 541 429 543 C414 544 398 539 396 528 Z"/>
+            <!-- ===== FORTALEZA ESCARLATE — Guilherme Morais ===== -->
+            <g class="realm" data-realm="escarlate" tabindex="0" role="button" aria-label="Fortaleza Escarlate, de Guilherme Morais">
+              <path class="land" fill="var(--c-escarlate)" d="M84 408 C80 384 104 358 142 350 C178 342 208 356 214 382 C219 404 202 428 172 438 C138 448 92 440 84 408 Z"/>
+              <path class="land" fill="var(--c-escarlate)" d="M226 356 C224 348 232 342 242 341 C252 340 259 346 258 353 C257 360 247 364 237 363 C230 362 227 360 226 356 Z"/>
+              <text class="realm-name" x="150" y="374">Fortaleza Escarlate</text>
+              <text class="realm-sub" x="150" y="392">A MURALHA RUBRA</text>
+              <g class="map-decor">
+                <rect x="132" y="406" width="34" height="18" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
+                <rect x="132" y="400" width="7" height="6" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1"/>
+                <rect x="145" y="400" width="7" height="6" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1"/>
+                <rect x="158" y="400" width="7" height="6" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1"/>
+                <rect x="145" y="412" width="8" height="12" fill="var(--ink)" opacity=".7"/>
+                <path d="M149 400 V388" stroke="var(--ink)" stroke-width="1" stroke-linecap="round"/>
+                <path d="M149 388 L161 391.5 L149 395 Z" fill="var(--c-escarlate)"/>
+              </g>
+            </g>
+
+            <!-- ===== IMPÉRIO YARYAN — Rayssa Vitória & Nayara Hostapiuk ===== -->
+            <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitória e Nayara Hostapiuk">
+              <path class="land" fill="var(--c-yaryan)" d="M198 522 C190 492 210 464 246 452 C278 441 318 443 344 459 C366 473 372 499 359 521 C346 543 312 557 276 559 C241 561 206 550 198 522 Z"/>
+              <path class="land" fill="var(--c-yaryan)" d="M326 432 C322 414 338 400 361 397 C383 394 401 404 404 420 C407 434 393 445 371 448 C351 450 330 446 326 432 Z"/>
+              <path class="land" fill="var(--c-yaryan)" d="M196 614 C193 594 212 580 240 577 C267 574 290 584 294 600 C297 614 281 626 253 629 C229 631 199 630 196 614 Z"/>
+              <path class="land" fill="var(--c-yaryan)" d="M396 528 C394 513 406 503 423 501 C439 499 453 507 455 519 C457 531 446 541 429 543 C414 544 398 539 396 528 Z"/>
+              <!-- Fios do destino da Nayara (traço claro sobre o roxo escuro) -->
+              <g fill="none" stroke="var(--c-yaryan-line)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1 6" opacity=".75">
+                <path d="M240 480 C280 452 330 448 372 436"/>
+                <path d="M250 500 C240 540 240 560 245 585"/>
+                <path d="M330 505 C355 512 380 520 402 528"/>
+              </g>
               <g fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1">
                 <circle cx="330" cy="481" r="3"/><circle cx="366" cy="566" r="3"/><circle cx="170" cy="561" r="3"/>
               </g>
-              <text class="realm-name" x="278" y="508">Thalassia</text>
-              <text class="realm-sub" x="278" y="529">AS MARÉS SEM FIM</text>
-              <g class="map-decor" transform="translate(322,0)">
-                <rect x="0" y="524" width="7" height="20" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
-                <path d="M0 530 H7 M0 537 H7" stroke="var(--ink)" stroke-width="1"/>
-                <path d="M-1.5 524 L3.5 517 L8.5 524 Z" fill="var(--ink)"/>
-                <path d="M3.5 510 L6 513.5 L3.5 517 L1 513.5 Z" fill="var(--c-thalassia)"/>
-                <g stroke="var(--c-thalassia)" stroke-width="1.1" stroke-linecap="round" opacity=".7">
-                  <path d="M9 512 L21 507 M9 514 L22 514 M9 516 L21 521"/>
-                  <animate attributeName="opacity" values=".7;.08;.7" dur="3.2s" repeatCount="indefinite"/>
-                </g>
+              <text class="realm-name" x="278" y="508">Império Yaryan</text>
+              <text class="realm-sub" x="278" y="527">O BERÇO DOS MUNDOS</text>
+              <!-- Portal com estrela pulsante -->
+              <g class="map-decor" transform="translate(312,0)">
+                <path d="M0 548 V532 A8 8 0 0 1 16 532 V548" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M8 534 l1.8 4.6 -1.8 4.6 -1.8 -4.6 Z" fill="var(--c-yaryan-line)">
+                  <animate attributeName="opacity" values="1;.2;1" dur="3.6s" repeatCount="indefinite"/>
+                </path>
+                <path d="M13 539.5 l1.2 3.2 -1.2 3.2 -1.2 -3.2 Z" fill="#ffffff" opacity=".85"/>
               </g>
-              <text class="map-label" x="255" y="551" font-family="EB Garamond,serif" font-style="italic" font-size="10" fill="var(--ink-soft)" text-anchor="middle">Porto Livre</text>
+              <!-- Mundos criados e fios-tecidos, em tons do roxo -->
+              <g fill="var(--c-yaryan-line)" opacity=".8">
+                <path d="M238 476 l1.6 5 -1.6 5 -1.6 -5 Z"/>
+                <path d="M338 490 l1.6 5 -1.6 5 -1.6 -5 Z"/>
+                <path d="M300 543 l1.4 4.4 -1.4 4.4 -1.4 -4.4 Z"/>
+                <path d="M262 474 l1.6 5 -1.6 5 -1.6 -5 Z"/>
+                <path d="M348 500 l1.6 5 -1.6 5 -1.6 -5 Z"/>
+                <path d="M240 600 l1.4 4.4 -1.4 4.4 -1.4 -4.4 Z"/>
+              </g>
+              <text class="map-label" x="255" y="563" font-family="EB Garamond,serif" font-style="italic" font-size="10" fill="var(--ink-soft)" text-anchor="middle">Porto Livre</text>
               <g class="map-decor">
                 <path d="M365 424 C363 416 367 412 364 406" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round"/>
                 <path d="M364 406 C358 402 352 404 348 408 M364 406 C370 401 377 403 381 408 M364 406 C361 399 356 397 352 398 M364 406 C367 399 372 397 376 398"
@@ -850,43 +967,48 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               </g>
             </g>
 
-            <g class="realm" data-realm="nocturnia" tabindex="0" role="button" aria-label="Reino de Nocturnia, as Terras Sombrias">
-              <path class="land" fill="var(--c-nocturnia)" d="M472 432 C464 386 508 350 568 342 C632 334 696 352 726 392 C748 422 750 464 728 497 C705 530 655 550 600 552 C545 554 496 542 474 507 C460 484 465 456 472 432 Z"/>
-              <text class="realm-name" x="600" y="428">Nocturnia</text>
-              <text class="realm-sub" x="600" y="450">AS TERRAS SOMBRIAS</text>
+            <!-- ===== REINO SNEZHNAYA — Bruno Martins ===== -->
+            <g class="realm" data-realm="snezhnaya" tabindex="0" role="button" aria-label="Reino Snezhnaya, de Bruno Martins">
+              <path class="land" fill="var(--c-snezhnaya)" d="M472 432 C464 386 508 350 568 342 C632 334 696 352 726 392 C748 422 750 464 728 497 C705 530 655 550 600 552 C545 554 496 542 474 507 C460 484 465 456 472 432 Z"/>
+              <text class="realm-name" x="600" y="428">Reino Snezhnaya</text>
+              <text class="realm-sub" x="600" y="448">O INVERNO PERPÉTUO</text>
               <g class="map-decor" transform="translate(548,0)">
-                <rect x="0" y="458" width="9" height="30" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
-                <path d="M-2 458 L4.5 444 L11 458 Z" fill="var(--ink)"/>
-                <rect x="3" y="467" width="3" height="5" fill="var(--gold)">
-                  <animate attributeName="opacity" values="1;.25;1" dur="4s" repeatCount="indefinite"/>
-                </rect>
+                <rect x="0" y="472" width="13" height="15" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
+                <path d="M-2 472 L6.5 462 L15 472 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2" stroke-linejoin="round"/>
+                <path d="M-1 471 L6.5 464 L14 471" fill="none" stroke="var(--c-snezhnaya)" stroke-width="1.6" stroke-linecap="round"/>
+                <rect x="4.5" y="479" width="4" height="8" fill="var(--ink)" opacity=".7"/>
               </g>
-              <g class="map-decor" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round">
-                <g transform="translate(505,505)"><path d="M0 0 V-20 M0 -12 L-6 -17 M0 -9 L6 -14"/></g>
-                <g transform="translate(678,472)"><path d="M0 0 V-18 M0 -10 L-5 -15 M0 -8 L5 -12"/></g>
-                <g transform="translate(638,522)"><path d="M0 0 V-19 M0 -11 L6 -16"/></g>
-                <g transform="translate(514,538)"><path d="M0 0 V-16 M0 -9 L-5 -13"/></g>
+              <use class="map-decor" href="#sym-pine" x="497" y="484"/>
+              <use class="map-decor" href="#sym-pine" x="670" y="452"/>
+              <use class="map-decor" href="#sym-pine" x="630" y="502"/>
+              <use class="map-decor" href="#sym-pine" x="506" y="518"/>
+              <use class="map-decor" href="#sym-snow" x="575" y="375"/>
+              <use class="map-decor" href="#sym-snow" x="634" y="391"/>
+              <use class="map-decor" href="#sym-snow" x="560" y="398"/>
+              <g fill="var(--c-snezhnaya)" opacity=".65">
+                <path d="M500 372 l1.6 6 -1.6 6 -1.6 -6 Z M528 390 l1.6 6 -1.6 6 -1.6 -6 Z M692 378 l1.6 6 -1.6 6 -1.6 -6 Z"/>
               </g>
-              <g class="map-decor" fill="none" stroke="var(--ink)" stroke-width="1.3" stroke-linecap="round">
-                <g transform="translate(578,382)"><path d="M0 0 Q3 -4 6 0 M8 0 Q11 -4 14 0"/></g>
-                <g transform="translate(636,398)"><path d="M0 0 Q3 -4 6 0 M8 0 Q11 -4 14 0"/></g>
+              <path class="map-decor" d="M698 516 C706 510 714 514 712 521 C710 528 700 527 699 520 C698 513 708 507 716 512"
+                fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round" opacity=".6"/>
+              <g class="map-decor">
+                <path d="M575 372 C568 372 565 365 570 361 C567 354 574 347 581 350 C584 343 595 342 599 349 C605 349 608 356 604 361 C607 365 604 372 597 372 Z"
+                  fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2" stroke-linejoin="round"/>
+                <path d="M588 373 L582 385 L589 383 L585 393" fill="none" stroke="var(--c-snezhnaya)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </g>
-              <path class="map-decor" d="M500 372 l1.6 6 -1.6 6 -1.6 -6 Z M528 390 l1.6 6 -1.6 6 -1.6 -6 Z M692 378 l1.6 6 -1.6 6 -1.6 -6 Z" fill="var(--ink)" opacity=".55"/>
-              <path class="map-decor" d="M706 520 C710 515 716 518 715 523 C713 529 705 528 703 522 C701 514 710 509 717 513 C724 517 725 527 718 532" fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
             </g>
 
             <g class="map-decor">
-              <ellipse cx="600" cy="515" rx="118" ry="38" fill="#8a8098" opacity=".18"/>
-              <text class="map-mist" x="600" y="522" font-family="Cinzel,serif" font-size="10.5" letter-spacing="3.2" fill="var(--ink)" opacity=".7" text-anchor="middle"
-                paint-order="stroke" stroke="var(--paper-2)" stroke-width="3">HIC SVNT DRACONES</text>
+              <ellipse cx="600" cy="515" rx="118" ry="38" fill="var(--c-snezhnaya)" opacity=".1"/>
             </g>
 
+            <!-- Ilha Perdida -->
             <g class="map-decor">
               <path d="M852 572 C856 552 878 542 900 546 C918 549 928 563 922 578 C916 592 893 598 872 594 C858 591 850 584 852 572 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4"/>
               <path d="M872 560 l14 14 M886 560 l-14 14" stroke="var(--seal)" stroke-width="2.2" stroke-linecap="round"/>
               <text class="map-label" x="884" y="612" font-family="EB Garamond,serif" font-style="italic" font-size="11" fill="var(--ink-soft)" text-anchor="middle">Ilha Perdida</text>
             </g>
 
+            <!-- Serpente marinha -->
             <g class="map-decor" transform="translate(575,662)">
               <path d="M0 0 C5 -12 15 -12 20 0 C25 -12 35 -12 40 0 C45 -12 55 -12 60 0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
               <path d="M60 0 C64 -8 66 -14 63 -20" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
@@ -894,19 +1016,21 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path d="M60 -25 L57 -31 M66 -25 L69 -31" stroke="var(--ink)" stroke-width="1.3" stroke-linecap="round"/>
             </g>
 
+            <!-- Capitais / nós -->
             <g class="map-decor" id="mapNodes">
-              <circle class="node-ring" data-realm="ignarok" cx="225" cy="236" r="9" fill="none" stroke="var(--c-ignarok)" stroke-width="2"/>
-              <circle class="node-ring" data-realm="sylvara" cx="508" cy="200" r="9" fill="none" stroke="var(--c-sylvara)" stroke-width="2"/>
-              <circle class="node-ring" data-realm="aurum" cx="802" cy="224" r="9" fill="none" stroke="var(--c-aurum)" stroke-width="2"/>
-              <circle class="node-ring" data-realm="thalassia" cx="295" cy="538" r="9" fill="none" stroke="var(--c-thalassia)" stroke-width="2"/>
-              <circle class="node-ring" data-realm="nocturnia" cx="655" cy="495" r="9" fill="none" stroke="var(--c-nocturnia)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="supremo" cx="225" cy="236" r="9" fill="none" stroke="var(--c-supremo)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="mirigumi" cx="508" cy="200" r="9" fill="none" stroke="var(--c-mirigumi)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="ascar" cx="802" cy="224" r="9" fill="none" stroke="var(--c-ascar)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="escarlate" cx="149" cy="424" r="9" fill="none" stroke="var(--c-escarlate)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="yaryan" cx="295" cy="538" r="9" fill="none" stroke="var(--c-nyara)" stroke-width="2"/>
+              <circle class="node-ring" data-realm="snezhnaya" cx="655" cy="495" r="9" fill="none" stroke="var(--c-snezhnaya)" stroke-width="2"/>
               <g fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5">
                 <circle cx="225" cy="236" r="4.5"/><circle cx="508" cy="200" r="4.5"/><circle cx="802" cy="224" r="4.5"/>
-                <circle cx="295" cy="538" r="4.5"/><circle cx="655" cy="495" r="4.5"/>
+                <circle cx="149" cy="424" r="4.5"/><circle cx="295" cy="538" r="4.5"/><circle cx="655" cy="495" r="4.5"/>
               </g>
               <g fill="var(--ink)">
                 <circle cx="225" cy="236" r="1.5"/><circle cx="508" cy="200" r="1.5"/><circle cx="802" cy="224" r="1.5"/>
-                <circle cx="295" cy="538" r="1.5"/><circle cx="655" cy="495" r="1.5"/>
+                <circle cx="149" cy="424" r="1.5"/><circle cx="295" cy="538" r="1.5"/><circle cx="655" cy="495" r="1.5"/>
               </g>
             </g>
 
@@ -937,7 +1061,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <text x="30" y="24" font-family="Cinzel,serif" font-size="8.5" letter-spacing="1.5" fill="var(--ink-soft)">CAPITAL</text>
               <path d="M13 38 L23 48 M23 38 L13 48" stroke="var(--seal)" stroke-width="1.8" stroke-linecap="round"/>
               <text x="30" y="48" font-family="Cinzel,serif" font-size="8.5" letter-spacing="1.5" fill="var(--ink-soft)">TESOURO</text>
-              <path d="M130 20 H150" stroke="var(--c-thalassia)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 5"/>
+              <path d="M130 20 H150" stroke="var(--sea)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 5"/>
               <text x="160" y="24" font-family="Cinzel,serif" font-size="8.5" letter-spacing="1.5" fill="var(--ink-soft)">ROTA MARÍTIMA</text>
               <path d="M139 38 L145 44 L139 50 L133 44 Z" fill="var(--gold)"/>
               <text x="160" y="48" font-family="Cinzel,serif" font-size="8.5" letter-spacing="1.5" fill="var(--ink-soft)">MARCO</text>
@@ -953,10 +1077,10 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <rect x="8" y="8" width="984" height="704" fill="none" stroke="var(--ink)" stroke-width="1.4" pointer-events="none"/>
           </svg>
         </div>
-        <p class="map-hint">Tocai num reino para o inspecionar — a Estrada do Pacto e as rotas do mar ligam os cinco.</p>
+        <p class="map-hint">Tocai num reino para o inspecionar — a Estrada do Pacto e as rotas do mar ligam todos.</p>
       </div>
 
-      <aside class="panel reveal" id="realmPanel" style="--accent:var(--c-ignarok)" aria-live="polite">
+      <aside class="panel reveal" id="realmPanel" style="--accent:var(--c-supremo)" aria-live="polite">
         <div class="panel-body"></div>
       </aside>
     </div>
@@ -970,29 +1094,29 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <p class="chapter-kicker">Capítulo II</p>
       <h2>Os Guardiões do Pacto</h2>
       <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-      <p class="lead">Cinco almas, cinco reinos, um juramento. Virai cada carta para ler o que a
-      crônica registrou — e coroai, se um deles merecer a vossa devoção eterna.</p>
+      <p class="lead">Sete almas, seis reinos, um juramento. Virai cada carta para ler o que a
+      crônica registrou — e coroai, se alguém merecer a vossa devoção eterna.</p>
     </div>
 
     <div class="fan reveal">
-      <!-- Carta I — Luan Dhony -->
-      <div class="card" data-realm="ignarok" style="--accent:var(--c-ignarok)" tabindex="0" role="button" aria-label="Carta de Luan Dhony, o Comandante. Pressione para virar.">
+      <!-- Carta — Luan Dhony -->
+      <div class="card" data-person="luan" data-realm="supremo" style="--accent:var(--c-supremo)" tabindex="0" role="button" aria-label="Carta de Luan Dhony, o Guerreiro Soberano. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
             <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
               <svg aria-hidden="true"><use href="#sym-crown"/></svg>
             </button>
-            <div class="card-sigil"><svg><use href="#sym-sword"/></svg></div>
+            <div class="card-sigil"><svg><use href="#sym-sovereign"/></svg></div>
             <h3>Luan Dhony</h3>
-            <p class="card-title">O Comandante</p>
-            <p class="card-realm">Guarda Ignarok</p>
+            <p class="card-title">Guerreiro Soberano</p>
+            <p class="card-realm">Reino Drag Zakharys</p>
             <p class="card-tap">— virai a carta —</p>
             <p class="fav-tag">Favorito do Códice</p>
           </div>
           <div class="card-face card-back">
-            <p class="card-lema">“O plano existe até o primeiro grito.”</p>
+            <p class="card-lema">“O dragão não se doma — ele reina.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Fala pouco, mira bem. É dele a calma de ferro quando a partida pende.</p>
+            <p class="card-bio">Fala pouco, decide bem. É dele a calma de ferro quando a partida pende — e a voz que diz “calma, que eu tenho plano” segundos antes de o plano dar certo.</p>
             <div class="stats">
               <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
@@ -1008,24 +1132,24 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta II — Debora Vezetiv -->
-      <div class="card" data-realm="sylvara" style="--accent:var(--c-sylvara)" tabindex="0" role="button" aria-label="Carta de Debora Vezetiv, a Caçadora. Pressione para virar.">
+      <!-- Carta — Debora Vezetiv -->
+      <div class="card" data-person="debora" data-realm="mirigumi" style="--accent:var(--c-mirigumi)" tabindex="0" role="button" aria-label="Carta de Debora Vezetiv, a Imperatriz. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
             <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
               <svg aria-hidden="true"><use href="#sym-crown"/></svg>
             </button>
-            <div class="card-sigil"><svg><use href="#sym-bow"/></svg></div>
+            <div class="card-sigil"><svg><use href="#sym-scepter"/></svg></div>
             <h3>Debora Vezetiv</h3>
-            <p class="card-title">A Caçadora</p>
-            <p class="card-realm">Guarda Sylvara</p>
+            <p class="card-title">A Imperatriz</p>
+            <p class="card-realm">Império Mirigumi</p>
             <p class="card-tap">— virai a carta —</p>
             <p class="fav-tag">Favorito do Códice</p>
           </div>
           <div class="card-face card-back">
-            <p class="card-lema">“O mapa é 100% ou não é nada.”</p>
+            <p class="card-lema">“Nada escapa ao olhar da Imperatriz.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Exploradora incansável, caçadora de troféus e de segredos bem enterrados.</p>
+            <p class="card-bio">Exploradora incansável, caçadora de troféus e de segredos que os desenvolvedores esconderam — e se arrependeram de não enterrar mais fundo.</p>
             <div class="stats">
               <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
@@ -1041,24 +1165,24 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta III — Rayssa Vitória -->
-      <div class="card" data-realm="thalassia" style="--accent:var(--c-thalassia)" tabindex="0" role="button" aria-label="Carta de Rayssa Vitória, a Navegadora. Pressione para virar.">
+      <!-- Carta — Rayssa Vitória -->
+      <div class="card" data-person="rayssa" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Rayssa Vitória, a Criadora de Mundos. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
             <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
               <svg aria-hidden="true"><use href="#sym-crown"/></svg>
             </button>
-            <div class="card-sigil"><svg><use href="#sym-anchor"/></svg></div>
+            <div class="card-sigil"><svg><use href="#sym-world"/></svg></div>
             <h3>Rayssa Vitória</h3>
-            <p class="card-title">A Navegadora</p>
-            <p class="card-realm">Guarda Thalassia</p>
+            <p class="card-title">A Criadora de Mundos</p>
+            <p class="card-realm">Império Yaryan</p>
             <p class="card-tap">— virai a carta —</p>
             <p class="fav-tag">Favorito do Códice</p>
           </div>
           <div class="card-face card-back">
-            <p class="card-lema">“Toda maré volta — e eu também.”</p>
+            <p class="card-lema">“Mundos nascem onde eu piso.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Construtora nata e Rainha da Sobrevivência. Onde ela pisa, nasce uma vila.</p>
+            <p class="card-bio">Do nada, ergue universos inteiros — cada ilha roxa do Yaryan é um mundo que nasceu da vontade dela, com história, regras e tudo.</p>
             <div class="stats">
               <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
@@ -1066,75 +1190,141 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
+              <li>Ergueu um mundo do zero numa madrugada.</li>
               <li>Cem dias no hardcore; caiu no 101, rindo.</li>
               <li>A cidade que o servidor inteiro visita.</li>
-              <li>A base mais bonita — e a mais explodida.</li>
             </ul>
           </div>
         </div></div>
       </div>
 
-      <!-- Carta IV — Cristiano Ronaldo -->
-      <div class="card" data-realm="aurum" style="--accent:var(--c-aurum)" tabindex="0" role="button" aria-label="Carta de Cristiano Ronaldo, o Alquimista. Pressione para virar.">
+      <!-- Carta — Nayara Hostapiuk -->
+      <div class="card" data-person="nayara" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Nayara Hostapiuk, a Tecelã do Destino. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
             <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
               <svg aria-hidden="true"><use href="#sym-crown"/></svg>
             </button>
-            <div class="card-sigil"><svg><use href="#sym-flask"/></svg></div>
-            <h3>Cristiano Ronaldo</h3>
-            <p class="card-title">O Alquimista</p>
-            <p class="card-realm">Guarda Aurum</p>
+            <div class="card-sigil"><svg><use href="#sym-loom"/></svg></div>
+            <h3>Nayara Hostapiuk</h3>
+            <p class="card-title">A Tecelã do Destino</p>
+            <p class="card-realm">Império Yaryan</p>
             <p class="card-tap">— virai a carta —</p>
             <p class="fav-tag">Favorito do Códice</p>
           </div>
           <div class="card-face card-back">
-            <p class="card-lema">“Sem planilha, não há vitória.”</p>
+            <p class="card-lema">“Todo fio termina onde eu decido.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">A mente analítica do grupo: drop, dano e rota calculados antes do tutorial acabar.</p>
+            <p class="card-bio">Ao lado da Criadora, tece os fios do Yaryan: cada rota, cada reviravolta e cada final — o destino da mesa passa pelos dedos dela.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
-              <li>A planilha sagrada de builds.</li>
-              <li>Prevê o drop exato. Acerta.</li>
-              <li>Um “SIUU” por vitória, na call.</li>
+              <li>Prevê a reviravolta antes do enredo contar.</li>
+              <li>Costurou a aliança entre os seis reinos.</li>
+              <li>Onde a trama aperta, ela afrouxa.</li>
             </ul>
           </div>
         </div></div>
       </div>
 
-      <!-- Carta V — João Pedro -->
-      <div class="card" data-realm="nocturnia" style="--accent:var(--c-nocturnia)" tabindex="0" role="button" aria-label="Carta de João Pedro, o Silencioso. Pressione para virar.">
+      <!-- Carta — Luís Augusto -->
+      <div class="card" data-person="luis" data-realm="ascar" style="--accent:var(--c-ascar)" tabindex="0" role="button" aria-label="Carta de Luís Augusto, o Rei Dourado. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
             <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
               <svg aria-hidden="true"><use href="#sym-crown"/></svg>
             </button>
-            <div class="card-sigil"><svg><use href="#sym-mask"/></svg></div>
-            <h3>João Pedro</h3>
-            <p class="card-title">O Silencioso</p>
-            <p class="card-realm">Guarda Nocturnia</p>
+            <div class="card-sigil"><svg><use href="#sym-royalcrown"/></svg></div>
+            <h3>Luís Augusto</h3>
+            <p class="card-title">Rei Dourado</p>
+            <p class="card-realm">Império Ascar</p>
             <p class="card-tap">— virai a carta —</p>
             <p class="fav-tag">Favorito do Códice</p>
           </div>
           <div class="card-face card-back">
-            <p class="card-lema">“Você só me vê quando já é tarde.”</p>
+            <p class="card-lema">“O ouro obedece a quem o carrega.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Entra na call sem que ninguém o veja entrar. Melhor às três da manhã.</p>
+            <p class="card-bio">A fortuna viva da mesa: onde há tesouro, ele chega primeiro — e sai com as mãos brilhando e o cofre do Ascar mais pesado.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+            </div>
+            <ul class="feats">
+              <li>Recorde de riqueza da mesa — três temporadas.</li>
+              <li>Nunca saiu de um saque de mãos vazias.</li>
+              <li>Rei é apelido; o ouro é inventário.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Carta — Bruno Martins -->
+      <div class="card" data-person="bruno" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" tabindex="0" role="button" aria-label="Carta de Bruno Martins, o Inverno Perpétuo. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+            </button>
+            <div class="card-sigil"><svg><use href="#sym-storm"/></svg></div>
+            <h3>Bruno Martins</h3>
+            <p class="card-title">Inverno Perpétuo</p>
+            <p class="card-realm">Reino Snezhnaya</p>
+            <p class="card-tap">— virai a carta —</p>
+            <p class="fav-tag">Favorito do Códice</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“O inverno não passa — ele reina.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">Vem das neves eternas de Snezhnaya: onde ele chega, o inverno fica — gela a partida, congela o avanço inimigo e some na nevasca antes de você entender o que houve.</p>
+            <div class="stats">
+              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
             <ul class="feats">
-              <li>Catorze vitórias como traidor numa noite.</li>
-              <li>Zerou o jogo às 3h47, sem barulho.</li>
-              <li>Aparece do nada. Ninguém pergunta como.</li>
+              <li>Uma tempestade perfeita: 1 contra 5 — venceu.</li>
+              <li>Desaparece na neve; reaparece nas costas.</li>
+              <li>Quando ele loga, o lobby inteiro esfria.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Carta — Guilherme Morais -->
+      <div class="card" data-person="guilherme" data-realm="escarlate" style="--accent:var(--c-escarlate)" tabindex="0" role="button" aria-label="Carta de Guilherme Morais, o Protetor. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+            </button>
+            <div class="card-sigil"><svg><use href="#sym-shield"/></svg></div>
+            <h3>Guilherme Morais</h3>
+            <p class="card-title">O Protetor</p>
+            <p class="card-realm">Fortaleza Escarlate</p>
+            <p class="card-tap">— virai a carta —</p>
+            <p class="fav-tag">Favorito do Códice</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“Ninguém cai enquanto eu me ergo.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">Primeiro a entrar, último a sair: o escudo da mesa. Se alguém vai cair, cai ele — e mesmo assim volta de pé na próxima rodada.</p>
+            <div class="stats">
+              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+            </div>
+            <ul class="feats">
+              <li>Tanque por vocação: puxa a atenção e segura.</li>
+              <li>Carregou aliado desmaiado por três mapas.</li>
+              <li>“Atrás de mim.” — e era verdade.</li>
             </ul>
           </div>
         </div></div>
@@ -1157,7 +1347,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 
     <ol class="chronicle">
       <li class="reveal"><span class="era-year">ANO PRIMEIRO</span><h3>O Encontro</h3>
-        <p>Cinco desconhecidos caem na mesma partida. A química é imediata; a voz, irreconhecível no microfone quebrado. Alguém diz “vamos de novo” — e ninguém sai mais.</p></li>
+        <p>Um punhado de desconhecidos cai na mesma partida. A química é imediata; a voz, irreconhecível no microfone quebrado. Alguém diz “vamos de novo” — e ninguém sai mais.</p></li>
       <li class="reveal"><span class="era-year">ANO PRIMEIRO</span><h3>O Primeiro Reino</h3>
         <p>Nasce o Veldora Realms: um refúgio só nosso, erguido sobre as cinzas de servidores abandonados — sem dono, sem pauta, aberto a todo jogo. O nome vem do dragão, porque toda boa guilda precisa de uma besta para chamar de sua.</p></li>
       <li class="reveal"><span class="era-year">ANO SEGUNDO</span><h3>A Noite do Boss Caído</h3>
@@ -1216,30 +1406,40 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <svg class="gate-crown" aria-hidden="true"><use href="#sym-crown"/></svg>
 
     <div class="gate-grid" id="gateGrid">
-      <button class="gate-choice" data-realm="ignarok" style="--accent:var(--c-ignarok)" type="button">
-        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-sword"/></svg></span>
-        <span><span class="gate-name">Luan Dhony</span><br><span class="gate-role">O Comandante</span></span>
-        <span class="gate-realm">Ignarok</span>
+      <button class="gate-choice" data-person="luan" data-realm="supremo" style="--accent:var(--c-supremo)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-sovereign"/></svg></span>
+        <span><span class="gate-name">Luan Dhony</span><br><span class="gate-role">Guerreiro Soberano</span></span>
+        <span class="gate-realm">Drag Zakharys</span>
       </button>
-      <button class="gate-choice" data-realm="sylvara" style="--accent:var(--c-sylvara)" type="button">
-        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-bow"/></svg></span>
-        <span><span class="gate-name">Debora Vezetiv</span><br><span class="gate-role">A Caçadora</span></span>
-        <span class="gate-realm">Sylvara</span>
+      <button class="gate-choice" data-person="debora" data-realm="mirigumi" style="--accent:var(--c-mirigumi)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-scepter"/></svg></span>
+        <span><span class="gate-name">Debora Vezetiv</span><br><span class="gate-role">A Imperatriz</span></span>
+        <span class="gate-realm">Mirigumi</span>
       </button>
-      <button class="gate-choice" data-realm="thalassia" style="--accent:var(--c-thalassia)" type="button">
-        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-anchor"/></svg></span>
-        <span><span class="gate-name">Rayssa Vitória</span><br><span class="gate-role">A Navegadora</span></span>
-        <span class="gate-realm">Thalassia</span>
+      <button class="gate-choice" data-person="rayssa" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-world"/></svg></span>
+        <span><span class="gate-name">Rayssa Vitória</span><br><span class="gate-role">A Criadora de Mundos</span></span>
+        <span class="gate-realm">Yaryan</span>
       </button>
-      <button class="gate-choice" data-realm="aurum" style="--accent:var(--c-aurum)" type="button">
-        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-flask"/></svg></span>
-        <span><span class="gate-name">Cristiano Ronaldo</span><br><span class="gate-role">O Alquimista</span></span>
-        <span class="gate-realm">Aurum</span>
+      <button class="gate-choice" data-person="nayara" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-loom"/></svg></span>
+        <span><span class="gate-name">Nayara Hostapiuk</span><br><span class="gate-role">A Tecelã do Destino</span></span>
+        <span class="gate-realm">Yaryan</span>
       </button>
-      <button class="gate-choice" data-realm="nocturnia" style="--accent:var(--c-nocturnia)" type="button">
-        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-mask"/></svg></span>
-        <span><span class="gate-name">João Pedro</span><br><span class="gate-role">O Silencioso</span></span>
-        <span class="gate-realm">Nocturnia</span>
+      <button class="gate-choice" data-person="luis" data-realm="ascar" style="--accent:var(--c-ascar)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-royalcrown"/></svg></span>
+        <span><span class="gate-name">Luís Augusto</span><br><span class="gate-role">Rei Dourado</span></span>
+        <span class="gate-realm">Ascar</span>
+      </button>
+      <button class="gate-choice" data-person="bruno" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-storm"/></svg></span>
+        <span><span class="gate-name">Bruno Martins</span><br><span class="gate-role">Inverno Perpétuo</span></span>
+        <span class="gate-realm">Snezhnaya</span>
+      </button>
+      <button class="gate-choice" data-person="guilherme" data-realm="escarlate" style="--accent:var(--c-escarlate)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-shield"/></svg></span>
+        <span><span class="gate-name">Guilherme Morais</span><br><span class="gate-role">O Protetor</span></span>
+        <span class="gate-realm">Fortaleza Escarlate</span>
       </button>
     </div>
 
@@ -1253,66 +1453,87 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
    (feitos e lemas são fictícios: edite à vontade aqui)
 ================================================================ */
 const REALMS = {
-  ignarok: {
-    kicker:"O Reino das Chamas", name:"Ignarok", epithet:"As terras vulcânicas do norte",
-    motto:"Do fogo, a ordem", accent:"#c4553b", symbol:"sym-sword",
-    today:["cinzas leves e vento de brasa","calmaria vulcânica, chão morno","chuva de faíscas ao entardecer"],
-    desc:"Terras onde as estratégias do grupo são forjadas — do competitivo tenso aos planos que seguram os piores wipes. Da forja de Ignarok saem as táticas de todo jogo.",
-    hero:{nick:"Luan Dhony", title:"O Comandante", bio:"Fala pouco, mira bem. É dele a calma de ferro quando a partida pende.",
-      feats:["Doze vitórias seguidas no competitivo.","Chamou o rush com 0,8s de antecedência.","Nunca perdeu um 1v1 — segundo ele."]}
+  supremo: {
+    kicker:"O Trono do Dragão", name:"Reino Drag Zakharys", epithet:"O covil real do norte",
+    motto:"Do fogo, a ordem", accent:"#f7f4ec",
+    today:["brasas flutuando sobre o covil","chamas calmas nas muralhas","fogo de coroação ao pino do sol"],
+    desc:"Do covil do Drag Zakharys partem os planos que seguram os piores wipes: o Guerreiro Soberano fala pouco — e o pouco basta para mover todos os reinos.",
+    heroes:[{id:"luan", nick:"Luan Dhony", title:"Guerreiro Soberano", symbol:"sym-sovereign",
+      bio:"Fala pouco, decide bem. É dele a calma de ferro quando a partida pende.",
+      feats:["Doze vitórias seguidas no competitivo.","Chamou o rush com 0,8s de antecedência.","Nunca perdeu um 1v1 — segundo ele."]}]
   },
-  sylvara: {
-    kicker:"A Silva Eterna", name:"Sylvara", epithet:"A floresta-mãe do centro",
-    motto:"Nada se perde sob as copas", accent:"#5f9468", symbol:"sym-bow",
-    today:["orvalho nas copas altas","névoa baixa entre os troncos","sol atravessando as folhas"],
-    desc:"Floresta que guarda todos os segredos de todos os mundos: cada mapa 100% completo, cada baú desenterrado. Nada aqui fica por encontrar — em nenhum jogo.",
-    hero:{nick:"Debora Vezetiv", title:"A Caçadora", bio:"Exploradora incansável, caçadora de troféus e de segredos bem enterrados.",
-      feats:["Catorze troféus de platina.","Encontra baú secreto por cheiro.","999 de cada recurso, “por garantia”."]}
+  mirigumi: {
+    kicker:"O Império das Pétalas", name:"Império Mirigumi", epithet:"O jardim eterno do centro",
+    motto:"Nada se perde sob as pétalas", accent:"#e07aa0",
+    today:["pétalas ao vento","orvalho sobre as flores","jardins em floração plena"],
+    desc:"O Império Mirigumi guarda todo segredo de todos os mundos: cada mapa 100% completo, cada baú desenterrado. Nada fica por encontrar sob o olhar da Imperatriz.",
+    heroes:[{id:"debora", nick:"Debora Vezetiv", title:"A Imperatriz", symbol:"sym-scepter",
+      bio:"Exploradora incansável, caçadora de troféus e de segredos bem enterrados.",
+      feats:["Catorze troféus de platina.","Encontra baú secreto por cheiro.","999 de cada recurso, “por garantia”."]}]
   },
-  thalassia: {
-    kicker:"As Marés Sem Fim", name:"Thalassia", epithet:"O arquipélago do sul",
-    motto:"O mar lembra de tudo", accent:"#4d92b4", symbol:"sym-anchor",
-    today:["maré alta e sol raro","brisa salgada, velas cheias","mareia leve; a rainha diz que é normal"],
-    desc:"Arquipélago das construções e das novas temporadas: daqui o grupo parte para cada sobrevivência — e é aqui que as bases ficam prontas, bonitas e, depois, explodem.",
-    hero:{nick:"Rayssa Vitória", title:"A Navegadora", bio:"Construtora nata e Rainha da Sobrevivência. Onde ela pisa, nasce uma vila.",
-      feats:["Cem dias no hardcore; caiu no 101, rindo.","A cidade que o servidor inteiro visita.","A base mais bonita — e a mais explodida."]}
+  yaryan: {
+    kicker:"O Berço dos Mundos", name:"Império Yaryan", epithet:"O arquipélago roxo do sul",
+    motto:"De nada, mundos", accent:"#2A0845",
+    today:["noite roxa, fios no céu","estrelas novas sobre as ilhas","fios do destino em tensão"],
+    desc:"Ilhas roxas onde mundos nascem do nada e fios de destino cruzam o céu: a Criadora ergue os universos — e a Tecelã costura o que virá depois.",
+    heroes:[
+      {id:"rayssa", nick:"Rayssa Vitória", title:"A Criadora de Mundos", symbol:"sym-world",
+        bio:"Do nada, ergue universos inteiros — e cada mundo carrega a assinatura dela.",
+        feats:["Ergueu um mundo do zero numa madrugada.","Cem dias no hardcore; caiu no 101, rindo.","A cidade que o servidor inteiro visita."]},
+      {id:"nayara", nick:"Nayara Hostapiuk", title:"A Tecelã do Destino", symbol:"sym-loom",
+        bio:"Ao lado da Criadora, tece os fios do Yaryan: cada rota, cada reviravolta e cada final.",
+        feats:["Prevê a reviravolta antes do enredo contar.","Costurou a aliança entre os seis reinos.","Onde a trama aperta, ela afrouxa."]}
+    ]
   },
-  aurum: {
-    kicker:"O Deserto Dourado", name:"Aurum", epithet:"As dunas do conhecimento",
-    motto:"O ouro é o conhecimento", accent:"#d1a33c", symbol:"sym-flask",
-    today:["céu de cobre, dunas quentes","vento seco carregando areia dourada","calor de planilha em pleno meio-dia"],
-    desc:"Cada duna guarda um número calculado: builds, drops, rotas, tier lists. Onde outros veem areia, Aurum vê dados — de qualquer jogo que a mesa escolher.",
-    hero:{nick:"Cristiano Ronaldo", title:"O Alquimista", bio:"A mente analítica do grupo: drop, dano e rota calculados antes do tutorial acabar.",
-      feats:["A planilha sagrada de builds.","Prevê o drop exato. Acerta.","Um “SIUU” por vitória, na call."]}
+  ascar: {
+    kicker:"O Trono Dourado", name:"Império Ascar", epithet:"As dunas mais ricas do leste",
+    motto:"Tudo brilha para o Rei", accent:"#f0c75e",
+    today:["sol atraindo brilho","vento de poeira dourada","leilão ao meio-dia nas dunas"],
+    desc:"Nas dunas do Ascar, cada brilho tem dono — e o dono é o Rei Dourado. Recompensa, loot, fortuna: se vale ouro, já tem bandeira de Ascar em cima.",
+    heroes:[{id:"luis", nick:"Luís Augusto", title:"Rei Dourado", symbol:"sym-royalcrown",
+      bio:"A fortuna viva da mesa: onde há tesouro, ele chega primeiro.",
+      feats:["Recorde de riqueza da mesa — três temporadas.","Nunca saiu de um saque de mãos vazias.","Rei é apelido; o ouro é inventário."]}]
   },
-  nocturnia: {
-    kicker:"As Terras Sombrias", name:"Nocturnia", epithet:"As terras que não dormem",
-    motto:"A sombra vigia", accent:"#8a76a0", symbol:"sym-mask",
-    today:["escuridão pontilhada de vigias","lua escondida; bom para aparições","madrugada eterna, café recém-feito"],
-    desc:"De Nocturnia vêm as madrugadas lendárias: terror no fone, traidores desmascarados, recordes impossíveis. O café aqui é sacramento.",
-    hero:{nick:"João Pedro", title:"O Silencioso", bio:"Entra na call sem que ninguém o veja entrar. Melhor às três da manhã.",
-      feats:["Catorze vitórias como traidor numa noite.","Zerou o jogo às 3h47, sem barulho.","Aparece do nada. Ninguém pergunta como."]}
+  snezhnaya: {
+    kicker:"O Reino das Neves", name:"Reino Snezhnaya", epithet:"As terras de neve eterna",
+    motto:"O frio também é lei", accent:"#8ec5e8",
+    today:["nevasca leve","neve fresca, gelo no ar","inverno firmado no horizonte"],
+    desc:"Terra das neves eternas: quando Snezhnaya esfria, a partida inteira treme — e quando o Inverno Perpétuo passa, o placar já virou.",
+    heroes:[{id:"bruno", nick:"Bruno Martins", title:"Inverno Perpétuo", symbol:"sym-storm",
+      bio:"Onde ele chega, o inverno fica: gela a partida e some na nevasca antes de você entender o que houve.",
+      feats:["Uma tempestade perfeita: 1 contra 5 — venceu.","Desaparece na neve; reaparece nas costas.","Quando ele loga, o lobby inteiro esfria."]}]
+  },
+  escarlate: {
+    kicker:"A Muralha Rubra", name:"Fortaleza Escarlate", epithet:"A fortaleza inabalável do oeste",
+    motto:"Ninguém cai enquanto eu me ergo", accent:"#d94f3d",
+    today:["muralhas aquecidas pelo sol","bandeiras rubras ao vento","turno de guarda ao anoitecer"],
+    desc:"A fortaleza que cobre os flancos da mesa: quando o plano desaba, é a muralha escarlate que segura a linha — nas terras do Protetor, ninguém cai sozinho.",
+    heroes:[{id:"guilherme", nick:"Guilherme Morais", title:"O Protetor", symbol:"sym-shield",
+      bio:"Primeiro a entrar, último a sair: o escudo da mesa.",
+      feats:["Tanque por vocação: puxa a atenção e segura.","Carregou aliado desmaiado por três mapas.","“Atrás de mim.” — e era verdade."]}]
   }
 };
 
+/* Pessoa → reino (a coroa é de uma PESSOA; reinos podem ter dois guardiões) */
+const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", luis:"ascar", bruno:"snezhnaya", guilherme:"escarlate"};
+
 const panel = document.getElementById('realmPanel');
-let currentRealm = 'ignarok';
+let currentRealm = 'supremo';
 
 /* ================================================================
    SISTEMA DE FAVORITO — a coroa do Códice
-   · Apenas UM guardião pode ser favorito.
+   · Apenas UMA pessoa pode ser favorita.
    · Na primeira visita, o portal pergunta de quem é a coroa.
    · A escolha fica gravada (localStorage): toda visita seguinte
      abre já no reino do coroado — mapa, painel E carta visível.
-   · A coroa pode ser trocada a qualquer momento nas cartas.
 ================================================================ */
 const FAV_KEY = 'veldora_fav';
 const getFav = () => { try { return localStorage.getItem(FAV_KEY); } catch(e){ return null; } };
 const setFav = id => { try { id ? localStorage.setItem(FAV_KEY, id) : localStorage.removeItem(FAV_KEY); } catch(e){} };
 
-function applyFav(id){
+function applyFav(personId){
   document.querySelectorAll('.card').forEach(card=>{
-    const on = card.dataset.realm === id;
+    const on = card.dataset.person === personId;
     card.classList.toggle('fav', on);
     const btn = card.querySelector('.fav-btn');
     if(btn){
@@ -1323,28 +1544,25 @@ function applyFav(id){
   });
 }
 
-/* Centraliza o carrossel de cartas na carta coroada (celular).
-   No desktop (leque) todas as cartas já estão visíveis, então
-   não há nada a rolar — a coroada apenas levanta, como já faz. */
+/* Centraliza o carrossel de cartas na carta coroada (tablet/celular). */
 function revealFavCard(behavior){
   const fav = getFav();
   if(!fav) return;
   const fan = document.querySelector('.fan');
-  const card = document.querySelector(`.card[data-realm="${fav}"]`);
+  const card = document.querySelector(`.card[data-person="${fav}"]`);
   if(!fan || !card) return;
-  if(!matchMedia('(max-width:760px)').matches) return; /* só o carrossel rola */
-  const target = Math.max(0, card.offsetLeft - (fan.clientWidth - card.offsetWidth)/2);
-  if(typeof fan.scrollTo === 'function'){
-    fan.scrollTo({left:target, behavior:behavior||'auto'});
-  } else {
-    fan.scrollLeft = target;
-  }
+  if(!matchMedia('(max-width:1024px)').matches) return;
+  const fanRect = fan.getBoundingClientRect();
+  const delta = card.getBoundingClientRect().left - (fanRect.left + (fan.clientWidth - card.offsetWidth)/2);
+  fan.scrollTo({left: fan.scrollLeft + delta, behavior: behavior||'auto'});
 }
 
 function renderPanel(id){
   const r = REALMS[id];
   const today = r.today[Math.floor(Math.random()*r.today.length)];
   const fav = getFav();
+  const heroes = r.heroes;
+  const multi = heroes.length > 1;
   panel.style.setProperty('--accent', r.accent);
   panel.querySelector('.panel-body').innerHTML = `
     <p class="panel-kicker">${r.kicker}</p>
@@ -1354,19 +1572,22 @@ function renderPanel(id){
     <p class="today">Hoje: <b>${today}</b></p>
     <p class="desc">${r.desc}</p>
     <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-    <div class="guardian">
-      <div class="guardian-medal"><svg><use href="#${r.symbol}"/></svg></div>
-      <div>
-        <p class="g-kicker">Guardião</p>
-        <p class="g-name">${r.hero.nick}</p>
-        <p class="g-title">${r.hero.title}</p>
-        ${fav === id ? `<p class="g-fav"><svg aria-hidden="true"><use href="#sym-crown"/></svg>Favorito do Códice</p>` : ''}
+    ${heroes.map((h,i)=>`
+      ${i ? '<div class="co-gap"></div>' : ''}
+      <div class="guardian${i ? ' g-second' : ''}">
+        <div class="guardian-medal"><svg><use href="#${h.symbol}"/></svg></div>
+        <div>
+          <p class="g-kicker">Guardião</p>
+          <p class="g-name">${h.nick}</p>
+          <p class="g-title">${h.title}</p>
+          ${fav === h.id ? `<p class="g-fav"><svg aria-hidden="true"><use href="#sym-crown"/></svg>Favorito do Códice</p>` : ''}
+        </div>
       </div>
-    </div>
-    <p class="guardian-bio">${r.hero.bio}</p>
-    <p class="feats-title">Feitos registrados</p>
-    <ul class="feats">${r.hero.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
-    <a class="to-card" href="#guardioes" data-card="${id}">Contemplar a carta do guardião</a>`;
+      <p class="guardian-bio">${h.bio}</p>
+      <p class="feats-title">${multi ? 'Feitos de ' + h.nick.split(' ')[0] : 'Feitos registrados'}</p>
+      <ul class="feats">${h.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
+    `).join('')}
+    <a class="to-card" href="#guardioes" data-card="${id}">${multi ? 'Contemplar as cartas do reino' : 'Contemplar a carta do guardião'}</a>`;
 }
 
 function selectRealm(id){
@@ -1385,11 +1606,15 @@ document.querySelectorAll('#worldMap .realm').forEach(g=>{
   });
 });
 
+/* "Contemplar a carta" — leva ao carrossel e destaca a primeira carta do reino */
 document.addEventListener('click', e=>{
   const link = e.target.closest('.to-card');
   if(!link) return;
   e.preventDefault();
-  const card = document.querySelector(`.card[data-realm="${link.dataset.card}"]`);
+  const fav = getFav();
+  let card = (fav && PERSON_REALM[fav] === link.dataset.card)
+    ? document.querySelector(`.card[data-person="${fav}"]`)
+    : document.querySelector(`.card[data-realm="${link.dataset.card}"]`);
   if(!card) return;
   card.scrollIntoView({behavior:'smooth', block:'center'});
   card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
@@ -1417,13 +1642,13 @@ document.querySelectorAll('.card').forEach(card=>{
 document.querySelectorAll('.card .fav-btn').forEach(btn=>{
   btn.addEventListener('click', e=>{
     e.stopPropagation();
-    const id = btn.closest('.card').dataset.realm;
+    const personId = btn.closest('.card').dataset.person;
     const prev = getFav();
-    const next = (prev === id) ? null : id;   // só um favorito por vez
+    const next = (prev === personId) ? null : personId;   // só um favorito por vez
     setFav(next);
     applyFav(next);
-    if(next) revealFavCard('smooth');         // a coroada centra no carrossel
-    if(currentRealm === id || currentRealm === prev) renderPanel(currentRealm);
+    if(next) revealFavCard('smooth');
+    renderPanel(currentRealm);
   });
 });
 
@@ -1443,11 +1668,10 @@ function closeGate(){
 
 document.querySelectorAll('.gate-choice').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    const id = btn.dataset.realm;
-    setFav(id);
-    applyFav(id);
-    selectRealm(id);
-    revealFavCard('auto');        // quando descer às cartas, a coroada já estará centralizada
+    setFav(btn.dataset.person);
+    applyFav(btn.dataset.person);
+    selectRealm(btn.dataset.realm);
+    revealFavCard('auto');
     closeGate();
   });
 });
@@ -1514,7 +1738,7 @@ document.querySelectorAll('section[id]').forEach(s=>sectionObs.observe(s));
   }).observe(canvas.parentElement);
 })();
 
-/* Respeitar "reduzir animações": desligar também as animações nativas do SVG */
+/* Respeitar "reduzir animações" */
 if(matchMedia('(prefers-reduced-motion:reduce)').matches){
   document.querySelectorAll('animate, animateMotion').forEach(a=>a.remove());
 }
@@ -1522,19 +1746,15 @@ if(matchMedia('(prefers-reduced-motion:reduce)').matches){
 /* ============ ANTI-SELEÇÃO (reforço p/ Safari) ============ */
 document.addEventListener('selectstart', e=>e.preventDefault());
 
-/* ============ INICIALIZAÇÃO ============
-   · Com favorito gravado: abre direto no reino do coroado —
-     mapa ativo, painel com os dados dele e carrossel de cartas
-     posicionado na carta coroada (não mais na primeira).
-   · Sem favorito (primeira visita): o portal pergunta. */
+/* ============ INICIALIZAÇÃO ============ */
 const savedFav = getFav();
-if(savedFav && REALMS[savedFav]){
+if(savedFav && PERSON_REALM[savedFav]){
   applyFav(savedFav);
-  selectRealm(savedFav);
+  selectRealm(PERSON_REALM[savedFav]);
   revealFavCard('auto');
 } else {
   applyFav(null);
-  renderPanel('ignarok');
+  renderPanel('supremo');
   openGate();
 }
 
