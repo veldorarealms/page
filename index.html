@@ -770,6 +770,12 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       </g>
       <circle cx="10" cy="8" r="1.7" fill="var(--ink)"/>
     </symbol>
+    <symbol id="sym-tree" viewBox="0 0 20 26"><!-- Árvore de folha larga (Floresta de Karhal) -->
+      <g fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round">
+        <circle cx="10" cy="9" r="6.5"/>
+        <path d="M10 15.5 V24 M10 19.5 L7 17 M10 19.5 L13 17"/>
+      </g>
+    </symbol>
     <symbol id="sym-pine" viewBox="0 0 20 26">
       <g fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M10 2 L14.5 9 H5.5 Z"/>
@@ -782,12 +788,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <symbol id="sym-snow" viewBox="0 0 14 14">
       <g stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round">
         <path d="M7 1.5 V12.5 M2 4.2 L12 9.8 M12 4.2 L2 9.8"/>
-      </g>
-    </symbol>
-    <symbol id="sym-palm" viewBox="0 0 20 26">
-      <g fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round">
-        <path d="M10 25 C10 18 10 14 10 10"/>
-        <path d="M10 10 C6 8 3 9 1 12 M10 10 C14 8 17 9 19 12 M10 10 C8 5 11 2 15 2 M10 10 C11 5 8 2 4 2" opacity=".9"/>
       </g>
     </symbol>
     <symbol id="sym-wyvern" viewBox="0 0 40 22"><!-- Dragão planando -->
@@ -941,10 +941,10 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <use class="map-decor" href="#sym-flower" x="500" y="200"/><use class="map-decor" href="#sym-flower" x="574" y="204"/>
               </g>
 
-              <!-- 3. IMPÉRIO ASCAR -->
-              <g class="realm" data-realm="ascar" tabindex="0" role="button" aria-label="Império Ascar, de Luís Augusto">
+              <!-- 3. DESERTO ASCAR -->
+              <g class="realm" data-realm="ascar" tabindex="0" role="button" aria-label="Deserto Ascar, de Luís Augusto">
                 <path class="land" fill="var(--c-ascar)" d="M742 90 C794 68 866 66 912 92 C936 106 942 128 928 146 C908 170 862 184 812 186 C764 188 724 178 708 158 C694 140 702 112 742 90 Z"/>
-                <text class="realm-name" x="818" y="128">Império Ascar</text>
+                <text class="realm-name" x="818" y="128">Deserto Ascar</text>
                 <text class="realm-sub" x="818" y="148">O TRONO DOURADO</text>
                 <g class="map-decor">
                   <path d="M806 176 L820 148 L834 176 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.3" stroke-linejoin="round"/>
@@ -957,15 +957,15 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <use class="map-decor" href="#sym-dune" x="892" y="140" width="26" height="14"/>
               </g>
 
-              <!-- 4. IMPÉRIO BUDAPESTE -->
-              <g class="realm" data-realm="bravos" tabindex="0" role="button" aria-label="Império Budapeste, de Fernando Fernandes">
+              <!-- 4. ARQUIPÉLAGO BUDAPESTE -->
+              <g class="realm" data-realm="bravos" tabindex="0" role="button" aria-label="Arquipélago Budapeste, de Fernando Fernandes">
                 <path class="land" fill="var(--c-bravos)" d="M894 268 C912 258 934 264 942 280 C950 296 942 314 924 320 C906 326 888 318 884 302 C881 290 885 276 894 268 Z"/>
                 <path class="land" fill="var(--c-bravos)" d="M940 336 C958 330 976 340 980 356 C984 372 972 386 954 386 C936 386 924 374 926 358 C927 348 932 340 940 336 Z"/>
                 <path class="land" fill="var(--c-bravos)" d="M908 404 C924 398 940 406 944 420 C948 434 938 446 922 446 C906 446 896 436 897 422 C898 414 902 407 908 404 Z"/>
                 <g fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1">
                   <circle cx="922" cy="294" r="2.6"/><circle cx="954" cy="362" r="2.6"/><circle cx="920" cy="424" r="2.6"/>
                 </g>
-                <text class="realm-name" x="858" y="342">Império</text>
+                <text class="realm-name" x="858" y="342">Arquipélago</text>
                 <text class="realm-name" x="858" y="362">Budapeste</text>
                 <text class="realm-sub" x="858" y="380">O CABO DOS DESTEMIDOS</text>
                 <g class="map-decor">
@@ -975,19 +975,19 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 </g>
               </g>
 
-              <!-- 5. DESERTO DE KARHAL -->
-              <g class="realm" data-realm="karhal" tabindex="0" role="button" aria-label="Deserto de Karhal, de Cristiano Ronaldo">
+              <!-- 5. FLORESTA DE KARHAL -->
+              <g class="realm" data-realm="karhal" tabindex="0" role="button" aria-label="Floresta de Karhal, de Cristiano Ronaldo">
                 <path class="land" fill="var(--c-karhal)" d="M846 466 C884 448 930 452 958 476 C976 492 978 514 962 528 C942 546 904 552 870 544 C842 537 826 520 828 500 C829 484 835 473 846 466 Z"/>
-                <text class="realm-name" x="898" y="498">Deserto de Karhal</text>
-                <text class="realm-sub" x="898" y="516">AS DUNAS VERDES</text>
+                <text class="realm-name" x="898" y="498">Floresta de Karhal</text>
+                <text class="realm-sub" x="898" y="516">O BOSQUE VERDE</text>
+                <!-- Lago e árvores da mata -->
                 <g class="map-decor">
-                  <ellipse cx="912" cy="532" rx="11" ry="4" fill="var(--sea)" opacity=".5"/>
-                  <path d="M912 529 C910 521 914 515 911 509" fill="none" stroke="var(--ink)" stroke-width="1.1" stroke-linecap="round"/>
-                  <path d="M911 509 C905 506 900 508 896 511 M911 509 C917 505 923 507 927 511 M911 509 C908 503 903 501 899 502 M911 509 C914 502 920 501 924 503"
-                    fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round"/>
+                  <ellipse cx="912" cy="534" rx="11" ry="4" fill="var(--sea)" opacity=".5"/>
                 </g>
-                <use class="map-decor" href="#sym-dune" x="856" y="524" width="24" height="13"/>
-                <use class="map-decor" href="#sym-dune" x="934" y="522" width="24" height="13"/>
+                <use class="map-decor" href="#sym-tree" x="862" y="516"/>
+                <use class="map-decor" href="#sym-tree" x="894" y="504"/>
+                <use class="map-decor" href="#sym-tree" x="928" y="514"/>
+                <use class="map-decor" href="#sym-tree" x="878" y="536"/>
               </g>
 
               <!-- 6. FORTALEZA ESCARLATE -->
@@ -1008,7 +1008,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               </g>
 
               <!-- 7. IMPÉRIO YARYAN -->
-              <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitória e Nayara Hostapiuk">
+              <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitoria e Nayara Hostapiuk">
                 <path class="land" fill="var(--c-yaryan)" d="M258 560 C262 540 282 528 306 530 C330 532 346 546 344 564 C342 582 322 594 298 592 C276 590 258 580 258 560 Z"/>
                 <path class="land" fill="var(--c-yaryan)" d="M330 510 C334 494 352 484 372 486 C392 488 404 500 402 514 C400 528 384 536 364 534 C346 532 330 524 330 510 Z"/>
                 <path class="land" fill="var(--c-yaryan)" d="M370 566 C386 560 404 566 408 580 C412 594 400 606 382 606 C364 606 352 596 354 582 C355 575 362 569 370 566 Z"/>
@@ -1120,27 +1120,25 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <img class="map-overlay" id="mapOverlay" src="mapa.png" alt="">
 
             <!-- ===== PONTOS CLICÁVEIS SOBRE O MAPA DE VOCÊS =====
-                 POSIÇÕES ESTIMADAS segundo a disposição da carta original.
-                 AJUSTE FINO: edite --x / --y (em % da largura/altura)
-                 de cada botão para casar com a ilha no seu desenho.
-                 Hover mostra um anel dourado; o reino ativo pulsa. -->
+                 Posições calibradas à mão. Para refinar, edite
+                 --x / --y (em % da largura/altura do mapa). -->
             <div class="map-hotspots" id="mapHotspots">
               <!-- Drag Zakharys — noroeste -->
               <button class="hs" data-realm="supremo" type="button" style="--x:21%;--y:24%" aria-label="Reino Drag Zakharys, de Luan Dhony" title="Reino Drag Zakharys"></button>
               <!-- Mirigumi — norte-centro -->
-              <button class="hs" data-realm="mirigumi" type="button" style="--x:52%;--y:25%" aria-label="Império Mirigumi, de Debora Vezetiv" title="Império Mirigumi"></button>
+              <button class="hs" data-realm="mirigumi" type="button" style="--x:52%;--y:24%" aria-label="Império Mirigumi, de Debora Vezetiv" title="Império Mirigumi"></button>
               <!-- Ascar — nordeste -->
-              <button class="hs" data-realm="ascar" type="button" style="--x:82%;--y:20%" aria-label="Império Ascar, de Luís Augusto" title="Império Ascar"></button>
+              <button class="hs" data-realm="ascar" type="button" style="--x:83%;--y:23%" aria-label="Deserto Ascar, de Luís Augusto" title="Deserto Ascar"></button>
               <!-- Budapeste — leste -->
-              <button class="hs" data-realm="bravos" type="button" style="--x:86%;--y:50%" aria-label="Império Budapeste, de Fernando Fernandes" title="Império Budapeste"></button>
+              <button class="hs" data-realm="bravos" type="button" style="--x:84%;--y:50%" aria-label="Arquipélago Budapeste, de Fernando Fernandes" title="Arquipélago Budapeste"></button>
               <!-- Karhal — sudeste -->
-              <button class="hs" data-realm="karhal" type="button" style="--x:90%;--y:73%" aria-label="Deserto de Karhal, de Cristiano Ronaldo" title="Deserto de Karhal"></button>
+              <button class="hs" data-realm="karhal" type="button" style="--x:84%;--y:73%" aria-label="Floresta de Karhal, de Cristiano Ronaldo" title="Floresta de Karhal"></button>
               <!-- Fortaleza Escarlate — oeste -->
-              <button class="hs" data-realm="escarlate" type="button" style="--x:16%;--y:47%" aria-label="Fortaleza Escarlate, de Guilherme Morais" title="Fortaleza Escarlate"></button>
+              <button class="hs" data-realm="escarlate" type="button" style="--x:14%;--y:47%" aria-label="Fortaleza Escarlate, de Guilherme Morais" title="Fortaleza Escarlate"></button>
               <!-- Yaryan — sudoeste -->
-              <button class="hs" data-realm="yaryan" type="button" style="--x:26%;--y:72%" aria-label="Império Yaryan, de Rayssa Vitória e Nayara Hostapiuk" title="Império Yaryan"></button>
+              <button class="hs" data-realm="yaryan" type="button" style="--x:28%;--y:72%" aria-label="Império Yaryan, de Rayssa Vitoria e Nayara Hostapiuk" title="Império Yaryan"></button>
               <!-- Snezhnaya — centro-sul -->
-              <button class="hs" data-realm="snezhnaya" type="button" style="--x:57%;--y:69%" aria-label="Reino Snezhnaya, de Bruno Martins" title="Reino Snezhnaya"></button>
+              <button class="hs" data-realm="snezhnaya" type="button" style="--x:53%;--y:69%" aria-label="Reino Snezhnaya, de Bruno Martins" title="Reino Snezhnaya"></button>
             </div>
           </div>
         </div>
@@ -1232,15 +1230,15 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta — Rayssa Vitória -->
-      <div class="card" data-person="rayssa" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Rayssa Vitória, o Corvo. Pressione para virar.">
+      <!-- Carta — Rayssa Vitoria -->
+      <div class="card" data-person="rayssa" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Rayssa Vitoria, o Corvo. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
             <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
               <svg aria-hidden="true"><use href="#sym-crown"/></svg>
             </button>
             <div class="card-sigil"><svg><use href="#sym-raven"/></svg></div>
-            <h3>Rayssa Vitória</h3>
+            <h3>Rayssa Vitoria</h3>
             <p class="card-title">O Corvo</p>
             <p class="card-realm">Império Yaryan</p>
             <p class="card-tap">— virai a carta —</p>
@@ -1308,7 +1306,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <div class="card-sigil"><svg><use href="#sym-royalcrown"/></svg></div>
             <h3>Luís Augusto</h3>
             <p class="card-title">Rei Dourado</p>
-            <p class="card-realm">Império Ascar</p>
+            <p class="card-realm">Deserto Ascar</p>
             <p class="card-tap">— virai a carta —</p>
             <p class="fav-tag">Favorito do Códice</p>
           </div>
@@ -1341,7 +1339,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <div class="card-sigil"><svg><use href="#sym-horn"/></svg></div>
             <h3>Fernando Fernandes</h3>
             <p class="card-title">Bravos e Destemidos</p>
-            <p class="card-realm">Império Budapeste</p>
+            <p class="card-realm">Arquipélago Budapeste</p>
             <p class="card-tap">— virai a carta —</p>
             <p class="fav-tag">Favorito do Códice</p>
           </div>
@@ -1374,14 +1372,14 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <div class="card-sigil"><svg><use href="#sym-sunwave"/></svg></div>
             <h3>Cristiano Ronaldo</h3>
             <p class="card-title">Mestre das Dunas</p>
-            <p class="card-realm">Deserto de Karhal</p>
+            <p class="card-realm">Floresta de Karhal</p>
             <p class="card-tap">— virai a carta —</p>
             <p class="fav-tag">Favorito do Códice</p>
           </div>
           <div class="card-face card-back">
-            <p class="card-lema">“As dunas se movem — e eu me movo melhor.”</p>
+            <p class="card-lema">“As copas ondulam como dunas — e eu as domo.”</p>
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">O senhor das areias verdes de Karhal: conhece cada duna pelo nome, cada oásis de cor. Onde todos se perdem, ele caminha de olhos fechados — e chega primeiro.</p>
+            <p class="card-bio">O senhor das matas verdes de Karhal: conhece cada trilha pelo nome, cada clareira de cor. Onde todos se perdem entre as árvores, ele caminha de olhos fechados — e chega primeiro.</p>
             <div class="stats">
               <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
               <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
@@ -1390,8 +1388,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             </div>
             <ul class="feats">
               <li>Atravessou Karhal de ponta a ponta, sem mapa.</li>
-              <li>Encontrou três oásis que ninguém mapeia.</li>
-              <li>Um “SIUU” que ecoa dunas afora.</li>
+              <li>Encontrou três clareiras que ninguém mapeia.</li>
+              <li>Um “SIUU” que ecoa mata afora.</li>
             </ul>
           </div>
         </div></div>
@@ -1551,7 +1549,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       </button>
       <button class="gate-choice" data-person="rayssa" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-raven"/></svg></span>
-        <span><span class="gate-name">Rayssa Vitória</span><br><span class="gate-role">O Corvo</span></span>
+        <span><span class="gate-name">Rayssa Vitoria</span><br><span class="gate-role">O Corvo</span></span>
         <span class="gate-realm">Yaryan</span>
       </button>
       <button class="gate-choice" data-person="nayara" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
@@ -1562,17 +1560,17 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <button class="gate-choice" data-person="luis" data-realm="ascar" style="--accent:var(--c-ascar)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-royalcrown"/></svg></span>
         <span><span class="gate-name">Luís Augusto</span><br><span class="gate-role">Rei Dourado</span></span>
-        <span class="gate-realm">Ascar</span>
+        <span class="gate-realm">Deserto Ascar</span>
       </button>
       <button class="gate-choice" data-person="fernando" data-realm="bravos" style="--accent:var(--c-bravos)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-horn"/></svg></span>
         <span><span class="gate-name">Fernando Fernandes</span><br><span class="gate-role">Bravos e Destemidos</span></span>
-        <span class="gate-realm">Império Budapeste</span>
+        <span class="gate-realm">Arquipélago Budapeste</span>
       </button>
       <button class="gate-choice" data-person="cristiano" data-realm="karhal" style="--accent:var(--c-karhal)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-sunwave"/></svg></span>
         <span><span class="gate-name">Cristiano Ronaldo</span><br><span class="gate-role">Mestre das Dunas</span></span>
-        <span class="gate-realm">Deserto de Karhal</span>
+        <span class="gate-realm">Floresta de Karhal</span>
       </button>
       <button class="gate-choice" data-person="bruno" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-storm"/></svg></span>
@@ -1620,7 +1618,7 @@ const REALMS = {
     today:["noite roxa, o Corvo no céu","sombras guardando as ilhas","a Lâmina afiada ao luar"],
     desc:"Ilhas roxas onde sombras guardam mundos que nascem do nada: o Corvo vê tudo do alto — e a Lâmina corta o que não deve existir.",
     heroes:[
-      {id:"rayssa", nick:"Rayssa Vitória", title:"O Corvo", symbol:"sym-raven",
+      {id:"rayssa", nick:"Rayssa Vitoria", title:"O Corvo", symbol:"sym-raven",
         bio:"Planando sobre o Yaryan, o Corvo observa tudo antes de qualquer um — e chega sabendo demais.",
         feats:["Vê a jogada do inimigo antes dele.","Cem dias no hardcore; caiu no 101, rindo.","Sabia da traição antes de acontecer."]},
       {id:"nayara", nick:"Nayara Hostapiuk", title:"A Lâmina", symbol:"sym-blade",
@@ -1629,7 +1627,7 @@ const REALMS = {
     ]
   },
   ascar: {
-    kicker:"O Trono Dourado", name:"Império Ascar", epithet:"As dunas mais ricas do leste",
+    kicker:"O Trono Dourado", name:"Deserto Ascar", epithet:"As dunas mais ricas do leste",
     motto:"Tudo brilha para o Rei", accent:"#f0c75e",
     today:["sol atraindo brilho","vento de poeira dourada","leilão ao meio-dia nas dunas"],
     desc:"Nas dunas do Ascar, cada brilho tem dono — e o dono é o Rei Dourado. Recompensa, loot, fortuna: se vale ouro, já tem bandeira de Ascar em cima.",
@@ -1638,22 +1636,22 @@ const REALMS = {
       feats:["Recorde de riqueza da mesa — três temporadas.","Nunca saiu de um saque de mãos vazias.","Rei é apelido; o ouro é inventário."]}]
   },
   bravos: {
-    kicker:"O Cabo dos Destemidos", name:"Império Budapeste", epithet:"O arquipélago de ciano do sudeste",
+    kicker:"O Cabo dos Destemidos", name:"Arquipélago Budapeste", epithet:"O arquipélago de ciano do sudeste",
     motto:"O corno toca — e o medo fica em terra", accent:"#3fd4c9",
     today:["ondas desafiando o cabo","cornos de guerra ao vento","mares bravios, navegadores mais ainda"],
-    desc:"Do Império Budapeste partem os que não conhecem o recuo: se há uma parede no caminho, os bravos atravessam — e ainda fazem questão de avisar antes, ao som do corno.",
+    desc:"Do Arquipélago Budapeste partem os que não conhecem o recuo: se há uma parede no caminho, os bravos atravessam — e ainda fazem questão de avisar antes, ao som do corno.",
     heroes:[{id:"fernando", nick:"Fernando Fernandes", title:"Bravos e Destemidos", symbol:"sym-horn",
       bio:"Primeiro a saltar do navio, último a pedir recuo: onde o corno de guerra soa, os bravos seguem.",
       feats:["Nunca recuou — nem quando devia.","Primeiro a entrar na jaula do boss.","Onde outros veem parede, ele vê porta."]}]
   },
   karhal: {
-    kicker:"As Dunas Verdes", name:"Deserto de Karhal", epithet:"As areias verdes do sul",
-    motto:"As dunas se movem — e eu me movo melhor", accent:"#4caf6d",
-    today:["areia verde ao sol raro","oásis escondidos, dunas dançando","ventos que o Mestre conhece pelo nome"],
-    desc:"Um deserto que desafia toda regra: areias verdes, oásis que fogem de mapas e dunas que dançam. Só um homem as domina — e as dunas obedecem.",
+    kicker:"O Bosque Verde", name:"Floresta de Karhal", epithet:"A mata verde do sul",
+    motto:"As copas ondulam como dunas — e eu as domo", accent:"#4caf6d",
+    today:["copas ondulando ao vento","clareiras banhadas de sol","trilhas que o Mestre conhece de cor"],
+    desc:"Uma floresta que desafia toda regra: do alto, as copas ondulam como dunas verdes, trilhas fogem de mapas e as sombras dançam. Só um homem as domina — e a mata obedece.",
     heroes:[{id:"cristiano", nick:"Cristiano Ronaldo", title:"Mestre das Dunas", symbol:"sym-sunwave",
-      bio:"O senhor das areias verdes de Karhal: conhece cada duna pelo nome, cada oásis de cor.",
-      feats:["Atravessou Karhal de ponta a ponta, sem mapa.","Encontrou três oásis que ninguém mapeia.","Um “SIUU” que ecoa dunas afora."]}]
+      bio:"O senhor das matas verdes de Karhal: conhece cada trilha pelo nome, cada clareira de cor.",
+      feats:["Atravessou Karhal de ponta a ponta, sem mapa.","Encontrou três clareiras que ninguém mapeia.","Um “SIUU” que ecoa mata afora."]}]
   },
   snezhnaya: {
     kicker:"O Reino das Neves", name:"Reino Snezhnaya", epithet:"As terras de neve eterna",
