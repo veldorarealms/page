@@ -60,16 +60,13 @@ a,.card,.realm,.scroll-hint,.to-card,.fav-btn,.gate-choice{touch-action:manipula
 /* ============ FUNDO COM IMAGENS + VÉU ESCURO ============
    Deixe cllr.png (celular), pc.png (PC/notebook) e simbolo.png
    na mesma pasta deste HTML.
-   CORREÇÃO DO "ZOOM NO CELULAR": a altura é travada na viewport
-   GRANDE (100lvh). Antes, com inset:0, o fundo acompanhava a
-   altura atual da tela — que muda quando a barra de endereço do
-   celular some/aparece ao rolar — e o background-size:cover
-   recalculava, fazendo a foto "se aproximar e afastar".
-   Com altura fixa, a imagem nunca mais redimensiona. */
+   A altura é travada na viewport GRANDE (100lvh) para que a
+   imagem de fundo nunca redimensione quando a barra de endereço
+   do celular some/aparece ao rolar. */
 .bg{
   position:fixed;
   top:0;left:0;width:100%;
-  height:100vh;   /* fallback p/ navegadores antigos (já equivale à viewport grande) */
+  height:100vh;   /* fallback p/ navegadores antigos */
   height:100lvh;  /* viewport grande: imune à barra de endereço */
   z-index:-1;pointer-events:none;
   background-image:url('cllr.png');
@@ -100,9 +97,9 @@ body::after{
 a{color:inherit}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
 
-/* ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE ============ */
+/* ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE (fixo no topo) ============ */
 nav{
-  position:fixed;left:50%;transform:translateX(-50%);
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
   z-index:1400;
   width:max-content;max-width:calc(100vw - 28px);
   display:flex;align-items:center;gap:18px;
@@ -114,13 +111,8 @@ nav{
     0 12px 34px -12px rgba(0,0,0,.85),
     inset 0 1px 0 rgba(234,217,181,.1);
   backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
-  transition:top .5s cubic-bezier(.3,.8,.3,1), bottom .5s cubic-bezier(.3,.8,.3,1);
 }
-nav.pos-top{top:14px;bottom:auto}
-nav.pos-bottom{top:auto;bottom:14px}
-nav.pos-bottom{box-shadow:0 -12px 34px -12px rgba(0,0,0,.85),inset 0 1px 0 rgba(234,217,181,.1)}
-
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding-right:16px;border-right:1px solid rgba(201,162,74,.28)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-seal{
   width:34px;height:34px;flex:0 0 auto;object-fit:contain;
   filter:drop-shadow(0 2px 8px rgba(0,0,0,.7));
@@ -152,65 +144,6 @@ nav.pos-bottom{box-shadow:0 -12px 34px -12px rgba(0,0,0,.85),inset 0 1px 0 rgba(
   background:linear-gradient(180deg,#e3bd6a,#b98a2e);
   border-color:#e3bd6a;
   box-shadow:0 0 16px rgba(201,162,74,.45),inset 0 1px 0 rgba(255,244,214,.5);
-}
-
-/* ============ BOTÃO-ÂNCORA (abre o painel de posição) ============ */
-.dock-btn{
-  position:fixed;right:12px;z-index:1450;
-  width:40px;height:40px;border-radius:50%;
-  border:1px solid rgba(201,162,74,.5);
-  background:linear-gradient(180deg, rgba(41,30,17,.94), rgba(23,17,11,.94));
-  color:var(--gold);cursor:pointer;
-  display:grid;place-items:center;
-  box-shadow:0 10px 26px -10px rgba(0,0,0,.85);
-  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
-  transition:top .5s cubic-bezier(.3,.8,.3,1), bottom .5s cubic-bezier(.3,.8,.3,1),
-             transform .3s ease, box-shadow .3s ease;
-}
-.dock-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s cubic-bezier(.3,.8,.3,1)}
-.dock-btn:hover{transform:scale(1.08);box-shadow:0 0 18px rgba(201,162,74,.35)}
-.dock-btn.pos-top{top:22px}
-.dock-btn.pos-bottom{top:auto;bottom:22px}
-.dock-btn.pos-bottom svg{transform:rotate(180deg)}
-
-/* Painel "Em cima / Embaixo" */
-.dock-panel{
-  position:fixed;right:12px;z-index:1460;
-  width:max-content;
-  background:linear-gradient(180deg, rgba(41,30,17,.97), rgba(23,17,11,.97));
-  border:1px solid rgba(201,162,74,.5);
-  border-radius:16px;
-  padding:12px;
-  display:flex;flex-direction:column;gap:6px;
-  box-shadow:0 16px 40px -14px rgba(0,0,0,.9);
-  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
-  opacity:0;transform:translateY(6px) scale(.96);
-  pointer-events:none;
-  transition:opacity .28s ease, transform .28s ease,
-             top .5s cubic-bezier(.3,.8,.3,1), bottom .5s cubic-bezier(.3,.8,.3,1);
-}
-.dock-panel.open{opacity:1;transform:none;pointer-events:auto}
-.dock-panel.pos-top{top:70px;bottom:auto}
-.dock-panel.pos-bottom{top:auto;bottom:70px;transform-origin:bottom right}
-.dock-panel-label{
-  font-family:var(--disp);font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--ink-soft);text-align:center;padding-bottom:4px;
-}
-.dock-opt{
-  display:flex;align-items:center;gap:9px;
-  padding:9px 14px;border-radius:12px;cursor:pointer;
-  font-family:var(--disp);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-soft);
-  border:1px solid rgba(201,162,74,.25);
-  background:rgba(14,10,6,.45);
-  transition:color .25s,border-color .25s,background .25s;
-}
-.dock-opt svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
-.dock-opt:hover{color:var(--gold);border-color:rgba(201,162,74,.65);background:rgba(201,162,74,.1)}
-.dock-opt.sel{
-  color:#1a1208;font-weight:700;
-  background:linear-gradient(180deg,#e3bd6a,#b98a2e);
-  border-color:#e3bd6a;
 }
 
 /* ============ HERO ============ */
@@ -639,20 +572,14 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 
 /* ============ CELULAR ============ */
 @media (max-width:760px){
-  nav{
-    flex-direction:column;gap:9px;
-    padding:10px 14px;
-    border-radius:20px;
-    max-width:calc(100vw - 20px);
-  }
-  .brand{padding-right:0;border-right:none;gap:9px}
-  .brand-seal{width:28px;height:28px}
-  .brand-name{font-size:.68rem;letter-spacing:.18em}
+  /* No celular, o estandarte exibe SÓ os links — sem selo nem nome */
+  nav{padding:7px 10px;border-radius:999px}
+  .brand{display:none}
   .nav-links{gap:6px;flex-wrap:wrap;justify-content:center}
   .nav-links li{gap:6px}
   .nav-links li:not(:last-child)::after{display:none}
   .nav-links a{padding:6px 11px;font-size:.55rem;letter-spacing:.1em}
-  section{scroll-margin-top:132px;padding:64px 0 72px}
+  section{scroll-margin-top:72px;padding:64px 0 72px}
 
   .lead{text-align:left;text-align-last:auto}
   .lead::first-letter{font-size:2.6em;padding:4px 9px 0 0}
@@ -686,25 +613,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .gate{padding:14px}
   .gate-choice{grid-template-columns:42px 1fr;gap:11px;padding:9px 11px}
   .gate-realm{display:none}
-
-  /* Âncora: fixa na LATERAL DIREITA, CENTRADA VERTICALMENTE.
-     Assim ela nunca colide nem desalinha com o estandarte,
-     esteja ele em cima ou embaixo. Respeita o "notch" do iPhone. */
-  .dock-btn,.dock-btn.pos-top,.dock-btn.pos-bottom{
-    top:50%;bottom:auto;
-    right:calc(8px + env(safe-area-inset-right,0px));
-    width:36px;height:36px;
-    transform:translateY(-50%);
-  }
-  .dock-btn.pos-bottom svg{transform:rotate(180deg)}
-  .dock-btn:hover{transform:translateY(-50%) scale(1.08)}
-  /* O painel abre para a esquerda da âncora, também centrado */
-  .dock-panel,.dock-panel.pos-top,.dock-panel.pos-bottom{
-    top:50%;bottom:auto;
-    right:calc(52px + env(safe-area-inset-right,0px));
-  }
-  .dock-panel{transform:translateY(-50%) translateX(8px) scale(.96)}
-  .dock-panel.open{transform:translateY(-50%)}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -731,20 +639,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <symbol id="sym-crown" viewBox="0 0 24 24">
       <path d="M3.5 8.5 L7.5 12 L12 5.5 L16.5 12 L20.5 8.5 L18.8 18.5 H5.2 Z"/>
     </symbol>
-    <symbol id="sym-dock-top" viewBox="0 0 24 24">
-      <rect x="3" y="3.5" width="18" height="4.5" rx="2.25"/>
-      <path d="M12 12 V20 M8.5 16.5 L12 20 L15.5 16.5"/>
-    </symbol>
-    <symbol id="sym-dock-bottom" viewBox="0 0 24 24">
-      <rect x="3" y="16" width="18" height="4.5" rx="2.25"/>
-      <path d="M12 12 V4 M8.5 7.5 L12 4 L15.5 7.5"/>
-    </symbol>
-    <symbol id="sym-dock-move" viewBox="0 0 24 24">
-      <path d="M4 7.5 H20 M7 4 L4 7.5 L7 11"/>
-      <path d="M20 16.5 H4 M17 13 L20 16.5 L17 20"/>
-    </symbol>
     <!-- Símbolos dos guardiões -->
-    <symbol id="sym-sovereign" viewBox="0 0 64 64">
+    <symbol id="sym-sovereign" viewBox="0 0 64 64"><!-- Luan — Guerreiro Soberano: espada coroada -->
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 11 L26 15 L32 7 L38 15 L42 11 L40.5 18.5 H23.5 Z"/>
         <path d="M32 18.5 V23"/>
@@ -752,14 +648,14 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M28.5 23 H35.5 L36 50 L32 58 L28 50 Z"/>
       </g>
     </symbol>
-    <symbol id="sym-scepter" viewBox="0 0 64 64">
+    <symbol id="sym-scepter" viewBox="0 0 64 64"><!-- Debora — A Imperatriz -->
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M29 58 L33 24"/>
         <circle cx="34" cy="16" r="6.5"/>
         <path d="M20 28 C22 19 26 13 32 9 M48 28 C46 19 42 13 36 9"/>
       </g>
     </symbol>
-    <symbol id="sym-world" viewBox="0 0 64 64">
+    <symbol id="sym-world" viewBox="0 0 64 64"><!-- Rayssa — A Criadora de Mundos -->
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="32" cy="36" r="16"/>
         <ellipse cx="32" cy="36" rx="7" ry="16"/>
@@ -768,7 +664,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M50 10 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6 Z"/>
       </g>
     </symbol>
-    <symbol id="sym-loom" viewBox="0 0 64 64">
+    <symbol id="sym-loom" viewBox="0 0 64 64"><!-- Nayara — A Tecelã do Destino -->
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M32 8 C27.5 18 27.5 30 32 40 C36.5 30 36.5 18 32 8 Z"/>
         <circle cx="32" cy="45" r="3.4"/>
@@ -778,20 +674,20 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M13 37 C23 30 41 30 51 37" opacity=".7"/>
       </g>
     </symbol>
-    <symbol id="sym-royalcrown" viewBox="0 0 64 64">
+    <symbol id="sym-royalcrown" viewBox="0 0 64 64"><!-- Luís — Rei Dourado -->
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M10 24 L21 34 L32 12 L43 34 L54 24 L49 46 H15 Z"/>
         <path d="M15 53 H49"/>
         <circle cx="32" cy="39" r="2.4"/>
       </g>
     </symbol>
-    <symbol id="sym-storm" viewBox="0 0 64 64">
+    <symbol id="sym-storm" viewBox="0 0 64 64"><!-- Bruno — Inverno Perpétuo -->
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 40 C15 40 12 33 17 29 C14 22 21 15 28 18 C31 11 42 10 46 17 C52 17 55 24 51 29 C54 33 51 40 44 40 Z"/>
         <path d="M33 44 L27 56 L34 54 L29 63"/>
       </g>
     </symbol>
-    <symbol id="sym-shield" viewBox="0 0 64 64">
+    <symbol id="sym-shield" viewBox="0 0 64 64"><!-- Guilherme — O Protetor -->
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M32 5 C41 9 50 10.5 55 10.5 C55 29 50 46 32 58 C14 46 9 29 9 10.5 C14 10.5 23 9 32 5 Z"/>
         <path d="M22 28 L32 36 L42 28"/>
@@ -829,7 +725,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M7 1.5 V12.5 M2 4.2 L12 9.8 M12 4.2 L2 9.8"/>
       </g>
     </symbol>
-    <symbol id="sym-wyvern" viewBox="0 0 40 22">
+    <symbol id="sym-wyvern" viewBox="0 0 40 22"><!-- Dragão planando -->
       <g fill="var(--ink)" stroke="none">
         <path d="M2 15 C8 11 15 10 21 12 C24 5 31 2 37 4 C34 8 29 10 25 13 C18 18 9 19 3 17 C2.3 16.6 2 15.8 2 15 Z"/>
         <path d="M37 4 L39.5 -1 L40 4.5 Z"/>
@@ -839,8 +735,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   </defs>
 </svg>
 
-<!-- ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE ============ -->
-<nav class="pos-top" id="nav" aria-label="Capítulos da crônica">
+<!-- ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE (fixo no topo) ============ -->
+<nav aria-label="Capítulos da crônica">
   <a class="brand" href="#inicio">
     <img class="brand-seal" src="simbolo.png" alt="Símbolo de Veldora Realms">
     <span class="brand-name">Veldora Realms</span>
@@ -852,20 +748,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <li><a href="#pacto">O Pacto</a></li>
   </ul>
 </nav>
-
-<!-- ============ BOTÃO-ÂNCORA + PAINEL DE POSIÇÃO ============ -->
-<button class="dock-btn pos-top" id="dockBtn" type="button" aria-label="Escolher posição do menu" aria-expanded="false" title="Posição do menu">
-  <svg aria-hidden="true"><use href="#sym-dock-move"/></svg>
-</button>
-<div class="dock-panel pos-top" id="dockPanel" role="menu" aria-label="Posição do menu">
-  <p class="dock-panel-label">Menu em</p>
-  <button class="dock-opt sel" data-pos="top" role="menuitem" type="button">
-    <svg aria-hidden="true"><use href="#sym-dock-top"/></svg> Em cima
-  </button>
-  <button class="dock-opt" data-pos="bottom" role="menuitem" type="button">
-    <svg aria-hidden="true"><use href="#sym-dock-bottom"/></svg> Embaixo
-  </button>
-</div>
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="inicio">
@@ -930,12 +812,14 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               fill="var(--ink-soft)" opacity=".75" text-anchor="middle"
               paint-order="stroke" stroke="var(--paper-2)" stroke-width="3">Baía do Encontro</text>
 
+            <!-- Rotas marítimas -->
             <g fill="none" stroke="var(--sea)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" opacity=".55">
               <path d="M462 372 C405 402 350 435 305 462"/>
               <path d="M332 548 C430 576 520 568 574 550"/>
               <path d="M876 312 C898 380 894 480 882 556"/>
             </g>
 
+            <!-- Navio que navega -->
             <g class="map-decor" transform="translate(400,430)">
               <path d="M-12 0 C-8 8 10 8 14 0 C4 3 -6 3 -12 0 Z" fill="var(--ink)"/>
               <path d="M0 0 V-16" stroke="var(--ink)" stroke-width="1.4"/>
@@ -950,6 +834,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path d="M0 -16 C8 -12 8 -5 0 -1 C2 -6 2 -11 0 -16 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1"/>
             </g>
 
+            <!-- Estrada do Pacto -->
             <path class="map-decor road" d="M225 236 C320 200 430 186 508 200 C586 214 700 192 802 224 C838 292 762 432 655 495"
               fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 12" opacity=".5"/>
             <path class="map-decor road" d="M225 236 C195 275 165 340 149 420"
@@ -1045,6 +930,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path class="land" fill="var(--c-yaryan)" d="M326 432 C322 414 338 400 361 397 C383 394 401 404 404 420 C407 434 393 445 371 448 C351 450 330 446 326 432 Z"/>
               <path class="land" fill="var(--c-yaryan)" d="M196 614 C193 594 212 580 240 577 C267 574 290 584 294 600 C297 614 281 626 253 629 C229 631 199 630 196 614 Z"/>
               <path class="land" fill="var(--c-yaryan)" d="M396 528 C394 513 406 503 423 501 C439 499 453 507 455 519 C457 531 446 541 429 543 C414 544 398 539 396 528 Z"/>
+              <!-- Fios do destino da Nayara (traço claro sobre o roxo escuro) -->
               <g fill="none" stroke="var(--c-yaryan-line)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1 6" opacity=".75">
                 <path d="M240 480 C280 452 330 448 372 436"/>
                 <path d="M250 500 C240 540 240 560 245 585"/>
@@ -1055,6 +941,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               </g>
               <text class="realm-name" x="278" y="508">Império Yaryan</text>
               <text class="realm-sub" x="278" y="527">O BERÇO DOS MUNDOS</text>
+              <!-- Portal com estrela pulsante -->
               <g class="map-decor" transform="translate(312,0)">
                 <path d="M0 548 V532 A8 8 0 0 1 16 532 V548" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-linecap="round"/>
                 <path d="M8 534 l1.8 4.6 -1.8 4.6 -1.8 -4.6 Z" fill="var(--c-yaryan-line)">
@@ -1062,6 +949,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 </path>
                 <path d="M13 539.5 l1.2 3.2 -1.2 3.2 -1.2 -3.2 Z" fill="#ffffff" opacity=".85"/>
               </g>
+              <!-- Mundos criados e fios-tecidos, em tons do roxo -->
               <g fill="var(--c-yaryan-line)" opacity=".8">
                 <path d="M238 476 l1.6 5 -1.6 5 -1.6 -5 Z"/>
                 <path d="M338 490 l1.6 5 -1.6 5 -1.6 -5 Z"/>
@@ -1112,12 +1000,14 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <ellipse cx="600" cy="515" rx="118" ry="38" fill="var(--c-snezhnaya)" opacity=".1"/>
             </g>
 
+            <!-- Ilha Perdida -->
             <g class="map-decor">
               <path d="M852 572 C856 552 878 542 900 546 C918 549 928 563 922 578 C916 592 893 598 872 594 C858 591 850 584 852 572 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4"/>
               <path d="M872 560 l14 14 M886 560 l-14 14" stroke="var(--seal)" stroke-width="2.2" stroke-linecap="round"/>
               <text class="map-label" x="884" y="612" font-family="EB Garamond,serif" font-style="italic" font-size="11" fill="var(--ink-soft)" text-anchor="middle">Ilha Perdida</text>
             </g>
 
+            <!-- Serpente marinha -->
             <g class="map-decor" transform="translate(575,662)">
               <path d="M0 0 C5 -12 15 -12 20 0 C25 -12 35 -12 40 0 C45 -12 55 -12 60 0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
               <path d="M60 0 C64 -8 66 -14 63 -20" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
@@ -1125,6 +1015,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <path d="M60 -25 L57 -31 M66 -25 L69 -31" stroke="var(--ink)" stroke-width="1.3" stroke-linecap="round"/>
             </g>
 
+            <!-- Capitais / nós -->
             <g class="map-decor" id="mapNodes">
               <circle class="node-ring" data-realm="supremo" cx="225" cy="236" r="9" fill="none" stroke="var(--c-supremo)" stroke-width="2"/>
               <circle class="node-ring" data-realm="mirigumi" cx="508" cy="200" r="9" fill="none" stroke="var(--c-mirigumi)" stroke-width="2"/>
@@ -1622,72 +1513,18 @@ const REALMS = {
   }
 };
 
+/* Pessoa → reino (a coroa é de uma PESSOA; reinos podem ter dois guardiões) */
 const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", luis:"ascar", bruno:"snezhnaya", guilherme:"escarlate"};
 
 const panel = document.getElementById('realmPanel');
 let currentRealm = 'supremo';
 
 /* ================================================================
-   POSIÇÃO DO MENU — em cima ou embaixo
-================================================================ */
-const POS_KEY = 'veldora_navpos';
-const nav = document.getElementById('nav');
-const dockBtn = document.getElementById('dockBtn');
-const dockPanel = document.getElementById('dockPanel');
-const dockOpts = dockPanel.querySelectorAll('.dock-opt');
-
-function applyNavPos(pos, animate){
-  if(!animate){
-    nav.style.transition = 'none';
-    dockBtn.style.transition = 'none';
-    dockPanel.style.transition = 'none';
-  }
-  nav.classList.toggle('pos-top', pos !== 'bottom');
-  nav.classList.toggle('pos-bottom', pos === 'bottom');
-  dockBtn.classList.toggle('pos-top', pos !== 'bottom');
-  dockBtn.classList.toggle('pos-bottom', pos === 'bottom');
-  dockPanel.classList.toggle('pos-top', pos !== 'bottom');
-  dockPanel.classList.toggle('pos-bottom', pos === 'bottom');
-  dockOpts.forEach(o=>o.classList.toggle('sel', o.dataset.pos === (pos === 'bottom' ? 'bottom' : 'top')));
-  if(!animate){
-    void nav.offsetHeight;
-    nav.style.transition = '';
-    dockBtn.style.transition = '';
-    dockPanel.style.transition = '';
-  }
-}
-
-function setNavPos(pos){
-  try { localStorage.setItem(POS_KEY, pos); } catch(e){}
-  applyNavPos(pos, true);
-}
-
-dockBtn.addEventListener('click', ()=>{
-  const open = dockPanel.classList.toggle('open');
-  dockBtn.setAttribute('aria-expanded', open);
-});
-document.addEventListener('click', e=>{
-  if(!dockPanel.classList.contains('open')) return;
-  if(e.target.closest('#dockPanel') || e.target.closest('#dockBtn')) return;
-  dockPanel.classList.remove('open');
-  dockBtn.setAttribute('aria-expanded', 'false');
-});
-dockOpts.forEach(opt=>{
-  opt.addEventListener('click', ()=>{
-    setNavPos(opt.dataset.pos);
-    dockPanel.classList.remove('open');
-    dockBtn.setAttribute('aria-expanded', 'false');
-  });
-});
-document.addEventListener('keydown', e=>{
-  if(e.key==='Escape' && dockPanel.classList.contains('open')){
-    dockPanel.classList.remove('open');
-    dockBtn.setAttribute('aria-expanded', 'false');
-  }
-});
-
-/* ================================================================
    SISTEMA DE FAVORITO — a coroa do Códice
+   · Apenas UMA pessoa pode ser favorita.
+   · Na primeira visita, o portal pergunta de quem é a coroa.
+   · A escolha fica gravada (localStorage): toda visita seguinte
+     abre já no reino do coroado — mapa, painel E carta visível.
 ================================================================ */
 const FAV_KEY = 'veldora_fav';
 const getFav = () => { try { return localStorage.getItem(FAV_KEY); } catch(e){ return null; } };
@@ -1706,6 +1543,7 @@ function applyFav(personId){
   });
 }
 
+/* Centraliza o carrossel de cartas na carta coroada (tablet/celular). */
 function revealFavCard(behavior){
   const fav = getFav();
   if(!fav) return;
@@ -1767,6 +1605,7 @@ document.querySelectorAll('#worldMap .realm').forEach(g=>{
   });
 });
 
+/* "Contemplar a carta" — leva ao carrossel e destaca a carta coroada (ou a primeira do reino) */
 document.addEventListener('click', e=>{
   const link = e.target.closest('.to-card');
   if(!link) return;
@@ -1804,7 +1643,7 @@ document.querySelectorAll('.card .fav-btn').forEach(btn=>{
     e.stopPropagation();
     const personId = btn.closest('.card').dataset.person;
     const prev = getFav();
-    const next = (prev === personId) ? null : personId;
+    const next = (prev === personId) ? null : personId;   // só um favorito por vez
     setFav(next);
     applyFav(next);
     if(next) revealFavCard('smooth');
@@ -1898,7 +1737,7 @@ document.querySelectorAll('section[id]').forEach(s=>sectionObs.observe(s));
   }).observe(canvas.parentElement);
 })();
 
-/* Respeitar "reduzir animações" */
+/* Respeitar "reduzir animações": desligar também as animações nativas do SVG */
 if(matchMedia('(prefers-reduced-motion:reduce)').matches){
   document.querySelectorAll('animate, animateMotion').forEach(a=>a.remove());
 }
@@ -1907,10 +1746,6 @@ if(matchMedia('(prefers-reduced-motion:reduce)').matches){
 document.addEventListener('selectstart', e=>e.preventDefault());
 
 /* ============ INICIALIZAÇÃO ============ */
-let savedPos = 'top';
-try { savedPos = localStorage.getItem(POS_KEY) || 'top'; } catch(e){}
-applyNavPos(savedPos === 'bottom' ? 'bottom' : 'top', false);
-
 const savedFav = getFav();
 if(savedFav && PERSON_REALM[savedFav]){
   applyFav(savedFav);
