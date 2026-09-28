@@ -464,6 +464,17 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .road{animation:roadmove 26s linear infinite}
 @keyframes roadmove{to{stroke-dashoffset:-260}}
 
+/* 🛡️ NOVO — ============ BRASÃO DO REINO ============ */
+.panel-crest{
+  display:block;width:92px;height:92px;object-fit:contain;
+  margin:0 auto 14px;
+  border:1.5px solid var(--accent,var(--gold));
+  border-radius:50%;
+  background:var(--paper);
+  padding:7px;
+  box-shadow:0 8px 22px -8px rgba(0,0,0,.6), inset 0 0 18px rgba(201,162,74,.08);
+}
+
 /* Painel do reino */
 .panel{
   position:sticky;top:100px;
@@ -615,6 +626,15 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .card-back .feats{margin-top:1px}
 .card-back .feats li{font-size:.6rem;margin-bottom:5px;padding-left:12px}
 .card-back .feats li::before{background:#b98a2e;top:.42em;width:4px;height:4px}
+
+/* === Ajuste p/ 5 atributos no verso das cartas (desktop) === */
+.card-back{padding:9px 8px}
+.card-lema{font-size:.64rem}
+.card-back .orn{width:64px;margin:4px auto}
+.card-bio{font-size:.58rem;line-height:1.3}
+.stats{margin:5px 0;gap:1px}
+.stat{font-size:.52rem}
+.card-back .feats li{margin-bottom:3px;font-size:.56rem}
 
 .card.flash{animation:cardflash 1.8s ease}
 @keyframes cardflash{
@@ -1145,7 +1165,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6 L8 11 L13 6"/></svg>
   </a>
 </header>
-
 <main>
 <!-- ============ CAPÍTULO I — O MAPA ============ -->
 <section id="mapa">
@@ -1460,7 +1479,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     </div>
   </div>
 </section>
-
 <!-- ============ CAPÍTULO II — OS GUARDIÕES ============ -->
 <section id="guardioes">
   <div class="wrap">
@@ -1492,10 +1510,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
             <p class="card-bio">A espada fala por ele. Onde o Dragão Soberano aponta, a mesa inteira segue — e quando ele silencia, é porque o jogo já está ganho.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
             <ul class="feats">
               <li>Doze vitórias seguidas no competitivo.</li>
@@ -1525,10 +1544,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
             <p class="card-bio">Exploradora incansável, caçadora de troféus e de segredos que os desenvolvedores esconderam — e se arrependeram de não enterrar mais fundo.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
             <ul class="feats">
               <li>Catorze troféus de platina.</li>
@@ -1558,10 +1578,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
             <p class="card-bio">Planando sobre o Yaryan, o Corvo observa tudo antes de qualquer um: cada rota do inimigo, cada emboscada, cada segredo. Chega sempre primeiro — e sabendo demais.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
             <ul class="feats">
               <li>Vê a jogada do inimigo antes dele.</li>
@@ -1591,10 +1612,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
             <p class="card-bio">A lâmina do Yaryan: corta o jogo no ponto exato, na hora exata. Onde outros forçam, ela fende — e o que ela decide, o destino executa.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
               <li>Corta o jogo exatamente onde dói.</li>
@@ -1624,10 +1646,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
             <p class="card-bio">A fortuna viva da mesa: onde há tesouro, ele chega primeiro — e sai com as mãos brilhando e o cofre do Ascar mais pesado.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
               <li>Recorde de riqueza da mesa — três temporadas.</li>
@@ -1657,10 +1680,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
             <p class="card-bio">Primeiro a saltar do navio, último a pedir recuo: onde o corno de guerra soa, os bravos seguem. O perigo não o intimida — ele convoca.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
               <li>Nunca recuou — nem quando devia.</li>
@@ -1690,10 +1714,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
             <p class="card-bio">O senhor das matas verdes de Karhal: conhece cada trilha pelo nome, cada clareira de cor. Onde todos se perdem entre as árvores, ele caminha de olhos fechados — e chega primeiro.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
               <li>Atravessou Karhal de ponta a ponta, sem mapa.</li>
@@ -1723,10 +1748,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
             <p class="card-bio">Vem das neves eternas de Snezhnaya: onde ele chega, o inverno fica — gela a partida, congela o avanço inimigo e some na nevasca antes de você entender o que houve.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
               <li>Uma tempestade perfeita: 1 contra 5 — venceu.</li>
@@ -1756,10 +1782,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
             <p class="card-bio">Primeiro a entrar, último a sair: o escudo da mesa. Se alguém vai cair, cai ele — e mesmo assim volta de pé na próxima rodada.</p>
             <div class="stats">
-              <div class="stat"><span>Vigor</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Tática</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Café</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
             </div>
             <ul class="feats">
               <li>Tanque por vocação: puxa a atenção e segura.</li>
@@ -1773,7 +1800,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <p class="fan-hint">Arrastai para os lados para ver os guardiões · tocai numa carta para virá-la · na coroa, para favorecê-la.</p>
   </div>
 </section>
-
 <!-- ============ CAPÍTULO III — A CRÔNICA ============ -->
 <section id="cronica">
   <div class="wrap">
@@ -2011,6 +2037,17 @@ mapOverlay.addEventListener('load', syncMapOverlay);
 mapOverlay.addEventListener('error', syncMapOverlay);
 syncMapOverlay();
 
+/* 🛡️ NOVO — ================================================================
+   BRASÕES DOS REINOS (bra + 3 primeiras letras do nome)
+   · Aparecem no topo da ficha do reino, em medalhão circular.
+   · Se um PNG faltar na pasta, o brasão some e a ficha segue normal.
+================================================================ */
+const CRESTS = {
+  supremo:"bralua.png", mirigumi:"bradeb.png", yaryan:"braray.png",
+  ascar:"bralui.png", bravos:"brafer.png", karhal:"bracri.png",
+  snezhnaya:"brabru.png", escarlate:"bragui.png"
+};
+
 /* ================================================================
    SISTEMA DE FAVORITO — a coroa do Códice
    · Apenas UMA pessoa pode ser favorita.
@@ -2056,6 +2093,7 @@ function renderPanel(id){
   const multi = heroes.length > 1;
   panel.style.setProperty('--accent', r.accent);
   panel.querySelector('.panel-body').innerHTML = `
+    <img class="panel-crest" src="${CRESTS[id]}" alt="Brasão de ${r.name}" onerror="this.remove()">
     <p class="panel-kicker">${r.kicker}</p>
     <h3>${r.name}</h3>
     <p class="epithet">${r.epithet}</p>
@@ -2211,10 +2249,8 @@ document.addEventListener('keydown', e=>{
 
 /* ================================================================
    PORTAL — escolha da coroa
-   CORREÇÃO: ao escolher um guardião no portal, a página agora
-   DESLIZA até o mapa do reino escolhido — antes ela mudava o
-   estado por baixo e ficava parada onde estava, parecendo que
-   "nada aconteceu" / que a tela não saía dali.
+   Ao escolher um guardião no portal, a página DESLIZA até o mapa
+   do reino escolhido, mostrando a mudança acontecer.
 ================================================================ */
 const gate = document.getElementById('gate');
 function openGate(){
