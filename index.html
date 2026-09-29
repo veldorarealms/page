@@ -10,6 +10,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<!-- === PRÉVIA AO COMPARTILHAR (Discord/WhatsApp) ===
+     Quando hospedar, troque content="simbolo.png" pelo endereço
+     completo da imagem (ex.: https://seusite.com/simbolo.png)
+     para a prévia funcionar em todos os apps. -->
+<meta property="og:title" content="Veldora Realms — Crônica dos Reinos">
+<meta property="og:description" content="A crônica dos reinos e dos amigos que os guardam: oito territórios, nove guardiões e um só pacto.">
+<meta property="og:image" content="simbolo.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#c9a24a">
 <style>
 /* ============ FUNDAÇÃO — TEMA NOTURNO (variáveis trocáveis p/ modo claro) ============ */
 :root{
@@ -760,6 +769,39 @@ footer{
 footer .final{font-style:italic;font-size:1.15rem;max-width:520px;margin:0 auto}
 footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
 
+/* ============ EXTRAS ÚTEIS ============ */
+/* Botão voltar ao topo */
+.to-top{
+  position:fixed;left:14px;bottom:14px;z-index:1500;
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(201,162,74,.5);
+  background:linear-gradient(180deg, var(--paper-2), var(--paper));
+  color:var(--gold);cursor:pointer;padding:0;
+  display:grid;place-items:center;
+  box-shadow:0 10px 26px -10px rgba(0,0,0,.6);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  opacity:0;pointer-events:none;transform:translateY(8px);
+  transition:opacity .3s ease,transform .3s ease,box-shadow .3s ease;
+}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.to-top:hover{transform:translateY(-2px);box-shadow:0 0 16px rgba(201,162,74,.4)}
+
+/* Resultado do Oráculo da Mesa */
+.oracle-out{
+  display:none;margin:2px 0 8px;padding:9px 11px;border-radius:12px;
+  background:var(--paper);border:1px dashed var(--gold);
+  font-style:italic;font-size:.9rem;text-align:center;
+}
+.oracle-out.show{display:block}
+.oracle-out b{font-family:var(--font-med);font-style:normal;color:var(--gold)}
+
+/* Nota de reinos explorados (painel) */
+.visited-note{
+  text-align:center;margin-top:14px;font-family:var(--disp);
+  font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+}
+
 /* ============ REVEAL ============ */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease;transition-delay:var(--d,0s)}
 .reveal.visible{opacity:1;transform:none}
@@ -1058,6 +1100,12 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <span>Discord<small>Entrar no portal do servidor</small></span>
   </a>
 
+  <button class="cfg-item" id="cfgOracle" type="button" role="menuitem">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.2" cy="8.2" r="1.15" fill="currentColor" stroke="none"/><circle cx="15.8" cy="15.8" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg>
+    <span>O Oráculo da Mesa<small>Sorteia o jogo de hoje</small></span>
+  </button>
+  <p class="oracle-out" id="oracleOut" aria-live="polite"></p>
+
   <p class="cfg-sec">Ir a um reino</p>
   <div class="cfg-realms" id="cfgRealms">
     <button class="cfg-realm" data-realm="supremo" style="--r:var(--c-supremo)" type="button" aria-label="Reino Drag Zakharys" title="Drag Zakharys"><svg aria-hidden="true"><use href="#sym-sovereign"/></svg></button>
@@ -1111,7 +1159,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-crown"/></svg></span>
         <div>
           <b>As Cartas</b>
-          <p>Tocai numa carta para virá-la: do outro lado há o lema, a história e os feitos do guardião. No celular, arrastai para os lados para ver todos.</p>
+          <p>Tocai numa carta para virá-la: do outro lado há o lema, a história e os atributos do guardião. No celular, arrastai para os lados para ver todos.</p>
         </div>
       </li>
       <li>
@@ -1125,7 +1173,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-gear"/></svg></span>
         <div>
           <b>As Configurações</b>
-          <p>Aqui moram a troca de coroa, o portal do Discord, os atalhos dos reinos e as preferências da crônica. Tudo ao alcance de um toque.</p>
+          <p>Aqui moram a troca de coroa, o portal do Discord, o Oráculo da Mesa, os atalhos dos reinos e as preferências da crônica.</p>
         </div>
       </li>
       <li>
@@ -1183,9 +1231,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <div class="reveal">
         <div class="map-wrap">
           <div class="map-stage">
-            <!-- Mapa base da crônica (fica por baixo; se o mapa.png
-                 for opaco, ele fica coberto — mas continua sendo o
-                 fallback caso a imagem não carregue) -->
             <svg id="worldMap" viewBox="0 0 1000 720" role="img" aria-label="Mapa dos reinos de Veldora">
               <defs>
                 <pattern id="seawaves" width="74" height="28" patternUnits="userSpaceOnUse">
@@ -1442,30 +1487,16 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <rect x="8" y="8" width="984" height="704" fill="none" stroke="var(--ink)" stroke-width="1.4" pointer-events="none"/>
             </svg>
 
-            <!-- ===== O MAPA DE VOCÊS POR CIMA =====
-                 mapa.png (mesma pasta). Com fundo transparente,
-                 soma com o mapa da crônica; opaco, o cobre. -->
             <img class="map-overlay" id="mapOverlay" src="mapa.png" alt="">
 
-            <!-- ===== PONTOS CLICÁVEIS SOBRE O MAPA DE VOCÊS =====
-                 Posições calibradas à mão. Para refinar, edite
-                 --x / --y (em % da largura/altura do mapa). -->
             <div class="map-hotspots" id="mapHotspots">
-              <!-- Drag Zakharys — noroeste -->
               <button class="hs" data-realm="supremo" type="button" style="--x:21%;--y:24%" aria-label="Reino Drag Zakharys, de Luan Dhony" title="Reino Drag Zakharys"></button>
-              <!-- Mirigumi — norte-centro -->
               <button class="hs" data-realm="mirigumi" type="button" style="--x:52%;--y:24%" aria-label="Império Mirigumi, de Debora Vezetiv" title="Império Mirigumi"></button>
-              <!-- Ascar — nordeste -->
               <button class="hs" data-realm="ascar" type="button" style="--x:83%;--y:23%" aria-label="Deserto Ascar, de Luís Augusto" title="Deserto Ascar"></button>
-              <!-- Budapeste — leste -->
               <button class="hs" data-realm="bravos" type="button" style="--x:84%;--y:50%" aria-label="Arquipélago Budapeste, de Fernando Fernandes" title="Arquipélago Budapeste"></button>
-              <!-- Karhal — sudeste -->
               <button class="hs" data-realm="karhal" type="button" style="--x:84%;--y:73%" aria-label="Floresta de Karhal, de Cristiano Ronaldo" title="Floresta de Karhal"></button>
-              <!-- Fortaleza Escarlate — oeste -->
               <button class="hs" data-realm="escarlate" type="button" style="--x:14%;--y:47%" aria-label="Fortaleza Escarlate, de Guilherme Morais" title="Fortaleza Escarlate"></button>
-              <!-- Yaryan — sudoeste -->
               <button class="hs" data-realm="yaryan" type="button" style="--x:28%;--y:72%" aria-label="Império Yaryan, de Rayssa Vitoria e Nayara Hostapiuk" title="Império Yaryan"></button>
-              <!-- Snezhnaya — centro-sul -->
               <button class="hs" data-realm="snezhnaya" type="button" style="--x:53%;--y:69%" aria-label="Reino Snezhnaya, de Bruno Martins" title="Reino Snezhnaya"></button>
             </div>
           </div>
@@ -1514,14 +1545,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
               <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
-            <ul class="feats">
-              <li>Doze vitórias seguidas no competitivo.</li>
-              <li>Chamou o rush com 0,8s de antecedência.</li>
-              <li>Nunca perdeu um 1v1 — segundo ele.</li>
-            </ul>
           </div>
         </div></div>
       </div>
@@ -1551,11 +1577,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
-            <ul class="feats">
-              <li>Catorze troféus de platina.</li>
-              <li>Encontra baú secreto por cheiro.</li>
-              <li>999 de cada recurso, “por garantia”.</li>
-            </ul>
           </div>
         </div></div>
       </div>
@@ -1585,11 +1606,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
             </div>
-            <ul class="feats">
-              <li>Vê a jogada do inimigo antes dele.</li>
-              <li>Cem dias no hardcore; caiu no 101, rindo.</li>
-              <li>Sabia da traição antes de acontecer.</li>
-            </ul>
           </div>
         </div></div>
       </div>
@@ -1619,11 +1635,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
-            <ul class="feats">
-              <li>Corta o jogo exatamente onde dói.</li>
-              <li>Costurou a aliança entre os oito reinos.</li>
-              <li>A última coisa que o boss viu.</li>
-            </ul>
           </div>
         </div></div>
       </div>
@@ -1653,11 +1664,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
               <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
-            <ul class="feats">
-              <li>Recorde de riqueza da mesa — três temporadas.</li>
-              <li>Nunca saiu de um saque de mãos vazias.</li>
-              <li>Rei é apelido; o ouro é inventário.</li>
-            </ul>
           </div>
         </div></div>
       </div>
@@ -1687,11 +1693,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
             </div>
-            <ul class="feats">
-              <li>Nunca recuou — nem quando devia.</li>
-              <li>Primeiro a entrar na jaula do boss.</li>
-              <li>Onde outros veem parede, ele vê porta.</li>
-            </ul>
           </div>
         </div></div>
       </div>
@@ -1721,11 +1722,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
-            <ul class="feats">
-              <li>Atravessou Karhal de ponta a ponta, sem mapa.</li>
-              <li>Encontrou três clareiras que ninguém mapeia.</li>
-              <li>Um “SIUU” que ecoa mata afora.</li>
-            </ul>
           </div>
         </div></div>
       </div>
@@ -1755,11 +1751,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
             </div>
-            <ul class="feats">
-              <li>Uma tempestade perfeita: 1 contra 5 — venceu.</li>
-              <li>Desaparece na neve; reaparece nas costas.</li>
-              <li>Quando ele loga, o lobby inteiro esfria.</li>
-            </ul>
           </div>
         </div></div>
       </div>
@@ -1789,11 +1780,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
             </div>
-            <ul class="feats">
-              <li>Tanque por vocação: puxa a atenção e segura.</li>
-              <li>Carregou aliado desmaiado por três mapas.</li>
-              <li>“Atrás de mim.” — e era verdade.</li>
-            </ul>
           </div>
         </div></div>
       </div>
@@ -1863,6 +1849,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   <p class="fine">Crônica mantida pelos Guardiões · anno primo pacti</p>
 </footer>
 
+<!-- ============ BOTÃO: VOLTAR AO TOPO ============ -->
+<button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19 V5 M5 12 L12 5 L19 12"/></svg>
+</button>
+
 <!-- ============ PORTAL DA PRIMEIRA VISITA ============ -->
 <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle" hidden>
   <div class="gate-box">
@@ -1928,10 +1919,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 <script>
 /* ================================================================
    VELDORA REALMS — dados dos reinos e guardiões
-   (feitos e lemas são fictícios: edite à vontade aqui)
-   Discord: troque o link do <a id="cfgDiscord"> no HTML acima.
 ================================================================ */
-const DISCORD_URL = 'https://discord.gg/2wx46naKxv'; /* espelho do link do HTML */
+const DISCORD_URL = 'https://discord.gg/2wx46naKxv';
 
 const REALMS = {
   supremo: {
@@ -1987,7 +1976,7 @@ const REALMS = {
   karhal: {
     kicker:"O Bosque Verde", name:"Floresta de Karhal", epithet:"A mata verde do sul",
     motto:"As copas ondulam como dunas — e eu as domo", accent:"#4caf6d",
-    today:["copas ondulando ao vento","clareiras banhadas de sol","trilhas que o Mestre conhece de cor"],
+    today:["copas ondulando ao vento","clareiras banhadas de sol","trilhas que o Coração conhece de cor"],
     desc:"Uma floresta que desafia toda regra: do alto, as copas ondulam como dunas verdes, trilhas fogem de mapas e as sombras dançam. Só um homem as domina — e a mata obedece.",
     heroes:[{id:"cristiano", nick:"Cristiano Ronaldo", title:"Coração da Floresta", symbol:"sym-sunwave",
       bio:"O senhor das matas verdes de Karhal: conhece cada trilha pelo nome, cada clareira de cor.",
@@ -2013,7 +2002,6 @@ const REALMS = {
   }
 };
 
-/* Pessoa → reino (a coroa é de uma PESSOA; reinos podem ter dois guardiões) */
 const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", luis:"ascar", fernando:"bravos", cristiano:"karhal", bruno:"snezhnaya", guilherme:"escarlate"};
 
 const panel = document.getElementById('realmPanel');
@@ -2021,11 +2009,6 @@ let currentRealm = 'supremo';
 
 /* ================================================================
    O MAPA DE VOCÊS (mapa.png) + PONTOS CLICÁVEIS
-   · A imagem fica por cima do mapa da crônica.
-   · Os .hs são botões invisíveis sobre o desenho de vocês;
-     clicar neles abre a mesma ficha do reino.
-   · Se mapa.png não carregar, a imagem e os pontos saem de
-     cena e o mapa SVG original volta a responder sozinho.
 ================================================================ */
 const mapOverlay = document.getElementById('mapOverlay');
 const mapHotspots = document.getElementById('mapHotspots');
@@ -2039,10 +2022,8 @@ mapOverlay.addEventListener('load', syncMapOverlay);
 mapOverlay.addEventListener('error', syncMapOverlay);
 syncMapOverlay();
 
-/* 🛡️ ================================================================
+/* ================================================================
    BRASÕES DOS REINOS (bra + 3 primeiras letras do nome)
-   · Aparecem no topo da ficha do reino, em medalhão circular.
-   · Se um PNG faltar na pasta, o brasão some e a ficha segue normal.
 ================================================================ */
 const CRESTS = {
   supremo:"bralua.png", mirigumi:"bradeb.png", yaryan:"braray.png",
@@ -2051,11 +2032,41 @@ const CRESTS = {
 };
 
 /* ================================================================
+   EXTRAS ÚTEIS — Oráculo, reinos explorados, voltar ao topo
+================================================================ */
+/* 1) O ORÁCULO DA MESA — edite a lista à vontade: */
+const GAMES = [
+  "Valorant","Minecraft","CS2","Sea of Thieves","Lethal Company",
+  "Terraria","Rocket League","Among Us","GTA Online","Palworld",
+  "Rust","ARK","Helldivers 2","Fortnite"
+];
+document.getElementById('cfgOracle').addEventListener('click', ()=>{
+  const out = document.getElementById('oracleOut');
+  const pick = GAMES[Math.floor(Math.random()*GAMES.length)];
+  out.innerHTML = `O Oráculo aponta: <b>${pick}</b>`;
+  out.classList.add('show');
+});
+
+/* 2) REINOS EXPLORADOS (gravado no aparelho) */
+const VISITED_KEY = 'veldora_visited';
+const getVisited = () => { try { return JSON.parse(localStorage.getItem(VISITED_KEY)) || []; } catch(e){ return []; } };
+const visitedCount = () => getVisited().length;
+function markVisited(id){
+  try{
+    const v = getVisited();
+    if(!v.includes(id)){ v.push(id); localStorage.setItem(VISITED_KEY, JSON.stringify(v)); }
+  }catch(e){}
+}
+
+/* 3) VOLTAR AO TOPO */
+const toTopBtn = document.getElementById('toTop');
+addEventListener('scroll', ()=>{
+  toTopBtn.classList.toggle('show', scrollY > 600);
+}, {passive:true});
+toTopBtn.addEventListener('click', ()=>scrollTo({top:0, behavior:'smooth'}));
+
+/* ================================================================
    SISTEMA DE FAVORITO — a coroa do Códice
-   · Apenas UMA pessoa pode ser favorita.
-   · Na primeira visita, o portal pergunta de quem é a coroa.
-   · A escolha fica gravada (localStorage): toda visita seguinte
-     abre já no reino do coroado — mapa, painel E carta visível.
 ================================================================ */
 const FAV_KEY = 'veldora_fav';
 const getFav = () => { try { return localStorage.getItem(FAV_KEY); } catch(e){ return null; } };
@@ -2118,11 +2129,13 @@ function renderPanel(id){
       <p class="feats-title">${multi ? 'Feitos de ' + h.nick.split(' ')[0] : 'Feitos registrados'}</p>
       <ul class="feats">${h.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
     `).join('')}
+    <p class="visited-note">Reinos explorados: ${visitedCount()} de 8</p>
     <a class="to-card" href="#guardioes" data-card="${id}">${multi ? 'Contemplar as cartas do reino' : 'Contemplar a carta do guardião'}</a>`;
 }
 
 function selectRealm(id){
   currentRealm = id;
+  markVisited(id);
   document.querySelectorAll('#worldMap .realm').forEach(g=>g.classList.toggle('active', g.dataset.realm===id));
   document.querySelectorAll('#mapNodes .node-ring').forEach(n=>n.classList.toggle('on', n.dataset.realm===id));
   document.querySelectorAll('#mapHotspots .hs').forEach(h=>h.classList.toggle('on', h.dataset.realm===id));
@@ -2139,7 +2152,6 @@ document.querySelectorAll('#worldMap .realm').forEach(g=>{
   });
 });
 
-/* Pontos clicáveis sobre o mapa de vocês */
 document.querySelectorAll('#mapHotspots .hs').forEach(hs=>{
   hs.addEventListener('click', ()=>selectRealm(hs.dataset.realm));
   hs.addEventListener('keydown', e=>{
@@ -2147,7 +2159,6 @@ document.querySelectorAll('#mapHotspots .hs').forEach(hs=>{
   });
 });
 
-/* Atalhos de reino dentro das configurações */
 document.querySelectorAll('#cfgRealms .cfg-realm').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     selectRealm(btn.dataset.realm);
@@ -2194,7 +2205,7 @@ document.querySelectorAll('.card .fav-btn').forEach(btn=>{
     e.stopPropagation();
     const personId = btn.closest('.card').dataset.person;
     const prev = getFav();
-    const next = (prev === personId) ? null : personId;   // só um favorito por vez
+    const next = (prev === personId) ? null : personId;
     setFav(next);
     applyFav(next);
     if(next) revealFavCard('smooth');
@@ -2251,8 +2262,6 @@ document.addEventListener('keydown', e=>{
 
 /* ================================================================
    PORTAL — escolha da coroa
-   Ao escolher um guardião no portal, a página DESLIZA até o mapa
-   do reino escolhido, mostrando a mudança acontecer.
 ================================================================ */
 const gate = document.getElementById('gate');
 function openGate(){
@@ -2276,7 +2285,6 @@ document.querySelectorAll('.gate-choice').forEach(btn=>{
     selectRealm(btn.dataset.realm);
     revealFavCard('auto');
     closeGate();
-    /* A tela "sai" do portal e vai para o mapa do reino escolhido */
     setTimeout(()=>{
       document.getElementById('mapa').scrollIntoView({behavior:'smooth'});
     }, 420);
@@ -2314,6 +2322,7 @@ function applyAnim(on){
   document.documentElement.classList.toggle('no-anim', !on);
   document.querySelectorAll('.anim-svg, animate, animateMotion').forEach(a=>{ a.style.display = on ? '' : 'none'; });
   document.querySelectorAll('.anim-soft').forEach(el=>{ el.style.opacity = on ? '' : '.45'; });
+  if(on) document.dispatchEvent(new Event('veldora:restart-dust'));
 }
 cfgAnim.addEventListener('click', ()=>{
   const next = !animationsOn;
@@ -2329,6 +2338,7 @@ document.head.appendChild(styleTag);
 /* — Redefinir dados — */
 document.getElementById('cfgReset').addEventListener('click', ()=>{
   try { localStorage.removeItem(FAV_KEY); } catch(e){}
+  try { localStorage.removeItem(VISITED_KEY); } catch(e){}
   applyFav(null);
   closeCfg();
   openGate();
@@ -2391,13 +2401,19 @@ document.querySelectorAll('section[id]').forEach(s=>sectionObs.observe(s));
     if(en.isIntersecting && !running){ running = true; requestAnimationFrame(tick); }
     else if(!en.isIntersecting){ running = false; }
   }).observe(canvas.parentElement);
+
+  /* religa a poeira quando as animações voltam sem sair do hero */
+  document.addEventListener('veldora:restart-dust', ()=>{
+    if(running) return;
+    const r = canvas.getBoundingClientRect();
+    if(r.bottom > 0 && r.top < innerHeight){ running = true; requestAnimationFrame(tick); }
+  });
 })();
 
 /* ============ ANTI-SELEÇÃO (reforço p/ Safari) ============ */
 document.addEventListener('selectstart', e=>e.preventDefault());
 
 /* ============ INICIALIZAÇÃO ============ */
-/* Preferências gravadas */
 let savedTheme = 'dark';
 try { savedTheme = localStorage.getItem(THEME_KEY) || 'dark'; } catch(e){}
 applyTheme(savedTheme === 'light');
