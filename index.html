@@ -10,17 +10,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-<!-- === PRÉVIA AO COMPARTILHAR (Discord/WhatsApp) ===
-     Quando hospedar, troque content="simbolo.png" pelo endereço
-     completo da imagem (ex.: https://seusite.com/simbolo.png)
-     para a prévia funcionar em todos os apps. -->
 <meta property="og:title" content="Veldora Realms — Crônica dos Reinos">
 <meta property="og:description" content="A crônica dos reinos e dos amigos que os guardam: oito territórios, nove guardiões e um só pacto.">
 <meta property="og:image" content="simbolo.png">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#c9a24a">
 <style>
-/* ============ FUNDAÇÃO — TEMA NOTURNO (variáveis trocáveis p/ modo claro) ============ */
+/* ============ FUNDAÇÃO — TEMA NOTURNO ============ */
 :root{
   --paper:#17110b;
   --paper-2:#221a11;
@@ -33,17 +29,16 @@
   --veil-a:rgba(12,9,6,.72);
   --veil-b:rgba(16,12,8,.78);
   --veil-c:rgba(8,6,4,.9);
-  /* === OS REINOS === */
-  --c-supremo:#f7f4ec;      /* Luan Dhony — branco */
-  --c-mirigumi:#e07aa0;     /* Debora Vezetiv — rosa */
-  --c-yaryan:#7a52a8;       /* Rayssa & Nayara — roxo médio */
-  --c-yaryan-deep:#2A0845;  /* o roxo oficial, nos detalhes */
-  --c-nyara:#b98fd6;        /* destaque claro das cartas do Yaryan */
-  --c-ascar:#f0c75e;        /* Luís Augusto — dourado */
-  --c-snezhnaya:#8ec5e8;    /* Bruno Martins — azul gelo */
-  --c-escarlate:#d94f3d;    /* Guilherme Morais — vermelho */
-  --c-bravos:#3fd4c9;       /* Fernando Fernandes — ciano */
-  --c-karhal:#4caf6d;       /* Cristiano Ronaldo — verde */
+  --c-supremo:#f7f4ec;
+  --c-mirigumi:#e07aa0;
+  --c-yaryan:#7a52a8;
+  --c-yaryan-deep:#2A0845;
+  --c-nyara:#b98fd6;
+  --c-ascar:#f0c75e;
+  --c-snezhnaya:#8ec5e8;
+  --c-escarlate:#d94f3d;
+  --c-bravos:#3fd4c9;
+  --c-karhal:#4caf6d;
   --sea:#5f8fa6;
   --line:rgba(234,217,181,.32);
   --line-soft:rgba(234,217,181,.16);
@@ -52,7 +47,7 @@
   --font-black:'UnifrakturMaguntia','EB Garamond',serif;
   --font-med:'MedievalSharp','EB Garamond',serif;
 }
-/* ============ MODO CLARO — pergaminho diurno ============ */
+/* ============ MODO CLARO ============ */
 :root[data-theme="light"]{
   --paper:#e8dcc0;
   --paper-2:#f2e8d0;
@@ -77,7 +72,10 @@ body{
   font-size:17px;
   line-height:1.65;
   overflow-x:hidden;
-  -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
   -webkit-touch-callout:none;
   -webkit-tap-highlight-color:transparent;
 }
@@ -87,20 +85,26 @@ a,.card,.realm,.scroll-hint,.to-card,.fav-btn,.gate-choice,.hs,.cfg-item{touch-a
 ::-webkit-scrollbar-track{background:var(--paper-3)}
 ::-webkit-scrollbar-thumb{background:var(--ink-soft);border:2px solid var(--paper-3);border-radius:6px}
 
-/* ============ FUNDO COM IMAGENS + VÉU ============
-   Deixe cllr.png (celular), pc.png (PC/notebook), simbolo.png
-   e mapa.png na mesma pasta deste HTML.
-   A altura é travada na viewport GRANDE (100lvh) para que a
-   imagem de fundo nunca redimensione quando a barra de endereço
-   do celular some/aparece ao rolar. */
+/* ============ LETRAS MAIORES (acessibilidade) ============ */
+html.big-text{
+  font-size:18px;
+}
+html.big-text body{
+  font-size:19px;
+}
+
+/* ============ FUNDO COM IMAGENS + VÉU ============ */
 .bg{
   position:fixed;
   top:0;left:0;width:100%;
-  height:100vh;   /* fallback p/ navegadores antigos */
-  height:100lvh;  /* viewport grande: imune à barra de endereço */
-  z-index:-1;pointer-events:none;
+  height:100vh;
+  height:100lvh;
+  z-index:-1;
+  pointer-events:none;
   background-image:url('cllr.png');
-  background-size:cover;background-position:center;background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
   background-color:var(--paper);
   transition:background-color .4s ease;
 }
@@ -108,43 +112,53 @@ a,.card,.realm,.scroll-hint,.to-card,.fav-btn,.gate-choice,.hs,.cfg-item{touch-a
   .bg{background-image:url('pc.png')}
 }
 .bg::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,
-    var(--veil-a) 0%,
-    var(--veil-b) 50%,
-    var(--veil-c) 100%);
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,var(--veil-a) 0%,var(--veil-b) 50%,var(--veil-c) 100%);
   transition:background .4s ease;
 }
-
 body::before{
-  content:"";position:fixed;inset:0;z-index:2000;pointer-events:none;
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity:.14;mix-blend-mode:overlay;
+  opacity:.14;
+  mix-blend-mode:overlay;
 }
 body::after{
-  content:"";position:fixed;inset:0;z-index:1999;pointer-events:none;
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:1999;
+  pointer-events:none;
   box-shadow:inset 0 0 180px rgba(0,0,0,.6);
 }
-
 a{color:inherit}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
 
-/* ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE (só desktop) ============ */
+/* ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE ============ */
 nav{
-  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
   z-index:1400;
-  width:max-content;max-width:calc(100vw - 110px);
-  display:flex;align-items:center;gap:18px;
+  width:max-content;
+  max-width:calc(100vw - 110px);
+  display:flex;
+  align-items:center;
+  gap:18px;
   padding:9px 20px 9px 14px;
-  background:linear-gradient(180deg, var(--paper-2), var(--paper));
+  background:linear-gradient(180deg,var(--paper-2),var(--paper));
   border:1px solid rgba(201,162,74,.5);
   border-radius:999px;
-  box-shadow:
-    0 12px 34px -12px rgba(0,0,0,.55),
-    inset 0 1px 0 var(--line-soft);
-  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  box-shadow:0 12px 34px -12px rgba(0,0,0,.55),inset 0 1px 0 var(--line-soft);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
 }
-
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-seal{
   width:34px;height:34px;flex:0 0 auto;object-fit:contain;
@@ -152,7 +166,10 @@ nav{
   transition:transform .35s ease;
 }
 .brand:hover .brand-seal{transform:rotate(-8deg) scale(1.08)}
-.brand-name{font-family:var(--disp);font-size:.78rem;letter-spacing:.2em;font-weight:600;text-transform:uppercase;white-space:nowrap}
+.brand-name{
+  font-family:var(--disp);font-size:.78rem;letter-spacing:.2em;
+  font-weight:600;text-transform:uppercase;white-space:nowrap;
+}
 .nav-links{display:flex;align-items:center;gap:8px;list-style:none}
 .nav-links li{display:flex;align-items:center;gap:8px}
 .nav-links li:not(:last-child)::after{
@@ -162,8 +179,7 @@ nav{
 .nav-links a{
   font-family:var(--disp);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
   text-decoration:none;color:var(--ink-soft);white-space:nowrap;
-  padding:8px 15px;border-radius:999px;
-  border:1px solid var(--line);
+  padding:8px 15px;border-radius:999px;border:1px solid var(--line);
   background:var(--paper);
   transition:color .3s,border-color .3s,background .3s,box-shadow .3s,transform .25s;
 }
@@ -178,7 +194,6 @@ nav{
   border-color:#e3bd6a;
   box-shadow:0 0 16px rgba(201,162,74,.45),inset 0 1px 0 rgba(255,244,214,.5);
 }
-/* 🎲 NOVO — menu de 5 links: aperta um pouco em desktops menores */
 @media (max-width:1120px){
   nav{gap:12px;padding:8px 14px 8px 12px}
   .brand-name{font-size:.68rem}
@@ -191,39 +206,38 @@ nav{
   position:fixed;top:14px;right:14px;z-index:1500;
   width:44px;height:44px;border-radius:50%;
   border:1px solid rgba(201,162,74,.5);
-  background:linear-gradient(180deg, var(--paper-2), var(--paper));
+  background:linear-gradient(180deg,var(--paper-2),var(--paper));
   color:var(--gold);cursor:pointer;padding:0;
   display:grid;place-items:center;
   box-shadow:0 10px 26px -10px rgba(0,0,0,.6);
   backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
   transition:transform .35s ease,box-shadow .3s ease;
 }
-.cfg-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
-  transition:transform .6s cubic-bezier(.3,.8,.3,1)}
+.cfg-btn svg{
+  width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .6s cubic-bezier(.3,.8,.3,1);
+}
 .cfg-btn:hover{transform:scale(1.08);box-shadow:0 0 18px rgba(201,162,74,.4)}
 .cfg-btn.open svg{transform:rotate(180deg)}
-
 .cfg-panel{
   position:fixed;top:66px;right:14px;z-index:1510;
-  width:min(300px, calc(100vw - 28px));
+  width:min(300px,calc(100vw - 28px));
   max-height:calc(100svh - 90px);overflow-y:auto;
-  background:linear-gradient(180deg, var(--paper-2), var(--paper));
+  background:linear-gradient(180deg,var(--paper-2),var(--paper));
   border:1px solid var(--gold);
   outline:1px solid var(--line);outline-offset:3px;
-  border-radius:16px;
-  padding:14px;
+  border-radius:16px;padding:14px;
   box-shadow:0 24px 60px -18px rgba(0,0,0,.75);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   opacity:0;transform:translateY(-8px) scale(.97);
-  transform-origin:top right;
-  pointer-events:none;
+  transform-origin:top right;pointer-events:none;
   transition:opacity .28s ease,transform .28s cubic-bezier(.3,.8,.3,1);
 }
 .cfg-panel.open{opacity:1;transform:none;pointer-events:auto}
 .cfg-head{
   display:flex;align-items:center;justify-content:space-between;
-  padding:2px 4px 10px;border-bottom:1px solid var(--line);
-  margin-bottom:8px;
+  padding:2px 4px 10px;border-bottom:1px solid var(--line);margin-bottom:8px;
 }
 .cfg-title{font-family:var(--font-black);font-weight:400;font-size:1.25rem;line-height:1}
 .cfg-close{
@@ -234,7 +248,6 @@ nav{
 }
 .cfg-close svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 .cfg-close:hover{color:var(--seal);border-color:var(--seal);transform:rotate(90deg)}
-
 .cfg-sec{
   font-family:var(--disp);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;
   color:var(--ink-soft);padding:10px 4px 6px;
@@ -247,15 +260,19 @@ nav{
   cursor:pointer;transition:border-color .25s,background .25s,transform .2s,color .25s;
   text-decoration:none;
 }
-.cfg-item svg{width:17px;height:17px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.cfg-item svg{
+  width:17px;height:17px;fill:none;stroke:var(--gold);stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto;
+}
 .cfg-item small{display:block;font-style:italic;color:var(--ink-soft);font-size:.72rem;margin-top:1px}
-.cfg-item:hover,.cfg-item:focus-visible{border-color:var(--gold);background:var(--paper-2);transform:translateX(3px);color:var(--ink)}
+.cfg-item:hover,.cfg-item:focus-visible{
+  border-color:var(--gold);background:var(--paper-2);transform:translateX(3px);color:var(--ink);
+}
 .cfg-item.accent svg{stroke:var(--seal)}
 .cfg-item.on{border-color:var(--gold)}
 .cfg-item.on svg{fill:var(--gold)}
-/* Toggle: bolinha deslizante */
-.cfg-toggle{margin-left:auto;flex:0 0 auto;
-  width:34px;height:18px;border-radius:999px;
+.cfg-toggle{
+  margin-left:auto;flex:0 0 auto;width:34px;height:18px;border-radius:999px;
   border:1px solid var(--gold);background:var(--paper-2);
   position:relative;transition:background .25s;
 }
@@ -266,25 +283,49 @@ nav{
 }
 .cfg-item.on .cfg-toggle{background:var(--gold)}
 .cfg-item.on .cfg-toggle::after{transform:translateX(16px);background:#1a1208}
-
-/* Atalhos de reinos na grade */
 .cfg-realms{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:2px 0 6px}
 .cfg-realm{
   height:40px;border-radius:10px;cursor:pointer;padding:0;
   border:1.5px solid var(--r,var(--gold));
   background:var(--paper);
-  display:grid;place-items:center;
-  color:var(--r,var(--gold));
+  display:grid;place-items:center;color:var(--r,var(--gold));
   transition:transform .2s,box-shadow .25s,background .25s;
 }
-.cfg-realm svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.cfg-realm svg{
+  width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;
+  stroke-linecap:round;stroke-linejoin:round;
+}
 .cfg-realm:hover{transform:translateY(-2px);box-shadow:0 0 14px rgba(201,162,74,.3)}
 .cfg-realm.on{background:var(--r,var(--gold));color:#1a1208;box-shadow:0 0 12px rgba(201,162,74,.4)}
 
+/* ============ TOAST (mensagens da própria página) ============ */
+.toast{
+  position:fixed;
+  bottom:18px;
+  left:50%;
+  transform:translate(-50%,20px);
+  z-index:1950;
+  background:linear-gradient(180deg,var(--paper-2),var(--paper));
+  border:1px solid var(--gold);
+  color:var(--ink);
+  border-radius:999px;
+  padding:10px 22px;
+  font-family:var(--disp);
+  font-size:.6rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  box-shadow:0 14px 34px -10px rgba(0,0,0,.7);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s,transform .3s;
+  max-width:calc(100vw - 32px);
+  text-align:center;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
 /* ============ HELP ============ */
 .help{
-  position:fixed;inset:0;z-index:1750;
-  display:grid;place-items:center;padding:18px;
+  position:fixed;inset:0;z-index:1750;display:grid;place-items:center;padding:18px;
   background:rgba(8,6,4,.85);
   backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
   opacity:0;transition:opacity .35s ease;
@@ -293,8 +334,7 @@ nav{
 .help[hidden]{display:none}
 .help-box{
   width:min(560px,100%);max-height:90svh;overflow-y:auto;
-  background:var(--paper-2);
-  border:1px solid var(--gold);
+  background:var(--paper-2);border:1px solid var(--gold);
   outline:1px solid var(--line);outline-offset:5px;
   padding:clamp(20px,4vw,32px);
   box-shadow:0 0 60px rgba(201,162,74,.12),0 30px 70px -20px rgba(0,0,0,.8);
@@ -302,7 +342,10 @@ nav{
   transition:transform .35s cubic-bezier(.3,.8,.3,1);
 }
 .help.open .help-box{transform:none}
-.help-title{font-family:var(--font-black);font-weight:400;font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.15;margin-bottom:4px}
+.help-title{
+  font-family:var(--font-black);font-weight:400;
+  font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.15;margin-bottom:4px;
+}
 .help-box .orn{width:160px;margin:12px auto 16px}
 .help-list{list-style:none;text-align:left}
 .help-list li{
@@ -315,8 +358,14 @@ nav{
   border:1.5px solid var(--gold);color:var(--gold);
   display:grid;place-items:center;margin-top:2px;
 }
-.help-ico svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.help-list b{font-family:var(--disp);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+.help-ico svg{
+  width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.help-list b{
+  font-family:var(--disp);font-size:.8rem;letter-spacing:.08em;
+  text-transform:uppercase;display:block;margin-bottom:2px;
+}
 .help-list p{font-size:.95rem;color:var(--ink)}
 .help-fine{
   margin-top:14px;font-family:var(--disp);font-size:.55rem;letter-spacing:.24em;
@@ -330,6 +379,7 @@ nav{
   transition:background .25s,color .25s;
 }
 .btn-gold:hover{background:var(--gold);color:#1a1208}
+a.btn-gold{text-decoration:none}
 
 /* ============ HERO ============ */
 .hero{
@@ -338,7 +388,6 @@ nav{
   padding:130px 24px 90px;overflow:hidden;
 }
 #dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-
 .hero-kicker{
   font-family:var(--disp);font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;
   color:var(--gold);margin-bottom:26px;
@@ -358,8 +407,7 @@ nav{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-56%);
   width:min(430px,82vw);height:auto;object-fit:contain;
   opacity:0;pointer-events:none;z-index:1;
-  animation:emblemIn 2.2s ease forwards .25s,
-            emblemGlow 6s ease-in-out 2.6s infinite alternate;
+  animation:emblemIn 2.2s ease forwards .25s,emblemGlow 6s ease-in-out 2.6s infinite alternate;
 }
 @keyframes emblemIn{to{opacity:.2}}
 @keyframes emblemGlow{
@@ -372,7 +420,8 @@ nav{
 .scroll-hint{
   position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;
-  font-family:var(--disp);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);
+  font-family:var(--disp);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ink-soft);
 }
 .scroll-hint svg{width:16px;height:16px;animation:hint 1.8s ease-in-out infinite}
 @keyframes hint{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(7px);opacity:1}}
@@ -399,25 +448,13 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
   background:var(--paper-2);padding:10px;
   box-shadow:0 18px 40px -14px rgba(0,0,0,.75);
 }
-
-/* Palco do mapa: SVG embaixo, mapa.png por cima, pontos clicáveis no topo */
 .map-stage{position:relative}
 .map-stage svg{display:block;width:100%;height:auto}
-
-/* O mapa desenhado por você (mapa.png) sobre o mapa da crônica.
-   Se o PNG tiver fundo transparente, os dois se somam;
-   se for opaco, ele cobre o SVG — os pontos clicáveis
-   continuam funcionando por cima. */
 .map-overlay{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:contain;object-position:center;
   pointer-events:none;z-index:2;
 }
-
-/* Pontos clicáveis sobre o mapa de vocês.
-   Cada .hs é um botão invisível (círculo generoso de toque).
-   POSIÇÃO: ajuste --x e --y (em %) no HTML para casar cada
-   ponto com a ilha correspondente do seu desenho. */
 .map-hotspots{position:absolute;inset:0;z-index:3}
 .hs{
   position:absolute;left:var(--x);top:var(--y);
@@ -442,12 +479,10 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
   70%{box-shadow:0 0 0 10px rgba(201,162,74,0), inset 0 0 26px rgba(201,162,74,.16)}
   100%{box-shadow:0 0 0 2px rgba(201,162,74,.65), inset 0 0 26px rgba(201,162,74,.16)}
 }
-
 .map-hint{
   text-align:center;font-style:italic;color:var(--ink-soft);font-size:.95rem;
   margin-top:14px;letter-spacing:.02em;
 }
-
 .realm{cursor:pointer;outline:none;transform-box:fill-box;transform-origin:center;
   transition:transform .4s ease,filter .4s ease}
 @media (hover:hover){
@@ -480,7 +515,7 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .road{animation:roadmove 26s linear infinite}
 @keyframes roadmove{to{stroke-dashoffset:-260}}
 
-/* ============ BRASÃO DO REINO 🛡️ ============ */
+/* ============ BRASÃO DO REINO ============ */
 .panel-crest{
   display:block;width:92px;height:92px;object-fit:contain;
   margin:0 auto 14px;
@@ -491,7 +526,7 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
   box-shadow:0 8px 22px -8px rgba(0,0,0,.6), inset 0 0 18px rgba(201,162,74,.08);
 }
 
-/* Painel do reino */
+/* ============ PAINEL DO REINO ============ */
 .panel{
   position:sticky;top:100px;
   border:1px solid var(--line);outline:1px solid var(--line-soft);outline-offset:4px;
@@ -539,6 +574,10 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
   text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px;transition:letter-spacing .3s;
 }
 .panel .to-card:hover{letter-spacing:.28em}
+.visited-note{
+  text-align:center;margin-top:14px;font-family:var(--disp);
+  font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+}
 
 /* ============ CARTAS ============ */
 .fan{
@@ -626,6 +665,7 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
   .fan .card.fav:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 26px))}
 }
 
+/* ============ VERSO DA CARTA ============ */
 .card-back{
   transform:rotateY(180deg);background:#120d07;color:#d8c9a4;
   text-align:left;align-items:stretch;padding:10px 9px;
@@ -639,18 +679,14 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .pips{display:inline-flex;gap:2px}
 .pip{width:5px;height:5px;transform:rotate(45deg);border:1px solid #b98a2e;display:inline-block}
 .pip.on{background:#b98a2e}
-.card-back .feats{margin-top:1px}
-.card-back .feats li{font-size:.6rem;margin-bottom:5px;padding-left:12px}
-.card-back .feats li::before{background:#b98a2e;top:.42em;width:4px;height:4px}
 
-/* === Ajuste p/ 5 atributos no verso das cartas (desktop) === */
+/* === Ajuste p/ 5 atributos no verso (desktop) === */
 .card-back{padding:9px 8px}
 .card-lema{font-size:.64rem}
 .card-back .orn{width:64px;margin:4px auto}
 .card-bio{font-size:.58rem;line-height:1.3}
 .stats{margin:5px 0;gap:1px}
 .stat{font-size:.52rem}
-.card-back .feats li{margin-bottom:3px;font-size:.56rem}
 
 .card.flash{animation:cardflash 1.8s ease}
 @keyframes cardflash{
@@ -777,7 +813,6 @@ footer .final{font-style:italic;font-size:1.15rem;max-width:520px;margin:0 auto}
 footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
 
 /* ============ EXTRAS ÚTEIS ============ */
-/* Botão voltar ao topo */
 .to-top{
   position:fixed;left:14px;bottom:14px;z-index:1500;
   width:44px;height:44px;border-radius:50%;
@@ -794,21 +829,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 .to-top svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .to-top:hover{transform:translateY(-2px);box-shadow:0 0 16px rgba(201,162,74,.4)}
 
-/* Resultado do Oráculo da Mesa */
-.oracle-out{
-  display:none;margin:2px 0 8px;padding:9px 11px;border-radius:12px;
-  background:var(--paper);border:1px dashed var(--gold);
-  font-style:italic;font-size:.9rem;text-align:center;
-}
-.oracle-out.show{display:block}
-.oracle-out b{font-family:var(--font-med);font-style:normal;color:var(--gold)}
-
-/* Nota de reinos explorados (painel) */
-.visited-note{
-  text-align:center;margin-top:14px;font-family:var(--disp);
-  font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
-}
-
 /* ============ REVEAL ============ */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease;transition-delay:var(--d,0s)}
 .reveal.visible{opacity:1;transform:none}
@@ -818,8 +838,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .map-layout{grid-template-columns:1fr}
   .panel{position:static}
 }
-
-/* ============ TABLET E CELULAR: cartas em carrossel ============ */
 @media (max-width:1024px){
   .fan{
     justify-content:flex-start;align-items:center;overflow-x:auto;
@@ -848,24 +866,17 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .card-bio{font-size:.78rem;line-height:1.45}
   .stat{font-size:.72rem;letter-spacing:.08em}
   .pip{width:7px;height:7px}
-  .card-back .feats li{font-size:.76rem}
   .fav-btn{width:36px;height:36px;top:12px;right:12px}
   .fav-btn svg{width:18px;height:18px}
   .fav-tag{font-size:.58rem;letter-spacing:.22em}
   .card-tap{font-size:.72rem}
   .fan-hint{display:block}
 }
-
-/* ============ CELULAR ============ */
 @media (max-width:760px){
-  /* Sem menu fixo no celular: navegação puramente pela rolagem.
-     A engrenagem permanece — é a única navegação flutuante. */
   nav{display:none}
   section{scroll-margin-top:0;padding:64px 0 72px}
-
   .lead{text-align:left;text-align-last:auto}
   .lead::first-letter{font-size:2.6em;padding:4px 9px 0 0}
-
   .map-wrap{padding:5px}
   .map-stage svg{min-width:0;width:100%}
   .realm-name{font-size:27px;stroke-width:6}
@@ -874,12 +885,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .map-label{font-size:15px}
   .map-title-a{font-size:21px;letter-spacing:3px}
   .map-title-b{font-size:15px}
-  /* Pontos de toque maiores no celular */
   .hs{width:15%}
-
   .panel{padding:20px 16px}
   .panel h3{font-size:1.7rem;overflow-wrap:break-word}
-
   .chronicle{padding-top:0}
   .chronicle::before{left:10px}
   .chronicle li,
@@ -888,11 +896,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .chronicle li::before,
   .chronicle li:nth-child(even)::before{left:3px;right:auto;top:18px}
   .chronicle h3{font-size:1.2rem}
-
   .covenant li{grid-template-columns:44px 1fr;gap:12px;padding:16px 2px}
   .cov-num{font-size:1.2rem}
   .covenant p{font-size:1.02rem}
-
   .gate{padding:14px}
   .gate-choice{grid-template-columns:42px 1fr;gap:11px;padding:9px 11px}
   .gate-realm{display:none}
@@ -925,23 +931,32 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <symbol id="sym-close" viewBox="0 0 24 24">
       <path d="M5 5 L19 19 M19 5 L5 19"/>
     </symbol>
-    <!-- Símbolos dos guardiões -->
-    <symbol id="sym-sovereign" viewBox="0 0 64 64"><!-- Luan — Dragão Soberano: espada coroada -->
+    <symbol id="sym-share" viewBox="0 0 24 24">
+      <circle cx="18" cy="5" r="3"/>
+      <circle cx="6" cy="12" r="3"/>
+      <circle cx="18" cy="19" r="3"/>
+      <path d="M8.6 10.7 L15.4 6.3 M8.6 13.3 L15.4 17.7"/>
+    </symbol>
+    <symbol id="sym-textsize" viewBox="0 0 24 24">
+      <path d="M4 18 L9.5 5 H11 L16.5 18"/>
+      <path d="M6.2 13.5 H14.3"/>
+      <path d="M17 18 L20 10.5 H20.9 L23.9 18" transform="translate(-2.4,0)"/>
+      <path d="M18.2 15.5 H22.4" transform="translate(-2.4,0)"/>
+    </symbol>
+    <symbol id="sym-sovereign" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 11 L26 15 L32 7 L38 15 L42 11 L40.5 18.5 H23.5 Z"/>
-        <path d="M32 18.5 V23"/>
-        <path d="M22.5 23 H41.5"/>
+        <path d="M32 18.5 V23"/><path d="M22.5 23 H41.5"/>
         <path d="M28.5 23 H35.5 L36 50 L32 58 L28 50 Z"/>
       </g>
     </symbol>
-    <symbol id="sym-scepter" viewBox="0 0 64 64"><!-- Debora — A Imperatriz -->
+    <symbol id="sym-scepter" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M29 58 L33 24"/>
-        <circle cx="34" cy="16" r="6.5"/>
+        <path d="M29 58 L33 24"/><circle cx="34" cy="16" r="6.5"/>
         <path d="M20 28 C22 19 26 13 32 9 M48 28 C46 19 42 13 36 9"/>
       </g>
     </symbol>
-    <symbol id="sym-raven" viewBox="0 0 64 64"><!-- Rayssa — O Corvo -->
+    <symbol id="sym-raven" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M46 34 C52 38 56 46 54 54 L48 50 C44 56 36 58 30 56 L32 48 C26 48 20 44 18 38 C24 40 32 40 38 36 Z"/>
         <path d="M30 38 C26 30 30 20 40 16 C38 24 40 32 44 38"/>
@@ -949,49 +964,44 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <circle cx="51" cy="16.5" r="1.5" fill="currentColor" stroke="none"/>
       </g>
     </symbol>
-    <symbol id="sym-blade" viewBox="0 0 64 64"><!-- Nayara — A Lâmina -->
+    <symbol id="sym-blade" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M32 4 L38 14 L34 44 L32 50 L30 44 L26 14 Z"/>
-        <path d="M26 44 L20 48 M38 44 L44 48"/>
-        <path d="M32 50 L32 58"/>
+        <path d="M26 44 L20 48 M38 44 L44 48"/><path d="M32 50 L32 58"/>
         <circle cx="32" cy="60" r="2.2"/>
       </g>
     </symbol>
-    <symbol id="sym-royalcrown" viewBox="0 0 64 64"><!-- Luís — Rei Dourado -->
+    <symbol id="sym-royalcrown" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M10 24 L21 34 L32 12 L43 34 L54 24 L49 46 H15 Z"/>
-        <path d="M15 53 H49"/>
+        <path d="M10 24 L21 34 L32 12 L43 34 L54 24 L49 46 H15 Z"/><path d="M15 53 H49"/>
         <circle cx="32" cy="39" r="2.4"/>
       </g>
     </symbol>
-    <symbol id="sym-storm" viewBox="0 0 64 64"><!-- Bruno — Inverno Perpétuo -->
+    <symbol id="sym-storm" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 40 C15 40 12 33 17 29 C14 22 21 15 28 18 C31 11 42 10 46 17 C52 17 55 24 51 29 C54 33 51 40 44 40 Z"/>
         <path d="M33 44 L27 56 L34 54 L29 63"/>
       </g>
     </symbol>
-    <symbol id="sym-shield" viewBox="0 0 64 64"><!-- Guilherme — O Protetor -->
+    <symbol id="sym-shield" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M32 5 C41 9 50 10.5 55 10.5 C55 29 50 46 32 58 C14 46 9 29 9 10.5 C14 10.5 23 9 32 5 Z"/>
         <path d="M22 28 L32 36 L42 28"/>
       </g>
     </symbol>
-    <symbol id="sym-horn" viewBox="0 0 64 64"><!-- Fernando — Bravos e Destemidos -->
+    <symbol id="sym-horn" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 50 C10 36 16 18 30 10 C38 6 48 6 54 10 C56 12 56 15 54 17 C44 15 36 18 32 24 C26 32 26 42 30 50 C31 53 29 55 26 55 Z"/>
-        <path d="M14 50 L8 54 M30 50 L34 55"/>
-        <path d="M40 14 C42 17 42 20 41 23" opacity=".6"/>
+        <path d="M14 50 L8 54 M30 50 L34 55"/><path d="M40 14 C42 17 42 20 41 23" opacity=".6"/>
       </g>
     </symbol>
-    <symbol id="sym-sunwave" viewBox="0 0 64 64"><!-- Cristiano — Coração da Floresta -->
+    <symbol id="sym-sunwave" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="32" cy="24" r="9"/>
-        <path d="M23 24 H41 M32 15 V33" opacity=".6"/>
+        <circle cx="32" cy="24" r="9"/><path d="M23 24 H41 M32 15 V33" opacity=".6"/>
         <path d="M6 44 Q16 36 26 44 T46 44 T64 44" transform="translate(-3,4)"/>
         <path d="M6 52 Q16 44 26 52 T46 52 T64 52" transform="translate(-3,4)" opacity=".6"/>
       </g>
     </symbol>
-    <!-- Ícones das configurações -->
     <symbol id="sym-help" viewBox="0 0 24 24">
       <path d="M9 9.5 C9 7.5 10.5 6.5 12 6.5 C13.5 6.5 15 7.5 15 9.2 C15 11 13.5 11.4 12.5 12.4 C12 12.9 12 13.4 12 14"/>
       <circle cx="12" cy="17.2" r="1" fill="currentColor" stroke="none"/>
@@ -1004,6 +1014,12 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <symbol id="sym-discord" viewBox="0 0 24 24">
       <path d="M19.6 5.9 A16 16 0 0 0 15.9 4.7 A11.3 11.3 0 0 0 15 6.3 A14.7 14.7 0 0 0 9 6.3 A11.3 11.3 0 0 0 8.1 4.7 A16 16 0 0 0 4.4 5.9 C2.1 9.3 1.5 12.6 1.8 15.9 A16.1 16.1 0 0 0 6.6 18.4 A12 12 0 0 0 8 16.2 A10.3 10.3 0 0 1 6.4 15.4 C6.6 15.2 6.9 15.1 7.1 14.9 A11.5 11.5 0 0 0 16.9 14.9 C17.1 15.1 17.4 15.2 17.6 15.4 A10.3 10.3 0 0 1 16 16.2 A12 12 0 0 0 17.4 18.4 A16.1 16.1 0 0 0 22.2 15.9 C22.6 12 21.6 8.8 19.6 5.9 Z M8.7 13.9 C7.8 13.9 7 13 7 12 C7 11 7.8 9.9 8.7 9.9 C9.6 9.9 10.4 11 10.4 12 C10.4 13 9.6 13.9 8.7 13.9 Z M15.3 13.9 C14.4 13.9 13.6 13 13.6 12 C13.6 11 14.4 9.9 15.3 9.9 C16.2 9.9 17 11 17 12 C17 13 16.2 13.9 15.3 13.9 Z"/>
     </symbol>
+    <symbol id="sym-dice" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/>
+      <circle cx="8.2" cy="8.2" r="1.15" fill="currentColor" stroke="none"/>
+      <circle cx="15.8" cy="15.8" r="1.15" fill="currentColor" stroke="none"/>
+      <circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/>
+    </symbol>
     <symbol id="sym-reset" viewBox="0 0 24 24">
       <path d="M3 12 A9 9 0 1 1 5.6 18.4"/>
       <path d="M3 20 V14 H9"/>
@@ -1015,13 +1031,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <path d="M6 3 H18 A2 2 0 0 1 20 5 V19 A2 2 0 0 1 18 21 H6 A2 2 0 0 1 4 19 V5 A2 2 0 0 1 6 3 Z"/>
       <path d="M8 8 H16 M8 12 H16 M8 16 H13"/>
     </symbol>
-    <symbol id="sym-dice" viewBox="0 0 24 24">
-      <rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/>
-      <circle cx="8.2" cy="8.2" r="1.15" fill="currentColor" stroke="none"/>
-      <circle cx="15.8" cy="15.8" r="1.15" fill="currentColor" stroke="none"/>
-      <circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/>
-    </symbol>
-    <!-- Elementos de mapa -->
     <symbol id="sym-mtn" viewBox="0 0 40 24">
       <path d="M2 22 L14 4 L20 12 L26 2 L38 22 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/>
     </symbol>
@@ -1039,7 +1048,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       </g>
       <circle cx="10" cy="8" r="1.7" fill="var(--ink)"/>
     </symbol>
-    <symbol id="sym-tree" viewBox="0 0 20 26"><!-- Árvore (Floresta de Karhal) -->
+    <symbol id="sym-tree" viewBox="0 0 20 26">
       <g fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round">
         <circle cx="10" cy="9" r="6.5"/>
         <path d="M10 15.5 V24 M10 19.5 L7 17 M10 19.5 L13 17"/>
@@ -1059,7 +1068,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M7 1.5 V12.5 M2 4.2 L12 9.8 M12 4.2 L2 9.8"/>
       </g>
     </symbol>
-    <symbol id="sym-wyvern" viewBox="0 0 40 22"><!-- Dragão planando -->
+    <symbol id="sym-wyvern" viewBox="0 0 40 22">
       <g fill="var(--ink)" stroke="none">
         <path d="M2 15 C8 11 15 10 21 12 C24 5 31 2 37 4 C34 8 29 10 25 13 C18 18 9 19 3 17 C2.3 16.6 2 15.8 2 15 Z"/>
         <path d="M37 4 L39.5 -1 L40 4.5 Z"/>
@@ -1069,7 +1078,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   </defs>
 </svg>
 
-<!-- ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE (desktop apenas) ============ -->
+<!-- ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE ============ -->
 <nav aria-label="Capítulos da crônica">
   <a class="brand" href="#inicio">
     <img class="brand-seal" src="simbolo.png" alt="Símbolo de Veldora Realms">
@@ -1080,8 +1089,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <li><a href="#guardioes">Guardiões</a></li>
     <li><a href="#cronica">Crônica</a></li>
     <li><a href="#pacto">O Pacto</a></li>
-    <!-- 🎲 NOVO — atalho para a Mesa de RPG -->
-    <li><a href="https://veldorarealms.github.io/rpg/">A Mesa</a></li>
   </ul>
 </nav>
 
@@ -1115,17 +1122,10 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <span>Discord<small>Entrar no portal do servidor</small></span>
   </a>
 
-  <!-- 🎲 NOVO — botão para a Mesa de RPG (todas as telas) -->
-  <a class="cfg-item" id="cfgRpg" role="menuitem" href="https://veldorarealms.github.io/rpg/">
+  <a class="cfg-item" role="menuitem" href="https://veldorarealms.github.io/rpg/">
     <svg aria-hidden="true"><use href="#sym-dice"/></svg>
-    <span>A Mesa de RPG<small>Dados e fichas dos heróis</small></span>
+    <span>Mesa de RPG<small>Dados e fichas dos heróis</small></span>
   </a>
-
-  <button class="cfg-item" id="cfgOracle" type="button" role="menuitem">
-    <svg aria-hidden="true"><use href="#sym-dice"/></svg>
-    <span>O Oráculo da Mesa<small>Sorteia o jogo de hoje</small></span>
-  </button>
-  <p class="oracle-out" id="oracleOut" aria-live="polite"></p>
 
   <p class="cfg-sec">Ir a um reino</p>
   <div class="cfg-realms" id="cfgRealms">
@@ -1153,7 +1153,18 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <span class="cfg-toggle" aria-hidden="true"></span>
   </button>
 
+  <button class="cfg-item" id="cfgText" type="button" role="menuitem">
+    <svg aria-hidden="true"><use href="#sym-textsize"/></svg>
+    <span>Letras maiores<small>Aumenta todo o texto da crônica</small></span>
+    <span class="cfg-toggle" aria-hidden="true"></span>
+  </button>
+
   <p class="cfg-sec">A Mantença do Códice</p>
+
+  <button class="cfg-item" id="cfgShare" type="button" role="menuitem">
+    <svg aria-hidden="true"><use href="#sym-share"/></svg>
+    <span>Compartilhar pagina<small>Convoca os amigos pelo link</small></span>
+  </button>
 
   <button class="cfg-item" id="cfgReset" type="button" role="menuitem">
     <svg aria-hidden="true"><use href="#sym-reset"/></svg>
@@ -1187,21 +1198,35 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-heart"/></svg></span>
         <div>
           <b>A Coroa (favorito)</b>
-          <p>Tocai na coroa no canto de uma carta para coroar seu guardião favorito. Só um pode reinar — a escolha fica gravada e volta em toda visita.</p>
-        </div>
-      </li>
-      <li>
-        <span class="help-ico"><svg aria-hidden="true"><use href="#sym-gear"/></svg></span>
-        <div>
-          <b>As Configurações</b>
-          <p>Aqui moram a troca de coroa, o portal do Discord, o Oráculo da Mesa, os atalhos dos reinos e as preferências da crônica.</p>
+          <p>Tocai na coroa no canto de uma carta para coroar seu guardião favorito. Só um pode reinar — e a mesma coroa reina na Mesa de RPG.</p>
         </div>
       </li>
       <li>
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-dice"/></svg></span>
         <div>
           <b>A Mesa de RPG</b>
-          <p>Para além da crônica: dados, fichas, combate, bestiário e a Forja do Mestre. O portal fica no estandarte e nas configurações.</p>
+          <p>Para além da crônica: dados, fichas, combate, bestiário e a Forja do Mestre. A coroa que reina aqui reina lá também — mudou numa, muda na outra.</p>
+        </div>
+      </li>
+      <li>
+        <span class="help-ico"><svg aria-hidden="true"><use href="#sym-share"/></svg></span>
+        <div>
+          <b>Compartilhar</b>
+          <p>Do menu de configurações, enviai o link da crônica por qualquer app — convoca os amigos pelo portal.</p>
+        </div>
+      </li>
+      <li>
+        <span class="help-ico"><svg aria-hidden="true"><use href="#sym-textsize"/></svg></span>
+        <div>
+          <b>Letras maiores</b>
+          <p>Se o texto parecer pequeno, o modo de letras maiores amplia toda a crônica — e fica gravado para as próximas visitas.</p>
+        </div>
+      </li>
+      <li>
+        <span class="help-ico"><svg aria-hidden="true"><use href="#sym-gear"/></svg></span>
+        <div>
+          <b>As Configurações</b>
+          <p>Aqui moram a troca de coroa, o portal do Discord, a Mesa de RPG, os atalhos dos reinos e as preferências da crônica.</p>
         </div>
       </li>
       <li>
@@ -1241,6 +1266,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6 L8 11 L13 6"/></svg>
   </a>
 </header>
+
 <main>
 <!-- ============ CAPÍTULO I — O MAPA ============ -->
 <section id="mapa">
@@ -1280,7 +1306,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <textPath href="#seaCurve" startOffset="50%" text-anchor="middle">· MAR DE VELDORA ·</textPath>
               </text>
 
-              <!-- Rotas marítimas -->
               <g fill="none" stroke="var(--sea)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" opacity=".5">
                 <path d="M470 340 C420 400 380 450 350 500"/>
                 <path d="M480 350 C560 420 640 460 700 480"/>
@@ -1288,7 +1313,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <path d="M700 490 C760 530 800 570 830 610"/>
               </g>
 
-              <!-- Navio que navega -->
               <g class="map-decor anim-soft" transform="translate(430,410)">
                 <path d="M-12 0 C-8 8 10 8 14 0 C4 3 -6 3 -12 0 Z" fill="var(--ink)"/>
                 <path d="M0 0 V-16" stroke="var(--ink)" stroke-width="1.4"/>
@@ -1298,7 +1322,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                   path="M470 340 C420 400 380 450 350 500 C400 560 520 570 640 540 C720 515 700 420 640 300"/>
               </g>
 
-              <!-- Estrada do Pacto -->
               <path class="map-decor road anim-soft" d="M200 210 C280 180 340 170 400 178 C470 188 560 180 640 200 C700 216 760 220 820 240 C850 280 840 330 820 380 C780 470 720 540 660 580 C580 620 480 620 400 600 C320 580 260 540 240 480 C225 430 210 320 200 210"
                 fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 12" opacity=".45"/>
 
@@ -1308,7 +1331,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <path d="M421 168 L425 172 L421 176 L417 172 Z" fill="var(--gold)"/>
               </g>
 
-              <!-- 1. REINO DRAG ZAKHARYS -->
               <g class="realm" data-realm="supremo" tabindex="0" role="button" aria-label="Reino Drag Zakharys, de Luan Dhony">
                 <path class="land" fill="var(--c-supremo)" d="M70 180 C64 130 96 84 150 66 C210 46 280 54 316 92 C344 122 346 166 322 196 C342 202 356 216 358 234 C360 254 344 268 320 270 C296 272 278 258 276 240 L270 244 C266 262 250 274 228 276 C198 280 168 272 148 252 C136 258 118 258 104 250 C82 238 72 212 70 180 Z"/>
                 <path class="land" fill="var(--c-supremo)" d="M356 120 C370 110 388 114 394 128 C399 141 391 154 376 156 C362 158 350 150 350 138 C350 131 352 124 356 120 Z"/>
@@ -1326,15 +1348,13 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <use class="map-decor" href="#sym-mtn" x="150" y="214" width="34" height="20"/>
               </g>
 
-              <!-- 2. IMPÉRIO MIRIGUMI -->
               <g class="realm" data-realm="mirigumi" tabindex="0" role="button" aria-label="Império Mirigumi, de Debora Vezetiv">
                 <path class="land" fill="var(--c-mirigumi)" d="M408 172 C404 132 434 96 486 82 C540 68 604 74 646 102 C676 122 684 152 666 176 C644 206 596 224 540 228 C492 231 448 224 424 204 C412 194 409 184 408 172 Z"/>
                 <path class="land" fill="var(--c-mirigumi)" d="M470 226 C480 246 484 266 480 286 L474 284 C470 264 466 246 460 230 Z"/>
                 <text class="realm-name" x="536" y="150">Império Mirigumi</text>
                 <text class="realm-sub" x="536" y="170">O IMPÉRIO DAS PÉTALAS</text>
                 <g class="map-decor">
-                  <path d="M456 190 C456 182 462 176 470 176 C478 176 484 182 484 190 C484 198 478 204 470 204 C462 204 456 198 456 190 Z"
-                    fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+                  <path d="M456 190 C456 182 462 176 470 176 C478 176 484 182 484 190 C484 198 478 204 470 204 C462 204 456 198 456 190 Z" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
                   <path d="M470 182 C474 186 474 194 470 198 M462 190 L478 190" stroke="var(--ink)" stroke-width="1" opacity=".7"/>
                 </g>
                 <use class="map-decor" href="#sym-flower" x="500" y="104"/><use class="map-decor" href="#sym-flower" x="540" y="96"/>
@@ -1343,7 +1363,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <use class="map-decor" href="#sym-flower" x="500" y="200"/><use class="map-decor" href="#sym-flower" x="574" y="204"/>
               </g>
 
-              <!-- 3. DESERTO ASCAR -->
               <g class="realm" data-realm="ascar" tabindex="0" role="button" aria-label="Deserto Ascar, de Luís Augusto">
                 <path class="land" fill="var(--c-ascar)" d="M742 90 C794 68 866 66 912 92 C936 106 942 128 928 146 C908 170 862 184 812 186 C764 188 724 178 708 158 C694 140 702 112 742 90 Z"/>
                 <text class="realm-name" x="818" y="128">Deserto Ascar</text>
@@ -1359,7 +1378,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <use class="map-decor" href="#sym-dune" x="892" y="140" width="26" height="14"/>
               </g>
 
-              <!-- 4. ARQUIPÉLAGO BUDAPESTE -->
               <g class="realm" data-realm="bravos" tabindex="0" role="button" aria-label="Arquipélago Budapeste, de Fernando Fernandes">
                 <path class="land" fill="var(--c-bravos)" d="M894 268 C912 258 934 264 942 280 C950 296 942 314 924 320 C906 326 888 318 884 302 C881 290 885 276 894 268 Z"/>
                 <path class="land" fill="var(--c-bravos)" d="M940 336 C958 330 976 340 980 356 C984 372 972 386 954 386 C936 386 924 374 926 358 C927 348 932 340 940 336 Z"/>
@@ -1371,13 +1389,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <text class="realm-name" x="858" y="362">Budapeste</text>
                 <text class="realm-sub" x="858" y="380">O CABO DOS DESTEMIDOS</text>
                 <g class="map-decor">
-                  <path d="M838 396 C834 386 838 374 846 370 C851 368 856 369 858 371 C854 372 850 374 849 378 C847 384 849 390 852 395 C853 397 851 398 849 397 Z"
-                    fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1" stroke-linejoin="round"/>
+                  <path d="M838 396 C834 386 838 374 846 370 C851 368 856 369 858 371 C854 372 850 374 849 378 C847 384 849 390 852 395 C853 397 851 398 849 397 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1" stroke-linejoin="round"/>
                   <path d="M858 371 L861 373" stroke="var(--c-bravos)" stroke-width="1.4" stroke-linecap="round"/>
                 </g>
               </g>
 
-              <!-- 5. FLORESTA DE KARHAL -->
               <g class="realm" data-realm="karhal" tabindex="0" role="button" aria-label="Floresta de Karhal, de Cristiano Ronaldo">
                 <path class="land" fill="var(--c-karhal)" d="M846 466 C884 448 930 452 958 476 C976 492 978 514 962 528 C942 546 904 552 870 544 C842 537 826 520 828 500 C829 484 835 473 846 466 Z"/>
                 <text class="realm-name" x="898" y="498">Floresta de Karhal</text>
@@ -1391,7 +1407,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <use class="map-decor" href="#sym-tree" x="878" y="536"/>
               </g>
 
-              <!-- 6. FORTALEZA ESCARLATE -->
               <g class="realm" data-realm="escarlate" tabindex="0" role="button" aria-label="Fortaleza Escarlate, de Guilherme Morais">
                 <path class="land" fill="var(--c-escarlate)" d="M84 420 L118 396 L162 394 L196 414 L202 448 L184 480 L142 492 L100 480 L80 450 Z"/>
                 <path class="land" fill="var(--c-escarlate)" d="M124 376 C126 368 134 363 143 363 C152 363 159 368 160 376 C161 383 154 388 144 388 C135 388 125 384 124 376 Z"/>
@@ -1408,7 +1423,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 </g>
               </g>
 
-              <!-- 7. IMPÉRIO YARYAN -->
               <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitoria e Nayara Hostapiuk">
                 <path class="land" fill="var(--c-yaryan)" d="M258 560 C262 540 282 528 306 530 C330 532 346 546 344 564 C342 582 322 594 298 592 C276 590 258 580 258 560 Z"/>
                 <path class="land" fill="var(--c-yaryan)" d="M330 510 C334 494 352 484 372 486 C392 488 404 500 402 514 C400 528 384 536 364 534 C346 532 330 524 330 510 Z"/>
@@ -1422,10 +1436,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <text class="realm-name" x="290" y="544">Yaryan</text>
                 <text class="realm-sub" x="290" y="561">O REINO DAS SOMBRAS</text>
                 <g class="map-decor" transform="translate(300,474) scale(0.42)">
-                  <path d="M46 34 C52 38 56 46 54 54 L48 50 C44 56 36 58 30 56 L32 48 C26 48 20 44 18 38 C24 40 32 40 38 36 Z"
-                    fill="none" stroke="var(--c-nyara)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M40 16 C46 10 54 10 58 14 L52 18 C54 20 54 22 52 24 C48 28 42 26 40 22"
-                    fill="none" stroke="var(--c-nyara)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M46 34 C52 38 56 46 54 54 L48 50 C44 56 36 58 30 56 L32 48 C26 48 20 44 18 38 C24 40 32 40 38 36 Z" fill="none" stroke="var(--c-nyara)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M40 16 C46 10 54 10 58 14 L52 18 C54 20 54 22 52 24 C48 28 42 26 40 22" fill="none" stroke="var(--c-nyara)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </g>
                 <g class="map-decor" transform="translate(348,0)">
                   <path d="M0 622 V608 A7 7 0 0 1 14 608 V622" fill="none" stroke="var(--ink)" stroke-width="1.3" stroke-linecap="round"/>
@@ -1436,7 +1448,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <text class="map-label" x="316" y="638" font-family="EB Garamond,serif" font-style="italic" font-size="10" fill="var(--ink-soft)" text-anchor="middle">Porto Livre</text>
               </g>
 
-              <!-- 8. REINO SNEZHNAYA -->
               <g class="realm" data-realm="snezhnaya" tabindex="0" role="button" aria-label="Reino Snezhnaya, de Bruno Martins">
                 <path class="land" fill="var(--c-snezhnaya)" d="M452 470 C460 440 494 420 544 414 C596 408 650 416 682 440 C706 458 710 484 692 504 C704 512 708 526 700 538 C690 552 668 556 650 548 C634 566 606 576 578 574 C548 572 522 560 508 540 C484 542 462 532 454 512 C448 498 448 484 452 470 Z"/>
                 <text class="realm-name" x="574" y="470">Snezhnaya</text>
@@ -1454,13 +1465,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <use class="map-decor" href="#sym-snow" x="604" y="444"/>
                 <use class="map-decor" href="#sym-snow" x="534" y="452"/>
                 <g class="map-decor">
-                  <path d="M548 414 C542 414 539 408 543 404 C540 398 546 392 552 395 C555 389 565 388 568 394 C574 394 576 400 573 404 C575 408 572 414 566 414 Z"
-                    fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1" stroke-linejoin="round"/>
+                  <path d="M548 414 C542 414 539 408 543 404 C540 398 546 392 552 395 C555 389 565 388 568 394 C574 394 576 400 573 404 C575 408 572 414 566 414 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1" stroke-linejoin="round"/>
                   <path d="M559 415 L554 426 L560 424 L556 433" fill="none" stroke="var(--c-snezhnaya)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                 </g>
               </g>
 
-              <!-- Serpente marinha -->
               <g class="map-decor" transform="translate(140,660)">
                 <path d="M0 0 C5 -12 15 -12 20 0 C25 -12 35 -12 40 0 C45 -12 55 -12 60 0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
                 <path d="M60 0 C64 -8 66 -14 63 -20" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
@@ -1468,7 +1477,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <path d="M60 -25 L57 -31 M66 -25 L69 -31" stroke="var(--ink)" stroke-width="1.3" stroke-linecap="round"/>
               </g>
 
-              <!-- Capitais / nós -->
               <g class="map-decor" id="mapNodes">
                 <circle class="node-ring" data-realm="supremo" cx="212" cy="216" r="9" fill="none" stroke="var(--c-supremo)" stroke-width="2"/>
                 <circle class="node-ring" data-realm="mirigumi" cx="536" cy="182" r="9" fill="none" stroke="var(--c-mirigumi)" stroke-width="2"/>
@@ -1490,7 +1498,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 </g>
               </g>
 
-              <!-- Cartucho do título -->
               <g class="map-decor">
                 <rect x="285" y="14" width="430" height="56" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.5"/>
                 <rect x="291" y="20" width="418" height="44" fill="none" stroke="var(--ink)" stroke-width=".7"/>
@@ -1498,7 +1505,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <text class="map-title-b" x="500" y="58" font-family="EB Garamond,serif" font-style="italic" font-size="11" fill="var(--ink-soft)" text-anchor="middle">anno primo pacti</text>
               </g>
 
-              <!-- Rosa dos ventos -->
               <g class="map-decor" transform="translate(60,650)" fill="var(--ink)">
                 <circle r="30" fill="none" stroke="var(--ink)" stroke-width="1"/>
                 <circle r="23" fill="none" stroke="var(--ink)" stroke-width=".6"/>
@@ -1518,14 +1524,14 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             <img class="map-overlay" id="mapOverlay" src="mapa.png" alt="">
 
             <div class="map-hotspots" id="mapHotspots">
-              <button class="hs" data-realm="supremo" type="button" style="--x:21%;--y:24%" aria-label="Reino Drag Zakharys, de Luan Dhony" title="Reino Drag Zakharys"></button>
-              <button class="hs" data-realm="mirigumi" type="button" style="--x:52%;--y:24%" aria-label="Império Mirigumi, de Debora Vezetiv" title="Império Mirigumi"></button>
-              <button class="hs" data-realm="ascar" type="button" style="--x:83%;--y:23%" aria-label="Deserto Ascar, de Luís Augusto" title="Deserto Ascar"></button>
-              <button class="hs" data-realm="bravos" type="button" style="--x:84%;--y:50%" aria-label="Arquipélago Budapeste, de Fernando Fernandes" title="Arquipélago Budapeste"></button>
-              <button class="hs" data-realm="karhal" type="button" style="--x:84%;--y:73%" aria-label="Floresta de Karhal, de Cristiano Ronaldo" title="Floresta de Karhal"></button>
-              <button class="hs" data-realm="escarlate" type="button" style="--x:14%;--y:47%" aria-label="Fortaleza Escarlate, de Guilherme Morais" title="Fortaleza Escarlate"></button>
-              <button class="hs" data-realm="yaryan" type="button" style="--x:28%;--y:72%" aria-label="Império Yaryan, de Rayssa Vitoria e Nayara Hostapiuk" title="Império Yaryan"></button>
-              <button class="hs" data-realm="snezhnaya" type="button" style="--x:53%;--y:69%" aria-label="Reino Snezhnaya, de Bruno Martins" title="Reino Snezhnaya"></button>
+              <button class="hs" data-realm="supremo" type="button" style="--x:21%;--y:24%" aria-label="Reino Drag Zakharys" title="Reino Drag Zakharys"></button>
+              <button class="hs" data-realm="mirigumi" type="button" style="--x:52%;--y:24%" aria-label="Império Mirigumi" title="Império Mirigumi"></button>
+              <button class="hs" data-realm="ascar" type="button" style="--x:83%;--y:23%" aria-label="Deserto Ascar" title="Deserto Ascar"></button>
+              <button class="hs" data-realm="bravos" type="button" style="--x:84%;--y:50%" aria-label="Arquipélago Budapeste" title="Arquipélago Budapeste"></button>
+              <button class="hs" data-realm="karhal" type="button" style="--x:84%;--y:73%" aria-label="Floresta de Karhal" title="Floresta de Karhal"></button>
+              <button class="hs" data-realm="escarlate" type="button" style="--x:14%;--y:47%" aria-label="Fortaleza Escarlate" title="Fortaleza Escarlate"></button>
+              <button class="hs" data-realm="yaryan" type="button" style="--x:28%;--y:72%" aria-label="Império Yaryan" title="Império Yaryan"></button>
+              <button class="hs" data-realm="snezhnaya" type="button" style="--x:53%;--y:69%" aria-label="Reino Snezhnaya" title="Reino Snezhnaya"></button>
             </div>
           </div>
         </div>
@@ -1538,7 +1544,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     </div>
   </div>
 </section>
-
 <!-- ============ CAPÍTULO II — OS GUARDIÕES ============ -->
 <section id="guardioes">
   <div class="wrap">
@@ -1551,7 +1556,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     </div>
 
     <div class="fan reveal">
-      <!-- Carta — Luan Dhony -->
       <div class="card" data-person="luan" data-realm="supremo" style="--accent:var(--c-supremo)" tabindex="0" role="button" aria-label="Carta de Luan Dhony, o Dragão Soberano. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1580,7 +1584,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta — Debora Vezetiv -->
       <div class="card" data-person="debora" data-realm="mirigumi" style="--accent:var(--c-mirigumi)" tabindex="0" role="button" aria-label="Carta de Debora Vezetiv, a Imperatriz. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1609,7 +1612,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta — Rayssa Vitoria -->
       <div class="card" data-person="rayssa" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Rayssa Vitoria, o Corvo. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1638,7 +1640,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta — Nayara Hostapiuk -->
       <div class="card" data-person="nayara" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Nayara Hostapiuk, a Lâmina. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1667,7 +1668,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta — Luís Augusto -->
       <div class="card" data-person="luis" data-realm="ascar" style="--accent:var(--c-ascar)" tabindex="0" role="button" aria-label="Carta de Luís Augusto, o Rei Dourado. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1696,7 +1696,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta — Fernando Fernandes -->
       <div class="card" data-person="fernando" data-realm="bravos" style="--accent:var(--c-bravos)" tabindex="0" role="button" aria-label="Carta de Fernando Fernandes, dos Bravos e Destemidos. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1725,7 +1724,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta — Cristiano Ronaldo -->
       <div class="card" data-person="cristiano" data-realm="karhal" style="--accent:var(--c-karhal)" tabindex="0" role="button" aria-label="Carta de Cristiano Ronaldo, o Coração da Floresta. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1754,7 +1752,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta — Bruno Martins -->
       <div class="card" data-person="bruno" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" tabindex="0" role="button" aria-label="Carta de Bruno Martins, o Inverno Perpétuo. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1783,7 +1780,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
-      <!-- Carta — Guilherme Morais -->
       <div class="card" data-person="guilherme" data-realm="escarlate" style="--accent:var(--c-escarlate)" tabindex="0" role="button" aria-label="Carta de Guilherme Morais, o Protetor. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1882,6 +1878,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19 V5 M5 12 L12 5 L19 12"/></svg>
 </button>
 
+<!-- ============ TOAST (mensagens da própria página) ============ -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <!-- ============ PORTAL DA PRIMEIRA VISITA ============ -->
 <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle" hidden>
   <div class="gate-box">
@@ -1889,7 +1888,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <h2 class="gate-title" id="gateTitle">Quem chega ao portal?</h2>
     <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
     <p class="gate-sub">Antes de entrar na crônica, dizei de quem é a coroa —
-    ela ficará gravada e vos aguardará em toda visita.</p>
+    ela ficará gravada e vos aguardará em toda visita (e na Mesa de RPG também).</p>
     <svg class="gate-crown" aria-hidden="true"><use href="#sym-crown"/></svg>
 
     <div class="gate-grid" id="gateGrid">
@@ -1946,9 +1945,13 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 
 <script>
 /* ================================================================
-   VELDORA REALMS — dados dos reinos e guardiões
+   VELDORA REALMS — motor completo
+   · Coroa COMPARTILHADA com a Mesa de RPG (mesma chave: veldora_fav)
+   · Tema e animações compartilhados, com sincronização ao vivo
+   · Mensagens sempre da própria página (toast) — nada do navegador
 ================================================================ */
 const DISCORD_URL = 'https://discord.gg/2wx46naKxv';
+const CHRONICLE_URL = 'https://veldorarealms.github.io/rpg/';
 
 const REALMS = {
   supremo: {
@@ -2036,11 +2039,21 @@ const panel = document.getElementById('realmPanel');
 let currentRealm = 'supremo';
 
 /* ================================================================
-   O MAPA DE VOCÊS (mapa.png) + PONTOS CLICÁVEIS
+   TOAST — mensagens da própria página
 ================================================================ */
+let toastT;
+function toast(msg){
+  const t = document.getElementById('toast');
+  if(!t || !msg) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ---------- mapa.png + pontos clicáveis ---------- */
 const mapOverlay = document.getElementById('mapOverlay');
 const mapHotspots = document.getElementById('mapHotspots');
-
 function syncMapOverlay(){
   const ok = mapOverlay.complete && mapOverlay.naturalWidth > 0;
   mapOverlay.style.display = ok ? '' : 'none';
@@ -2050,33 +2063,72 @@ mapOverlay.addEventListener('load', syncMapOverlay);
 mapOverlay.addEventListener('error', syncMapOverlay);
 syncMapOverlay();
 
-/* ================================================================
-   BRASÕES DOS REINOS (bra + 3 primeiras letras do nome)
-================================================================ */
+/* ---------- brasões dos reinos ---------- */
 const CRESTS = {
   supremo:"bralua.png", mirigumi:"bradeb.png", yaryan:"braray.png",
   ascar:"bralui.png", bravos:"brafer.png", karhal:"bracri.png",
   snezhnaya:"brabru.png", escarlate:"bragui.png"
 };
 
-/* ================================================================
-   EXTRAS ÚTEIS — Oráculo, reinos explorados, voltar ao topo
-================================================================ */
-/* 1) O ORÁCULO DA MESA — edite a lista à vontade: */
-const GAMES = [
-  "Valorant","Minecraft","CS2","Sea of Thieves","Lethal Company",
-  "Terraria","Rocket League","Among Us","GTA Online","Palworld",
-  "Rust","ARK","Helldivers 2","Fortnite"
-];
-document.getElementById('cfgOracle').addEventListener('click', ()=>{
-  const out = document.getElementById('oracleOut');
-  const pick = GAMES[Math.floor(Math.random()*GAMES.length)];
-  out.innerHTML = `O Oráculo aponta: <b>${pick}</b>`;
-  out.classList.add('show');
+/* ---------- chaves compartilhadas com a Mesa de RPG ---------- */
+const FAV_KEY   = 'veldora_fav';
+const THEME_KEY = 'veldora_theme';
+const ANIM_KEY  = 'veldora_anim';
+const TEXT_KEY  = 'veldora_text';
+const VISITED_KEY = 'veldora_visited';
+
+const getFav = () => { try { return localStorage.getItem(FAV_KEY); } catch(e){ return null; } };
+const setFav = id => { try { id ? localStorage.setItem(FAV_KEY, id) : localStorage.removeItem(FAV_KEY); } catch(e){} };
+
+/* ---------- compartilhar a crônica ---------- */
+function shareChronicle(){
+  const data = {
+    title: 'Veldora Realms — Crônica dos Reinos',
+    text: 'A crônica dos reinos e dos amigos que os guardam: oito territórios, nove guardiões e um só pacto.',
+    url: CHRONICLE_URL
+  };
+  if(navigator.share){
+    navigator.share(data).catch(()=>{});
+  } else {
+    /* fallback: copia o link e avisa pela página */
+    const done = ()=>toast('✦ Link copiado — convocai os amigos');
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(CHRONICLE_URL).then(done).catch(()=>fallbackCopy());
+    } else {
+      fallbackCopy();
+    }
+    function fallbackCopy(){
+      const ta = document.createElement('textarea');
+      ta.value = CHRONICLE_URL;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); }
+      catch(err){ toast('Não consegui copiar o link…'); }
+      ta.remove();
+    }
+  }
+}
+document.getElementById('cfgShare').addEventListener('click', ()=>{
+  closeCfg();
+  shareChronicle();
 });
 
-/* 2) REINOS EXPLORADOS (gravado no aparelho) */
-const VISITED_KEY = 'veldora_visited';
+/* ---------- letras maiores ---------- */
+const cfgText = document.getElementById('cfgText');
+function applyText(big){
+  document.documentElement.classList.toggle('big-text', big);
+  cfgText.classList.toggle('on', big);
+}
+cfgText.addEventListener('click', ()=>{
+  const next = !document.documentElement.classList.contains('big-text');
+  try { localStorage.setItem(TEXT_KEY, next ? '1' : '0'); } catch(e){}
+  applyText(next);
+  toast(next ? 'Letras maiores ativadas' : 'Letras no tamanho normal');
+});
+
+/* ---------- reinos explorados ---------- */
 const getVisited = () => { try { return JSON.parse(localStorage.getItem(VISITED_KEY)) || []; } catch(e){ return []; } };
 const visitedCount = () => getVisited().length;
 function markVisited(id){
@@ -2086,20 +2138,12 @@ function markVisited(id){
   }catch(e){}
 }
 
-/* 3) VOLTAR AO TOPO */
+/* ---------- voltar ao topo ---------- */
 const toTopBtn = document.getElementById('toTop');
-addEventListener('scroll', ()=>{
-  toTopBtn.classList.toggle('show', scrollY > 600);
-}, {passive:true});
+addEventListener('scroll', ()=>{ toTopBtn.classList.toggle('show', scrollY > 600); }, {passive:true});
 toTopBtn.addEventListener('click', ()=>scrollTo({top:0, behavior:'smooth'}));
 
-/* ================================================================
-   SISTEMA DE FAVORITO — a coroa do Códice
-================================================================ */
-const FAV_KEY = 'veldora_fav';
-const getFav = () => { try { return localStorage.getItem(FAV_KEY); } catch(e){ return null; } };
-const setFav = id => { try { id ? localStorage.setItem(FAV_KEY, id) : localStorage.removeItem(FAV_KEY); } catch(e){} };
-
+/* ---------- favorito (a coroa) ---------- */
 function applyFav(personId){
   document.querySelectorAll('.card').forEach(card=>{
     const on = card.dataset.person === personId;
@@ -2112,8 +2156,6 @@ function applyFav(personId){
     }
   });
 }
-
-/* Centraliza o carrossel de cartas na carta coroada (tablet/celular). */
 function revealFavCard(behavior){
   const fav = getFav();
   if(!fav) return;
@@ -2179,14 +2221,12 @@ document.querySelectorAll('#worldMap .realm').forEach(g=>{
     if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectRealm(id); }
   });
 });
-
 document.querySelectorAll('#mapHotspots .hs').forEach(hs=>{
   hs.addEventListener('click', ()=>selectRealm(hs.dataset.realm));
   hs.addEventListener('keydown', e=>{
     if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectRealm(hs.dataset.realm); }
   });
 });
-
 document.querySelectorAll('#cfgRealms .cfg-realm').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     selectRealm(btn.dataset.realm);
@@ -2195,7 +2235,7 @@ document.querySelectorAll('#cfgRealms .cfg-realm').forEach(btn=>{
   });
 });
 
-/* "Contemplar a carta" — leva ao carrossel e destaca a carta coroada (ou a primeira do reino) */
+/* "Contemplar a carta" */
 document.addEventListener('click', e=>{
   const link = e.target.closest('.to-card');
   if(!link) return;
@@ -2209,7 +2249,7 @@ document.addEventListener('click', e=>{
   card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
 });
 
-/* ============ CARTAS: virar + inclinar ============ */
+/* ---------- cartas: virar + inclinar ---------- */
 document.querySelectorAll('.card').forEach(card=>{
   const tilt = card.querySelector('.card-tilt');
   const flip = ()=>card.classList.toggle('flipped');
@@ -2227,7 +2267,7 @@ document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('mouseleave', ()=>{ tilt.style.transform = ''; });
 });
 
-/* ============ COROAS DAS CARTAS ============ */
+/* ---------- coroas das cartas ---------- */
 document.querySelectorAll('.card .fav-btn').forEach(btn=>{
   btn.addEventListener('click', e=>{
     e.stopPropagation();
@@ -2241,21 +2281,18 @@ document.querySelectorAll('.card .fav-btn').forEach(btn=>{
   });
 });
 
-/* ================================================================
-   PAINEL DE CONFIGURAÇÕES
-================================================================ */
+/* ---------- painel de configurações ---------- */
 const cfgBtn = document.getElementById('cfgBtn');
 const cfgPanel = document.getElementById('cfgPanel');
-
 function openCfg(){
   cfgPanel.classList.add('open');
   cfgBtn.classList.add('open');
-  cfgBtn.setAttribute('aria-expanded', 'true');
+  cfgBtn.setAttribute('aria-expanded','true');
 }
 function closeCfg(){
   cfgPanel.classList.remove('open');
   cfgBtn.classList.remove('open');
-  cfgBtn.setAttribute('aria-expanded', 'false');
+  cfgBtn.setAttribute('aria-expanded','false');
 }
 cfgBtn.addEventListener('click', ()=>{
   cfgPanel.classList.contains('open') ? closeCfg() : openCfg();
@@ -2267,7 +2304,7 @@ document.addEventListener('click', e=>{
   closeCfg();
 });
 
-/* — Ajuda — */
+/* ---------- ajuda ---------- */
 const help = document.getElementById('help');
 document.getElementById('cfgHelp').addEventListener('click', ()=>{
   closeCfg();
@@ -2281,16 +2318,9 @@ function closeHelp(){
   setTimeout(()=>{ help.hidden = true; }, 350);
 }
 document.getElementById('helpClose').addEventListener('click', closeHelp);
-help.addEventListener('click', e=>{
-  if(e.target === help) closeHelp();
-});
-document.addEventListener('keydown', e=>{
-  if(e.key==='Escape' && !help.hidden) closeHelp();
-});
+help.addEventListener('click', e=>{ if(e.target === help) closeHelp(); });
 
-/* ================================================================
-   PORTAL — escolha da coroa
-================================================================ */
+/* ---------- portal da coroa ---------- */
 const gate = document.getElementById('gate');
 function openGate(){
   gate.hidden = false;
@@ -2318,16 +2348,20 @@ document.querySelectorAll('.gate-choice').forEach(btn=>{
     }, 420);
   });
 });
+
+/* ---------- escape fecha tudo ---------- */
 document.addEventListener('keydown', e=>{
-  if(e.key==='Escape' && !gate.hidden) closeGate();
+  if(e.key !== 'Escape') return;
+  if(!help.hidden){ closeHelp(); return; }
+  if(!gate.hidden){ closeGate(); return; }
+  if(cfgPanel.classList.contains('open')){ closeCfg(); return; }
 });
 
-/* — Discord — */
+/* ---------- discord ---------- */
 document.getElementById('cfgDiscord').href = DISCORD_URL;
 document.getElementById('cfgDiscord').addEventListener('click', closeCfg);
 
-/* — Modo pergaminho (tema claro) — */
-const THEME_KEY = 'veldora_theme';
+/* ---------- tema claro ---------- */
 const cfgTheme = document.getElementById('cfgTheme');
 function applyTheme(light){
   document.documentElement.setAttribute('data-theme', light ? 'light' : 'dark');
@@ -2339,8 +2373,7 @@ cfgTheme.addEventListener('click', ()=>{
   applyTheme(next === 'light');
 });
 
-/* — Animações on/off — */
-const ANIM_KEY = 'veldora_anim';
+/* ---------- animações on/off ---------- */
 const cfgAnim = document.getElementById('cfgAnim');
 let animationsOn = true;
 function applyAnim(on){
@@ -2358,34 +2391,35 @@ cfgAnim.addEventListener('click', ()=>{
   applyAnim(next);
 });
 
-/* classe global p/ desligar transições via CSS */
 const styleTag = document.createElement('style');
 styleTag.textContent = '.no-anim *,.no-anim *::before,.no-anim *::after{animation:none!important;transition:none!important}';
 document.head.appendChild(styleTag);
 
-/* — Redefinir dados — */
+/* ---------- redefinir dados ---------- */
 document.getElementById('cfgReset').addEventListener('click', ()=>{
   try { localStorage.removeItem(FAV_KEY); } catch(e){}
   try { localStorage.removeItem(VISITED_KEY); } catch(e){}
   applyFav(null);
   closeCfg();
   openGate();
+  toast('Códice em branco');
 });
 
-/* ============ REVEAL AO ROLAR ============ */
+/* ---------- reveal ao rolar ---------- */
 const revealObs = new IntersectionObserver(entries=>{
   entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('visible'); revealObs.unobserve(en.target); } });
 },{threshold:.14});
 document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
 
-/* ============ NAV ATIVA ============ */
+/* ---------- nav ativa (só âncoras internas) ---------- */
 const navLinks = document.querySelectorAll('.nav-links a');
 const sectionObs = new IntersectionObserver(entries=>{
   entries.forEach(en=>{
     if(en.isIntersecting){
       navLinks.forEach(a=>{
-        if(a.getAttribute('href') && a.getAttribute('href').startsWith('#')){
-          a.classList.toggle('active', a.getAttribute('href')==='#'+en.target.id);
+        const href = a.getAttribute('href') || '';
+        if(href.startsWith('#')){
+          a.classList.toggle('active', href === '#'+en.target.id);
         }
       });
     }
@@ -2393,7 +2427,7 @@ const sectionObs = new IntersectionObserver(entries=>{
 },{rootMargin:'-45% 0px -50% 0px'});
 document.querySelectorAll('section[id]').forEach(s=>sectionObs.observe(s));
 
-/* ============ POEIRA DOURADA DO HERO ============ */
+/* ---------- poeira dourada do hero ---------- */
 (function(){
   const canvas = document.getElementById('dust');
   if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
@@ -2430,31 +2464,61 @@ document.querySelectorAll('section[id]').forEach(s=>sectionObs.observe(s));
   resize(); make();
   addEventListener('resize', ()=>{ resize(); make(); });
   new IntersectionObserver(([en])=>{
-    if(en.isIntersecting && !running){ running = true; requestAnimationFrame(tick); }
+    if(en.isIntersecting && !running && animationsOn){ running = true; requestAnimationFrame(tick); }
     else if(!en.isIntersecting){ running = false; }
   }).observe(canvas.parentElement);
-
-  /* religa a poeira quando as animações voltam sem sair do hero */
   document.addEventListener('veldora:restart-dust', ()=>{
-    if(running) return;
+    if(running || !animationsOn) return;
     const r = canvas.getBoundingClientRect();
     if(r.bottom > 0 && r.top < innerHeight){ running = true; requestAnimationFrame(tick); }
   });
 })();
 
-/* ============ ANTI-SELEÇÃO (reforço p/ Safari) ============ */
+/* ---------- anti-seleção (Safari) ---------- */
 document.addEventListener('selectstart', e=>e.preventDefault());
 
-/* ============ INICIALIZAÇÃO ============ */
+/* ============ CONEXÃO COM A MESA DE RPG ============
+   A coroa, o tema e as animações vivem nas MESMAS chaves das
+   duas páginas. Se o RPG mudar algo (com esta aba aberta em
+   outra guia), a crônica acompanha na hora — e vice-versa. */
+addEventListener('storage', e=>{
+  if(e.key === FAV_KEY){
+    const fav = getFav();
+    if(fav && PERSON_REALM[fav]){
+      applyFav(fav);
+      selectRealm(PERSON_REALM[fav]);
+      revealFavCard('auto');
+    } else {
+      applyFav(null);
+      renderPanel(currentRealm);
+    }
+  }
+  if(e.key === THEME_KEY){
+    let t = 'dark';
+    try { t = localStorage.getItem(THEME_KEY) || 'dark'; } catch(err){}
+    applyTheme(t === 'light');
+  }
+  if(e.key === ANIM_KEY){
+    let a = '1';
+    try { a = localStorage.getItem(ANIM_KEY) || '1'; } catch(err){}
+    applyAnim(a === '1');
+  }
+});
+
+/* ---------- inicialização ---------- */
 let savedTheme = 'dark';
 try { savedTheme = localStorage.getItem(THEME_KEY) || 'dark'; } catch(e){}
 applyTheme(savedTheme === 'light');
+
 let savedAnim = '1';
 try { savedAnim = localStorage.getItem(ANIM_KEY) !== null ? localStorage.getItem(ANIM_KEY) : '1'; } catch(e){}
 animationsOn = savedAnim === '1';
 applyAnim(animationsOn);
 
-/* Favorito gravado ou portal da primeira visita */
+let savedText = '0';
+try { savedText = localStorage.getItem(TEXT_KEY) || '0'; } catch(e){}
+applyText(savedText === '1');
+
 const savedFav = getFav();
 if(savedFav && PERSON_REALM[savedFav]){
   applyFav(savedFav);
@@ -2466,7 +2530,7 @@ if(savedFav && PERSON_REALM[savedFav]){
   openGate();
 }
 
-/* ============ A CRÔNICA SENTE SUA AUSÊNCIA ============ */
+/* ---------- a crônica sente sua ausência ---------- */
 const baseTitle = document.title;
 document.addEventListener('visibilitychange', ()=>{
   document.title = document.hidden ? 'O portal aguarda seu retorno…' : baseTitle;
