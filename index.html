@@ -178,6 +178,13 @@ nav{
   border-color:#e3bd6a;
   box-shadow:0 0 16px rgba(201,162,74,.45),inset 0 1px 0 rgba(255,244,214,.5);
 }
+/* 🎲 NOVO — menu de 5 links: aperta um pouco em desktops menores */
+@media (max-width:1120px){
+  nav{gap:12px;padding:8px 14px 8px 12px}
+  .brand-name{font-size:.68rem}
+  .nav-links{gap:5px}
+  .nav-links a{font-size:.57rem;padding:7px 10px}
+}
 
 /* ============ BOTÃO + PAINEL DE CONFIGURAÇÕES ============ */
 .cfg-btn{
@@ -1008,6 +1015,12 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <path d="M6 3 H18 A2 2 0 0 1 20 5 V19 A2 2 0 0 1 18 21 H6 A2 2 0 0 1 4 19 V5 A2 2 0 0 1 6 3 Z"/>
       <path d="M8 8 H16 M8 12 H16 M8 16 H13"/>
     </symbol>
+    <symbol id="sym-dice" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/>
+      <circle cx="8.2" cy="8.2" r="1.15" fill="currentColor" stroke="none"/>
+      <circle cx="15.8" cy="15.8" r="1.15" fill="currentColor" stroke="none"/>
+      <circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/>
+    </symbol>
     <!-- Elementos de mapa -->
     <symbol id="sym-mtn" viewBox="0 0 40 24">
       <path d="M2 22 L14 4 L20 12 L26 2 L38 22 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/>
@@ -1067,6 +1080,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <li><a href="#guardioes">Guardiões</a></li>
     <li><a href="#cronica">Crônica</a></li>
     <li><a href="#pacto">O Pacto</a></li>
+    <!-- 🎲 NOVO — atalho para a Mesa de RPG -->
+    <li><a href="https://veldorarealms.github.io/rpg/">A Mesa</a></li>
   </ul>
 </nav>
 
@@ -1100,8 +1115,14 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <span>Discord<small>Entrar no portal do servidor</small></span>
   </a>
 
+  <!-- 🎲 NOVO — botão para a Mesa de RPG (todas as telas) -->
+  <a class="cfg-item" id="cfgRpg" role="menuitem" href="https://veldorarealms.github.io/rpg/">
+    <svg aria-hidden="true"><use href="#sym-dice"/></svg>
+    <span>A Mesa de RPG<small>Dados e fichas dos heróis</small></span>
+  </a>
+
   <button class="cfg-item" id="cfgOracle" type="button" role="menuitem">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.2" cy="8.2" r="1.15" fill="currentColor" stroke="none"/><circle cx="15.8" cy="15.8" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg>
+    <svg aria-hidden="true"><use href="#sym-dice"/></svg>
     <span>O Oráculo da Mesa<small>Sorteia o jogo de hoje</small></span>
   </button>
   <p class="oracle-out" id="oracleOut" aria-live="polite"></p>
@@ -1174,6 +1195,13 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <div>
           <b>As Configurações</b>
           <p>Aqui moram a troca de coroa, o portal do Discord, o Oráculo da Mesa, os atalhos dos reinos e as preferências da crônica.</p>
+        </div>
+      </li>
+      <li>
+        <span class="help-ico"><svg aria-hidden="true"><use href="#sym-dice"/></svg></span>
+        <div>
+          <b>A Mesa de RPG</b>
+          <p>Para além da crônica: dados, fichas, combate, bestiário e a Forja do Mestre. O portal fica no estandarte e nas configurações.</p>
         </div>
       </li>
       <li>
@@ -2355,7 +2383,11 @@ const navLinks = document.querySelectorAll('.nav-links a');
 const sectionObs = new IntersectionObserver(entries=>{
   entries.forEach(en=>{
     if(en.isIntersecting){
-      navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+en.target.id));
+      navLinks.forEach(a=>{
+        if(a.getAttribute('href') && a.getAttribute('href').startsWith('#')){
+          a.classList.toggle('active', a.getAttribute('href')==='#'+en.target.id);
+        }
+      });
     }
   });
 },{rootMargin:'-45% 0px -50% 0px'});
