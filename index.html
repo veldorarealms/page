@@ -464,7 +464,7 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .road{animation:roadmove 26s linear infinite}
 @keyframes roadmove{to{stroke-dashoffset:-260}}
 
-/* 🛡️ NOVO — ============ BRASÃO DO REINO ============ */
+/* ============ BRASÃO DO REINO 🛡️ ============ */
 .panel-crest{
   display:block;width:92px;height:92px;object-fit:contain;
   margin:0 auto 14px;
@@ -934,7 +934,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M40 14 C42 17 42 20 41 23" opacity=".6"/>
       </g>
     </symbol>
-    <symbol id="sym-sunwave" viewBox="0 0 64 64"><!-- Cristiano — Mestre das Dunas -->
+    <symbol id="sym-sunwave" viewBox="0 0 64 64"><!-- Cristiano — Coração da Floresta -->
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="32" cy="24" r="9"/>
         <path d="M23 24 H41 M32 15 V33" opacity=".6"/>
@@ -1479,6 +1479,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     </div>
   </div>
 </section>
+
 <!-- ============ CAPÍTULO II — OS GUARDIÕES ============ -->
 <section id="guardioes">
   <div class="wrap">
@@ -1696,7 +1697,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       </div>
 
       <!-- Carta — Cristiano Ronaldo -->
-      <div class="card" data-person="cristiano" data-realm="karhal" style="--accent:var(--c-karhal)" tabindex="0" role="button" aria-label="Carta de Cristiano Ronaldo, o Mestre das Dunas. Pressione para virar.">
+      <div class="card" data-person="cristiano" data-realm="karhal" style="--accent:var(--c-karhal)" tabindex="0" role="button" aria-label="Carta de Cristiano Ronaldo, o Coração da Floresta. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
             <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
@@ -1704,7 +1705,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
             </button>
             <div class="card-sigil"><svg><use href="#sym-sunwave"/></svg></div>
             <h3>Cristiano Ronaldo</h3>
-            <p class="card-title">Mestre das Dunas</p>
+            <p class="card-title">Coração da Floresta</p>
             <p class="card-realm">Floresta de Karhal</p>
             <p class="card-tap">— virai a carta —</p>
             <p class="fav-tag">Favorito do Códice</p>
@@ -1800,6 +1801,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <p class="fan-hint">Arrastai para os lados para ver os guardiões · tocai numa carta para virá-la · na coroa, para favorecê-la.</p>
   </div>
 </section>
+
 <!-- ============ CAPÍTULO III — A CRÔNICA ============ -->
 <section id="cronica">
   <div class="wrap">
@@ -1904,7 +1906,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       </button>
       <button class="gate-choice" data-person="cristiano" data-realm="karhal" style="--accent:var(--c-karhal)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-sunwave"/></svg></span>
-        <span><span class="gate-name">Cristiano Ronaldo</span><br><span class="gate-role">Mestre das Dunas</span></span>
+        <span><span class="gate-name">Cristiano Ronaldo</span><br><span class="gate-role">Coração da Floresta</span></span>
         <span class="gate-realm">Floresta de Karhal</span>
       </button>
       <button class="gate-choice" data-person="bruno" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" type="button">
@@ -1987,7 +1989,7 @@ const REALMS = {
     motto:"As copas ondulam como dunas — e eu as domo", accent:"#4caf6d",
     today:["copas ondulando ao vento","clareiras banhadas de sol","trilhas que o Mestre conhece de cor"],
     desc:"Uma floresta que desafia toda regra: do alto, as copas ondulam como dunas verdes, trilhas fogem de mapas e as sombras dançam. Só um homem as domina — e a mata obedece.",
-    heroes:[{id:"cristiano", nick:"Cristiano Ronaldo", title:"Mestre das Dunas", symbol:"sym-sunwave",
+    heroes:[{id:"cristiano", nick:"Cristiano Ronaldo", title:"Coração da Floresta", symbol:"sym-sunwave",
       bio:"O senhor das matas verdes de Karhal: conhece cada trilha pelo nome, cada clareira de cor.",
       feats:["Atravessou Karhal de ponta a ponta, sem mapa.","Encontrou três clareiras que ninguém mapeia.","Um “SIUU” que ecoa mata afora."]}]
   },
@@ -2037,7 +2039,7 @@ mapOverlay.addEventListener('load', syncMapOverlay);
 mapOverlay.addEventListener('error', syncMapOverlay);
 syncMapOverlay();
 
-/* 🛡️ NOVO — ================================================================
+/* 🛡️ ================================================================
    BRASÕES DOS REINOS (bra + 3 primeiras letras do nome)
    · Aparecem no topo da ficha do reino, em medalhão circular.
    · Se um PNG faltar na pasta, o brasão some e a ficha segue normal.
