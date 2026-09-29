@@ -86,12 +86,8 @@ a,.card,.realm,.scroll-hint,.to-card,.fav-btn,.gate-choice,.hs,.cfg-item{touch-a
 ::-webkit-scrollbar-thumb{background:var(--ink-soft);border:2px solid var(--paper-3);border-radius:6px}
 
 /* ============ LETRAS MAIORES (acessibilidade) ============ */
-html.big-text{
-  font-size:18px;
-}
-html.big-text body{
-  font-size:19px;
-}
+html.big-text{font-size:18px}
+html.big-text body{font-size:19px}
 
 /* ============ FUNDO COM IMAGENS + VÉU ============ */
 .bg{
@@ -579,7 +575,7 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
   font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
 }
 
-/* ============ CARTAS ============ */
+/* ============ CARTAS — O LEQUE (formato original) ============ */
 .fan{
   display:flex;justify-content:center;align-items:flex-end;
   padding-top:30px;perspective:1600px;
@@ -1155,7 +1151,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 
   <button class="cfg-item" id="cfgText" type="button" role="menuitem">
     <svg aria-hidden="true"><use href="#sym-textsize"/></svg>
-    <span>Letras maiores<small>Aumenta todo o texto da crônica</small></span>
+    <span>Letras maiores<small>Aumenta todo o texto da página</small></span>
     <span class="cfg-toggle" aria-hidden="true"></span>
   </button>
 
@@ -1163,7 +1159,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 
   <button class="cfg-item" id="cfgShare" type="button" role="menuitem">
     <svg aria-hidden="true"><use href="#sym-share"/></svg>
-    <span>Compartilhar pagina<small>Convoca os amigos pelo link</small></span>
+    <span>Compartilhar página<small>Convoca os amigos pelo link</small></span>
   </button>
 
   <button class="cfg-item" id="cfgReset" type="button" role="menuitem">
@@ -1212,21 +1208,21 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-share"/></svg></span>
         <div>
           <b>Compartilhar</b>
-          <p>Do menu de configurações, enviai o link da crônica por qualquer app — convoca os amigos pelo portal.</p>
+          <p>Do menu de configurações, enviei o link da página por qualquer app — convoca os amigos pelo portal.</p>
         </div>
       </li>
       <li>
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-textsize"/></svg></span>
         <div>
           <b>Letras maiores</b>
-          <p>Se o texto parecer pequeno, o modo de letras maiores amplia toda a crônica — e fica gravado para as próximas visitas.</p>
+          <p>Se o texto parecer pequeno, o modo de letras maiores amplia toda a página — e fica gravado para as próximas visitas.</p>
         </div>
       </li>
       <li>
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-gear"/></svg></span>
         <div>
           <b>As Configurações</b>
-          <p>Aqui moram a troca de coroa, o portal do Discord, a Mesa de RPG, os atalhos dos reinos e as preferências da crônica.</p>
+          <p>Aqui moram a troca de coroa, o portal do Discord, a Mesa de RPG, os atalhos dos reinos e as preferências.</p>
         </div>
       </li>
       <li>
@@ -1946,12 +1942,29 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 <script>
 /* ================================================================
    VELDORA REALMS — motor completo
+   · As cartas aparecem em ORDEM ALEATÓRIA a cada visita
    · Coroa COMPARTILHADA com a Mesa de RPG (mesma chave: veldora_fav)
    · Tema e animações compartilhados, com sincronização ao vivo
    · Mensagens sempre da própria página (toast) — nada do navegador
 ================================================================ */
+
+/* ================================================================
+   EMBARALHAR AS CARTAS — cada visita vê o leque noutra ordem
+   (Fisher-Yates: reordena as cartas ANTES de qualquer evento)
+================================================================ */
+(function(){
+  const fan = document.querySelector('.fan');
+  if(!fan) return;
+  const cards = Array.from(fan.children);
+  for(let i = cards.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  cards.forEach(c => fan.appendChild(c));
+})();
+
 const DISCORD_URL = 'https://discord.gg/2wx46naKxv';
-const CHRONICLE_URL = 'https://veldorarealms.github.io/rpg/';
+const PAGE_URL = 'https://veldorarealms.github.io/rpg/';
 
 const REALMS = {
   supremo: {
@@ -2080,26 +2093,25 @@ const VISITED_KEY = 'veldora_visited';
 const getFav = () => { try { return localStorage.getItem(FAV_KEY); } catch(e){ return null; } };
 const setFav = id => { try { id ? localStorage.setItem(FAV_KEY, id) : localStorage.removeItem(FAV_KEY); } catch(e){} };
 
-/* ---------- compartilhar a crônica ---------- */
-function shareChronicle(){
+/* ---------- compartilhar página ---------- */
+function sharePage(){
   const data = {
     title: 'Veldora Realms — Crônica dos Reinos',
     text: 'A crônica dos reinos e dos amigos que os guardam: oito territórios, nove guardiões e um só pacto.',
-    url: CHRONICLE_URL
+    url: PAGE_URL
   };
   if(navigator.share){
     navigator.share(data).catch(()=>{});
   } else {
-    /* fallback: copia o link e avisa pela página */
     const done = ()=>toast('✦ Link copiado — convocai os amigos');
     if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(CHRONICLE_URL).then(done).catch(()=>fallbackCopy());
+      navigator.clipboard.writeText(PAGE_URL).then(done).catch(fallbackCopy);
     } else {
       fallbackCopy();
     }
     function fallbackCopy(){
       const ta = document.createElement('textarea');
-      ta.value = CHRONICLE_URL;
+      ta.value = PAGE_URL;
       ta.style.position = 'fixed';
       ta.style.opacity = '0';
       document.body.appendChild(ta);
@@ -2112,7 +2124,7 @@ function shareChronicle(){
 }
 document.getElementById('cfgShare').addEventListener('click', ()=>{
   closeCfg();
-  shareChronicle();
+  sharePage();
 });
 
 /* ---------- letras maiores ---------- */
@@ -2155,17 +2167,6 @@ function applyFav(personId){
       btn.setAttribute('aria-label', on ? 'Retirar a coroa deste guardião' : 'Coroar este guardião como favorito');
     }
   });
-}
-function revealFavCard(behavior){
-  const fav = getFav();
-  if(!fav) return;
-  const fan = document.querySelector('.fan');
-  const card = document.querySelector(`.card[data-person="${fav}"]`);
-  if(!fan || !card) return;
-  if(!matchMedia('(max-width:1024px)').matches) return;
-  const fanRect = fan.getBoundingClientRect();
-  const delta = card.getBoundingClientRect().left - (fanRect.left + (fan.clientWidth - card.offsetWidth)/2);
-  fan.scrollTo({left: fan.scrollLeft + delta, behavior: behavior||'auto'});
 }
 
 function renderPanel(id){
@@ -2235,7 +2236,7 @@ document.querySelectorAll('#cfgRealms .cfg-realm').forEach(btn=>{
   });
 });
 
-/* "Contemplar a carta" */
+/* "Contemplar a carta" — acha a carta do guardião em qualquer posição do leque */
 document.addEventListener('click', e=>{
   const link = e.target.closest('.to-card');
   if(!link) return;
@@ -2276,7 +2277,6 @@ document.querySelectorAll('.card .fav-btn').forEach(btn=>{
     const next = (prev === personId) ? null : personId;
     setFav(next);
     applyFav(next);
-    if(next) revealFavCard('smooth');
     renderPanel(currentRealm);
   });
 });
@@ -2341,7 +2341,6 @@ document.querySelectorAll('.gate-choice').forEach(btn=>{
     setFav(btn.dataset.person);
     applyFav(btn.dataset.person);
     selectRealm(btn.dataset.realm);
-    revealFavCard('auto');
     closeGate();
     setTimeout(()=>{
       document.getElementById('mapa').scrollIntoView({behavior:'smooth'});
@@ -2487,7 +2486,6 @@ addEventListener('storage', e=>{
     if(fav && PERSON_REALM[fav]){
       applyFav(fav);
       selectRealm(PERSON_REALM[fav]);
-      revealFavCard('auto');
     } else {
       applyFav(null);
       renderPanel(currentRealm);
@@ -2523,7 +2521,6 @@ const savedFav = getFav();
 if(savedFav && PERSON_REALM[savedFav]){
   applyFav(savedFav);
   selectRealm(PERSON_REALM[savedFav]);
-  revealFavCard('auto');
 } else {
   applyFav(null);
   renderPanel('supremo');
