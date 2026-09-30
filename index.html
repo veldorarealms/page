@@ -391,14 +391,12 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .fan-row{display:flex;justify-content:center;align-items:flex-end}
 .fan-row + .fan-row{margin-top:-16px}
 .fan-row .card{flex:0 0 auto;margin:0 -6px;transition:transform .4s ease;z-index:1}
-/* fileira de cima: 6 cartas */
 .fan-row:nth-child(1) .card:nth-child(1){--r:-10deg;--y:24px}
 .fan-row:nth-child(1) .card:nth-child(2){--r:-6deg;--y:8px}
 .fan-row:nth-child(1) .card:nth-child(3){--r:-2deg;--y:2px}
 .fan-row:nth-child(1) .card:nth-child(4){--r:2deg;--y:2px}
 .fan-row:nth-child(1) .card:nth-child(5){--r:6deg;--y:8px}
 .fan-row:nth-child(1) .card:nth-child(6){--r:10deg;--y:24px}
-/* fileira de baixo: 6 cartas */
 .fan-row:nth-child(2) .card:nth-child(1){--r:-10deg;--y:16px}
 .fan-row:nth-child(2) .card:nth-child(2){--r:-6deg;--y:5px}
 .fan-row:nth-child(2) .card:nth-child(3){--r:-2deg;--y:0px}
@@ -585,7 +583,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .map-layout{grid-template-columns:1fr}
   .panel{position:static}
 }
-/* ===== TABLET E CELULAR: carrossel com destaque central ===== */
 @media (max-width:1024px){
   .fan{
     display:flex;flex-direction:row;align-items:center;overflow-x:auto;
@@ -740,10 +737,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M20 34 L24 35 M44 34 L40 35" opacity=".6"/>
       </g>
     </symbol>
-    <symbol id="sym-thunder" viewBox="0 0 64 64"><!-- Laura — Electric Wizard: raio em erupção sobre aro arcano -->
+    <symbol id="sym-thunder" viewBox="0 0 64 64"><!-- Laura — Electric Wizard: chapéu de mago com raio -->
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="32" cy="32" r="22" opacity=".5"/>
-        <path d="M36 8 L24 32 L32 32 L28 56 L42 30 L33 30 L38 8 Z"/>
+        <path d="M20 42 C24 30 28 18 36 10 C40 18 44 30 46 42"/>
+        <path d="M10 42 Q32 36 54 42 Q32 50 10 42 Z"/>
+        <path d="M35 20 L30 29 L34.5 29 L32 37" stroke-width="2.6"/>
       </g>
     </symbol>
     <symbol id="sym-celeste" viewBox="0 0 64 64"><!-- Cecilia — Celeste: lua crescente com estrela -->
@@ -855,7 +853,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   </defs>
 </svg>
 
-<!-- ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE ============ -->
+<!-- ============ NAVEGAÇÃO ============ -->
 <nav aria-label="Capítulos da crônica">
   <a class="brand" href="#inicio">
     <img class="brand-seal" src="simbolo.png" alt="Símbolo de Veldora Realms">
@@ -1082,7 +1080,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <textPath href="#seaCurve" startOffset="50%" text-anchor="middle">· MAR DE VELDORA ·</textPath>
               </text>
 
-              <!-- Rotas marítimas (ligando os sete reinos) -->
               <g fill="none" stroke="var(--sea)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" opacity=".5">
                 <path d="M470 340 C420 400 380 450 350 500"/>
                 <path d="M480 350 C560 420 640 460 700 480"/>
@@ -1184,7 +1181,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 </g>
               </g>
 
-              <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitoria, Nayara Hostapiuk, Gustavo Leite, Gabriel Amaral, Laura Gomes e Cecilia Rodrigues">
+              <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitoria, Nayara Hostapiuk, Gabriel Amaral, Laura Gomes e Cecilia Rodrigues">
                 <path class="land" fill="var(--c-yaryan)" d="M258 560 C262 540 282 528 306 530 C330 532 346 546 344 564 C342 582 322 594 298 592 C276 590 258 580 258 560 Z"/>
                 <path class="land" fill="var(--c-yaryan)" d="M330 510 C334 494 352 484 372 486 C392 488 404 500 402 514 C400 528 384 536 364 534 C346 532 330 524 330 510 Z"/>
                 <path class="land" fill="var(--c-yaryan)" d="M370 566 C386 560 404 566 408 580 C412 594 400 606 382 606 C364 606 352 596 354 582 C355 575 362 569 370 566 Z"/>
@@ -1433,7 +1430,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div>
 
         <!-- Gustavo -->
-        <div class="card" data-person="gustavo" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Gustavo Leite, o Nômade. Pressione para virar.">
+        <div class="card" data-person="gustavo" data-realm="nomade" style="--accent:#f08a3c" tabindex="0" role="button" aria-label="Carta de Gustavo Leite, o Nômade. Pressione para virar.">
           <div class="card-tilt"><div class="card-inner">
             <div class="card-face card-front">
               <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
@@ -1442,20 +1439,20 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <div class="card-sigil"><svg><use href="#sym-nomad"/></svg></div>
               <h3>Gustavo Leite</h3>
               <p class="card-title">Nômade</p>
-              <p class="card-realm">Império Yaryan</p>
+              <p class="card-realm">Errante pelo mundo</p>
               <p class="card-tap">— virai a carta —</p>
               <p class="fav-tag">Favorito do Códice</p>
             </div>
             <div class="card-face card-back">
               <p class="card-lema">“Nenhum mapa o prende — nem o das sombras.”</p>
               <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-              <p class="card-bio">Andarilho eterno das ilhas roxas: conhece cada trilha perdida do Yaryan porque jamais parou de andar. Onde a névoa engole os caminhos, ele passa sem deixar rastro.</p>
+              <p class="card-bio">Andarilho eterno: não pertence a reino algum — todos os reinos pertencem ao seu caminho. Hoje pode estar acampado numa muralha; amanhã, perdido numa nevasca. Ou em lugar nenhum.</p>
               <div class="stats">
-                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
                 <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               </div>
             </div>
           </div></div>
@@ -1771,10 +1768,10 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span><span class="gate-name">Nayara Hostapiuk</span><br><span class="gate-role">A Lâmina</span></span>
         <span class="gate-realm">Yaryan</span>
       </button>
-      <button class="gate-choice" data-person="gustavo" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
+      <button class="gate-choice" data-person="gustavo" style="--accent:#f08a3c" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-nomad"/></svg></span>
         <span><span class="gate-name">Gustavo Leite</span><br><span class="gate-role">Nômade</span></span>
-        <span class="gate-realm">Yaryan</span>
+        <span class="gate-realm">Sem reino fixo</span>
       </button>
       <button class="gate-choice" data-person="gabriel" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-mayhem"/></svg></span>
@@ -1823,6 +1820,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
    · As cartas aparecem em ORDEM ALEATÓRIA a cada visita,
      sempre distribuídas 6 + 6 nas duas fileiras do leque
    · No celular, carrossel com destaque na carta central
+   · O NÔMADA (Gustavo) não pertence a reino: a cada visita ele
+     pode estar acampando num reino aleatório — ou em nenhum
    · Coroa COMPARTILHADA com a Mesa de RPG (mesma chave: veldora_fav)
    · Tema e animações compartilhados, com sincronização ao vivo
    · Mensagens sempre da própria página (toast) — nada do navegador
@@ -1830,7 +1829,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 
 /* ================================================================
    EMBARALHAR AS CARTAS — 12 cartas, sempre 6 + 6 nas fileiras
-   (Fisher-Yates sobre todas, depois redistribui entre as rows)
 ================================================================ */
 (function(){
   const fan = document.querySelector('.fan');
@@ -1890,8 +1888,8 @@ const REALMS = {
   yaryan: {
     kicker:"O Reino das Sombras", name:"Império Yaryan", epithet:"O arquipélago roxo do sul",
     motto:"De nada, mundos", accent:"#7a52a8",
-    today:["noite roxa, o Corvo no céu","a Lâmina afiada ao luar","trilhas de névoa que só o Nômade conhece","o MAYHEM ecoando entre as ilhas","tempestades elétricas da Wizard","a luz serena da Celeste sobre o Porto Livre"],
-    desc:"Seis almas defendem o arquipélago roxo: o Corvo vê tudo do alto, a Lâmina corta o que não deve existir, o Nômade caminha por onde ninguém ousou, o MAYHEM traz o caos a seu favor, a Electric Wizard comanda as tempestades — e a Celeste acende a noite.",
+    today:["noite roxa, o Corvo no céu","a Lâmina afiada ao luar","o MAYHEM ecoando entre as ilhas","tempestades elétricas da Wizard","a luz serena da Celeste sobre o Porto Livre"],
+    desc:"Cinco almas defendem o arquipélago roxo: o Corvo vê tudo do alto, a Lâmina corta o que não deve existir, o MAYHEM traz o caos a seu favor, a Electric Wizard comanda as tempestades — e a Celeste acende a noite. O Nômade, esse, não pertence a reino algum: aparece quando quer.",
     heroes:[
       {id:"rayssa", nick:"Rayssa Vitoria", title:"O Corvo", role:"Guardiã", symbol:"sym-raven",
         bio:"Planando sobre o Yaryan, o Corvo observa tudo antes de qualquer um — e chega sabendo demais.",
@@ -1899,13 +1897,10 @@ const REALMS = {
       {id:"nayara", nick:"Nayara Hostapiuk", title:"A Lâmina", role:"Guardiã", symbol:"sym-blade",
         bio:"A lâmina do Yaryan: corta o jogo no ponto exato, na hora exata — e o que decide, o destino executa.",
         feats:["Corta o jogo exatamente onde dói.","Costurou a aliança entre todos os reinos.","A última coisa que o boss viu."]},
-      {id:"gustavo", nick:"Gustavo Leite", title:"Nômade", role:"Nobre", symbol:"sym-nomad",
-        bio:"Andarilho eterno das ilhas roxas: conhece cada trilha perdida do Yaryan porque jamais parou de andar.",
-        feats:["Atravessou o Yaryan de ponta a ponta, três vezes.","Desapareceu por 40 dias — voltou com um mapa novo.","A névoa o conhece pelo nome."]},
-      {id:"gabriel", nick:"Gabriel Amaral", title:"MAYHEM", role:"Nobre", symbol:"sym-mayhem",
+      {id:"gabriel", nick:"Gabriel Amaral", title:"MAYHEM", role:"Bobo da Corte", symbol:"sym-mayhem",
         bio:"Sob a máscara de guerra, o caos luta pelo reino das sombras: imprevisível, ensurdecedor, impossível de parar.",
         feats:["Virou uma partida perdida com o caos.","O time inimigo se rendeu — ao ouvir o nome.","Nunca jogou o mesmo jogo duas vezes."]},
-      {id:"laura", nick:"Laura Gomes", title:"Electric Wizard", role:"Nobre", symbol:"sym-thunder",
+      {id:"laura", nick:"Laura Gomes", title:"Electric Wizard", role:"Mago Nobre", symbol:"sym-thunder",
         bio:"Feiticeira das correntes vivas: a eletricidade do Yaryan obedece ao seu comando.",
         feats:["Zerou a partida com um feitiço só.","Desviou um raio com os dedos — por diversão.","Os céus do Yaryan são o dela."]},
       {id:"cecilia", nick:"Cecilia Rodrigues", title:"Celeste", role:"Nobre", symbol:"sym-celeste",
@@ -1951,7 +1946,23 @@ const REALMS = {
   }
 };
 
-const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", gustavo:"yaryan", gabriel:"yaryan", laura:"yaryan", cecilia:"yaryan", luis:"ascar", cristiano:"karhal", bruno:"snezhnaya", guilherme:"escarlate"};
+const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", gabriel:"yaryan", laura:"yaryan", cecilia:"yaryan", luis:"ascar", cristiano:"karhal", bruno:"snezhnaya", guilherme:"escarlate"};
+
+/* ================================================================
+   O NÔMADA — Gustavo não pertence a reino algum.
+   A cada visita, ele pode estar acampando num reino aleatório
+   (45% de chance) ou em lugar nenhum, vagando pelo mundo.
+================================================================ */
+const WANDER_CHANCE = 0.45;
+const REALM_KEYS = ['supremo','mirigumi','yaryan','ascar','karhal','snezhnaya','escarlate'];
+const wanderToday = Math.random() < WANDER_CHANCE
+  ? REALM_KEYS[Math.floor(Math.random()*REALM_KEYS.length)]
+  : null;
+const NOMAD = {
+  nick:'Gustavo Leite', title:'Nômade', role:'Andarilho', symbol:'sym-nomad',
+  bio:'Andarilho eterno: não pertence a reino algum — todos os reinos pertencem ao seu caminho. Hoje, o acaso o trouxe até aqui. Amanhã? Quem sabe.',
+  feats:['Atravessou Veldora de ponta a ponta, três vezes.','Desapareceu por 40 dias — voltou com um mapa novo.','A névoa o conhece pelo nome.']
+};
 
 const panel = document.getElementById('realmPanel');
 let currentRealm = 'supremo';
@@ -2079,7 +2090,7 @@ function renderPanel(id){
   const today = r.today[Math.floor(Math.random()*r.today.length)];
   const fav = getFav();
   const heroes = r.heroes;
-  const multi = heroes.length > 1;
+  const multi = heroes.length > 1 || wanderToday === id;
   panel.style.setProperty('--accent', r.accent);
   panel.querySelector('.panel-body').innerHTML = `
     <img class="panel-crest" src="${CRESTS[id]}" alt="Brasão de ${r.name}" onerror="this.remove()">
@@ -2105,6 +2116,21 @@ function renderPanel(id){
       <p class="feats-title">${multi ? 'Feitos de ' + h.nick.split(' ')[0] : 'Feitos registrados'}</p>
       <ul class="feats">${h.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
     `).join('')}
+    ${wanderToday === id ? `
+      <div class="co-gap"></div>
+      <div class="guardian g-second">
+        <div class="guardian-medal"><svg><use href="#${NOMAD.symbol}"/></svg></div>
+        <div>
+          <p class="g-kicker">${NOMAD.role}</p>
+          <p class="g-name">${NOMAD.nick}</p>
+          <p class="g-title">${NOMAD.title}</p>
+          ${fav === 'gustavo' ? `<p class="g-fav"><svg aria-hidden="true"><use href="#sym-crown"/></svg>Favorito do Códice</p>` : ''}
+        </div>
+      </div>
+      <p class="guardian-bio">${NOMAD.bio}</p>
+      <p class="feats-title">Feitos do Nômade</p>
+      <ul class="feats">${NOMAD.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
+    ` : ''}
     <p class="visited-note">Reinos explorados: ${visitedCount()} de 7</p>
     <a class="to-card" href="#guardioes" data-card="${id}">${multi ? 'Contemplar as cartas do reino' : 'Contemplar a carta do guardião'}</a>`;
 }
@@ -2141,7 +2167,8 @@ document.querySelectorAll('#cfgRealms .cfg-realm').forEach(btn=>{
   });
 });
 
-/* "Contemplar a carta" — acha a carta em qualquer fileira/posição */
+/* "Contemplar a carta" — acha a carta em qualquer fileira/posição;
+   se o Nômade estiver de visita no reino e for o coroado, também acha */
 document.addEventListener('click', e=>{
   const link = e.target.closest('.to-card');
   if(!link) return;
@@ -2149,7 +2176,9 @@ document.addEventListener('click', e=>{
   const fav = getFav();
   let card = (fav && PERSON_REALM[fav] === link.dataset.card)
     ? document.querySelector(`.card[data-person="${fav}"]`)
-    : document.querySelector(`.card[data-realm="${link.dataset.card}"]`);
+    : (fav === 'gustavo' && wanderToday === link.dataset.card)
+      ? document.querySelector(`.card[data-person="gustavo"]`)
+      : document.querySelector(`.card[data-realm="${link.dataset.card}"]`);
   if(!card) return;
   card.scrollIntoView({behavior:'smooth', block:'center', inline:'center'});
   card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
@@ -2245,11 +2274,15 @@ document.querySelectorAll('.gate-choice').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     setFav(btn.dataset.person);
     applyFav(btn.dataset.person);
-    selectRealm(btn.dataset.realm);
+    if(btn.dataset.realm && REALMS[btn.dataset.realm]){
+      selectRealm(btn.dataset.realm);
+      setTimeout(()=>{
+        document.getElementById('mapa').scrollIntoView({behavior:'smooth'});
+      }, 420);
+    } else {
+      toast('👑 O Nômade não tem reino — ele acampa onde quiser');
+    }
     closeGate();
-    setTimeout(()=>{
-      document.getElementById('mapa').scrollIntoView({behavior:'smooth'});
-    }, 420);
   });
 });
 
@@ -2391,6 +2424,10 @@ addEventListener('storage', e=>{
     if(fav && PERSON_REALM[fav]){
       applyFav(fav);
       selectRealm(PERSON_REALM[fav]);
+    } else if(fav === 'gustavo'){
+      applyFav(fav);
+      if(wanderToday) selectRealm(wanderToday);
+      else renderPanel(currentRealm);
     } else {
       applyFav(null);
       renderPanel(currentRealm);
@@ -2423,9 +2460,16 @@ try { savedText = localStorage.getItem(TEXT_KEY) || '0'; } catch(e){}
 applyText(savedText === '1');
 
 const savedFav = getFav();
-if(savedFav && PERSON_REALM[savedFav]){
+if(savedFav){
   applyFav(savedFav);
-  selectRealm(PERSON_REALM[savedFav]);
+  if(PERSON_REALM[savedFav]){
+    selectRealm(PERSON_REALM[savedFav]);
+  } else {
+    /* o Nômade coroado: sem reino para abrir — a ficha do
+       reino dele de hoje (se houver) já mostra a visita */
+    renderPanel(wanderToday || 'supremo');
+    if(wanderToday) selectRealm(wanderToday);
+  }
 } else {
   applyFav(null);
   renderPanel('supremo');
