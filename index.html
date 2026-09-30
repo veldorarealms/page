@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <meta property="og:title" content="Veldora Realms — Crônica dos Reinos">
-<meta property="og:description" content="A crônica dos reinos e dos amigos que os guardam: oito territórios, nove guardiões e um só pacto.">
+<meta property="og:description" content="A crônica dos reinos e dos amigos que os guardam: oito territórios, doze guardiões e um só pacto.">
 <meta property="og:image" content="simbolo.png">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#c9a24a">
@@ -47,7 +47,6 @@
   --font-black:'UnifrakturMaguntia','EB Garamond',serif;
   --font-med:'MedievalSharp','EB Garamond',serif;
 }
-/* ============ MODO CLARO ============ */
 :root[data-theme="light"]{
   --paper:#e8dcc0;
   --paper-2:#f2e8d0;
@@ -84,8 +83,6 @@ a,.card,.realm,.scroll-hint,.to-card,.fav-btn,.gate-choice,.hs,.cfg-item{touch-a
 ::-webkit-scrollbar{width:10px}
 ::-webkit-scrollbar-track{background:var(--paper-3)}
 ::-webkit-scrollbar-thumb{background:var(--ink-soft);border:2px solid var(--paper-3);border-radius:6px}
-
-/* ============ LETRAS MAIORES (acessibilidade) ============ */
 html.big-text{font-size:18px}
 html.big-text body{font-size:19px}
 
@@ -294,7 +291,7 @@ nav{
 .cfg-realm:hover{transform:translateY(-2px);box-shadow:0 0 14px rgba(201,162,74,.3)}
 .cfg-realm.on{background:var(--r,var(--gold));color:#1a1208;box-shadow:0 0 12px rgba(201,162,74,.4)}
 
-/* ============ TOAST (mensagens da própria página) ============ */
+/* ============ TOAST ============ */
 .toast{
   position:fixed;
   bottom:18px;
@@ -575,30 +572,32 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
   font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
 }
 
-/* ============ CARTAS — O LEQUE (formato original) ============ */
+/* ============ CARTAS — O LEQUE (12 guardiões) ============ */
 .fan{
   display:flex;justify-content:center;align-items:flex-end;
   padding-top:30px;perspective:1600px;
+  margin:0 calc(-1 * clamp(24px,4vw,70px));
 }
-.fan .card{flex:0 0 auto;margin:0 -6px;transition:transform .4s ease;z-index:1}
-.fan .card:nth-child(1){--r:-15deg;--y:44px}
-.fan .card:nth-child(2){--r:-12deg;--y:30px}
-.fan .card:nth-child(3){--r:-9deg;--y:18px}
-.fan .card:nth-child(4){--r:-6deg;--y:8px}
-.fan .card:nth-child(5){--r:-3deg;--y:2px}
-.fan .card:nth-child(6){--r:0deg;--y:0px}
-.fan .card:nth-child(7){--r:3deg;--y:2px}
-.fan .card:nth-child(8){--r:6deg;--y:8px}
-.fan .card:nth-child(9){--r:9deg;--y:18px}
-.fan .card:nth-child(10){--r:12deg;--y:30px}
-.fan .card:nth-child(11){--r:15deg;--y:44px}
+.fan .card{flex:0 0 auto;margin:0 -8px;transition:transform .4s ease;z-index:1}
+.fan .card:nth-child(1){--r:-16deg;--y:46px}
+.fan .card:nth-child(2){--r:-13deg;--y:32px}
+.fan .card:nth-child(3){--r:-10deg;--y:20px}
+.fan .card:nth-child(4){--r:-7deg;--y:10px}
+.fan .card:nth-child(5){--r:-4deg;--y:3px}
+.fan .card:nth-child(6){--r:-1deg;--y:0px}
+.fan .card:nth-child(7){--r:2deg;--y:1px}
+.fan .card:nth-child(8){--r:5deg;--y:6px}
+.fan .card:nth-child(9){--r:8deg;--y:14px}
+.fan .card:nth-child(10){--r:11deg;--y:24px}
+.fan .card:nth-child(11){--r:14deg;--y:36px}
+.fan .card:nth-child(12){--r:17deg;--y:50px}
 .fan .card:nth-child(odd){z-index:2}
 @media (hover:hover){
   .fan .card:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 20px));z-index:10}
 }
 .fan .card{transform:rotate(var(--r)) translateY(var(--y))}
 .card{
-  width:clamp(112px,11.5vw,130px);aspect-ratio:5/8;perspective:1400px;cursor:pointer;
+  width:clamp(96px,9.2vw,120px);aspect-ratio:5/8;perspective:1400px;cursor:pointer;
 }
 .card-tilt{width:100%;height:100%;transition:transform .3s ease}
 .card-inner{
@@ -847,7 +846,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .fan .card:nth-child(1),.fan .card:nth-child(2),.fan .card:nth-child(3),
   .fan .card:nth-child(4),.fan .card:nth-child(5),.fan .card:nth-child(6),
   .fan .card:nth-child(7),.fan .card:nth-child(8),.fan .card:nth-child(9),
-  .fan .card:nth-child(10),.fan .card:nth-child(11){
+  .fan .card:nth-child(10),.fan .card:nth-child(11),.fan .card:nth-child(12){
     --r:0deg;--y:0px;margin:0;transform:none;flex:0 0 auto;scroll-snap-align:center;
   }
   .fan .card:hover,.fan .card.fav{transform:none}
@@ -965,6 +964,29 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M32 4 L38 14 L34 44 L32 50 L30 44 L26 14 Z"/>
         <path d="M26 44 L20 48 M38 44 L44 48"/><path d="M32 50 L32 58"/>
         <circle cx="32" cy="60" r="2.2"/>
+      </g>
+    </symbol>
+    <symbol id="sym-nomad" viewBox="0 0 64 64"><!-- Gustavo — Nômade: bengala de viagem com estrela-guia -->
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M26 58 L26 12"/>
+        <path d="M26 12 C26 7 31 5 35 7"/>
+        <circle cx="38" cy="10" r="2.4"/>
+        <path d="M18 20 L26 28 M34 20 L26 28"/>
+        <path d="M16 58 C16 52 20 50 26 50 C32 50 36 52 36 58" opacity=".55"/>
+      </g>
+    </symbol>
+    <symbol id="sym-mayhem" viewBox="0 0 64 64"><!-- Gabriel — MAYHEM: máscara de guerra entalhada -->
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 6 C41 9 48 14 50 22 C52 32 48 44 40 52 L32 58 L24 52 C16 44 12 32 14 22 C16 14 23 9 32 6 Z"/>
+        <path d="M22 26 L28 29 M36 29 L42 26" stroke-width="3.4"/>
+        <path d="M26 42 C28 39 30 38 32 40 C34 38 36 39 38 42 C35 45 29 45 26 42 Z"/>
+        <path d="M20 34 L24 35 M44 34 L40 35" opacity=".6"/>
+      </g>
+    </symbol>
+    <symbol id="sym-thunder" viewBox="0 0 64 64"><!-- Laura — Eletric Wizard: raio em erupção sobre aro arcano -->
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="32" cy="32" r="22" opacity=".5"/>
+        <path d="M36 8 L24 32 L32 32 L28 56 L42 30 L33 30 L38 8 Z"/>
       </g>
     </symbol>
     <symbol id="sym-royalcrown" viewBox="0 0 64 64">
@@ -1273,7 +1295,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
       <p class="lead">Todo grupo de amigos é, no fundo, um continente: territórios de temperamentos
       diferentes, unidos por estradas que ninguém lembra de ter aberto — e que ninguém consegue mais
-      abandonar. Esta é a carta de Veldora: oito reinos, nove guardiões, um só juramento —
+      abandonar. Esta é a carta de Veldora: oito reinos, doze guardiões, um só juramento —
       e uma mesa que troca de jogo, mas nunca de gente.</p>
     </div>
 
@@ -1419,7 +1441,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 </g>
               </g>
 
-              <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitoria e Nayara Hostapiuk">
+              <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitoria, Nayara Hostapiuk, Gustavo Leite, Gabriel Amaral e Laura Gomes">
                 <path class="land" fill="var(--c-yaryan)" d="M258 560 C262 540 282 528 306 530 C330 532 346 546 344 564 C342 582 322 594 298 592 C276 590 258 580 258 560 Z"/>
                 <path class="land" fill="var(--c-yaryan)" d="M330 510 C334 494 352 484 372 486 C392 488 404 500 402 514 C400 528 384 536 364 534 C346 532 330 524 330 510 Z"/>
                 <path class="land" fill="var(--c-yaryan)" d="M370 566 C386 560 404 566 408 580 C412 594 400 606 382 606 C364 606 352 596 354 582 C355 575 362 569 370 566 Z"/>
@@ -1547,11 +1569,12 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <p class="chapter-kicker">Capítulo II</p>
       <h2>Os Guardiões do Pacto</h2>
       <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-      <p class="lead">Nove almas, oito reinos, um juramento. Virai cada carta para ler o que a
+      <p class="lead">Doze almas, oito reinos, um juramento. Virai cada carta para ler o que a
       crônica registrou — e coroai, se alguém merecer a vossa devoção eterna.</p>
     </div>
 
     <div class="fan reveal">
+      <!-- Carta — Luan Dhony -->
       <div class="card" data-person="luan" data-realm="supremo" style="--accent:var(--c-supremo)" tabindex="0" role="button" aria-label="Carta de Luan Dhony, o Dragão Soberano. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1580,6 +1603,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
+      <!-- Carta — Debora Vezetiv -->
       <div class="card" data-person="debora" data-realm="mirigumi" style="--accent:var(--c-mirigumi)" tabindex="0" role="button" aria-label="Carta de Debora Vezetiv, a Imperatriz. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1608,6 +1632,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
+      <!-- Carta — Rayssa Vitoria -->
       <div class="card" data-person="rayssa" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Rayssa Vitoria, o Corvo. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1636,6 +1661,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
+      <!-- Carta — Nayara Hostapiuk -->
       <div class="card" data-person="nayara" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Nayara Hostapiuk, a Lâmina. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1664,6 +1690,94 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
+      <!-- Carta — Gustavo Leite -->
+      <div class="card" data-person="gustavo" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Gustavo Leite, o Nômade. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+            </button>
+            <div class="card-sigil"><svg><use href="#sym-nomad"/></svg></div>
+            <h3>Gustavo Leite</h3>
+            <p class="card-title">Nômade</p>
+            <p class="card-realm">Império Yaryan</p>
+            <p class="card-tap">— virai a carta —</p>
+            <p class="fav-tag">Favorito do Códice</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“Nenhum mapa o prende — nem o das sombras.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">Andarilho eterno das ilhas roxas: conhece cada trilha perdida do Yaryan porque jamais parou de andar. Onde a névoa engole os caminhos, ele passa sem deixar rastro.</p>
+            <div class="stats">
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Carta — Gabriel Amaral -->
+      <div class="card" data-person="gabriel" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Gabriel Amaral, MAYHEM. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+            </button>
+            <div class="card-sigil"><svg><use href="#sym-mayhem"/></svg></div>
+            <h3>Gabriel Amaral</h3>
+            <p class="card-title">MAYHEM</p>
+            <p class="card-realm">Império Yaryan</p>
+            <p class="card-tap">— virai a carta —</p>
+            <p class="fav-tag">Favorito do Códice</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“O caos também escolhe um lado — escolheu o nosso.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">Sob a máscara de guerra, ninguém sabe o que pensa — nem se pensa. O Yaryan o soltou nas batalhas e o caos passou a lutar pelo reino das sombras: imprevisível, ensurdecedor, impossível de parar.</p>
+            <div class="stats">
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Carta — Laura Gomes -->
+      <div class="card" data-person="laura" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Laura Gomes, Eletric Wizard. Pressione para virar.">
+        <div class="card-tilt"><div class="card-inner">
+          <div class="card-face card-front">
+            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+            </button>
+            <div class="card-sigil"><svg><use href="#sym-thunder"/></svg></div>
+            <h3>Laura Gomes</h3>
+            <p class="card-title">Eletric Wizard</p>
+            <p class="card-realm">Império Yaryan</p>
+            <p class="card-tap">— virai a carta —</p>
+            <p class="fav-tag">Favorito do Códice</p>
+          </div>
+          <div class="card-face card-back">
+            <p class="card-lema">“A tempestade aprende comigo — não o contrário.”</p>
+            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+            <p class="card-bio">Feiticeira das correntes vivas: a eletricidade do Yaryan obedece ao seu comando. Quando o céu das ilhas roxas estala, é o feitiço dela anunciando que a batalha já tem dona.</p>
+            <div class="stats">
+              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Carta — Luís Augusto -->
       <div class="card" data-person="luis" data-realm="ascar" style="--accent:var(--c-ascar)" tabindex="0" role="button" aria-label="Carta de Luís Augusto, o Rei Dourado. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1692,6 +1806,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
+      <!-- Carta — Fernando Fernandes -->
       <div class="card" data-person="fernando" data-realm="bravos" style="--accent:var(--c-bravos)" tabindex="0" role="button" aria-label="Carta de Fernando Fernandes, dos Bravos e Destemidos. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1720,6 +1835,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
+      <!-- Carta — Cristiano Ronaldo -->
       <div class="card" data-person="cristiano" data-realm="karhal" style="--accent:var(--c-karhal)" tabindex="0" role="button" aria-label="Carta de Cristiano Ronaldo, o Coração da Floresta. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1748,6 +1864,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
+      <!-- Carta — Bruno Martins -->
       <div class="card" data-person="bruno" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" tabindex="0" role="button" aria-label="Carta de Bruno Martins, o Inverno Perpétuo. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1776,6 +1893,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         </div></div>
       </div>
 
+      <!-- Carta — Guilherme Morais -->
       <div class="card" data-person="guilherme" data-realm="escarlate" style="--accent:var(--c-escarlate)" tabindex="0" role="button" aria-label="Carta de Guilherme Morais, o Protetor. Pressione para virar.">
         <div class="card-tilt"><div class="card-inner">
           <div class="card-face card-front">
@@ -1908,6 +2026,21 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span><span class="gate-name">Nayara Hostapiuk</span><br><span class="gate-role">A Lâmina</span></span>
         <span class="gate-realm">Yaryan</span>
       </button>
+      <button class="gate-choice" data-person="gustavo" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-nomad"/></svg></span>
+        <span><span class="gate-name">Gustavo Leite</span><br><span class="gate-role">Nômade</span></span>
+        <span class="gate-realm">Yaryan</span>
+      </button>
+      <button class="gate-choice" data-person="gabriel" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-mayhem"/></svg></span>
+        <span><span class="gate-name">Gabriel Amaral</span><br><span class="gate-role">MAYHEM</span></span>
+        <span class="gate-realm">Yaryan</span>
+      </button>
+      <button class="gate-choice" data-person="laura" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-thunder"/></svg></span>
+        <span><span class="gate-name">Laura Gomes</span><br><span class="gate-role">Eletric Wizard</span></span>
+        <span class="gate-realm">Yaryan</span>
+      </button>
       <button class="gate-choice" data-person="luis" data-realm="ascar" style="--accent:var(--c-ascar)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-royalcrown"/></svg></span>
         <span><span class="gate-name">Luís Augusto</span><br><span class="gate-role">Rei Dourado</span></span>
@@ -1964,7 +2097,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 })();
 
 const DISCORD_URL = 'https://discord.gg/2wx46naKxv';
-const PAGE_URL = 'https://veldorarealms.github.io/rpg/';
+const PAGE_URL = 'https://veldorarealms.github.io/';
 
 const REALMS = {
   supremo: {
@@ -1988,15 +2121,24 @@ const REALMS = {
   yaryan: {
     kicker:"O Reino das Sombras", name:"Império Yaryan", epithet:"O arquipélago roxo do sul",
     motto:"De nada, mundos", accent:"#7a52a8",
-    today:["noite roxa, o Corvo no céu","sombras guardando as ilhas","a Lâmina afiada ao luar"],
-    desc:"Ilhas roxas onde sombras guardam mundos que nascem do nada: o Corvo vê tudo do alto — e a Lâmina corta o que não deve existir.",
+    today:["noite roxa, o Corvo no céu","sombras guardando as ilhas","a Lâmina afiada ao luar","trilhas de névoa que só o Nômade conhece","o MAYHEM ecoando entre as ilhas","tempestades elétricas comandadas pela Wizard"],
+    desc:"Ilhas roxas onde cinco guardiões defendem mundos que nascem do nada: o Corvo vê tudo do alto, a Lâmina corta o que não deve existir, o Nômade caminha por onde ninguém ousou, o MAYHEM traz o caos a seu favor — e a Eletric Wizard comanda as tempestades.",
     heroes:[
       {id:"rayssa", nick:"Rayssa Vitoria", title:"O Corvo", symbol:"sym-raven",
         bio:"Planando sobre o Yaryan, o Corvo observa tudo antes de qualquer um — e chega sabendo demais.",
         feats:["Vê a jogada do inimigo antes dele.","Cem dias no hardcore; caiu no 101, rindo.","Sabia da traição antes de acontecer."]},
       {id:"nayara", nick:"Nayara Hostapiuk", title:"A Lâmina", symbol:"sym-blade",
         bio:"A lâmina do Yaryan: corta o jogo no ponto exato, na hora exata — e o que decide, o destino executa.",
-        feats:["Corta o jogo exatamente onde dói.","Costurou a aliança entre os oito reinos.","A última coisa que o boss viu."]}
+        feats:["Corta o jogo exatamente onde dói.","Costurou a aliança entre os oito reinos.","A última coisa que o boss viu."]},
+      {id:"gustavo", nick:"Gustavo Leite", title:"Nômade", symbol:"sym-nomad",
+        bio:"Andarilho eterno das ilhas roxas: conhece cada trilha perdida do Yaryan porque jamais parou de andar.",
+        feats:["Atravessou o Yaryan de ponta a ponta, três vezes.","Desapareceu por 40 dias — voltou com um mapa novo.","A névoa o conhece pelo nome."]},
+      {id:"gabriel", nick:"Gabriel Amaral", title:"MAYHEM", symbol:"sym-mayhem",
+        bio:"Sob a máscara de guerra, o caos luta pelo reino das sombras: imprevisível, ensurdecedor, impossível de parar.",
+        feats:["Virou uma partida perdida com o caos.","O time inimigo se rendeu — ao ouvir o nome.","Nunca jogou o mesmo jogo duas vezes."]},
+      {id:"laura", nick:"Laura Gomes", title:"Eletric Wizard", symbol:"sym-thunder",
+        bio:"Feiticeira das correntes vivas: a eletricidade do Yaryan obedece ao seu comando.",
+        feats:["Zerou a partida com um feitiço só.","Desviou um raio com os dedos — por diversão.","Os céus do Yaryan são o dela."]}
     ]
   },
   ascar: {
@@ -2046,7 +2188,7 @@ const REALMS = {
   }
 };
 
-const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", luis:"ascar", fernando:"bravos", cristiano:"karhal", bruno:"snezhnaya", guilherme:"escarlate"};
+const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", gustavo:"yaryan", gabriel:"yaryan", laura:"yaryan", luis:"ascar", fernando:"bravos", cristiano:"karhal", bruno:"snezhnaya", guilherme:"escarlate"};
 
 const panel = document.getElementById('realmPanel');
 let currentRealm = 'supremo';
@@ -2097,7 +2239,7 @@ const setFav = id => { try { id ? localStorage.setItem(FAV_KEY, id) : localStora
 function sharePage(){
   const data = {
     title: 'Veldora Realms — Crônica dos Reinos',
-    text: 'A crônica dos reinos e dos amigos que os guardam: oito territórios, nove guardiões e um só pacto.',
+    text: 'A crônica dos reinos e dos amigos que os guardam: oito territórios, doze guardiões e um só pacto.',
     url: PAGE_URL
   };
   if(navigator.share){
