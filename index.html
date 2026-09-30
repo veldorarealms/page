@@ -11,72 +11,38 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <meta property="og:title" content="Veldora Realms — Crônica dos Reinos">
-<meta property="og:description" content="A crônica dos reinos e dos amigos que os guardam: oito territórios, doze guardiões e um só pacto.">
+<meta property="og:description" content="A crônica dos reinos e dos amigos que os guardam: sete territórios, doze almas e um só pacto.">
 <meta property="og:image" content="simbolo.png">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#c9a24a">
 <style>
-/* ============ FUNDAÇÃO — TEMA NOTURNO ============ */
+/* ============ FUNDAÇÃO ============ */
 :root{
-  --paper:#17110b;
-  --paper-2:#221a11;
-  --paper-3:#0d0906;
-  --ink:#ead9b5;
-  --ink-soft:#b3a17c;
-  --gold:#c9a24a;
-  --gold-2:#b98a2e;
-  --seal:#a259c9;
-  --veil-a:rgba(12,9,6,.72);
-  --veil-b:rgba(16,12,8,.78);
-  --veil-c:rgba(8,6,4,.9);
-  --c-supremo:#f7f4ec;
-  --c-mirigumi:#e07aa0;
-  --c-yaryan:#7a52a8;
-  --c-yaryan-deep:#2A0845;
-  --c-nyara:#b98fd6;
-  --c-ascar:#f0c75e;
-  --c-snezhnaya:#8ec5e8;
-  --c-escarlate:#d94f3d;
-  --c-bravos:#3fd4c9;
-  --c-karhal:#4caf6d;
-  --sea:#5f8fa6;
-  --line:rgba(234,217,181,.32);
-  --line-soft:rgba(234,217,181,.16);
-  --serif:'EB Garamond',Georgia,serif;
-  --disp:'Cinzel',serif;
+  --paper:#17110b;--paper-2:#221a11;--paper-3:#0d0906;
+  --ink:#ead9b5;--ink-soft:#b3a17c;
+  --gold:#c9a24a;--gold-2:#b98a2e;--seal:#a259c9;
+  --veil-a:rgba(12,9,6,.72);--veil-b:rgba(16,12,8,.78);--veil-c:rgba(8,6,4,.9);
+  --c-supremo:#f7f4ec;--c-mirigumi:#e07aa0;--c-yaryan:#7a52a8;--c-yaryan-deep:#2A0845;
+  --c-nyara:#b98fd6;--c-ascar:#f0c75e;--c-snezhnaya:#8ec5e8;--c-escarlate:#d94f3d;
+  --c-karhal:#4caf6d;--sea:#5f8fa6;
+  --line:rgba(234,217,181,.32);--line-soft:rgba(234,217,181,.16);
+  --serif:'EB Garamond',Georgia,serif;--disp:'Cinzel',serif;
   --font-black:'UnifrakturMaguntia','EB Garamond',serif;
   --font-med:'MedievalSharp','EB Garamond',serif;
 }
 :root[data-theme="light"]{
-  --paper:#e8dcc0;
-  --paper-2:#f2e8d0;
-  --paper-3:#d8c9a8;
-  --ink:#2c2317;
-  --ink-soft:#6a583a;
-  --gold:#96741f;
-  --gold-2:#8a6a1e;
-  --seal:#8e4bb0;
-  --veil-a:rgba(232,220,192,.72);
-  --veil-b:rgba(238,226,196,.78);
-  --veil-c:rgba(222,206,170,.9);
-  --line:rgba(44,35,23,.35);
-  --line-soft:rgba(44,35,23,.18);
+  --paper:#e8dcc0;--paper-2:#f2e8d0;--paper-3:#d8c9a8;
+  --ink:#2c2317;--ink-soft:#6a583a;--gold:#96741f;--gold-2:#8a6a1e;--seal:#8e4bb0;
+  --veil-a:rgba(232,220,192,.72);--veil-b:rgba(238,226,196,.78);--veil-c:rgba(222,206,170,.9);
+  --line:rgba(44,35,23,.35);--line-soft:rgba(44,35,23,.18);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--serif);
-  font-size:17px;
-  line-height:1.65;
-  overflow-x:hidden;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
-  -webkit-touch-callout:none;
-  -webkit-tap-highlight-color:transparent;
+  background:var(--paper);color:var(--ink);font-family:var(--serif);
+  font-size:17px;line-height:1.65;overflow-x:hidden;
+  -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
+  -webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;
 }
 img{-webkit-user-drag:none;user-drag:none}
 a,.card,.realm,.scroll-hint,.to-card,.fav-btn,.gate-choice,.hs,.cfg-item{touch-action:manipulation}
@@ -86,83 +52,46 @@ a,.card,.realm,.scroll-hint,.to-card,.fav-btn,.gate-choice,.hs,.cfg-item{touch-a
 html.big-text{font-size:18px}
 html.big-text body{font-size:19px}
 
-/* ============ FUNDO COM IMAGENS + VÉU ============ */
+/* ============ FUNDO + VÉU ============ */
 .bg{
-  position:fixed;
-  top:0;left:0;width:100%;
-  height:100vh;
-  height:100lvh;
-  z-index:-1;
-  pointer-events:none;
-  background-image:url('cllr.png');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  background-color:var(--paper);
+  position:fixed;top:0;left:0;width:100%;
+  height:100vh;height:100lvh;z-index:-1;pointer-events:none;
+  background-image:url('cllr.png');background-size:cover;background-position:center;
+  background-repeat:no-repeat;background-color:var(--paper);
   transition:background-color .4s ease;
 }
-@media (min-width:761px){
-  .bg{background-image:url('pc.png')}
-}
+@media (min-width:761px){.bg{background-image:url('pc.png')}}
 .bg::after{
-  content:"";
-  position:absolute;
-  inset:0;
+  content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,var(--veil-a) 0%,var(--veil-b) 50%,var(--veil-c) 100%);
   transition:background .4s ease;
 }
 body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  pointer-events:none;
+  content:"";position:fixed;inset:0;z-index:2000;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity:.14;
-  mix-blend-mode:overlay;
+  opacity:.14;mix-blend-mode:overlay;
 }
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:1999;
-  pointer-events:none;
-  box-shadow:inset 0 0 180px rgba(0,0,0,.6);
-}
+body::after{content:"";position:fixed;inset:0;z-index:1999;pointer-events:none;box-shadow:inset 0 0 180px rgba(0,0,0,.6)}
 a{color:inherit}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
 
-/* ============ NAVEGAÇÃO — ESTANDARTE FLUTUANTE ============ */
+/* ============ NAVEGAÇÃO ============ */
 nav{
-  position:fixed;
-  top:14px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:1400;
-  width:max-content;
-  max-width:calc(100vw - 110px);
-  display:flex;
-  align-items:center;
-  gap:18px;
-  padding:9px 20px 9px 14px;
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  z-index:1400;width:max-content;max-width:calc(100vw - 110px);
+  display:flex;align-items:center;gap:18px;padding:9px 20px 9px 14px;
   background:linear-gradient(180deg,var(--paper-2),var(--paper));
-  border:1px solid rgba(201,162,74,.5);
-  border-radius:999px;
+  border:1px solid rgba(201,162,74,.5);border-radius:999px;
   box-shadow:0 12px 34px -12px rgba(0,0,0,.55),inset 0 1px 0 var(--line-soft);
-  backdrop-filter:blur(9px);
-  -webkit-backdrop-filter:blur(9px);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
 }
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-seal{
   width:34px;height:34px;flex:0 0 auto;object-fit:contain;
-  filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));
-  transition:transform .35s ease;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));transition:transform .35s ease;
 }
 .brand:hover .brand-seal{transform:rotate(-8deg) scale(1.08)}
-.brand-name{
-  font-family:var(--disp);font-size:.78rem;letter-spacing:.2em;
-  font-weight:600;text-transform:uppercase;white-space:nowrap;
-}
+.brand-name{font-family:var(--disp);font-size:.78rem;letter-spacing:.2em;font-weight:600;text-transform:uppercase;white-space:nowrap}
 .nav-links{display:flex;align-items:center;gap:8px;list-style:none}
 .nav-links li{display:flex;align-items:center;gap:8px}
 .nav-links li:not(:last-child)::after{
@@ -172,19 +101,16 @@ nav{
 .nav-links a{
   font-family:var(--disp);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
   text-decoration:none;color:var(--ink-soft);white-space:nowrap;
-  padding:8px 15px;border-radius:999px;border:1px solid var(--line);
-  background:var(--paper);
+  padding:8px 15px;border-radius:999px;border:1px solid var(--line);background:var(--paper);
   transition:color .3s,border-color .3s,background .3s,box-shadow .3s,transform .25s;
 }
 .nav-links a:hover{
   color:var(--gold);border-color:var(--gold);background:var(--paper-2);
-  transform:translateY(-2px);
-  box-shadow:0 6px 14px -6px rgba(0,0,0,.5);
+  transform:translateY(-2px);box-shadow:0 6px 14px -6px rgba(0,0,0,.5);
 }
 .nav-links a.active{
   color:#1a1208;font-weight:700;letter-spacing:.12em;
-  background:linear-gradient(180deg,#e3bd6a,#b98a2e);
-  border-color:#e3bd6a;
+  background:linear-gradient(180deg,#e3bd6a,#b98a2e);border-color:#e3bd6a;
   box-shadow:0 0 16px rgba(201,162,74,.45),inset 0 1px 0 rgba(255,244,214,.5);
 }
 @media (max-width:1120px){
@@ -194,22 +120,20 @@ nav{
   .nav-links a{font-size:.57rem;padding:7px 10px}
 }
 
-/* ============ BOTÃO + PAINEL DE CONFIGURAÇÕES ============ */
+/* ============ CONFIGURAÇÕES ============ */
 .cfg-btn{
   position:fixed;top:14px;right:14px;z-index:1500;
   width:44px;height:44px;border-radius:50%;
   border:1px solid rgba(201,162,74,.5);
   background:linear-gradient(180deg,var(--paper-2),var(--paper));
-  color:var(--gold);cursor:pointer;padding:0;
-  display:grid;place-items:center;
+  color:var(--gold);cursor:pointer;padding:0;display:grid;place-items:center;
   box-shadow:0 10px 26px -10px rgba(0,0,0,.6);
   backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
   transition:transform .35s ease,box-shadow .3s ease;
 }
 .cfg-btn svg{
   width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;
-  stroke-linecap:round;stroke-linejoin:round;
-  transition:transform .6s cubic-bezier(.3,.8,.3,1);
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .6s cubic-bezier(.3,.8,.3,1);
 }
 .cfg-btn:hover{transform:scale(1.08);box-shadow:0 0 18px rgba(201,162,74,.4)}
 .cfg-btn.open svg{transform:rotate(180deg)}
@@ -218,8 +142,7 @@ nav{
   width:min(300px,calc(100vw - 28px));
   max-height:calc(100svh - 90px);overflow-y:auto;
   background:linear-gradient(180deg,var(--paper-2),var(--paper));
-  border:1px solid var(--gold);
-  outline:1px solid var(--line);outline-offset:3px;
+  border:1px solid var(--gold);outline:1px solid var(--line);outline-offset:3px;
   border-radius:16px;padding:14px;
   box-shadow:0 24px 60px -18px rgba(0,0,0,.75);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
@@ -228,10 +151,7 @@ nav{
   transition:opacity .28s ease,transform .28s cubic-bezier(.3,.8,.3,1);
 }
 .cfg-panel.open{opacity:1;transform:none;pointer-events:auto}
-.cfg-head{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:2px 4px 10px;border-bottom:1px solid var(--line);margin-bottom:8px;
-}
+.cfg-head{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 10px;border-bottom:1px solid var(--line);margin-bottom:8px}
 .cfg-title{font-family:var(--font-black);font-weight:400;font-size:1.25rem;line-height:1}
 .cfg-close{
   width:26px;height:26px;border-radius:50%;
@@ -241,10 +161,7 @@ nav{
 }
 .cfg-close svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 .cfg-close:hover{color:var(--seal);border-color:var(--seal);transform:rotate(90deg)}
-.cfg-sec{
-  font-family:var(--disp);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--ink-soft);padding:10px 4px 6px;
-}
+.cfg-sec{font-family:var(--disp);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);padding:10px 4px 6px}
 .cfg-item{
   width:100%;display:flex;align-items:center;gap:11px;
   padding:9px 11px;margin-bottom:6px;border-radius:12px;
@@ -253,74 +170,43 @@ nav{
   cursor:pointer;transition:border-color .25s,background .25s,transform .2s,color .25s;
   text-decoration:none;
 }
-.cfg-item svg{
-  width:17px;height:17px;fill:none;stroke:var(--gold);stroke-width:1.8;
-  stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto;
-}
+.cfg-item svg{width:17px;height:17px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
 .cfg-item small{display:block;font-style:italic;color:var(--ink-soft);font-size:.72rem;margin-top:1px}
-.cfg-item:hover,.cfg-item:focus-visible{
-  border-color:var(--gold);background:var(--paper-2);transform:translateX(3px);color:var(--ink);
-}
+.cfg-item:hover,.cfg-item:focus-visible{border-color:var(--gold);background:var(--paper-2);transform:translateX(3px);color:var(--ink)}
 .cfg-item.accent svg{stroke:var(--seal)}
 .cfg-item.on{border-color:var(--gold)}
 .cfg-item.on svg{fill:var(--gold)}
-.cfg-toggle{
-  margin-left:auto;flex:0 0 auto;width:34px;height:18px;border-radius:999px;
-  border:1px solid var(--gold);background:var(--paper-2);
-  position:relative;transition:background .25s;
-}
-.cfg-toggle::after{
-  content:"";position:absolute;top:2px;left:2px;
-  width:12px;height:12px;border-radius:50%;
-  background:var(--ink-soft);transition:transform .25s,background .25s;
-}
+.cfg-toggle{margin-left:auto;flex:0 0 auto;width:34px;height:18px;border-radius:999px;border:1px solid var(--gold);background:var(--paper-2);position:relative;transition:background .25s}
+.cfg-toggle::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--ink-soft);transition:transform .25s,background .25s}
 .cfg-item.on .cfg-toggle{background:var(--gold)}
 .cfg-item.on .cfg-toggle::after{transform:translateX(16px);background:#1a1208}
 .cfg-realms{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:2px 0 6px}
 .cfg-realm{
   height:40px;border-radius:10px;cursor:pointer;padding:0;
-  border:1.5px solid var(--r,var(--gold));
-  background:var(--paper);
+  border:1.5px solid var(--r,var(--gold));background:var(--paper);
   display:grid;place-items:center;color:var(--r,var(--gold));
   transition:transform .2s,box-shadow .25s,background .25s;
 }
-.cfg-realm svg{
-  width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;
-  stroke-linecap:round;stroke-linejoin:round;
-}
+.cfg-realm svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .cfg-realm:hover{transform:translateY(-2px);box-shadow:0 0 14px rgba(201,162,74,.3)}
 .cfg-realm.on{background:var(--r,var(--gold));color:#1a1208;box-shadow:0 0 12px rgba(201,162,74,.4)}
 
 /* ============ TOAST ============ */
 .toast{
-  position:fixed;
-  bottom:18px;
-  left:50%;
-  transform:translate(-50%,20px);
-  z-index:1950;
+  position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);z-index:1950;
   background:linear-gradient(180deg,var(--paper-2),var(--paper));
-  border:1px solid var(--gold);
-  color:var(--ink);
-  border-radius:999px;
-  padding:10px 22px;
-  font-family:var(--disp);
-  font-size:.6rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
+  border:1px solid var(--gold);color:var(--ink);border-radius:999px;padding:10px 22px;
+  font-family:var(--disp);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
   box-shadow:0 14px 34px -10px rgba(0,0,0,.7);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .3s,transform .3s;
-  max-width:calc(100vw - 32px);
-  text-align:center;
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;
+  max-width:calc(100vw - 32px);text-align:center;
 }
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* ============ HELP ============ */
 .help{
   position:fixed;inset:0;z-index:1750;display:grid;place-items:center;padding:18px;
-  background:rgba(8,6,4,.85);
-  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  background:rgba(8,6,4,.85);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
   opacity:0;transition:opacity .35s ease;
 }
 .help.open{opacity:1}
@@ -331,39 +217,19 @@ nav{
   outline:1px solid var(--line);outline-offset:5px;
   padding:clamp(20px,4vw,32px);
   box-shadow:0 0 60px rgba(201,162,74,.12),0 30px 70px -20px rgba(0,0,0,.8);
-  transform:translateY(14px) scale(.98);
-  transition:transform .35s cubic-bezier(.3,.8,.3,1);
+  transform:translateY(14px) scale(.98);transition:transform .35s cubic-bezier(.3,.8,.3,1);
 }
 .help.open .help-box{transform:none}
-.help-title{
-  font-family:var(--font-black);font-weight:400;
-  font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.15;margin-bottom:4px;
-}
+.help-title{font-family:var(--font-black);font-weight:400;font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.15;margin-bottom:4px}
 .help-box .orn{width:160px;margin:12px auto 16px}
 .help-list{list-style:none;text-align:left}
-.help-list li{
-  display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;
-  padding:10px 0;border-bottom:1px dashed var(--line);
-}
+.help-list li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;padding:10px 0;border-bottom:1px dashed var(--line)}
 .help-list li:last-child{border-bottom:none}
-.help-ico{
-  width:34px;height:34px;border-radius:50%;
-  border:1.5px solid var(--gold);color:var(--gold);
-  display:grid;place-items:center;margin-top:2px;
-}
-.help-ico svg{
-  width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;
-  stroke-linecap:round;stroke-linejoin:round;
-}
-.help-list b{
-  font-family:var(--disp);font-size:.8rem;letter-spacing:.08em;
-  text-transform:uppercase;display:block;margin-bottom:2px;
-}
+.help-ico{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;margin-top:2px}
+.help-ico svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.help-list b{font-family:var(--disp);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
 .help-list p{font-size:.95rem;color:var(--ink)}
-.help-fine{
-  margin-top:14px;font-family:var(--disp);font-size:.55rem;letter-spacing:.24em;
-  text-transform:uppercase;color:var(--ink-soft);text-align:center;
-}
+.help-fine{margin-top:14px;font-family:var(--disp);font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);text-align:center}
 .btn-center{text-align:center;margin-top:16px}
 .btn-gold{
   font-family:var(--disp);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
@@ -381,10 +247,7 @@ a.btn-gold{text-decoration:none}
   padding:130px 24px 90px;overflow:hidden;
 }
 #dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.hero-kicker{
-  font-family:var(--disp);font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:26px;
-}
+.hero-kicker{font-family:var(--disp);font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:26px}
 .hero-title{position:relative;z-index:2}
 .hero-title h1{
   font-family:var(--font-black);font-weight:400;line-height:1;
@@ -403,18 +266,14 @@ a.btn-gold{text-decoration:none}
   animation:emblemIn 2.2s ease forwards .25s,emblemGlow 6s ease-in-out 2.6s infinite alternate;
 }
 @keyframes emblemIn{to{opacity:.2}}
-@keyframes emblemGlow{
-  from{filter:drop-shadow(0 0 40px rgba(201,162,74,.12))}
-  to{filter:drop-shadow(0 0 80px rgba(201,162,74,.32))}
-}
+@keyframes emblemGlow{from{filter:drop-shadow(0 0 40px rgba(201,162,74,.12))}to{filter:drop-shadow(0 0 80px rgba(201,162,74,.32))}}
 .orn{color:var(--gold);width:200px;height:20px;margin:26px auto 0;display:block}
 .hero-sub{font-style:italic;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--ink-soft);margin-top:4px}
 .hero-intro{max-width:620px;margin:26px auto 0;font-size:1.05rem;color:var(--ink)}
 .scroll-hint{
   position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;
-  font-family:var(--disp);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--ink-soft);
+  font-family:var(--disp);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);
 }
 .scroll-hint svg{width:16px;height:16px;animation:hint 1.8s ease-in-out infinite}
 @keyframes hint{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(7px);opacity:1}}
@@ -422,45 +281,28 @@ a.btn-gold{text-decoration:none}
 /* ============ CAPÍTULOS ============ */
 section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .chapter-head{text-align:center;max-width:760px;margin:0 auto clamp(44px,6vw,72px)}
-.chapter-kicker{
-  font-family:var(--disp);font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:16px;
-}
+.chapter-kicker{font-family:var(--disp);font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 .chapter-head h2{font-family:var(--font-black);font-weight:400;font-size:clamp(2rem,5vw,3.1rem);line-height:1.1;letter-spacing:.01em}
 .chapter-head .orn{margin-top:20px}
 .lead{text-align:justify;text-align-last:center;color:var(--ink)}
-.lead::first-letter{
-  font-family:var(--font-black);font-size:3.3em;line-height:.78;
-  float:left;padding:5px 12px 0 0;color:var(--seal);
-}
+.lead::first-letter{font-family:var(--font-black);font-size:3.3em;line-height:.78;float:left;padding:5px 12px 0 0;color:var(--seal)}
 
 /* ============ MAPA ============ */
 .map-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(310px,.9fr);gap:clamp(24px,3vw,44px);align-items:start}
-.map-wrap{
-  border:1px solid var(--line);outline:1px solid var(--line-soft);outline-offset:4px;
-  background:var(--paper-2);padding:10px;
-  box-shadow:0 18px 40px -14px rgba(0,0,0,.75);
-}
+.map-wrap{border:1px solid var(--line);outline:1px solid var(--line-soft);outline-offset:4px;background:var(--paper-2);padding:10px;box-shadow:0 18px 40px -14px rgba(0,0,0,.75)}
 .map-stage{position:relative}
 .map-stage svg{display:block;width:100%;height:auto}
-.map-overlay{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:contain;object-position:center;
-  pointer-events:none;z-index:2;
-}
+.map-overlay{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;pointer-events:none;z-index:2}
 .map-hotspots{position:absolute;inset:0;z-index:3}
 .hs{
-  position:absolute;left:var(--x);top:var(--y);
-  transform:translate(-50%,-50%);
-  width:12%;max-width:120px;aspect-ratio:1;
-  border-radius:50%;
+  position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
+  width:12%;max-width:120px;aspect-ratio:1;border-radius:50%;
   background:transparent;border:none;cursor:pointer;padding:0;
   transition:background .3s ease,box-shadow .3s ease;
 }
 .hs:hover,.hs:focus-visible{
   background:radial-gradient(circle, rgba(201,162,74,.16) 0%, rgba(201,162,74,.05) 55%, transparent 72%);
-  box-shadow:0 0 0 2px rgba(201,162,74,.55), inset 0 0 22px rgba(201,162,74,.12);
-  outline:none;
+  box-shadow:0 0 0 2px rgba(201,162,74,.55), inset 0 0 22px rgba(201,162,74,.12);outline:none;
 }
 .hs.on{
   background:radial-gradient(circle, rgba(201,162,74,.2) 0%, rgba(201,162,74,.06) 55%, transparent 72%);
@@ -472,35 +314,17 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
   70%{box-shadow:0 0 0 10px rgba(201,162,74,0), inset 0 0 26px rgba(201,162,74,.16)}
   100%{box-shadow:0 0 0 2px rgba(201,162,74,.65), inset 0 0 26px rgba(201,162,74,.16)}
 }
-.map-hint{
-  text-align:center;font-style:italic;color:var(--ink-soft);font-size:.95rem;
-  margin-top:14px;letter-spacing:.02em;
-}
-.realm{cursor:pointer;outline:none;transform-box:fill-box;transform-origin:center;
-  transition:transform .4s ease,filter .4s ease}
-@media (hover:hover){
-  .realm:hover{transform:translateY(-4px);filter:drop-shadow(0 8px 16px rgba(0,0,0,.55))}
-}
+.map-hint{text-align:center;font-style:italic;color:var(--ink-soft);font-size:.95rem;margin-top:14px;letter-spacing:.02em}
+.realm{cursor:pointer;outline:none;transform-box:fill-box;transform-origin:center;transition:transform .4s ease,filter .4s ease}
+@media (hover:hover){.realm:hover{transform:translateY(-4px);filter:drop-shadow(0 8px 16px rgba(0,0,0,.55))}}
 .realm.active{filter:drop-shadow(0 0 18px rgba(234,217,181,.22))}
-.realm .land{
-  stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;
-  fill-opacity:.55;
-  transition:fill-opacity .35s ease,stroke-width .35s ease;
-}
-@media (hover:hover){
-  .realm:hover .land{fill-opacity:.7}
-}
+.realm .land{stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;fill-opacity:.55;transition:fill-opacity .35s ease,stroke-width .35s ease}
+@media (hover:hover){.realm:hover .land{fill-opacity:.7}}
 .realm.active .land{fill-opacity:.85;stroke-width:2.6}
 .realm:focus-visible .land{stroke-width:3.2}
 .realm text{pointer-events:none}
-.realm-name{
-  font-family:var(--font-med);font-weight:400;font-size:19px;fill:var(--ink);
-  text-anchor:middle;paint-order:stroke;stroke:var(--paper-2);stroke-width:4;
-}
-.realm-sub{
-  font-family:var(--disp);font-size:8.5px;letter-spacing:.18em;fill:var(--ink-soft);
-  text-anchor:middle;paint-order:stroke;stroke:var(--paper-2);stroke-width:4;
-}
+.realm-name{font-family:var(--font-med);font-weight:400;font-size:19px;fill:var(--ink);text-anchor:middle;paint-order:stroke;stroke:var(--paper-2);stroke-width:4}
+.realm-sub{font-family:var(--disp);font-size:8.5px;letter-spacing:.18em;fill:var(--ink-soft);text-anchor:middle;paint-order:stroke;stroke:var(--paper-2);stroke-width:4}
 .map-decor{pointer-events:none}
 .node-ring{opacity:0;transition:opacity .3s}
 .node-ring.on{opacity:1;transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-out infinite}
@@ -508,14 +332,10 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .road{animation:roadmove 26s linear infinite}
 @keyframes roadmove{to{stroke-dashoffset:-260}}
 
-/* ============ BRASÃO DO REINO ============ */
+/* ============ BRASÃO ============ */
 .panel-crest{
-  display:block;width:92px;height:92px;object-fit:contain;
-  margin:0 auto 14px;
-  border:1.5px solid var(--accent,var(--gold));
-  border-radius:50%;
-  background:var(--paper);
-  padding:7px;
+  display:block;width:92px;height:92px;object-fit:contain;margin:0 auto 14px;
+  border:1.5px solid var(--accent,var(--gold));border-radius:50%;background:var(--paper);padding:7px;
   box-shadow:0 8px 22px -8px rgba(0,0,0,.6), inset 0 0 18px rgba(201,162,74,.08);
 }
 
@@ -548,56 +368,50 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .guardian .g-kicker{font-family:var(--disp);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
 .guardian .g-name{font-family:var(--font-med);font-size:1.26rem;line-height:1.2;overflow-wrap:break-word}
 .guardian .g-title{font-style:italic;color:var(--accent,var(--seal))}
-.g-fav{
-  display:inline-flex;align-items:center;gap:5px;margin-top:4px;
-  font-family:var(--disp);font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);
-}
+.g-fav{display:inline-flex;align-items:center;gap:5px;margin-top:4px;font-family:var(--disp);font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
 .g-fav svg{width:12px;height:12px;fill:var(--gold)}
 .guardian-bio{margin-top:12px;font-size:.97rem}
 .panel .feats-title{font-family:var(--disp);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:16px 0 8px}
 .feats{list-style:none}
 .feats li{position:relative;padding-left:20px;margin-bottom:8px;font-size:.95rem}
-.feats li::before{
-  content:"";position:absolute;left:2px;top:.5em;width:7px;height:7px;
-  background:var(--accent,var(--gold));transform:rotate(45deg);
-}
+.feats li::before{content:"";position:absolute;left:2px;top:.5em;width:7px;height:7px;background:var(--accent,var(--gold));transform:rotate(45deg)}
 .panel .to-card{
   display:inline-block;margin-top:18px;font-family:var(--disp);font-size:.66rem;
   letter-spacing:.22em;text-transform:uppercase;color:var(--accent,var(--seal));
   text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px;transition:letter-spacing .3s;
 }
 .panel .to-card:hover{letter-spacing:.28em}
-.visited-note{
-  text-align:center;margin-top:14px;font-family:var(--disp);
-  font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
-}
+.visited-note{text-align:center;margin-top:14px;font-family:var(--disp);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
 
-/* ============ CARTAS — O LEQUE (12 guardiões) ============ */
+/* ============ CARTAS — LEQUE DUPLA FILEIRA 6+6 ============ */
 .fan{
-  display:flex;justify-content:center;align-items:flex-end;
-  padding-top:30px;perspective:1600px;
-  margin:0 calc(-1 * clamp(24px,4vw,70px));
+  display:flex;flex-direction:column;align-items:center;
+  perspective:1600px;padding-top:6px;
 }
-.fan .card{flex:0 0 auto;margin:0 -8px;transition:transform .4s ease;z-index:1}
-.fan .card:nth-child(1){--r:-16deg;--y:46px}
-.fan .card:nth-child(2){--r:-13deg;--y:32px}
-.fan .card:nth-child(3){--r:-10deg;--y:20px}
-.fan .card:nth-child(4){--r:-7deg;--y:10px}
-.fan .card:nth-child(5){--r:-4deg;--y:3px}
-.fan .card:nth-child(6){--r:-1deg;--y:0px}
-.fan .card:nth-child(7){--r:2deg;--y:1px}
-.fan .card:nth-child(8){--r:5deg;--y:6px}
-.fan .card:nth-child(9){--r:8deg;--y:14px}
-.fan .card:nth-child(10){--r:11deg;--y:24px}
-.fan .card:nth-child(11){--r:14deg;--y:36px}
-.fan .card:nth-child(12){--r:17deg;--y:50px}
-.fan .card:nth-child(odd){z-index:2}
+.fan-row{display:flex;justify-content:center;align-items:flex-end}
+.fan-row + .fan-row{margin-top:-16px}
+.fan-row .card{flex:0 0 auto;margin:0 -6px;transition:transform .4s ease;z-index:1}
+/* fileira de cima: 6 cartas */
+.fan-row:nth-child(1) .card:nth-child(1){--r:-10deg;--y:24px}
+.fan-row:nth-child(1) .card:nth-child(2){--r:-6deg;--y:8px}
+.fan-row:nth-child(1) .card:nth-child(3){--r:-2deg;--y:2px}
+.fan-row:nth-child(1) .card:nth-child(4){--r:2deg;--y:2px}
+.fan-row:nth-child(1) .card:nth-child(5){--r:6deg;--y:8px}
+.fan-row:nth-child(1) .card:nth-child(6){--r:10deg;--y:24px}
+/* fileira de baixo: 6 cartas */
+.fan-row:nth-child(2) .card:nth-child(1){--r:-10deg;--y:16px}
+.fan-row:nth-child(2) .card:nth-child(2){--r:-6deg;--y:5px}
+.fan-row:nth-child(2) .card:nth-child(3){--r:-2deg;--y:0px}
+.fan-row:nth-child(2) .card:nth-child(4){--r:2deg;--y:0px}
+.fan-row:nth-child(2) .card:nth-child(5){--r:6deg;--y:5px}
+.fan-row:nth-child(2) .card:nth-child(6){--r:10deg;--y:16px}
+.fan-row .card:nth-child(odd){z-index:2}
 @media (hover:hover){
-  .fan .card:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 20px));z-index:10}
+  .fan-row .card:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 20px));z-index:10}
 }
-.fan .card{transform:rotate(var(--r)) translateY(var(--y))}
+.fan-row .card{transform:rotate(var(--r)) translateY(var(--y))}
 .card{
-  width:clamp(96px,9.2vw,120px);aspect-ratio:5/8;perspective:1400px;cursor:pointer;
+  width:clamp(112px,10.6vw,136px);aspect-ratio:5/8;perspective:1400px;cursor:pointer;
 }
 .card-tilt{width:100%;height:100%;transition:transform .3s ease}
 .card-inner{
@@ -613,20 +427,11 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
   padding:14px 9px;overflow:hidden;
 }
 .card-face::before{content:"";position:absolute;inset:5px;border:1px solid rgba(201,162,74,.5);pointer-events:none}
-.card-sigil{
-  width:60px;height:60px;border:1.5px solid var(--accent);border-radius:50%;
-  display:grid;place-items:center;color:var(--accent);margin:auto 0;
-}
+.card-sigil{width:60px;height:60px;border:1.5px solid var(--accent);border-radius:50%;display:grid;place-items:center;color:var(--accent);margin:auto 0}
 .card-sigil svg{width:32px;height:32px}
-.card-face h3{
-  font-family:var(--font-med);font-weight:400;font-size:.92rem;line-height:1.15;
-  letter-spacing:.02em;overflow-wrap:break-word;
-}
+.card-face h3{font-family:var(--font-med);font-weight:400;font-size:.92rem;line-height:1.15;letter-spacing:.02em;overflow-wrap:break-word}
 .card-title{font-style:italic;color:var(--accent);font-size:.74rem;margin-top:3px}
-.card-realm{
-  font-family:var(--disp);font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ink-soft);margin:6px 0 8px;
-}
+.card-realm{font-family:var(--disp);font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:6px 0 8px}
 .card-tap{font-size:.6rem;font-style:italic;color:var(--ink-soft);opacity:.8}
 
 /* ============ FAVORITO ============ */
@@ -640,27 +445,21 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 }
 .fav-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
 .fav-btn:hover{transform:scale(1.12);color:var(--gold)}
-.fav-btn.on{
-  color:var(--gold);border-color:var(--gold);background:rgba(201,162,74,.16);
-  box-shadow:0 0 14px rgba(201,162,74,.5);
-}
+.fav-btn.on{color:var(--gold);border-color:var(--gold);background:rgba(201,162,74,.16);box-shadow:0 0 14px rgba(201,162,74,.5)}
 .fav-btn.on svg{fill:rgba(201,162,74,.4)}
 .card.fav .card-face{
   border-color:var(--gold);
   box-shadow:0 0 0 2px rgba(201,162,74,.4),0 0 26px rgba(201,162,74,.25),0 14px 30px -10px rgba(0,0,0,.8);
 }
-.fav-tag{
-  display:none;font-family:var(--disp);font-size:.46rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--gold);margin:6px 0 8px;
-}
+.fav-tag{display:none;font-family:var(--disp);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:6px 0 8px}
 .card.fav .fav-tag{display:block}
 .card.fav .card-tap{display:none}
 @media (hover:hover){
-  .fan .card.fav{transform:rotate(var(--r)) translateY(calc(var(--y) - 26px));z-index:10}
-  .fan .card.fav:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 26px))}
+  .fan-row .card.fav{transform:rotate(var(--r)) translateY(calc(var(--y) - 26px));z-index:10}
+  .fan-row .card.fav:hover{transform:rotate(var(--r)) translateY(calc(var(--y) - 26px))}
 }
 
-/* ============ VERSO DA CARTA ============ */
+/* ============ VERSO ============ */
 .card-back{
   transform:rotateY(180deg);background:#120d07;color:#d8c9a4;
   text-align:left;align-items:stretch;padding:10px 9px;
@@ -674,8 +473,6 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .pips{display:inline-flex;gap:2px}
 .pip{width:5px;height:5px;transform:rotate(45deg);border:1px solid #b98a2e;display:inline-block}
 .pip.on{background:#b98a2e}
-
-/* === Ajuste p/ 5 atributos no verso (desktop) === */
 .card-back{padding:9px 8px}
 .card-lema{font-size:.64rem}
 .card-back .orn{width:64px;margin:4px auto}
@@ -690,111 +487,67 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 }
 .fan-hint{display:none;text-align:center;font-style:italic;color:var(--ink-soft);font-size:.85rem;margin-top:18px}
 
-/* ============ PORTAL DA PRIMEIRA VISITA ============ */
+/* ============ PORTAL ============ */
 .gate{
-  position:fixed;inset:0;z-index:1700;
-  display:grid;place-items:center;padding:18px;
-  background:rgba(8,6,4,.85);
-  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  position:fixed;inset:0;z-index:1700;display:grid;place-items:center;padding:18px;
+  background:rgba(8,6,4,.85);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
   opacity:0;transition:opacity .4s ease;
 }
 .gate.open{opacity:1}
 .gate[hidden]{display:none}
 .gate-box{
   width:min(520px,100%);max-height:92svh;overflow-y:auto;
-  background:var(--paper-2);
-  border:1px solid var(--gold);
+  background:var(--paper-2);border:1px solid var(--gold);
   outline:1px solid var(--line);outline-offset:5px;
-  padding:clamp(22px,4vw,34px);
-  text-align:center;
+  padding:clamp(22px,4vw,34px);text-align:center;
   box-shadow:0 0 60px rgba(201,162,74,.12),0 30px 70px -20px rgba(0,0,0,.9);
-  transform:translateY(18px) scale(.98);
-  transition:transform .4s cubic-bezier(.3,.8,.3,1);
+  transform:translateY(18px) scale(.98);transition:transform .4s cubic-bezier(.3,.8,.3,1);
 }
 .gate.open .gate-box{transform:none}
-.gate-kicker{
-  font-family:var(--disp);font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:10px;
-}
-.gate-title{
-  font-family:var(--font-black);font-weight:400;font-size:clamp(1.7rem,6vw,2.4rem);
-  line-height:1.15;
-}
+.gate-kicker{font-family:var(--disp);font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.gate-title{font-family:var(--font-black);font-weight:400;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.15}
 .gate-box .orn{width:160px;margin:14px auto 0}
-.gate-sub{
-  font-style:italic;color:var(--ink-soft);font-size:.98rem;margin-top:12px;
-}
-.gate-crown{
-  width:26px;height:26px;fill:var(--gold);margin-top:14px;
-  filter:drop-shadow(0 0 10px rgba(201,162,74,.5));
-}
+.gate-sub{font-style:italic;color:var(--ink-soft);font-size:.98rem;margin-top:12px}
+.gate-crown{width:26px;height:26px;fill:var(--gold);margin-top:14px;filter:drop-shadow(0 0 10px rgba(201,162,74,.5))}
 .gate-grid{display:grid;gap:9px;margin-top:20px}
 .gate-choice{
   display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:13px;
   padding:10px 13px;text-align:left;cursor:pointer;
-  background:var(--paper);
-  border:1px solid var(--line);
-  color:var(--ink);font-family:var(--serif);
+  background:var(--paper);border:1px solid var(--line);color:var(--ink);font-family:var(--serif);
   transition:border-color .3s,background .3s,transform .25s,box-shadow .3s;
 }
 .gate-choice:hover,.gate-choice:focus-visible{
-  border-color:var(--gold);background:var(--paper-2);
-  transform:translateX(3px);
+  border-color:var(--gold);background:var(--paper-2);transform:translateX(3px);
   box-shadow:0 0 16px rgba(201,162,74,.18);
 }
-.gate-sigil{
-  width:46px;height:46px;border-radius:50%;
-  border:1.5px solid var(--accent,var(--gold));
-  display:grid;place-items:center;color:var(--accent,var(--gold));
-}
+.gate-sigil{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--accent,var(--gold));display:grid;place-items:center;color:var(--accent,var(--gold))}
 .gate-sigil svg{width:24px;height:24px}
 .gate-name{font-family:var(--font-med);font-size:1.02rem;line-height:1.2}
 .gate-role{font-style:italic;color:var(--accent,var(--gold));font-size:.82rem;margin-top:1px}
-.gate-realm{
-  font-family:var(--disp);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--ink-soft);
-}
-.gate-fine{
-  margin-top:16px;font-family:var(--disp);font-size:.56rem;letter-spacing:.26em;
-  text-transform:uppercase;color:var(--ink-soft);
-}
+.gate-realm{font-family:var(--disp);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.gate-fine{margin-top:16px;font-family:var(--disp);font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft)}
 
 /* ============ CRÔNICA ============ */
 .chronicle{list-style:none;position:relative;max-width:880px;margin:0 auto;padding:10px 0}
-.chronicle::before{
-  content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;
-  background:var(--line);
-}
+.chronicle::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)}
 .chronicle li{position:relative;width:50%;padding:10px 44px 34px 0}
 .chronicle li:nth-child(even){margin-left:50%;padding:10px 0 34px 44px}
-.chronicle li::before{
-  content:"";position:absolute;top:22px;right:-7px;width:12px;height:12px;
-  background:var(--paper);border:1.5px solid var(--gold);transform:rotate(45deg);
-}
+.chronicle li::before{content:"";position:absolute;top:22px;right:-7px;width:12px;height:12px;background:var(--paper);border:1.5px solid var(--gold);transform:rotate(45deg)}
 .chronicle li:nth-child(even)::before{right:auto;left:-7px}
-.era-year{
-  font-family:var(--disp);font-weight:700;font-size:.8rem;letter-spacing:.3em;color:var(--seal);
-  display:block;margin-bottom:6px;
-}
+.era-year{font-family:var(--disp);font-weight:700;font-size:.8rem;letter-spacing:.3em;color:var(--seal);display:block;margin-bottom:6px}
 .chronicle li:nth-child(odd){text-align:right}
 .chronicle h3{font-family:var(--font-med);font-weight:400;font-size:1.35rem;letter-spacing:.02em}
 .chronicle p{font-size:1rem;margin-top:6px;color:var(--ink)}
 
 /* ============ O PACTO ============ */
 .covenant{list-style:none;max-width:700px;margin:0 auto}
-.covenant li{
-  display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:baseline;
-  padding:20px 6px;border-bottom:1px dashed var(--line);
-}
+.covenant li{display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:baseline;padding:20px 6px;border-bottom:1px dashed var(--line)}
 .covenant li:last-child{border-bottom:none}
 .cov-num{font-family:var(--disp);font-weight:700;font-size:1.9rem;color:var(--gold);text-align:right}
 .covenant p{font-style:italic;font-size:1.15rem}
 
 /* ============ RODAPÉ ============ */
-footer{
-  text-align:center;padding:80px 24px 60px;
-  border-top:1px solid var(--line-soft);position:relative;
-}
+footer{text-align:center;padding:80px 24px 60px;border-top:1px solid var(--line-soft);position:relative}
 .wax-seal{
   width:120px;height:auto;margin:0 auto 22px;display:block;
   filter:drop-shadow(0 8px 28px rgba(0,0,0,.55));
@@ -807,14 +560,13 @@ footer{
 footer .final{font-style:italic;font-size:1.15rem;max-width:520px;margin:0 auto}
 footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
 
-/* ============ EXTRAS ÚTEIS ============ */
+/* ============ EXTRAS ============ */
 .to-top{
   position:fixed;left:14px;bottom:14px;z-index:1500;
   width:44px;height:44px;border-radius:50%;
   border:1px solid rgba(201,162,74,.5);
   background:linear-gradient(180deg, var(--paper-2), var(--paper));
-  color:var(--gold);cursor:pointer;padding:0;
-  display:grid;place-items:center;
+  color:var(--gold);cursor:pointer;padding:0;display:grid;place-items:center;
   box-shadow:0 10px 26px -10px rgba(0,0,0,.6);
   backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
   opacity:0;pointer-events:none;transform:translateY(8px);
@@ -833,23 +585,28 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   .map-layout{grid-template-columns:1fr}
   .panel{position:static}
 }
+/* ===== TABLET E CELULAR: carrossel com destaque central ===== */
 @media (max-width:1024px){
   .fan{
-    justify-content:flex-start;align-items:center;overflow-x:auto;
+    display:flex;flex-direction:row;align-items:center;overflow-x:auto;
     scroll-snap-type:x mandatory;gap:20px;
-    padding:8px max(12px, calc(50vw - 130px)) 20px;
+    padding:10px max(12px, calc(50vw - 130px)) 22px;
     margin:0 calc(-1 * clamp(20px,4vw,48px));
     scrollbar-width:none;
   }
   .fan::-webkit-scrollbar{display:none}
+  .fan-row{display:contents}
   .fan .card,
-  .fan .card:nth-child(1),.fan .card:nth-child(2),.fan .card:nth-child(3),
-  .fan .card:nth-child(4),.fan .card:nth-child(5),.fan .card:nth-child(6),
-  .fan .card:nth-child(7),.fan .card:nth-child(8),.fan .card:nth-child(9),
-  .fan .card:nth-child(10),.fan .card:nth-child(11),.fan .card:nth-child(12){
-    --r:0deg;--y:0px;margin:0;transform:none;flex:0 0 auto;scroll-snap-align:center;
+  .fan-row .card{
+    --r:0deg;--y:0px;margin:0;transform:none;flex:0 0 auto;
+    scroll-snap-align:center;
   }
   .fan .card:hover,.fan .card.fav{transform:none}
+  .fan .card.focus{transform:scale(1.06);z-index:10}
+  .fan .card.focus .card-face{
+    border-color:var(--gold);
+    box-shadow:0 0 0 2px rgba(201,162,74,.45),0 0 30px rgba(201,162,74,.3),0 14px 30px -10px rgba(0,0,0,.8);
+  }
   .card{width:min(250px,80vw)}
   .card-sigil{width:86px;height:86px}
   .card-sigil svg{width:44px;height:44px}
@@ -983,10 +740,18 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M20 34 L24 35 M44 34 L40 35" opacity=".6"/>
       </g>
     </symbol>
-    <symbol id="sym-thunder" viewBox="0 0 64 64"><!-- Laura — Eletric Wizard: raio em erupção sobre aro arcano -->
+    <symbol id="sym-thunder" viewBox="0 0 64 64"><!-- Laura — Electric Wizard: raio em erupção sobre aro arcano -->
       <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="32" cy="32" r="22" opacity=".5"/>
         <path d="M36 8 L24 32 L32 32 L28 56 L42 30 L33 30 L38 8 Z"/>
+      </g>
+    </symbol>
+    <symbol id="sym-celeste" viewBox="0 0 64 64"><!-- Cecilia — Celeste: lua crescente com estrela -->
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 6 A26 26 0 1 0 54 44 A21 21 0 0 1 40 6 Z"/>
+        <path d="M46 14 L48.4 20.6 L55 23 L48.4 25.4 L46 32 L43.6 25.4 L37 23 L43.6 20.6 Z"/>
+        <circle cx="50" cy="42" r="1.6" fill="currentColor" stroke="none" opacity=".7"/>
+        <circle cx="56" cy="34" r="1.2" fill="currentColor" stroke="none" opacity=".5"/>
       </g>
     </symbol>
     <symbol id="sym-royalcrown" viewBox="0 0 64 64">
@@ -1005,12 +770,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M32 5 C41 9 50 10.5 55 10.5 C55 29 50 46 32 58 C14 46 9 29 9 10.5 C14 10.5 23 9 32 5 Z"/>
         <path d="M22 28 L32 36 L42 28"/>
-      </g>
-    </symbol>
-    <symbol id="sym-horn" viewBox="0 0 64 64">
-      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 50 C10 36 16 18 30 10 C38 6 48 6 54 10 C56 12 56 15 54 17 C44 15 36 18 32 24 C26 32 26 42 30 50 C31 53 29 55 26 55 Z"/>
-        <path d="M14 50 L8 54 M30 50 L34 55"/><path d="M40 14 C42 17 42 20 41 23" opacity=".6"/>
       </g>
     </symbol>
     <symbol id="sym-sunwave" viewBox="0 0 64 64">
@@ -1151,7 +910,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <button class="cfg-realm" data-realm="mirigumi" style="--r:var(--c-mirigumi)" type="button" aria-label="Império Mirigumi" title="Mirigumi"><svg aria-hidden="true"><use href="#sym-scepter"/></svg></button>
     <button class="cfg-realm" data-realm="yaryan" style="--r:var(--c-nyara)" type="button" aria-label="Império Yaryan" title="Yaryan"><svg aria-hidden="true"><use href="#sym-raven"/></svg></button>
     <button class="cfg-realm" data-realm="ascar" style="--r:var(--c-ascar)" type="button" aria-label="Deserto Ascar" title="Ascar"><svg aria-hidden="true"><use href="#sym-royalcrown"/></svg></button>
-    <button class="cfg-realm" data-realm="bravos" style="--r:var(--c-bravos)" type="button" aria-label="Arquipélago Budapeste" title="Budapeste"><svg aria-hidden="true"><use href="#sym-horn"/></svg></button>
     <button class="cfg-realm" data-realm="karhal" style="--r:var(--c-karhal)" type="button" aria-label="Floresta de Karhal" title="Karhal"><svg aria-hidden="true"><use href="#sym-sunwave"/></svg></button>
     <button class="cfg-realm" data-realm="snezhnaya" style="--r:var(--c-snezhnaya)" type="button" aria-label="Reino Snezhnaya" title="Snezhnaya"><svg aria-hidden="true"><use href="#sym-storm"/></svg></button>
     <button class="cfg-realm" data-realm="escarlate" style="--r:var(--c-escarlate)" type="button" aria-label="Fortaleza Escarlate" title="Escarlate"><svg aria-hidden="true"><use href="#sym-shield"/></svg></button>
@@ -1209,14 +967,14 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-crown"/></svg></span>
         <div>
           <b>As Cartas</b>
-          <p>Tocai numa carta para virá-la: do outro lado há o lema, a história e os atributos do guardião. No celular, arrastai para os lados para ver todos.</p>
+          <p>Tocai numa carta para virá-la: do outro lado há o lema, a história e os atributos. No celular, deslizai o carrossel — a carta do centro se destaca.</p>
         </div>
       </li>
       <li>
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-heart"/></svg></span>
         <div>
           <b>A Coroa (favorito)</b>
-          <p>Tocai na coroa no canto de uma carta para coroar seu guardião favorito. Só um pode reinar — e a mesma coroa reina na Mesa de RPG.</p>
+          <p>Tocai na coroa no canto de uma carta para coroar seu favorito. Só um pode reinar — e a mesma coroa reina na Mesa de RPG.</p>
         </div>
       </li>
       <li>
@@ -1276,7 +1034,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
   <p class="hero-sub">A crônica dos reinos e dos amigos que os guardam.</p>
   <p class="hero-intro">Nem todo mundo encontra a sua gente — nós encontramos, numa partida qualquer,
-  entre uma kill e um respawn. O grupo cresceu, virou mundo: oito reinos, um pacto,
+  entre uma kill e um respawn. O grupo cresceu, virou mundo: sete reinos, um pacto,
   dezenas de jogos — e histórias que ninguém de fora acredita.</p>
 
   <a class="scroll-hint" href="#mapa">
@@ -1295,7 +1053,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
       <p class="lead">Todo grupo de amigos é, no fundo, um continente: territórios de temperamentos
       diferentes, unidos por estradas que ninguém lembra de ter aberto — e que ninguém consegue mais
-      abandonar. Esta é a carta de Veldora: oito reinos, doze guardiões, um só juramento —
+      abandonar. Esta é a carta de Veldora: sete reinos, doze almas, um só juramento —
       e uma mesa que troca de jogo, mas nunca de gente.</p>
     </div>
 
@@ -1324,11 +1082,12 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <textPath href="#seaCurve" startOffset="50%" text-anchor="middle">· MAR DE VELDORA ·</textPath>
               </text>
 
+              <!-- Rotas marítimas (ligando os sete reinos) -->
               <g fill="none" stroke="var(--sea)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" opacity=".5">
                 <path d="M470 340 C420 400 380 450 350 500"/>
                 <path d="M480 350 C560 420 640 460 700 480"/>
-                <path d="M640 300 C720 330 780 360 840 400"/>
-                <path d="M700 490 C760 530 800 570 830 610"/>
+                <path d="M640 300 C720 340 810 440 880 505"/>
+                <path d="M270 545 C215 510 180 480 162 452"/>
               </g>
 
               <g class="map-decor anim-soft" transform="translate(430,410)">
@@ -1340,7 +1099,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                   path="M470 340 C420 400 380 450 350 500 C400 560 520 570 640 540 C720 515 700 420 640 300"/>
               </g>
 
-              <path class="map-decor road anim-soft" d="M200 210 C280 180 340 170 400 178 C470 188 560 180 640 200 C700 216 760 220 820 240 C850 280 840 330 820 380 C780 470 720 540 660 580 C580 620 480 620 400 600 C320 580 260 540 240 480 C225 430 210 320 200 210"
+              <path class="map-decor road anim-soft" d="M200 210 C280 180 340 170 400 178 C470 188 560 180 640 200 C700 216 750 230 780 270 C800 310 790 350 760 400 C720 460 690 520 640 560 C570 610 480 620 400 600 C320 580 260 540 240 480 C225 430 210 320 200 210"
                 fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 12" opacity=".45"/>
 
               <g class="map-decor">
@@ -1396,22 +1155,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <use class="map-decor" href="#sym-dune" x="892" y="140" width="26" height="14"/>
               </g>
 
-              <g class="realm" data-realm="bravos" tabindex="0" role="button" aria-label="Arquipélago Budapeste, de Fernando Fernandes">
-                <path class="land" fill="var(--c-bravos)" d="M894 268 C912 258 934 264 942 280 C950 296 942 314 924 320 C906 326 888 318 884 302 C881 290 885 276 894 268 Z"/>
-                <path class="land" fill="var(--c-bravos)" d="M940 336 C958 330 976 340 980 356 C984 372 972 386 954 386 C936 386 924 374 926 358 C927 348 932 340 940 336 Z"/>
-                <path class="land" fill="var(--c-bravos)" d="M908 404 C924 398 940 406 944 420 C948 434 938 446 922 446 C906 446 896 436 897 422 C898 414 902 407 908 404 Z"/>
-                <g fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1">
-                  <circle cx="922" cy="294" r="2.6"/><circle cx="954" cy="362" r="2.6"/><circle cx="920" cy="424" r="2.6"/>
-                </g>
-                <text class="realm-name" x="858" y="342">Arquipélago</text>
-                <text class="realm-name" x="858" y="362">Budapeste</text>
-                <text class="realm-sub" x="858" y="380">O CABO DOS DESTEMIDOS</text>
-                <g class="map-decor">
-                  <path d="M838 396 C834 386 838 374 846 370 C851 368 856 369 858 371 C854 372 850 374 849 378 C847 384 849 390 852 395 C853 397 851 398 849 397 Z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.1" stroke-linejoin="round"/>
-                  <path d="M858 371 L861 373" stroke="var(--c-bravos)" stroke-width="1.4" stroke-linecap="round"/>
-                </g>
-              </g>
-
               <g class="realm" data-realm="karhal" tabindex="0" role="button" aria-label="Floresta de Karhal, de Cristiano Ronaldo">
                 <path class="land" fill="var(--c-karhal)" d="M846 466 C884 448 930 452 958 476 C976 492 978 514 962 528 C942 546 904 552 870 544 C842 537 826 520 828 500 C829 484 835 473 846 466 Z"/>
                 <text class="realm-name" x="898" y="498">Floresta de Karhal</text>
@@ -1441,7 +1184,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 </g>
               </g>
 
-              <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitoria, Nayara Hostapiuk, Gustavo Leite, Gabriel Amaral e Laura Gomes">
+              <g class="realm" data-realm="yaryan" tabindex="0" role="button" aria-label="Império Yaryan, de Rayssa Vitoria, Nayara Hostapiuk, Gustavo Leite, Gabriel Amaral, Laura Gomes e Cecilia Rodrigues">
                 <path class="land" fill="var(--c-yaryan)" d="M258 560 C262 540 282 528 306 530 C330 532 346 546 344 564 C342 582 322 594 298 592 C276 590 258 580 258 560 Z"/>
                 <path class="land" fill="var(--c-yaryan)" d="M330 510 C334 494 352 484 372 486 C392 488 404 500 402 514 C400 528 384 536 364 534 C346 532 330 524 330 510 Z"/>
                 <path class="land" fill="var(--c-yaryan)" d="M370 566 C386 560 404 566 408 580 C412 594 400 606 382 606 C364 606 352 596 354 582 C355 575 362 569 370 566 Z"/>
@@ -1499,19 +1242,18 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <circle class="node-ring" data-realm="supremo" cx="212" cy="216" r="9" fill="none" stroke="var(--c-supremo)" stroke-width="2"/>
                 <circle class="node-ring" data-realm="mirigumi" cx="536" cy="182" r="9" fill="none" stroke="var(--c-mirigumi)" stroke-width="2"/>
                 <circle class="node-ring" data-realm="ascar" cx="818" cy="132" r="9" fill="none" stroke="var(--c-ascar)" stroke-width="2"/>
-                <circle class="node-ring" data-realm="bravos" cx="922" cy="360" r="9" fill="none" stroke="var(--c-bravos)" stroke-width="2"/>
                 <circle class="node-ring" data-realm="karhal" cx="898" cy="530" r="9" fill="none" stroke="var(--c-karhal)" stroke-width="2"/>
                 <circle class="node-ring" data-realm="escarlate" cx="140" cy="440" r="9" fill="none" stroke="var(--c-escarlate)" stroke-width="2"/>
                 <circle class="node-ring" data-realm="yaryan" cx="300" cy="560" r="9" fill="none" stroke="var(--c-nyara)" stroke-width="2"/>
                 <circle class="node-ring" data-realm="snezhnaya" cx="574" cy="500" r="9" fill="none" stroke="var(--c-snezhnaya)" stroke-width="2"/>
                 <g fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5">
                   <circle cx="212" cy="216" r="4.5"/><circle cx="536" cy="182" r="4.5"/><circle cx="818" cy="132" r="4.5"/>
-                  <circle cx="922" cy="360" r="4.5"/><circle cx="898" cy="530" r="4.5"/><circle cx="140" cy="440" r="4.5"/>
+                  <circle cx="898" cy="530" r="4.5"/><circle cx="140" cy="440" r="4.5"/>
                   <circle cx="300" cy="560" r="4.5"/><circle cx="574" cy="500" r="4.5"/>
                 </g>
                 <g fill="var(--ink)">
                   <circle cx="212" cy="216" r="1.5"/><circle cx="536" cy="182" r="1.5"/><circle cx="818" cy="132" r="1.5"/>
-                  <circle cx="922" cy="360" r="1.5"/><circle cx="898" cy="530" r="1.5"/><circle cx="140" cy="440" r="1.5"/>
+                  <circle cx="898" cy="530" r="1.5"/><circle cx="140" cy="440" r="1.5"/>
                   <circle cx="300" cy="560" r="1.5"/><circle cx="574" cy="500" r="1.5"/>
                 </g>
               </g>
@@ -1545,7 +1287,6 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
               <button class="hs" data-realm="supremo" type="button" style="--x:21%;--y:24%" aria-label="Reino Drag Zakharys" title="Reino Drag Zakharys"></button>
               <button class="hs" data-realm="mirigumi" type="button" style="--x:52%;--y:24%" aria-label="Império Mirigumi" title="Império Mirigumi"></button>
               <button class="hs" data-realm="ascar" type="button" style="--x:83%;--y:23%" aria-label="Deserto Ascar" title="Deserto Ascar"></button>
-              <button class="hs" data-realm="bravos" type="button" style="--x:84%;--y:50%" aria-label="Arquipélago Budapeste" title="Arquipélago Budapeste"></button>
               <button class="hs" data-realm="karhal" type="button" style="--x:84%;--y:73%" aria-label="Floresta de Karhal" title="Floresta de Karhal"></button>
               <button class="hs" data-realm="escarlate" type="button" style="--x:14%;--y:47%" aria-label="Fortaleza Escarlate" title="Fortaleza Escarlate"></button>
               <button class="hs" data-realm="yaryan" type="button" style="--x:28%;--y:72%" aria-label="Império Yaryan" title="Império Yaryan"></button>
@@ -1569,360 +1310,364 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <p class="chapter-kicker">Capítulo II</p>
       <h2>Os Guardiões do Pacto</h2>
       <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-      <p class="lead">Doze almas, oito reinos, um juramento. Virai cada carta para ler o que a
+      <p class="lead">Doze almas, sete reinos, um juramento. Virai cada carta para ler o que a
       crônica registrou — e coroai, se alguém merecer a vossa devoção eterna.</p>
     </div>
 
     <div class="fan reveal">
-      <!-- Carta — Luan Dhony -->
-      <div class="card" data-person="luan" data-realm="supremo" style="--accent:var(--c-supremo)" tabindex="0" role="button" aria-label="Carta de Luan Dhony, o Dragão Soberano. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-sovereign"/></svg></div>
-            <h3>Luan Dhony</h3>
-            <p class="card-title">Dragão Soberano</p>
-            <p class="card-realm">Reino Drag Zakharys</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“O dragão não se doma — ele reina.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">A espada fala por ele. Onde o Dragão Soberano aponta, a mesa inteira segue — e quando ele silencia, é porque o jogo já está ganho.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+      <div class="fan-row">
+        <!-- Luan -->
+        <div class="card" data-person="luan" data-realm="supremo" style="--accent:var(--c-supremo)" tabindex="0" role="button" aria-label="Carta de Luan Dhony, o Dragão Soberano. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-sovereign"/></svg></div>
+              <h3>Luan Dhony</h3>
+              <p class="card-title">Dragão Soberano</p>
+              <p class="card-realm">Reino Drag Zakharys</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
             </div>
-          </div>
-        </div></div>
+            <div class="card-face card-back">
+              <p class="card-lema">“O dragão não se doma — ele reina.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">A espada fala por ele. Onde o Dragão Soberano aponta, a mesa inteira segue — e quando ele silencia, é porque o jogo já está ganho.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- Debora -->
+        <div class="card" data-person="debora" data-realm="mirigumi" style="--accent:var(--c-mirigumi)" tabindex="0" role="button" aria-label="Carta de Debora Vezetiv, a Imperatriz. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-scepter"/></svg></div>
+              <h3>Debora Vezetiv</h3>
+              <p class="card-title">A Imperatriz</p>
+              <p class="card-realm">Império Mirigumi</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
+            </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“Nada escapa ao olhar da Imperatriz.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">Exploradora incansável, caçadora de troféus e de segredos que os desenvolvedores esconderam — e se arrependeram de não enterrar mais fundo.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- Rayssa -->
+        <div class="card" data-person="rayssa" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Rayssa Vitoria, o Corvo. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-raven"/></svg></div>
+              <h3>Rayssa Vitoria</h3>
+              <p class="card-title">O Corvo</p>
+              <p class="card-realm">Império Yaryan</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
+            </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“Vê o que ninguém vê — de onde ninguém vê.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">Planando sobre o Yaryan, o Corvo observa tudo antes de qualquer um: cada rota do inimigo, cada emboscada, cada segredo. Chega sempre primeiro — e sabendo demais.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- Nayara -->
+        <div class="card" data-person="nayara" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Nayara Hostapiuk, a Lâmina. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-blade"/></svg></div>
+              <h3>Nayara Hostapiuk</h3>
+              <p class="card-title">A Lâmina</p>
+              <p class="card-realm">Império Yaryan</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
+            </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“Precisa e silenciosa — como todo bom destino.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">A lâmina do Yaryan: corta o jogo no ponto exato, na hora exata. Onde outros forçam, ela fende — e o que ela decide, o destino executa.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- Gustavo -->
+        <div class="card" data-person="gustavo" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Gustavo Leite, o Nômade. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-nomad"/></svg></div>
+              <h3>Gustavo Leite</h3>
+              <p class="card-title">Nômade</p>
+              <p class="card-realm">Império Yaryan</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
+            </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“Nenhum mapa o prende — nem o das sombras.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">Andarilho eterno das ilhas roxas: conhece cada trilha perdida do Yaryan porque jamais parou de andar. Onde a névoa engole os caminhos, ele passa sem deixar rastro.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- Gabriel -->
+        <div class="card" data-person="gabriel" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Gabriel Amaral, MAYHEM. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-mayhem"/></svg></div>
+              <h3>Gabriel Amaral</h3>
+              <p class="card-title">MAYHEM</p>
+              <p class="card-realm">Império Yaryan</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
+            </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“O caos também escolhe um lado — escolheu o nosso.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">Sob a máscara de guerra, ninguém sabe o que pensa — nem se pensa. O Yaryan o acolheu e o caos passou a lutar pelo reino das sombras: imprevisível, ensurdecedor, impossível de parar.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
       </div>
 
-      <!-- Carta — Debora Vezetiv -->
-      <div class="card" data-person="debora" data-realm="mirigumi" style="--accent:var(--c-mirigumi)" tabindex="0" role="button" aria-label="Carta de Debora Vezetiv, a Imperatriz. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-scepter"/></svg></div>
-            <h3>Debora Vezetiv</h3>
-            <p class="card-title">A Imperatriz</p>
-            <p class="card-realm">Império Mirigumi</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“Nada escapa ao olhar da Imperatriz.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Exploradora incansável, caçadora de troféus e de segredos que os desenvolvedores esconderam — e se arrependeram de não enterrar mais fundo.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+      <div class="fan-row">
+        <!-- Laura -->
+        <div class="card" data-person="laura" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Laura Gomes, Electric Wizard. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-thunder"/></svg></div>
+              <h3>Laura Gomes</h3>
+              <p class="card-title">Electric Wizard</p>
+              <p class="card-realm">Império Yaryan</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
             </div>
-          </div>
-        </div></div>
-      </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“A tempestade aprende comigo — não o contrário.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">Feiticeira das correntes vivas: a eletricidade do Yaryan obedece ao seu comando. Quando o céu das ilhas roxas estala, é o feitiço dela anunciando que a batalha já tem dona.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
 
-      <!-- Carta — Rayssa Vitoria -->
-      <div class="card" data-person="rayssa" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Rayssa Vitoria, o Corvo. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-raven"/></svg></div>
-            <h3>Rayssa Vitoria</h3>
-            <p class="card-title">O Corvo</p>
-            <p class="card-realm">Império Yaryan</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“Vê o que ninguém vê — de onde ninguém vê.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Planando sobre o Yaryan, o Corvo observa tudo antes de qualquer um: cada rota do inimigo, cada emboscada, cada segredo. Chega sempre primeiro — e sabendo demais.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+        <!-- Cecilia -->
+        <div class="card" data-person="cecilia" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Cecilia Rodrigues, Celeste. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-celeste"/></svg></div>
+              <h3>Cecilia Rodrigues</h3>
+              <p class="card-title">Celeste</p>
+              <p class="card-realm">Império Yaryan</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
             </div>
-          </div>
-        </div></div>
-      </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“A lua não pede licença para brilhar.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">A luz serena das ilhas roxas: quando a noite do Yaryan pesa, é a Celeste que acende o caminho. Ninguém sabe de onde veio — só sabem que, desde que chegou, as noites ficaram mais claras.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
 
-      <!-- Carta — Nayara Hostapiuk -->
-      <div class="card" data-person="nayara" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Nayara Hostapiuk, a Lâmina. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-blade"/></svg></div>
-            <h3>Nayara Hostapiuk</h3>
-            <p class="card-title">A Lâmina</p>
-            <p class="card-realm">Império Yaryan</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“Precisa e silenciosa — como todo bom destino.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">A lâmina do Yaryan: corta o jogo no ponto exato, na hora exata. Onde outros forçam, ela fende — e o que ela decide, o destino executa.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+        <!-- Luís -->
+        <div class="card" data-person="luis" data-realm="ascar" style="--accent:var(--c-ascar)" tabindex="0" role="button" aria-label="Carta de Luís Augusto, o Rei Dourado. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-royalcrown"/></svg></div>
+              <h3>Luís Augusto</h3>
+              <p class="card-title">Rei Dourado</p>
+              <p class="card-realm">Deserto Ascar</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
             </div>
-          </div>
-        </div></div>
-      </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“O ouro obedece a quem o carrega.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">A fortuna viva da mesa: onde há tesouro, ele chega primeiro — e sai com as mãos brilhando e o cofre do Ascar mais pesado.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
 
-      <!-- Carta — Gustavo Leite -->
-      <div class="card" data-person="gustavo" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Gustavo Leite, o Nômade. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-nomad"/></svg></div>
-            <h3>Gustavo Leite</h3>
-            <p class="card-title">Nômade</p>
-            <p class="card-realm">Império Yaryan</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“Nenhum mapa o prende — nem o das sombras.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Andarilho eterno das ilhas roxas: conhece cada trilha perdida do Yaryan porque jamais parou de andar. Onde a névoa engole os caminhos, ele passa sem deixar rastro.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+        <!-- Cristiano -->
+        <div class="card" data-person="cristiano" data-realm="karhal" style="--accent:var(--c-karhal)" tabindex="0" role="button" aria-label="Carta de Cristiano Ronaldo, o Coração da Floresta. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-sunwave"/></svg></div>
+              <h3>Cristiano Ronaldo</h3>
+              <p class="card-title">Coração da Floresta</p>
+              <p class="card-realm">Floresta de Karhal</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
             </div>
-          </div>
-        </div></div>
-      </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“As copas ondulam como dunas — e eu as domo.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">O senhor das matas verdes de Karhal: conhece cada trilha pelo nome, cada clareira de cor. Onde todos se perdem entre as árvores, ele caminha de olhos fechados — e chega primeiro.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
 
-      <!-- Carta — Gabriel Amaral -->
-      <div class="card" data-person="gabriel" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Gabriel Amaral, MAYHEM. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-mayhem"/></svg></div>
-            <h3>Gabriel Amaral</h3>
-            <p class="card-title">MAYHEM</p>
-            <p class="card-realm">Império Yaryan</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“O caos também escolhe um lado — escolheu o nosso.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Sob a máscara de guerra, ninguém sabe o que pensa — nem se pensa. O Yaryan o soltou nas batalhas e o caos passou a lutar pelo reino das sombras: imprevisível, ensurdecedor, impossível de parar.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+        <!-- Bruno -->
+        <div class="card" data-person="bruno" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" tabindex="0" role="button" aria-label="Carta de Bruno Martins, o Inverno Perpétuo. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-storm"/></svg></div>
+              <h3>Bruno Martins</h3>
+              <p class="card-title">Inverno Perpétuo</p>
+              <p class="card-realm">Reino Snezhnaya</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
             </div>
-          </div>
-        </div></div>
-      </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“O inverno não passa — ele reina.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">Vem das neves eternas de Snezhnaya: onde ele chega, o inverno fica — gela a partida, congela o avanço inimigo e some na nevasca antes de você entender o que houve.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
 
-      <!-- Carta — Laura Gomes -->
-      <div class="card" data-person="laura" data-realm="yaryan" style="--accent:var(--c-nyara)" tabindex="0" role="button" aria-label="Carta de Laura Gomes, Eletric Wizard. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-thunder"/></svg></div>
-            <h3>Laura Gomes</h3>
-            <p class="card-title">Eletric Wizard</p>
-            <p class="card-realm">Império Yaryan</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“A tempestade aprende comigo — não o contrário.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Feiticeira das correntes vivas: a eletricidade do Yaryan obedece ao seu comando. Quando o céu das ilhas roxas estala, é o feitiço dela anunciando que a batalha já tem dona.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+        <!-- Guilherme -->
+        <div class="card" data-person="guilherme" data-realm="escarlate" style="--accent:var(--c-escarlate)" tabindex="0" role="button" aria-label="Carta de Guilherme Morais, o Protetor. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-shield"/></svg></div>
+              <h3>Guilherme Morais</h3>
+              <p class="card-title">O Protetor</p>
+              <p class="card-realm">Fortaleza Escarlate</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
             </div>
-          </div>
-        </div></div>
-      </div>
-
-      <!-- Carta — Luís Augusto -->
-      <div class="card" data-person="luis" data-realm="ascar" style="--accent:var(--c-ascar)" tabindex="0" role="button" aria-label="Carta de Luís Augusto, o Rei Dourado. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-royalcrown"/></svg></div>
-            <h3>Luís Augusto</h3>
-            <p class="card-title">Rei Dourado</p>
-            <p class="card-realm">Deserto Ascar</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“O ouro obedece a quem o carrega.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">A fortuna viva da mesa: onde há tesouro, ele chega primeiro — e sai com as mãos brilhando e o cofre do Ascar mais pesado.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+            <div class="card-face card-back">
+              <p class="card-lema">“Ninguém cai enquanto eu me ergo.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">Primeiro a entrar, último a sair: o escudo da mesa. Se alguém vai cair, cai ele — e mesmo assim volta de pé na próxima rodada.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+              </div>
             </div>
-          </div>
-        </div></div>
-      </div>
-
-      <!-- Carta — Fernando Fernandes -->
-      <div class="card" data-person="fernando" data-realm="bravos" style="--accent:var(--c-bravos)" tabindex="0" role="button" aria-label="Carta de Fernando Fernandes, dos Bravos e Destemidos. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-horn"/></svg></div>
-            <h3>Fernando Fernandes</h3>
-            <p class="card-title">Bravos e Destemidos</p>
-            <p class="card-realm">Arquipélago Budapeste</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“O corno toca — e o medo fica em terra.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Primeiro a saltar do navio, último a pedir recuo: onde o corno de guerra soa, os bravos seguem. O perigo não o intimida — ele convoca.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-            </div>
-          </div>
-        </div></div>
-      </div>
-
-      <!-- Carta — Cristiano Ronaldo -->
-      <div class="card" data-person="cristiano" data-realm="karhal" style="--accent:var(--c-karhal)" tabindex="0" role="button" aria-label="Carta de Cristiano Ronaldo, o Coração da Floresta. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-sunwave"/></svg></div>
-            <h3>Cristiano Ronaldo</h3>
-            <p class="card-title">Coração da Floresta</p>
-            <p class="card-realm">Floresta de Karhal</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“As copas ondulam como dunas — e eu as domo.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">O senhor das matas verdes de Karhal: conhece cada trilha pelo nome, cada clareira de cor. Onde todos se perdem entre as árvores, ele caminha de olhos fechados — e chega primeiro.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-            </div>
-          </div>
-        </div></div>
-      </div>
-
-      <!-- Carta — Bruno Martins -->
-      <div class="card" data-person="bruno" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" tabindex="0" role="button" aria-label="Carta de Bruno Martins, o Inverno Perpétuo. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-storm"/></svg></div>
-            <h3>Bruno Martins</h3>
-            <p class="card-title">Inverno Perpétuo</p>
-            <p class="card-realm">Reino Snezhnaya</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“O inverno não passa — ele reina.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Vem das neves eternas de Snezhnaya: onde ele chega, o inverno fica — gela a partida, congela o avanço inimigo e some na nevasca antes de você entender o que houve.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-            </div>
-          </div>
-        </div></div>
-      </div>
-
-      <!-- Carta — Guilherme Morais -->
-      <div class="card" data-person="guilherme" data-realm="escarlate" style="--accent:var(--c-escarlate)" tabindex="0" role="button" aria-label="Carta de Guilherme Morais, o Protetor. Pressione para virar.">
-        <div class="card-tilt"><div class="card-inner">
-          <div class="card-face card-front">
-            <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
-              <svg aria-hidden="true"><use href="#sym-crown"/></svg>
-            </button>
-            <div class="card-sigil"><svg><use href="#sym-shield"/></svg></div>
-            <h3>Guilherme Morais</h3>
-            <p class="card-title">O Protetor</p>
-            <p class="card-realm">Fortaleza Escarlate</p>
-            <p class="card-tap">— virai a carta —</p>
-            <p class="fav-tag">Favorito do Códice</p>
-          </div>
-          <div class="card-face card-back">
-            <p class="card-lema">“Ninguém cai enquanto eu me ergo.”</p>
-            <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-            <p class="card-bio">Primeiro a entrar, último a sair: o escudo da mesa. Se alguém vai cair, cai ele — e mesmo assim volta de pé na próxima rodada.</p>
-            <div class="stats">
-              <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-              <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-              <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-            </div>
-          </div>
-        </div></div>
+          </div></div>
+        </div>
       </div>
     </div>
-    <p class="fan-hint">Arrastai para os lados para ver os guardiões · tocai numa carta para virá-la · na coroa, para favorecê-la.</p>
+    <p class="fan-hint">Arrastai para os lados para ver todos · a carta do centro se destaca · tocai para virá-la · na coroa, para favorecê-la.</p>
   </div>
 </section>
 
@@ -1992,7 +1737,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19 V5 M5 12 L12 5 L19 12"/></svg>
 </button>
 
-<!-- ============ TOAST (mensagens da própria página) ============ -->
+<!-- ============ TOAST ============ -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- ============ PORTAL DA PRIMEIRA VISITA ============ -->
@@ -2038,18 +1783,18 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       </button>
       <button class="gate-choice" data-person="laura" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-thunder"/></svg></span>
-        <span><span class="gate-name">Laura Gomes</span><br><span class="gate-role">Eletric Wizard</span></span>
+        <span><span class="gate-name">Laura Gomes</span><br><span class="gate-role">Electric Wizard</span></span>
+        <span class="gate-realm">Yaryan</span>
+      </button>
+      <button class="gate-choice" data-person="cecilia" data-realm="yaryan" style="--accent:var(--c-nyara)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-celeste"/></svg></span>
+        <span><span class="gate-name">Cecilia Rodrigues</span><br><span class="gate-role">Celeste</span></span>
         <span class="gate-realm">Yaryan</span>
       </button>
       <button class="gate-choice" data-person="luis" data-realm="ascar" style="--accent:var(--c-ascar)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-royalcrown"/></svg></span>
         <span><span class="gate-name">Luís Augusto</span><br><span class="gate-role">Rei Dourado</span></span>
         <span class="gate-realm">Deserto Ascar</span>
-      </button>
-      <button class="gate-choice" data-person="fernando" data-realm="bravos" style="--accent:var(--c-bravos)" type="button">
-        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-horn"/></svg></span>
-        <span><span class="gate-name">Fernando Fernandes</span><br><span class="gate-role">Bravos e Destemidos</span></span>
-        <span class="gate-realm">Arquipélago Budapeste</span>
       </button>
       <button class="gate-choice" data-person="cristiano" data-realm="karhal" style="--accent:var(--c-karhal)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-sunwave"/></svg></span>
@@ -2075,25 +1820,49 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 <script>
 /* ================================================================
    VELDORA REALMS — motor completo
-   · As cartas aparecem em ORDEM ALEATÓRIA a cada visita
+   · As cartas aparecem em ORDEM ALEATÓRIA a cada visita,
+     sempre distribuídas 6 + 6 nas duas fileiras do leque
+   · No celular, carrossel com destaque na carta central
    · Coroa COMPARTILHADA com a Mesa de RPG (mesma chave: veldora_fav)
    · Tema e animações compartilhados, com sincronização ao vivo
    · Mensagens sempre da própria página (toast) — nada do navegador
 ================================================================ */
 
 /* ================================================================
-   EMBARALHAR AS CARTAS — cada visita vê o leque noutra ordem
-   (Fisher-Yates: reordena as cartas ANTES de qualquer evento)
+   EMBARALHAR AS CARTAS — 12 cartas, sempre 6 + 6 nas fileiras
+   (Fisher-Yates sobre todas, depois redistribui entre as rows)
 ================================================================ */
 (function(){
   const fan = document.querySelector('.fan');
   if(!fan) return;
-  const cards = Array.from(fan.children);
+  const rows = fan.querySelectorAll('.fan-row');
+  if(rows.length !== 2) return;
+  let cards = [];
+  rows.forEach(r=>{ cards = cards.concat(Array.from(r.children)); });
+  if(cards.length < 2) return;
   for(let i = cards.length - 1; i > 0; i--){
     const j = Math.floor(Math.random() * (i + 1));
     [cards[i], cards[j]] = [cards[j], cards[i]];
   }
-  cards.forEach(c => fan.appendChild(c));
+  const perTop = Math.ceil(cards.length / 2);
+  rows[0].replaceChildren(...cards.slice(0, perTop));
+  rows[1].replaceChildren(...cards.slice(perTop));
+})();
+
+/* ================================================================
+   CARROSSEL — destaca a carta central (tablet e celular)
+================================================================ */
+(function(){
+  const fan = document.querySelector('.fan');
+  if(!fan) return;
+  const cards = fan.querySelectorAll('.card');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting) en.target.classList.add('focus');
+      else en.target.classList.remove('focus');
+    });
+  },{root:fan, threshold:.65});
+  cards.forEach(c=>obs.observe(c));
 })();
 
 const DISCORD_URL = 'https://discord.gg/2wx46naKxv';
@@ -2105,7 +1874,7 @@ const REALMS = {
     motto:"Do fogo, a ordem", accent:"#f7f4ec",
     today:["brasas flutuando sobre o covil","chamas calmas nas muralhas","fogo de coroação ao pino do sol"],
     desc:"Do covil do Drag Zakharys partem os planos que seguram os piores wipes: um olhar do Dragão Soberano basta para pôr todos os reinos em movimento.",
-    heroes:[{id:"luan", nick:"Luan Dhony", title:"Dragão Soberano", symbol:"sym-sovereign",
+    heroes:[{id:"luan", nick:"Luan Dhony", title:"Dragão Soberano", role:"Guardião", symbol:"sym-sovereign",
       bio:"A espada fala por ele. Onde o Dragão Soberano aponta, a mesa inteira segue — e quando ele silencia, é porque o jogo já está ganho.",
       feats:["Doze vitórias seguidas no competitivo.","Chamou o rush com 0,8s de antecedência.","Nunca perdeu um 1v1 — segundo ele.","Fala uma vez por partida — e essa vez resolve."]}]
   },
@@ -2114,31 +1883,34 @@ const REALMS = {
     motto:"Nada se perde sob as pétalas", accent:"#e07aa0",
     today:["pétalas ao vento","orvalho sobre as flores","jardins em floração plena"],
     desc:"O Império Mirigumi guarda todo segredo de todos os mundos: cada mapa 100% completo, cada baú desenterrado. Nada fica por encontrar sob o olhar da Imperatriz.",
-    heroes:[{id:"debora", nick:"Debora Vezetiv", title:"A Imperatriz", symbol:"sym-scepter",
+    heroes:[{id:"debora", nick:"Debora Vezetiv", title:"A Imperatriz", role:"Guardiã", symbol:"sym-scepter",
       bio:"Exploradora incansável, caçadora de troféus e de segredos bem enterrados.",
       feats:["Catorze troféus de platina.","Encontra baú secreto por cheiro.","999 de cada recurso, “por garantia”."]}]
   },
   yaryan: {
     kicker:"O Reino das Sombras", name:"Império Yaryan", epithet:"O arquipélago roxo do sul",
     motto:"De nada, mundos", accent:"#7a52a8",
-    today:["noite roxa, o Corvo no céu","sombras guardando as ilhas","a Lâmina afiada ao luar","trilhas de névoa que só o Nômade conhece","o MAYHEM ecoando entre as ilhas","tempestades elétricas comandadas pela Wizard"],
-    desc:"Ilhas roxas onde cinco guardiões defendem mundos que nascem do nada: o Corvo vê tudo do alto, a Lâmina corta o que não deve existir, o Nômade caminha por onde ninguém ousou, o MAYHEM traz o caos a seu favor — e a Eletric Wizard comanda as tempestades.",
+    today:["noite roxa, o Corvo no céu","a Lâmina afiada ao luar","trilhas de névoa que só o Nômade conhece","o MAYHEM ecoando entre as ilhas","tempestades elétricas da Wizard","a luz serena da Celeste sobre o Porto Livre"],
+    desc:"Seis almas defendem o arquipélago roxo: o Corvo vê tudo do alto, a Lâmina corta o que não deve existir, o Nômade caminha por onde ninguém ousou, o MAYHEM traz o caos a seu favor, a Electric Wizard comanda as tempestades — e a Celeste acende a noite.",
     heroes:[
-      {id:"rayssa", nick:"Rayssa Vitoria", title:"O Corvo", symbol:"sym-raven",
+      {id:"rayssa", nick:"Rayssa Vitoria", title:"O Corvo", role:"Guardiã", symbol:"sym-raven",
         bio:"Planando sobre o Yaryan, o Corvo observa tudo antes de qualquer um — e chega sabendo demais.",
         feats:["Vê a jogada do inimigo antes dele.","Cem dias no hardcore; caiu no 101, rindo.","Sabia da traição antes de acontecer."]},
-      {id:"nayara", nick:"Nayara Hostapiuk", title:"A Lâmina", symbol:"sym-blade",
+      {id:"nayara", nick:"Nayara Hostapiuk", title:"A Lâmina", role:"Guardiã", symbol:"sym-blade",
         bio:"A lâmina do Yaryan: corta o jogo no ponto exato, na hora exata — e o que decide, o destino executa.",
-        feats:["Corta o jogo exatamente onde dói.","Costurou a aliança entre os oito reinos.","A última coisa que o boss viu."]},
-      {id:"gustavo", nick:"Gustavo Leite", title:"Nômade", symbol:"sym-nomad",
+        feats:["Corta o jogo exatamente onde dói.","Costurou a aliança entre todos os reinos.","A última coisa que o boss viu."]},
+      {id:"gustavo", nick:"Gustavo Leite", title:"Nômade", role:"Nobre", symbol:"sym-nomad",
         bio:"Andarilho eterno das ilhas roxas: conhece cada trilha perdida do Yaryan porque jamais parou de andar.",
         feats:["Atravessou o Yaryan de ponta a ponta, três vezes.","Desapareceu por 40 dias — voltou com um mapa novo.","A névoa o conhece pelo nome."]},
-      {id:"gabriel", nick:"Gabriel Amaral", title:"MAYHEM", symbol:"sym-mayhem",
+      {id:"gabriel", nick:"Gabriel Amaral", title:"MAYHEM", role:"Nobre", symbol:"sym-mayhem",
         bio:"Sob a máscara de guerra, o caos luta pelo reino das sombras: imprevisível, ensurdecedor, impossível de parar.",
         feats:["Virou uma partida perdida com o caos.","O time inimigo se rendeu — ao ouvir o nome.","Nunca jogou o mesmo jogo duas vezes."]},
-      {id:"laura", nick:"Laura Gomes", title:"Eletric Wizard", symbol:"sym-thunder",
+      {id:"laura", nick:"Laura Gomes", title:"Electric Wizard", role:"Nobre", symbol:"sym-thunder",
         bio:"Feiticeira das correntes vivas: a eletricidade do Yaryan obedece ao seu comando.",
-        feats:["Zerou a partida com um feitiço só.","Desviou um raio com os dedos — por diversão.","Os céus do Yaryan são o dela."]}
+        feats:["Zerou a partida com um feitiço só.","Desviou um raio com os dedos — por diversão.","Os céus do Yaryan são o dela."]},
+      {id:"cecilia", nick:"Cecilia Rodrigues", title:"Celeste", role:"Nobre", symbol:"sym-celeste",
+        bio:"A luz serena das ilhas roxas: quando a noite do Yaryan pesa, é a Celeste que acende o caminho.",
+        feats:["Iluminou a travessia noturna que ninguém ousaria.","Encontrou a lua nova que faltava no calendário do reino.","As estrelas avisam dela antes dela chegar."]}
     ]
   },
   ascar: {
@@ -2146,25 +1918,16 @@ const REALMS = {
     motto:"Tudo brilha para o Rei", accent:"#f0c75e",
     today:["sol atraindo brilho","vento de poeira dourada","leilão ao meio-dia nas dunas"],
     desc:"Nas dunas do Ascar, cada brilho tem dono — e o dono é o Rei Dourado. Recompensa, loot, fortuna: se vale ouro, já tem bandeira de Ascar em cima.",
-    heroes:[{id:"luis", nick:"Luís Augusto", title:"Rei Dourado", symbol:"sym-royalcrown",
+    heroes:[{id:"luis", nick:"Luís Augusto", title:"Rei Dourado", role:"Guardião", symbol:"sym-royalcrown",
       bio:"A fortuna viva da mesa: onde há tesouro, ele chega primeiro.",
       feats:["Recorde de riqueza da mesa — três temporadas.","Nunca saiu de um saque de mãos vazias.","Rei é apelido; o ouro é inventário."]}]
-  },
-  bravos: {
-    kicker:"O Cabo dos Destemidos", name:"Arquipélago Budapeste", epithet:"O arquipélago de ciano do sudeste",
-    motto:"O corno toca — e o medo fica em terra", accent:"#3fd4c9",
-    today:["ondas desafiando o cabo","cornos de guerra ao vento","mares bravios, navegadores mais ainda"],
-    desc:"Do Arquipélago Budapeste partem os que não conhecem o recuo: se há uma parede no caminho, os bravos atravessam — e ainda fazem questão de avisar antes, ao som do corno.",
-    heroes:[{id:"fernando", nick:"Fernando Fernandes", title:"Bravos e Destemidos", symbol:"sym-horn",
-      bio:"Primeiro a saltar do navio, último a pedir recuo: onde o corno de guerra soa, os bravos seguem.",
-      feats:["Nunca recuou — nem quando devia.","Primeiro a entrar na jaula do boss.","Onde outros veem parede, ele vê porta."]}]
   },
   karhal: {
     kicker:"O Bosque Verde", name:"Floresta de Karhal", epithet:"A mata verde do sul",
     motto:"As copas ondulam como dunas — e eu as domo", accent:"#4caf6d",
     today:["copas ondulando ao vento","clareiras banhadas de sol","trilhas que o Coração conhece de cor"],
     desc:"Uma floresta que desafia toda regra: do alto, as copas ondulam como dunas verdes, trilhas fogem de mapas e as sombras dançam. Só um homem as domina — e a mata obedece.",
-    heroes:[{id:"cristiano", nick:"Cristiano Ronaldo", title:"Coração da Floresta", symbol:"sym-sunwave",
+    heroes:[{id:"cristiano", nick:"Cristiano Ronaldo", title:"Coração da Floresta", role:"Guardião", symbol:"sym-sunwave",
       bio:"O senhor das matas verdes de Karhal: conhece cada trilha pelo nome, cada clareira de cor.",
       feats:["Atravessou Karhal de ponta a ponta, sem mapa.","Encontrou três clareiras que ninguém mapeia.","Um “SIUU” que ecoa mata afora."]}]
   },
@@ -2173,7 +1936,7 @@ const REALMS = {
     motto:"O frio também é lei", accent:"#8ec5e8",
     today:["nevasca leve","neve fresca, gelo no ar","inverno firmado no horizonte"],
     desc:"Terra das neves eternas: quando Snezhnaya esfria, a partida inteira treme — e quando o Inverno Perpétuo passa, o placar já virou.",
-    heroes:[{id:"bruno", nick:"Bruno Martins", title:"Inverno Perpétuo", symbol:"sym-storm",
+    heroes:[{id:"bruno", nick:"Bruno Martins", title:"Inverno Perpétuo", role:"Guardião", symbol:"sym-storm",
       bio:"Onde ele chega, o inverno fica: gela a partida e some na nevasca antes de você entender o que houve.",
       feats:["Uma tempestade perfeita: 1 contra 5 — venceu.","Desaparece na neve; reaparece nas costas.","Quando ele loga, o lobby inteiro esfria."]}]
   },
@@ -2182,13 +1945,13 @@ const REALMS = {
     motto:"Ninguém cai enquanto eu me ergo", accent:"#d94f3d",
     today:["muralhas aquecidas pelo sol","bandeiras rubras ao vento","turno de guarda ao anoitecer"],
     desc:"A fortaleza que cobre os flancos da mesa: quando o plano desaba, é a muralha escarlate que segura a linha — nas terras do Protetor, ninguém cai sozinho.",
-    heroes:[{id:"guilherme", nick:"Guilherme Morais", title:"O Protetor", symbol:"sym-shield",
+    heroes:[{id:"guilherme", nick:"Guilherme Morais", title:"O Protetor", role:"Guardião", symbol:"sym-shield",
       bio:"Primeiro a entrar, último a sair: o escudo da mesa.",
       feats:["Tanque por vocação: puxa a atenção e segura.","Carregou aliado desmaiado por três mapas.","“Atrás de mim.” — e era verdade."]}]
   }
 };
 
-const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", gustavo:"yaryan", gabriel:"yaryan", laura:"yaryan", luis:"ascar", fernando:"bravos", cristiano:"karhal", bruno:"snezhnaya", guilherme:"escarlate"};
+const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", gustavo:"yaryan", gabriel:"yaryan", laura:"yaryan", cecilia:"yaryan", luis:"ascar", cristiano:"karhal", bruno:"snezhnaya", guilherme:"escarlate"};
 
 const panel = document.getElementById('realmPanel');
 let currentRealm = 'supremo';
@@ -2221,7 +1984,7 @@ syncMapOverlay();
 /* ---------- brasões dos reinos ---------- */
 const CRESTS = {
   supremo:"bralua.png", mirigumi:"bradeb.png", yaryan:"braray.png",
-  ascar:"bralui.png", bravos:"brafer.png", karhal:"bracri.png",
+  ascar:"bralui.png", karhal:"bracri.png",
   snezhnaya:"brabru.png", escarlate:"bragui.png"
 };
 
@@ -2239,7 +2002,7 @@ const setFav = id => { try { id ? localStorage.setItem(FAV_KEY, id) : localStora
 function sharePage(){
   const data = {
     title: 'Veldora Realms — Crônica dos Reinos',
-    text: 'A crônica dos reinos e dos amigos que os guardam: oito territórios, doze guardiões e um só pacto.',
+    text: 'A crônica dos reinos e dos amigos que os guardam: sete territórios, doze almas e um só pacto.',
     url: PAGE_URL
   };
   if(navigator.share){
@@ -2332,7 +2095,7 @@ function renderPanel(id){
       <div class="guardian${i ? ' g-second' : ''}">
         <div class="guardian-medal"><svg><use href="#${h.symbol}"/></svg></div>
         <div>
-          <p class="g-kicker">Guardião</p>
+          <p class="g-kicker">${h.role || 'Guardião'}</p>
           <p class="g-name">${h.nick}</p>
           <p class="g-title">${h.title}</p>
           ${fav === h.id ? `<p class="g-fav"><svg aria-hidden="true"><use href="#sym-crown"/></svg>Favorito do Códice</p>` : ''}
@@ -2342,7 +2105,7 @@ function renderPanel(id){
       <p class="feats-title">${multi ? 'Feitos de ' + h.nick.split(' ')[0] : 'Feitos registrados'}</p>
       <ul class="feats">${h.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
     `).join('')}
-    <p class="visited-note">Reinos explorados: ${visitedCount()} de 8</p>
+    <p class="visited-note">Reinos explorados: ${visitedCount()} de 7</p>
     <a class="to-card" href="#guardioes" data-card="${id}">${multi ? 'Contemplar as cartas do reino' : 'Contemplar a carta do guardião'}</a>`;
 }
 
@@ -2378,7 +2141,7 @@ document.querySelectorAll('#cfgRealms .cfg-realm').forEach(btn=>{
   });
 });
 
-/* "Contemplar a carta" — acha a carta do guardião em qualquer posição do leque */
+/* "Contemplar a carta" — acha a carta em qualquer fileira/posição */
 document.addEventListener('click', e=>{
   const link = e.target.closest('.to-card');
   if(!link) return;
@@ -2388,7 +2151,7 @@ document.addEventListener('click', e=>{
     ? document.querySelector(`.card[data-person="${fav}"]`)
     : document.querySelector(`.card[data-realm="${link.dataset.card}"]`);
   if(!card) return;
-  card.scrollIntoView({behavior:'smooth', block:'center'});
+  card.scrollIntoView({behavior:'smooth', block:'center', inline:'center'});
   card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
 });
 
