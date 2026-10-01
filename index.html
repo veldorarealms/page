@@ -808,6 +808,9 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <circle cx="15.8" cy="15.8" r="1.15" fill="currentColor" stroke="none"/>
       <circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/>
     </symbol>
+    <symbol id="sym-duel" viewBox="0 0 24 24"><!-- A Arena: colinas de duelo com bandeira -->
+      <path d="M4 20 L8 8 L12 13 L16 8 L20 20"/><path d="M12 13 V3"/><path d="M9 5 L12 2.5 L15 5"/>
+    </symbol>
     <symbol id="sym-reset" viewBox="0 0 24 24">
       <path d="M3 12 A9 9 0 1 1 5.6 18.4"/>
       <path d="M3 20 V14 H9"/>
@@ -915,6 +918,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <span>Mesa de RPG<small>Dados e fichas dos heróis</small></span>
   </a>
 
+  <a class="cfg-item" role="menuitem" href="https://veldorarealms.github.io/duelo/">
+    <svg aria-hidden="true"><use href="#sym-duel"/></svg>
+    <span>Arena de Duelo<small>Enfrente os guardiões</small></span>
+  </a>
+
   <p class="cfg-sec">Ir a um reino</p>
   <div class="cfg-realms" id="cfgRealms">
     <button class="cfg-realm" data-realm="supremo" style="--r:var(--c-supremo)" type="button" aria-label="Reino Drag Zakharys" title="Drag Zakharys"><svg aria-hidden="true"><use href="#sym-sovereign"/></svg></button>
@@ -985,7 +993,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-heart"/></svg></span>
         <div>
           <b>A Coroa (favorito)</b>
-          <p>Tocai na coroa no canto de uma carta para coroar seu favorito. Só um pode reinar — e a mesma coroa reina na Mesa de RPG.</p>
+          <p>Tocai na coroa no canto de uma carta para coroar seu favorito. Só um pode reinar — e a mesma coroa reina na Mesa de RPG e na Arena de Duelo.</p>
         </div>
       </li>
       <li>
@@ -993,6 +1001,13 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <div>
           <b>A Mesa de RPG</b>
           <p>Para além da crônica: dados, fichas, combate, bestiário e a Forja do Mestre. A coroa que reina aqui reina lá também — mudou numa, muda na outra.</p>
+        </div>
+      </li>
+      <li>
+        <span class="help-ico"><svg aria-hidden="true"><use href="#sym-duel"/></svg></span>
+        <div>
+          <b>A Arena de Duelo</b>
+          <p>Onde as rivalidades do Pacto se resolvem: quatro elementos, mão de três golpes e os atributos das cartas governando a batalha. Escolhe teu guardião e desafia a Sombra — ou um amigo no mesmo aparelho.</p>
         </div>
       </li>
       <li>
@@ -1013,7 +1028,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span class="help-ico"><svg aria-hidden="true"><use href="#sym-gear"/></svg></span>
         <div>
           <b>As Configurações</b>
-          <p>Aqui moram a troca de coroa, o portal do Discord, a Mesa de RPG, os atalhos dos reinos e as preferências.</p>
+          <p>Aqui moram a troca de coroa, o portal do Discord, a Mesa de RPG, a Arena de Duelo, os atalhos dos reinos e as preferências.</p>
         </div>
       </li>
       <li>
@@ -1869,7 +1884,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
    · No celular, carrossel com destaque na carta central
    · O NÔMADA (Gustavo) não pertence a reino: a cada visita ele
      pode estar acampando num reino aleatório — ou em nenhum
-   · Coroa COMPARTILHADA com a Mesa de RPG (mesma chave: veldora_fav)
+   · Coroa COMPARTILHADA com a Mesa de RPG e a Arena (veldora_fav)
    · Tema e animações compartilhados, com sincronização ao vivo
    · Mensagens sempre da própria página (toast) — nada do navegador
 ================================================================ */
@@ -2464,10 +2479,10 @@ document.querySelectorAll('section[id]').forEach(s=>sectionObs.observe(s));
 /* ---------- anti-seleção (Safari) ---------- */
 document.addEventListener('selectstart', e=>e.preventDefault());
 
-/* ============ CONEXÃO COM A MESA DE RPG ============
+/* ============ CONEXÃO COM A MESA DE RPG E A ARENA ============
    A coroa, o tema e as animações vivem nas MESMAS chaves das
-   duas páginas. Se o RPG mudar algo (com esta aba aberta em
-   outra guia), a crônica acompanha na hora — e vice-versa. */
+   outras páginas. Se qualquer uma mudar algo (com esta aba
+   aberta em outra guia), a crônica acompanha na hora. */
 addEventListener('storage', e=>{
   if(e.key === FAV_KEY){
     const fav = getFav();
