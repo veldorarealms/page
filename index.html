@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <meta property="og:title" content="Veldora Realms — Crônica dos Reinos">
-<meta property="og:description" content="A crônica dos reinos e dos amigos que os guardam: sete territórios, doze almas e um só pacto.">
+<meta property="og:description" content="A crônica dos reinos e dos amigos que os guardam: sete territórios, treze almas e um só pacto.">
 <meta property="og:image" content="simbolo.png">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#c9a24a">
@@ -383,7 +383,7 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .panel .to-card:hover{letter-spacing:.28em}
 .visited-note{text-align:center;margin-top:14px;font-family:var(--disp);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
 
-/* ============ CARTAS — LEQUE DUPLA FILEIRA 6+6 ============ */
+/* ============ CARTAS — LEQUE DUPLA FILEIRA 7+6 ============ */
 .fan{
   display:flex;flex-direction:column;align-items:center;
   perspective:1600px;padding-top:6px;
@@ -391,12 +391,13 @@ section{padding:clamp(72px,9vw,120px) 0;scroll-margin-top:96px}
 .fan-row{display:flex;justify-content:center;align-items:flex-end}
 .fan-row + .fan-row{margin-top:-16px}
 .fan-row .card{flex:0 0 auto;margin:0 -6px;transition:transform .4s ease;z-index:1}
-.fan-row:nth-child(1) .card:nth-child(1){--r:-10deg;--y:24px}
-.fan-row:nth-child(1) .card:nth-child(2){--r:-6deg;--y:8px}
-.fan-row:nth-child(1) .card:nth-child(3){--r:-2deg;--y:2px}
-.fan-row:nth-child(1) .card:nth-child(4){--r:2deg;--y:2px}
-.fan-row:nth-child(1) .card:nth-child(5){--r:6deg;--y:8px}
-.fan-row:nth-child(1) .card:nth-child(6){--r:10deg;--y:24px}
+.fan-row:nth-child(1) .card:nth-child(1){--r:-12deg;--y:24px}
+.fan-row:nth-child(1) .card:nth-child(2){--r:-8deg;--y:10px}
+.fan-row:nth-child(1) .card:nth-child(3){--r:-4deg;--y:3px}
+.fan-row:nth-child(1) .card:nth-child(4){--r:0deg;--y:0px}
+.fan-row:nth-child(1) .card:nth-child(5){--r:4deg;--y:3px}
+.fan-row:nth-child(1) .card:nth-child(6){--r:8deg;--y:10px}
+.fan-row:nth-child(1) .card:nth-child(7){--r:12deg;--y:24px}
 .fan-row:nth-child(2) .card:nth-child(1){--r:-10deg;--y:16px}
 .fan-row:nth-child(2) .card:nth-child(2){--r:-6deg;--y:5px}
 .fan-row:nth-child(2) .card:nth-child(3){--r:-2deg;--y:0px}
@@ -764,6 +765,18 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <path d="M33 44 L27 56 L34 54 L29 63"/>
       </g>
     </symbol>
+    <symbol id="sym-servant" viewBox="0 0 64 64"><!-- Pedro Lucas — O Servo: lampião de servir -->
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M27 5 H37"/>
+        <path d="M32 5 V9"/>
+        <path d="M23 15 L32 9 L41 15"/>
+        <path d="M21 15 H43"/>
+        <path d="M24 15 C24 28 22 38 19 46 H45 C42 38 40 28 40 15"/>
+        <path d="M32 38 C34 35 35.5 33 34.8 30.5 C34.2 28.6 33 27.5 32 25.5 C31 27.5 29.8 28.6 29.2 30.5 C28.5 33 30 35 32 38 Z"/>
+        <path d="M19 46 C19 49 21 51 24 51 H40 C43 51 45 49 45 46"/>
+        <path d="M25 57 H39"/>
+      </g>
+    </symbol>
     <symbol id="sym-shield" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M32 5 C41 9 50 10.5 55 10.5 C55 29 50 46 32 58 C14 46 9 29 9 10.5 C14 10.5 23 9 32 5 Z"/>
@@ -892,7 +905,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
     <span>Escolher a coroa<small>De quem é o favorito</small></span>
   </button>
 
-  <a class="cfg-item" id="cfgDiscord" role="menuitem" href="https://discord.gg/SEU-CONVITE-AQUI" target="_blank" rel="noopener">
+  <a class="cfg-item" id="cfgDiscord" role="menuitem" href="https://discord.gg/2wx46naKxv" target="_blank" rel="noopener">
     <svg aria-hidden="true"><use href="#sym-discord"/></svg>
     <span>Discord<small>Entrar no portal do servidor</small></span>
   </a>
@@ -1051,7 +1064,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
       <p class="lead">Todo grupo de amigos é, no fundo, um continente: territórios de temperamentos
       diferentes, unidos por estradas que ninguém lembra de ter aberto — e que ninguém consegue mais
-      abandonar. Esta é a carta de Veldora: sete reinos, doze almas, um só juramento —
+      abandonar. Esta é a carta de Veldora: sete reinos, treze almas, um só juramento —
       e uma mesa que troca de jogo, mas nunca de gente.</p>
     </div>
 
@@ -1206,7 +1219,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <text class="map-label" x="316" y="638" font-family="EB Garamond,serif" font-style="italic" font-size="10" fill="var(--ink-soft)" text-anchor="middle">Porto Livre</text>
               </g>
 
-              <g class="realm" data-realm="snezhnaya" tabindex="0" role="button" aria-label="Reino Snezhnaya, de Bruno Martins">
+              <g class="realm" data-realm="snezhnaya" tabindex="0" role="button" aria-label="Reino Snezhnaya, de Bruno Martins e Pedro Lucas">
                 <path class="land" fill="var(--c-snezhnaya)" d="M452 470 C460 440 494 420 544 414 C596 408 650 416 682 440 C706 458 710 484 692 504 C704 512 708 526 700 538 C690 552 668 556 650 548 C634 566 606 576 578 574 C548 572 522 560 508 540 C484 542 462 532 454 512 C448 498 448 484 452 470 Z"/>
                 <text class="realm-name" x="574" y="470">Snezhnaya</text>
                 <text class="realm-sub" x="574" y="488">O INVERNO PERPÉTUO</text>
@@ -1307,7 +1320,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
       <p class="chapter-kicker">Capítulo II</p>
       <h2>Os Guardiões do Pacto</h2>
       <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
-      <p class="lead">Doze almas, sete reinos, um juramento. Virai cada carta para ler o que a
+      <p class="lead">Treze almas, sete reinos, um juramento. Virai cada carta para ler o que a
       crônica registrou — e coroai, se alguém merecer a vossa devoção eterna.</p>
     </div>
 
@@ -1393,7 +1406,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
                 <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
               </div>
             </div>
@@ -1422,7 +1435,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
                 <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               </div>
             </div>
@@ -1480,8 +1493,8 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
                 <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
-                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
               </div>
             </div>
           </div></div>
@@ -1598,7 +1611,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
-                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
               </div>
             </div>
@@ -1634,6 +1647,35 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
           </div></div>
         </div>
 
+        <!-- Pedro -->
+        <div class="card" data-person="pedro" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" tabindex="0" role="button" aria-label="Carta de Pedro Lucas, o Servo. Pressione para virar.">
+          <div class="card-tilt"><div class="card-inner">
+            <div class="card-face card-front">
+              <button class="fav-btn" type="button" aria-pressed="false" aria-label="Coroar este guardião como favorito" title="Coroar como favorito">
+                <svg aria-hidden="true"><use href="#sym-crown"/></svg>
+              </button>
+              <div class="card-sigil"><svg><use href="#sym-servant"/></svg></div>
+              <h3>Pedro Lucas</h3>
+              <p class="card-title">O Servo</p>
+              <p class="card-realm">Reino Snezhnaya</p>
+              <p class="card-tap">— virai a carta —</p>
+              <p class="fav-tag">Favorito do Códice</p>
+            </div>
+            <div class="card-face card-back">
+              <p class="card-lema">“Servir é reinar aos olhos de quem entende.”</p>
+              <svg class="orn" aria-hidden="true"><use href="#sym-orn"/></svg>
+              <p class="card-bio">Nenhum trono o espera — e é ele quem mantém o trono de pé: acende as lareiras antes da nevasca, sabe onde cada taça dorme e ouve os segredos que o gelo guarda. O Inverno Perpétuo descansa, porque o Servo vela.</p>
+              <div class="stats">
+                <div class="stat"><span>Ataque</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
         <!-- Guilherme -->
         <div class="card" data-person="guilherme" data-realm="escarlate" style="--accent:var(--c-escarlate)" tabindex="0" role="button" aria-label="Carta de Guilherme Morais, o Protetor. Pressione para virar.">
           <div class="card-tilt"><div class="card-inner">
@@ -1657,7 +1699,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
                 <div class="stat"><span>Defesa</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span></div>
                 <div class="stat"><span>Velocidade</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
                 <div class="stat"><span>Sorte</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span></div>
-                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span></div>
+                <div class="stat"><span>Q.I.</span><span class="pips"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span></div>
               </div>
             </div>
           </div></div>
@@ -1803,6 +1845,11 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
         <span><span class="gate-name">Bruno Martins</span><br><span class="gate-role">Inverno Perpétuo</span></span>
         <span class="gate-realm">Snezhnaya</span>
       </button>
+      <button class="gate-choice" data-person="pedro" data-realm="snezhnaya" style="--accent:var(--c-snezhnaya)" type="button">
+        <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-servant"/></svg></span>
+        <span><span class="gate-name">Pedro Lucas</span><br><span class="gate-role">O Servo</span></span>
+        <span class="gate-realm">Snezhnaya</span>
+      </button>
       <button class="gate-choice" data-person="guilherme" data-realm="escarlate" style="--accent:var(--c-escarlate)" type="button">
         <span class="gate-sigil"><svg aria-hidden="true"><use href="#sym-shield"/></svg></span>
         <span><span class="gate-name">Guilherme Morais</span><br><span class="gate-role">O Protetor</span></span>
@@ -1818,7 +1865,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 /* ================================================================
    VELDORA REALMS — motor completo
    · As cartas aparecem em ORDEM ALEATÓRIA a cada visita,
-     sempre distribuídas 6 + 6 nas duas fileiras do leque
+     sempre distribuídas 7 + 6 nas duas fileiras do leque
    · No celular, carrossel com destaque na carta central
    · O NÔMADA (Gustavo) não pertence a reino: a cada visita ele
      pode estar acampando num reino aleatório — ou em nenhum
@@ -1828,7 +1875,7 @@ footer .fine{margin-top:26px;font-family:var(--disp);font-size:.6rem;letter-spac
 ================================================================ */
 
 /* ================================================================
-   EMBARALHAR AS CARTAS — 12 cartas, sempre 6 + 6 nas fileiras
+   EMBARALHAR AS CARTAS — 13 cartas, sempre 7 + 6 nas fileiras
 ================================================================ */
 (function(){
   const fan = document.querySelector('.fan');
@@ -1897,7 +1944,7 @@ const REALMS = {
       {id:"nayara", nick:"Nayara Hostapiuk", title:"A Lâmina", role:"Guardiã", symbol:"sym-blade",
         bio:"A lâmina do Yaryan: corta o jogo no ponto exato, na hora exata — e o que decide, o destino executa.",
         feats:["Corta o jogo exatamente onde dói.","Costurou a aliança entre todos os reinos.","A última coisa que o boss viu."]},
-      {id:"gabriel", nick:"Gabriel Amaral", title:"MAYHEM", role:"Bobo da Corte", symbol:"sym-mayhem",
+      {id:"gabriel", nick:"Gabriel Amaral", title:"MAYHEM", role:"Bardo Bruxo", symbol:"sym-mayhem",
         bio:"Sob a máscara de guerra, o caos luta pelo reino das sombras: imprevisível, ensurdecedor, impossível de parar.",
         feats:["Virou uma partida perdida com o caos.","O time inimigo se rendeu — ao ouvir o nome.","Nunca jogou o mesmo jogo duas vezes."]},
       {id:"laura", nick:"Laura Gomes", title:"Electric Wizard", role:"Mago Nobre", symbol:"sym-thunder",
@@ -1929,11 +1976,14 @@ const REALMS = {
   snezhnaya: {
     kicker:"O Reino das Neves", name:"Reino Snezhnaya", epithet:"As terras de neve eterna",
     motto:"O frio também é lei", accent:"#8ec5e8",
-    today:["nevasca leve","neve fresca, gelo no ar","inverno firmado no horizonte"],
-    desc:"Terra das neves eternas: quando Snezhnaya esfria, a partida inteira treme — e quando o Inverno Perpétuo passa, o placar já virou.",
+    today:["nevasca leve","neve fresca, gelo no ar","inverno firmado no horizonte","o Servo servindo chá quente no salão"],
+    desc:"Terra das neves eternas: quando Snezhnaya esfria, a partida inteira treme — e quando o Inverno Perpétuo passa, o placar já virou. Atrás do trono, o Servo vela: nenhuma lareira se apaga sob sua guarda.",
     heroes:[{id:"bruno", nick:"Bruno Martins", title:"Inverno Perpétuo", role:"Guardião", symbol:"sym-storm",
       bio:"Onde ele chega, o inverno fica: gela a partida e some na nevasca antes de você entender o que houve.",
-      feats:["Uma tempestade perfeita: 1 contra 5 — venceu.","Desaparece na neve; reaparece nas costas.","Quando ele loga, o lobby inteiro esfria."]}]
+      feats:["Uma tempestade perfeita: 1 contra 5 — venceu.","Desaparece na neve; reaparece nas costas.","Quando ele loga, o lobby inteiro esfria."]},
+      {id:"pedro", nick:"Pedro Lucas", title:"O Servo", role:"Trabalhador", symbol:"sym-servant",
+      bio:"Nenhum trono o espera — e é ele quem mantém o trono de pé: acende as lareiras antes da nevasca e conhece cada segredo que o gelo guarda.",
+      feats:["Acendeu todas as lareiras do palácio numa só noite de nevasca.","Sabe onde cada taça dorme — e a que desapareceu.","O Inverno Perpétuo descansa, porque o Servo vela."]}]
   },
   escarlate: {
     kicker:"A Muralha Rubra", name:"Fortaleza Escarlate", epithet:"A fortaleza inabalável do oeste",
@@ -1946,7 +1996,7 @@ const REALMS = {
   }
 };
 
-const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", gabriel:"yaryan", laura:"yaryan", cecilia:"yaryan", luis:"ascar", cristiano:"karhal", bruno:"snezhnaya", guilherme:"escarlate"};
+const PERSON_REALM = {luan:"supremo", debora:"mirigumi", rayssa:"yaryan", nayara:"yaryan", gabriel:"yaryan", laura:"yaryan", cecilia:"yaryan", luis:"ascar", cristiano:"karhal", bruno:"snezhnaya", pedro:"snezhnaya", guilherme:"escarlate"};
 
 /* ================================================================
    O NÔMADA — Gustavo não pertence a reino algum.
@@ -2013,7 +2063,7 @@ const setFav = id => { try { id ? localStorage.setItem(FAV_KEY, id) : localStora
 function sharePage(){
   const data = {
     title: 'Veldora Realms — Crônica dos Reinos',
-    text: 'A crônica dos reinos e dos amigos que os guardam: sete territórios, doze almas e um só pacto.',
+    text: 'A crônica dos reinos e dos amigos que os guardam: sete territórios, treze almas e um só pacto.',
     url: PAGE_URL
   };
   if(navigator.share){
